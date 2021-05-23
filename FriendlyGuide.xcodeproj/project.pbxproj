@@ -95,11 +95,10 @@
 		2150FEB5265AB9070058FA89 /* FriendlyGuide */ = {
 			isa = PBXGroup;
 			children = (
-				2150FEB6265AB9070058FA89 /* AppDelegate.swift */,
-				2150FEB8265AB9070058FA89 /* SceneDelegate.swift */,
-				2150FEBF265AB9090058FA89 /* Assets.xcassets */,
-				2150FEC1265AB9090058FA89 /* LaunchScreen.storyboard */,
-				2150FEC4265AB9090058FA89 /* Info.plist */,
+				2150FEE6265ABE500058FA89 /* App */,
+				2150FEEB265ABE8A0058FA89 /* Core */,
+				2150FEEC265ABE980058FA89 /* Resources */,
+				2150FEED265ABEA10058FA89 /* Environments */,
 			);
 			path = FriendlyGuide;
 			sourceTree = "<group>";
@@ -120,6 +119,71 @@
 				2150FEDA265AB9090058FA89 /* Info.plist */,
 			);
 			path = FriendlyGuideUITests;
+			sourceTree = "<group>";
+		};
+		2150FEE6265ABE500058FA89 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2150FEB6265AB9070058FA89 /* AppDelegate.swift */,
+				2150FEB8265AB9070058FA89 /* SceneDelegate.swift */,
+				2150FEE7265ABE580058FA89 /* BusinessLogic */,
+				2150FEE8265ABE5D0058FA89 /* Entity */,
+				2150FEE9265ABE630058FA89 /* Assembly */,
+				2150FEEA265ABE730058FA89 /* Flows */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2150FEE7265ABE580058FA89 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		2150FEE8265ABE5D0058FA89 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		2150FEE9265ABE630058FA89 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		2150FEEA265ABE730058FA89 /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flows;
+			sourceTree = "<group>";
+		};
+		2150FEEB265ABE8A0058FA89 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		2150FEEC265ABE980058FA89 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2150FEC1265AB9090058FA89 /* LaunchScreen.storyboard */,
+				2150FEBF265AB9090058FA89 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2150FEED265ABEA10058FA89 /* Environments */ = {
+			isa = PBXGroup;
+			children = (
+				2150FEC4265AB9090058FA89 /* Info.plist */,
+			);
+			path = Environments;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,7 +486,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QU9ZBG8S59;
-				INFOPLIST_FILE = FriendlyGuide/Info.plist;
+				INFOPLIST_FILE = FriendlyGuide/Environments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -441,7 +505,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QU9ZBG8S59;
-				INFOPLIST_FILE = FriendlyGuide/Info.plist;
+				INFOPLIST_FILE = FriendlyGuide/Environments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
