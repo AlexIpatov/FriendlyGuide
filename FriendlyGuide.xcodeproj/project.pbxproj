@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,17 @@
 		2150FEC3265AB9090058FA89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2150FEC1265AB9090058FA89 /* LaunchScreen.storyboard */; };
 		2150FECE265AB9090058FA89 /* FriendlyGuideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FECD265AB9090058FA89 /* FriendlyGuideTests.swift */; };
 		2150FED9265AB9090058FA89 /* FriendlyGuideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */; };
+		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
+		C5904686265B0EAD00231116 /* TravelScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904685265B0EAD00231116 /* TravelScreenViewController.swift */; };
+		C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904687265B0F6F00231116 /* MapScreenViewController.swift */; };
+		C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904689265B107000231116 /* ProfileScreenViewController.swift */; };
+		C590468C265B12C300231116 /* ChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590468B265B12C300231116 /* ChatScreenViewController.swift */; };
+		C5904690265B19A400231116 /* UIComponentsMakeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590468F265B19A400231116 /* UIComponentsMakeable.swift */; };
+		C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904691265B1A0B00231116 /* MapScreenView.swift */; };
+		C5904694265B241400231116 /* TravelScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904693265B241400231116 /* TravelScreenView.swift */; };
+		C5904696265B26B200231116 /* ChatScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904695265B26B200231116 /* ChatScreenView.swift */; };
+		C5904698265B271400231116 /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904697265B271400231116 /* ProfileScreenView.swift */; };
+		DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13702F993F2CF8FFDC1C0C0A /* Pods-FriendlyGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.release.xcconfig"; sourceTree = "<group>"; };
 		2150FEB3265AB9070058FA89 /* FriendlyGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendlyGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2150FEB6265AB9070058FA89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2150FEB8265AB9070058FA89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +57,18 @@
 		2150FED4265AB9090058FA89 /* FriendlyGuideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyGuideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyGuideUITests.swift; sourceTree = "<group>"; };
 		2150FEDA265AB9090058FA89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5904683265B0AA700231116 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C5904685265B0EAD00231116 /* TravelScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScreenViewController.swift; sourceTree = "<group>"; };
+		C5904687265B0F6F00231116 /* MapScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewController.swift; sourceTree = "<group>"; };
+		C5904689265B107000231116 /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
+		C590468B265B12C300231116 /* ChatScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenViewController.swift; sourceTree = "<group>"; };
+		C590468F265B19A400231116 /* UIComponentsMakeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsMakeable.swift; sourceTree = "<group>"; };
+		C5904691265B1A0B00231116 /* MapScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenView.swift; sourceTree = "<group>"; };
+		C5904693265B241400231116 /* TravelScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScreenView.swift; sourceTree = "<group>"; };
+		C5904695265B26B200231116 /* ChatScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenView.swift; sourceTree = "<group>"; };
+		C5904697265B271400231116 /* ProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
+		EE7CC528BA65E998B145C20A /* Pods-FriendlyGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1207F27390D1BF531A718BDB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE7CC528BA65E998B145C20A /* Pods-FriendlyGuide.debug.xcconfig */,
+				13702F993F2CF8FFDC1C0C0A /* Pods-FriendlyGuide.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2150FEAA265AB9070058FA89 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +113,8 @@
 				2150FECC265AB9090058FA89 /* FriendlyGuideTests */,
 				2150FED7265AB9090058FA89 /* FriendlyGuideUITests */,
 				2150FEB4265AB9070058FA89 /* Products */,
+				1207F27390D1BF531A718BDB /* Pods */,
+				43B513E69338F43FDD6A721D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +135,7 @@
 				2150FEEB265ABE8A0058FA89 /* Core */,
 				2150FEEC265ABE980058FA89 /* Resources */,
 				2150FEED265ABEA10058FA89 /* Environments */,
+				C590468D265B193900231116 /* DesignSystem */,
 			);
 			path = FriendlyGuide;
 			sourceTree = "<group>";
@@ -158,6 +195,11 @@
 		2150FEEA265ABE730058FA89 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				C5904681265B0A3800231116 /* TabBarController */,
+				C5904675265B080100231116 /* TravelScreen */,
+				C5904678265B083900231116 /* MapScreen */,
+				C590467B265B088600231116 /* ChatScreen */,
+				C590467E265B08AF00231116 /* ProfileScreen */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -186,6 +228,146 @@
 			path = Environments;
 			sourceTree = "<group>";
 		};
+		43B513E69338F43FDD6A721D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5904675265B080100231116 /* TravelScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C5904676265B080800231116 /* View */,
+				C5904677265B080F00231116 /* ViewController */,
+			);
+			path = TravelScreen;
+			sourceTree = "<group>";
+		};
+		C5904676265B080800231116 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5904693265B241400231116 /* TravelScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C5904677265B080F00231116 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C5904685265B0EAD00231116 /* TravelScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C5904678265B083900231116 /* MapScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C590467A265B086500231116 /* View */,
+				C5904679265B085600231116 /* ViewController */,
+			);
+			path = MapScreen;
+			sourceTree = "<group>";
+		};
+		C5904679265B085600231116 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C5904687265B0F6F00231116 /* MapScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C590467A265B086500231116 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5904691265B1A0B00231116 /* MapScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C590467B265B088600231116 /* ChatScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C590467D265B089E00231116 /* View */,
+				C590467C265B089300231116 /* ViewController */,
+			);
+			path = ChatScreen;
+			sourceTree = "<group>";
+		};
+		C590467C265B089300231116 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C590468B265B12C300231116 /* ChatScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C590467D265B089E00231116 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5904695265B26B200231116 /* ChatScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C590467E265B08AF00231116 /* ProfileScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C5904680265B08E200231116 /* View */,
+				C590467F265B08D500231116 /* ViewController */,
+			);
+			path = ProfileScreen;
+			sourceTree = "<group>";
+		};
+		C590467F265B08D500231116 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C5904689265B107000231116 /* ProfileScreenViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C5904680265B08E200231116 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C5904697265B271400231116 /* ProfileScreenView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C5904681265B0A3800231116 /* TabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				C5904682265B0A3E00231116 /* ViewController */,
+			);
+			path = TabBarController;
+			sourceTree = "<group>";
+		};
+		C5904682265B0A3E00231116 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C5904683265B0AA700231116 /* TabBarController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C590468D265B193900231116 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				C590468E265B195B00231116 /* UIComponents */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		C590468E265B195B00231116 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				C590468F265B19A400231116 /* UIComponentsMakeable.swift */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,9 +375,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2150FEDD265AB9090058FA89 /* Build configuration list for PBXNativeTarget "FriendlyGuide" */;
 			buildPhases = (
+				B17F76EF428781984C706742 /* [CP] Check Pods Manifest.lock */,
 				2150FEAF265AB9070058FA89 /* Sources */,
 				2150FEB0265AB9070058FA89 /* Frameworks */,
 				2150FEB1265AB9070058FA89 /* Resources */,
+				663F742B8619D7A3F425123F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -310,12 +494,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		663F742B8619D7A3F425123F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B17F76EF428781984C706742 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FriendlyGuide-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2150FEAF265AB9070058FA89 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5904694265B241400231116 /* TravelScreenView.swift in Sources */,
+				C5904686265B0EAD00231116 /* TravelScreenViewController.swift in Sources */,
+				C5904684265B0AA700231116 /* TabBarController.swift in Sources */,
+				C590468C265B12C300231116 /* ChatScreenViewController.swift in Sources */,
+				C5904690265B19A400231116 /* UIComponentsMakeable.swift in Sources */,
+				C5904696265B26B200231116 /* ChatScreenView.swift in Sources */,
+				C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */,
 				2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */,
+				C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */,
+				C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */,
+				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
 				2150FEB9265AB9070058FA89 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +717,7 @@
 		};
 		2150FEDE265AB9090058FA89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE7CC528BA65E998B145C20A /* Pods-FriendlyGuide.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -500,6 +737,7 @@
 		};
 		2150FEDF265AB9090058FA89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13702F993F2CF8FFDC1C0C0A /* Pods-FriendlyGuide.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
