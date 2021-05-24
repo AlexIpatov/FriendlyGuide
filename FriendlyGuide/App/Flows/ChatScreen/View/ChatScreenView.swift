@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ChatScreenView: UIView, UIComponentsMakeable {
+class ChatScreenView: UIView {
     // MARK: - UI components
     private(set) lazy var scrollView: UIScrollView = {
-        makeScrollView()
+        UIComponentsFactory.makeScrollView()
     }()
     
     private(set) lazy var logoChatScreenLabel: UILabel = {
-        makeLabel(text: "There will be a Chat",
+        UIComponentsFactory.makeLabel(text: "There will be a Chat",
                        textColor: .systemBlue,
                        font: .boldSystemFont(ofSize: 30.0))
     }()

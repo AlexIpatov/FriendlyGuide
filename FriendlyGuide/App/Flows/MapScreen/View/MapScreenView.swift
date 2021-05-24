@@ -8,13 +8,13 @@
 import UIKit
 import GoogleMaps
 
-class MapScreenView: UIView, UIComponentsMakeable {
+class MapScreenView: UIView {
     private(set) lazy var mapView: GMSMapView = {
-        makeMapView()
+        UIComponentsFactory.makeMapView()
     }()
     
     private(set) lazy var showCurrentLocationButton: UIButton = {
-        makeButton(title: "",
+        UIComponentsFactory.makeButton(title: "",
                    font: .systemFont(ofSize: 17),
                    backgroundColor: .white,
                    cornerRadius: 20.0)

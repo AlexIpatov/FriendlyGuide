@@ -7,14 +7,14 @@
 
 import UIKit
 
-class TravelScreenView: UIView, UIComponentsMakeable {
+class TravelScreenView: UIView {
     // MARK: - UI components
     private(set) lazy var scrollView: UIScrollView = {
-        makeScrollView()
+        UIComponentsFactory.makeScrollView()
     }()
     
     private(set) lazy var logoTravelScreenLabel: UILabel = {
-        makeLabel(text: "There will be a Travel",
+        UIComponentsFactory.makeLabel(text: "There will be a Travel",
                        textColor: .systemBlue,
                        font: .boldSystemFont(ofSize: 30.0))
     }()

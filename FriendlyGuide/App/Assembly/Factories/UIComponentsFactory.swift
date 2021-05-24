@@ -8,30 +8,8 @@
 import UIKit
 import GoogleMaps
 
-protocol UIComponentsMakeable: UIView {
-    func makeScrollView() -> UIScrollView
-    
-    func makeMapView() -> GMSMapView
-    
-    func makeImageView(image: UIImage,
-                                  tintColor: UIColor) -> UIImageView
-    
-    func makeLabel(text: String,
-                        textColor: UIColor,
-                        font: UIFont) -> UILabel
-    
-    func makeTextField(placeholder: String,
-                            font: UIFont,
-                            borderStyle: UITextField.BorderStyle) -> UITextField
-    
-    func makeButton(title: String,
-                         font: UIFont,
-                         backgroundColor: UIColor,
-                         cornerRadius: CGFloat) -> UIButton
-}
-
-extension UIComponentsMakeable {
-    func makeScrollView() -> UIScrollView {
+struct UIComponentsFactory {
+    static func makeScrollView() -> UIScrollView {
         let screensize: CGRect = UIScreen.main.bounds
         let screenWidth = screensize.width
         let screenHeight = screensize.height
@@ -41,14 +19,14 @@ extension UIComponentsMakeable {
         return scrollView
     }
     
-    func makeMapView() -> GMSMapView {
+    static func makeMapView() -> GMSMapView {
         let mapView = GMSMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.sizeToFit()
         return mapView
     }
     
-    func makeImageView(image: UIImage,
+    static func makeImageView(image: UIImage,
                                   tintColor: UIColor) -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +36,7 @@ extension UIComponentsMakeable {
         return imageView
     }
     
-    func makeLabel(text: String,
+    static func makeLabel(text: String,
                         textColor: UIColor,
                         font: UIFont) -> UILabel {
         let label = UILabel()
@@ -69,7 +47,7 @@ extension UIComponentsMakeable {
         return label
     }
     
-    func makeTextField(placeholder: String,
+    static func makeTextField(placeholder: String,
                             font: UIFont,
                             borderStyle: UITextField.BorderStyle) -> UITextField {
         let textField = UITextField()
@@ -83,7 +61,7 @@ extension UIComponentsMakeable {
         return textField
     }
     
-    func makeButton(title: String,
+    static func makeButton(title: String,
                          font: UIFont,
                          backgroundColor: UIColor,
                          cornerRadius: CGFloat) -> UIButton {

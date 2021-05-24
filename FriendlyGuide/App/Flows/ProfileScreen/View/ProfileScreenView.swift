@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ProfileScreenView: UIView, UIComponentsMakeable {
+class ProfileScreenView: UIView {
     // MARK: - UI components
     private(set) lazy var scrollView: UIScrollView = {
-        makeScrollView()
+        UIComponentsFactory.makeScrollView()
     }()
     
     private(set) lazy var logoProfileScreenLabel: UILabel = {
-        makeLabel(text: "There will be a Profile",
+        UIComponentsFactory.makeLabel(text: "There will be a Profile",
                        textColor: .systemBlue,
                        font: .boldSystemFont(ofSize: 30.0))
     }()
