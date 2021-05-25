@@ -27,7 +27,7 @@
 		4A7889C4265D034C008F81EA /* UIButton+ Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7889C3265D034C008F81EA /* UIButton+ Extensions.swift */; };
 		4A7889C9265D0B18008F81EA /* UIViewController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7889C8265D0B18008F81EA /* UIViewController + Extensions.swift */; };
 		4A7889CB265D11FF008F81EA /* SelectCityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7889CA265D11FF008F81EA /* SelectCityCell.swift */; };
-		4A7889CD265D1833008F81EA /*  UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7889CC265D1833008F81EA /*  UIImageView + Extensions.swift */; };
+		4A7889CD265D1833008F81EA /* UIImageView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7889CC265D1833008F81EA /* UIImageView + Extensions.swift */; };
 		4A7889CF265D2A2F008F81EA /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7889CE265D2A2F008F81EA /* UILabel+Extensions.swift */; };
 		B768E637D8ED434D98E87DC3 /* Pods_FriendlyGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */; };
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
@@ -90,7 +90,7 @@
 		4A7889C3265D034C008F81EA /* UIButton+ Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+ Extensions.swift"; sourceTree = "<group>"; };
 		4A7889C8265D0B18008F81EA /* UIViewController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extensions.swift"; sourceTree = "<group>"; };
 		4A7889CA265D11FF008F81EA /* SelectCityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCityCell.swift; sourceTree = "<group>"; };
-		4A7889CC265D1833008F81EA /*  UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " UIImageView + Extensions.swift"; sourceTree = "<group>"; };
+		4A7889CC265D1833008F81EA /* UIImageView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView + Extensions.swift"; sourceTree = "<group>"; };
 		4A7889CE265D2A2F008F81EA /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide_FriendlyGuideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,7 +299,7 @@
 				4A7889A5265BEEB9008F81EA /* UIFont + Extensions.swift */,
 				4A7889C3265D034C008F81EA /* UIButton+ Extensions.swift */,
 				4A7889C8265D0B18008F81EA /* UIViewController + Extensions.swift */,
-				4A7889CC265D1833008F81EA /*  UIImageView + Extensions.swift */,
+				4A7889CC265D1833008F81EA /* UIImageView + Extensions.swift */,
 				4A7889CE265D2A2F008F81EA /* UILabel+Extensions.swift */,
 			);
 			path = Extensions;
@@ -741,7 +741,7 @@
 				C590468C265B12C300231116 /* ChatScreenViewController.swift in Sources */,
 				C5904690265B19A400231116 /* UIComponentsFactory.swift in Sources */,
 				C5904696265B26B200231116 /* ChatScreenView.swift in Sources */,
-				4A7889CD265D1833008F81EA /*  UIImageView + Extensions.swift in Sources */,
+				4A7889CD265D1833008F81EA /* UIImageView + Extensions.swift in Sources */,
 				4A7889AA265BF12A008F81EA /* TravelScreenEnum.swift in Sources */,
 				C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */,
 				2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */,

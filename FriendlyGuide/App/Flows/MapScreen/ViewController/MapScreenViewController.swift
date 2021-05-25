@@ -46,7 +46,7 @@ class MapScreenViewController: UIViewController {
     
     //MARK: - Configuration methods
     func configureViewController() {
-        self.title = "Map"
+        self.title = "Карта"
     }
     
     func configureMap() {

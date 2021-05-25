@@ -52,7 +52,7 @@ class TravelScreenViewController: UIViewController {
     // MARK: - Configuration Methods
     func configureViewController() {
         view.backgroundColor = .white
-        self.title = "Travel"
+        self.title = "Путешествие"
     }
     // MARK: - CollectionView set up
     var dataSource: UICollectionViewDiffableDataSource<TravelSection, AnyHashable>?

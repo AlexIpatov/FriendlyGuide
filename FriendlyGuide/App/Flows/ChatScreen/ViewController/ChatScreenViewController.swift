@@ -37,6 +37,6 @@ class ChatScreenViewController: UIViewController {
     //MARK: - Configuration Methods
     func configureViewController() {
         view.backgroundColor = .white
-        self.title = "Chat"
+        self.title = "Чат"
     }
 }
