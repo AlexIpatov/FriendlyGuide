@@ -17,12 +17,6 @@ class TravelScreenView: UIView {
         addSubview(collectionView)
         return collectionView
     }()
-//    private(set) lazy var setCityButton: UIButton = {
-//        UIComponentsFactory.makeButton(title: "",
-//                                       font: .smallButtonFont(),
-//                                       backgroundColor: .clear,
-//                                       cornerRadius: 0)
-//    }()
     
     // MARK: - Init
     override init(frame: CGRect) {

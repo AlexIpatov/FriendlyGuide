@@ -10,14 +10,21 @@ import UIKit
 class ProfileScreenView: UIView {
     // MARK: - UI components
     private(set) lazy var scrollView: UIScrollView = {
-        UIComponentsFactory.makeScrollView()
+        let screensize: CGRect = UIScreen.main.bounds
+        let screenWidth = screensize.width
+        let screenHeight = screensize.height
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentSize = CGSize(width: screenWidth, height: screenHeight)
+        return scrollView
     }()
     
-    private(set) lazy var logoProfileScreenLabel: UILabel = {
-        UIComponentsFactory.makeLabel(text: "There will be a Profile",
-                       textColor: .systemBlue,
-                       font: .boldSystemFont(ofSize: 30.0))
-    }()
+    private(set) lazy var logoProfileScreenLabel = UILabel(text: "There will be a Profile",
+                                                        font: .smallTitleFont(),
+                                                        textColor: .systemBlue,
+                                                        numberOfLines: 1,
+                                                        textAlignment: .center,
+                                                        adjustsFontSizeToFitWidth: false)
     
     // MARK: - Init
     override init(frame: CGRect) {

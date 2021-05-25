@@ -13,12 +13,13 @@ class SectionHeader: UICollectionReusableView {
     // MARK: - UI components
     let title = UILabel()
     
-    private(set) lazy var showMoreButton: UIButton = {
-        UIComponentsFactory.makeButton(title: "Ещё...",
-                                       font: .smallButtonFont(),
-                                       backgroundColor: .clear,
-                                       cornerRadius: 0)
-    }()
+    private(set) lazy var showMoreButton = UIButton(title: "Ещё...",
+                                                             image: .none,
+                                                             font: .smallButtonFont(),
+                                                             cornerRadius: 0.0,
+                                                             backgroundColor: .clear,
+                                                             tintColor: .systemBlue)
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)

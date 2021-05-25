@@ -15,6 +15,7 @@ extension UILabel {
                      textAlignment: NSTextAlignment = .center,
                      adjustsFontSizeToFitWidth: Bool = false) {
         self.init()
+        self.text = text
         self.font = font
         self.textColor = textColor
         self.textAlignment = textAlignment

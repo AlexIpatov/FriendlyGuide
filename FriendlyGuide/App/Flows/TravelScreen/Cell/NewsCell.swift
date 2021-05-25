@@ -13,11 +13,10 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
     static var reuseId: String = "NewsCell"
 
     // MARK: - UI components
-    private var cityNameLabel: UILabel = {
-        UIComponentsFactory.makeLabel(text: "",
-                                      textColor: .black,
-                                      font: .smallTitleFont())
-    }()
+    private(set) lazy var cityNameLabel = UILabel(text: "",
+                                               font: .smallTitleFont(),
+                                               textColor: .black,
+                                               textAlignment: .left)
 
     // MARK: - Init
     override init(frame: CGRect) {

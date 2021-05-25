@@ -55,7 +55,52 @@ class MapScreenViewController: UIViewController {
     
     //MARK: - Buttons
     func configureButtons() {
+        configureFindPlaceOrEventButton()
+        configureBuildingRouteButton()
+        configureСlearRouteButton()
+        configureZoomInMapButton()
+        configureZoomOutMapButton()
         configureShowCurrentLocationButton()
+    }
+    
+    func configureFindPlaceOrEventButton() {
+        mapScreenView.findPlaceOrEventButton.addTarget(self, action: #selector(tapFindPlaceOrEventButton(_:)), for: .touchUpInside)
+    }
+    
+    @objc func tapFindPlaceOrEventButton(_ sender: UIButton) {
+        print("FindPlaceOrEventButton tapped")
+    }
+    
+    func configureBuildingRouteButton() {
+        mapScreenView.buildingRouteButton.addTarget(self, action: #selector(tapBuildingRouteButton(_:)), for: .touchUpInside)
+    }
+    
+    @objc func tapBuildingRouteButton(_ sender: UIButton) {
+        print("BuildingRouteButton tapped")
+    }
+    
+    func configureСlearRouteButton() {
+        mapScreenView.clearRouteButton.addTarget(self, action: #selector(tapClearRouteButton(_:)), for: .touchUpInside)
+    }
+    
+    @objc func tapClearRouteButton(_ sender: UIButton) {
+        print("ClearRouteButton tapped")
+    }
+    
+    func configureZoomInMapButton() {
+        mapScreenView.zoomInMapButton.addTarget(self, action: #selector(tapZoomInMapButton(_:)), for: .touchUpInside)
+    }
+    
+    @objc func tapZoomInMapButton(_ sender: UIButton) {
+        print("ZoomInMapButton tapped")
+    }
+    
+    func configureZoomOutMapButton() {
+        mapScreenView.zoomOutMapButton.addTarget(self, action: #selector(tapZoomOutMapButton(_:)), for: .touchUpInside)
+    }
+    
+    @objc func tapZoomOutMapButton(_ sender: UIButton) {
+        print("ZoomOutMapButton tapped")
     }
     
     func configureShowCurrentLocationButton() {

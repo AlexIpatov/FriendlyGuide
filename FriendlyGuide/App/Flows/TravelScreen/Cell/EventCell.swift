@@ -17,6 +17,7 @@ class EventCell: UICollectionViewCell, SelfConfiguringCell {
                                                font: .smallTitleFont(),
                                                textColor: .white,
                                                textAlignment: .left)
+    
     private(set) lazy var imageView = UIImageView(cornerRadius: 20)
 
     // MARK: - Init

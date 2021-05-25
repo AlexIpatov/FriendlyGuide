@@ -10,14 +10,21 @@ import UIKit
 class ChatScreenView: UIView {
     // MARK: - UI components
     private(set) lazy var scrollView: UIScrollView = {
-        UIComponentsFactory.makeScrollView()
+        let screensize: CGRect = UIScreen.main.bounds
+        let screenWidth = screensize.width
+        let screenHeight = screensize.height
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.contentSize = CGSize(width: screenWidth, height: screenHeight)
+        return scrollView
     }()
     
-    private(set) lazy var logoChatScreenLabel: UILabel = {
-        UIComponentsFactory.makeLabel(text: "There will be a Chat",
-                       textColor: .systemBlue,
-                       font: .boldSystemFont(ofSize: 30.0))
-    }()
+    private(set) lazy var logoChatScreenLabel = UILabel(text: "There will be a Chat",
+                                                        font: .smallTitleFont(),
+                                                        textColor: .systemBlue,
+                                                        numberOfLines: 1,
+                                                        textAlignment: .center,
+                                                        adjustsFontSizeToFitWidth: false)
     
     // MARK: - Init
     override init(frame: CGRect) {
