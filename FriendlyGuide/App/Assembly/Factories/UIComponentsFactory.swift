@@ -18,16 +18,14 @@ struct UIComponentsFactory {
         scrollView.contentSize = CGSize(width: screenWidth, height: screenHeight)
         return scrollView
     }
-    
     static func makeMapView() -> GMSMapView {
         let mapView = GMSMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.sizeToFit()
         return mapView
     }
-    
     static func makeImageView(image: UIImage,
-                                  tintColor: UIColor) -> UIImageView {
+                            tintColor: UIColor) -> UIImageView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.masksToBounds = true
@@ -35,7 +33,6 @@ struct UIComponentsFactory {
         imageView.tintColor = tintColor
         return imageView
     }
-    
     static func makeLabel(text: String,
                         textColor: UIColor,
                         font: UIFont) -> UILabel {
@@ -60,7 +57,6 @@ struct UIComponentsFactory {
         textField.spellCheckingType = .no
         return textField
     }
-    
     static func makeButton(title: String,
                          font: UIFont,
                          backgroundColor: UIColor,
