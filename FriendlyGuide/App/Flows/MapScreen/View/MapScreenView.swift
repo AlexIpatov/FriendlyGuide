@@ -61,14 +61,14 @@ class MapScreenView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUI()
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUI() {
+    func configureUI() {
         findPlaceOrEventButton.setBackgroundImage(UIImage(systemName: "magnifyingglass.circle"),
                                                   for: .normal)
         findPlaceOrEventButton.setBackgroundImage(UIImage(systemName: "magnifyingglass.circle.fill"),

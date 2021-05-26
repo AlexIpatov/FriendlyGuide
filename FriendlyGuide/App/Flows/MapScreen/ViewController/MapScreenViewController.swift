@@ -23,7 +23,10 @@ class MapScreenViewController: UIViewController {
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     
-    // MARK: - Init
+    //MARK: - Slider properties
+    private let transition = SliderTransition()
+    
+    //MARK: - Init
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -68,7 +71,10 @@ class MapScreenViewController: UIViewController {
     }
     
     @objc func tapFindPlaceOrEventButton(_ sender: UIButton) {
-        print("FindPlaceOrEventButton tapped")
+        let child = OnMapViewController()
+        child.transitioningDelegate = transition
+        child.modalPresentationStyle = .custom
+        self.present(child, animated: true, completion: nil)
     }
     
     func configureBuildingRouteButton() {
