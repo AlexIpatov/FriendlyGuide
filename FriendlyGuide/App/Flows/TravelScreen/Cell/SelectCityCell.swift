@@ -13,7 +13,7 @@ class SelectCityCell: UICollectionViewCell, SelfConfiguringCell {
     static let reuseId = "SelectCityCell"
     // MARK: - UI components
     private(set) lazy var pointerImageView = UIImageView(systemImageName: "mappin.and.ellipse",
-                                                         tintColor: .systemRed)
+                                                         tintColor: .systemBlue)
 
     let setCityLabel = UILabel(text: "Выберите город",
                                 font: .smallButtonFont(),

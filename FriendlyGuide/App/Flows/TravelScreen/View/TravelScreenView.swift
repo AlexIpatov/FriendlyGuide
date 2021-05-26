@@ -17,17 +17,17 @@ class TravelScreenView: UIView {
         addSubview(collectionView)
         return collectionView
     }()
-    
+
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     //MARK: - Configuration Methods
     func configureUI() {
         addSubview(collectionView)
@@ -54,20 +54,31 @@ extension TravelScreenView {
                 return self.creatNewsLayout()
             }
         }
-        
+
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.interSectionSpacing = 20
         layout.configuration = config
         return layout
     }
-    
+    private func creatCityLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(150),
+                                              heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension:  .fractionalWidth(1),
+                                               heightDimension: .absolute(50))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+
+        return section
+    }
     private func createEventsLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalWidth(1))
-        
+                                              heightDimension: .fractionalHeight(1))
+
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7),
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                                heightDimension: .fractionalWidth(0.7))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
@@ -78,7 +89,7 @@ extension TravelScreenView {
         section.boundarySupplementaryItems = [sectionHeader]
         return section
     }
-    
+
     private func createPlacesLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .fractionalHeight(1))
@@ -98,7 +109,7 @@ extension TravelScreenView {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .estimated(70))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
+
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                heightDimension: .estimated(70))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
@@ -108,18 +119,6 @@ extension TravelScreenView {
 
         let sectionHeader = createSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
-        return section
-    }
-    private func creatCityLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .absolute(50))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-
         return section
     }
     private func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {

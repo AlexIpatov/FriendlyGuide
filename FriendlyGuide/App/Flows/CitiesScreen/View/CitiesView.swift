@@ -14,21 +14,16 @@ class CitiesView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .white
         tableView.rowHeight = 60
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
         tableView.layer.cornerRadius = 24
         addSubview(tableView)
         return tableView
     }()
-    private(set) lazy var selectCityButton =  UIButton(title: "Выбрать",
-                                                       font: .bigButtonFont(),
-                                                       cornerRadius: 0,
-                                                       backgroundColor: .clear,
-                                                       tintColor: .white)
     private(set) lazy var canсelButton =  UIButton(title: "Отмена",
                                                     font: .bigButtonFont(),
                                                     cornerRadius: 0,
                                                     backgroundColor: .clear,
-                                                    tintColor: .white)
+                                                    tintColor: .systemRed)
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -43,7 +38,6 @@ class CitiesView: UIView {
     // MARK: - Configuration Methods
     func configureUI() {
         addSubview(tableView)
-        addSubview(selectCityButton)
         addSubview(canсelButton)
 
         NSLayoutConstraint.activate([
@@ -52,13 +46,9 @@ class CitiesView: UIView {
             tableView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.75),
             tableView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6),
 
-            selectCityButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 5),
-            selectCityButton.leftAnchor.constraint(equalTo: tableView.leftAnchor),
-            selectCityButton.rightAnchor.constraint(equalTo: tableView.centerXAnchor, constant: -5),
-
             canсelButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 5),
             canсelButton.rightAnchor.constraint(equalTo: tableView.rightAnchor),
-            canсelButton.leftAnchor.constraint(equalTo: tableView.centerXAnchor, constant: 5)
+            canсelButton.leftAnchor.constraint(equalTo: tableView.leftAnchor)
         ])
     }
     // MARK: - Set up blur

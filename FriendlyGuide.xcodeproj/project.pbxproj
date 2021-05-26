@@ -50,7 +50,6 @@
 		C5F294BB265E507B00E1959A /* OnMapSliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F294BA265E507B00E1959A /* OnMapSliderTableViewCell.swift */; };
 		C5F294BE265E5EA600E1959A /* UITextField + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F294BD265E5EA600E1959A /* UITextField + Extensions.swift */; };
 		C5F294C0265E818600E1959A /* String + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F294BF265E818600E1959A /* String + Extensions.swift */; };
-		DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +133,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
