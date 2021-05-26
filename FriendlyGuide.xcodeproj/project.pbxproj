@@ -14,16 +14,18 @@
 		2150FEC3265AB9090058FA89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2150FEC1265AB9090058FA89 /* LaunchScreen.storyboard */; };
 		2150FECE265AB9090058FA89 /* FriendlyGuideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FECD265AB9090058FA89 /* FriendlyGuideTests.swift */; };
 		2150FED9265AB9090058FA89 /* FriendlyGuideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */; };
+		2150FEF0265BAC8C0058FA89 /* ChatConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEEF265BAC8C0058FA89 /* ChatConnectable.swift */; };
+		2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */; };
+		2150FEF4265BAD400058FA89 /* ChatTableVewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */; };
+		2150FEF6265BAF660058FA89 /* ChatInformationRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */; };
 		B768E637D8ED434D98E87DC3 /* Pods_FriendlyGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */; };
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
 		C5904686265B0EAD00231116 /* TravelScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904685265B0EAD00231116 /* TravelScreenViewController.swift */; };
 		C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904687265B0F6F00231116 /* MapScreenViewController.swift */; };
 		C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904689265B107000231116 /* ProfileScreenViewController.swift */; };
-		C590468C265B12C300231116 /* ChatScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590468B265B12C300231116 /* ChatScreenViewController.swift */; };
 		C5904690265B19A400231116 /* UIComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590468F265B19A400231116 /* UIComponentsFactory.swift */; };
 		C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904691265B1A0B00231116 /* MapScreenView.swift */; };
 		C5904694265B241400231116 /* TravelScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904693265B241400231116 /* TravelScreenView.swift */; };
-		C5904696265B26B200231116 /* ChatScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904695265B26B200231116 /* ChatScreenView.swift */; };
 		C5904698265B271400231116 /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904697265B271400231116 /* ProfileScreenView.swift */; };
 		DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */; };
 /* End PBXBuildFile section */
@@ -61,6 +63,10 @@
 		2150FED4265AB9090058FA89 /* FriendlyGuideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyGuideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyGuideUITests.swift; sourceTree = "<group>"; };
 		2150FEDA265AB9090058FA89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2150FEEF265BAC8C0058FA89 /* ChatConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConnectable.swift; sourceTree = "<group>"; };
+		2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
+		2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableVewCell.swift; sourceTree = "<group>"; };
+		2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInformationRepresentable.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide_FriendlyGuideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,11 +75,9 @@
 		C5904685265B0EAD00231116 /* TravelScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScreenViewController.swift; sourceTree = "<group>"; };
 		C5904687265B0F6F00231116 /* MapScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewController.swift; sourceTree = "<group>"; };
 		C5904689265B107000231116 /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
-		C590468B265B12C300231116 /* ChatScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenViewController.swift; sourceTree = "<group>"; };
 		C590468F265B19A400231116 /* UIComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsFactory.swift; sourceTree = "<group>"; };
 		C5904691265B1A0B00231116 /* MapScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenView.swift; sourceTree = "<group>"; };
 		C5904693265B241400231116 /* TravelScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelScreenView.swift; sourceTree = "<group>"; };
-		C5904695265B26B200231116 /* ChatScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScreenView.swift; sourceTree = "<group>"; };
 		C5904697265B271400231116 /* ProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
 		CE002376636440E6DCE35FBA /* Pods-FriendlyGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE7CC528BA65E998B145C20A /* Pods-FriendlyGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.debug.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 		2150FEE8265ABE5D0058FA89 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				2150FEEF265BAC8C0058FA89 /* ChatConnectable.swift */,
+				2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -313,26 +319,10 @@
 		C590467B265B088600231116 /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
-				C590467D265B089E00231116 /* View */,
-				C590467C265B089300231116 /* ViewController */,
+				2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */,
+				2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */,
 			);
 			path = ChatScreen;
-			sourceTree = "<group>";
-		};
-		C590467C265B089300231116 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				C590468B265B12C300231116 /* ChatScreenViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		C590467D265B089E00231116 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C5904695265B26B200231116 /* ChatScreenView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		C590467E265B08AF00231116 /* ProfileScreen */ = {
@@ -613,17 +603,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2150FEF0265BAC8C0058FA89 /* ChatConnectable.swift in Sources */,
 				C5904694265B241400231116 /* TravelScreenView.swift in Sources */,
 				C5904686265B0EAD00231116 /* TravelScreenViewController.swift in Sources */,
 				C5904684265B0AA700231116 /* TabBarController.swift in Sources */,
-				C590468C265B12C300231116 /* ChatScreenViewController.swift in Sources */,
+				2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */,
 				C5904690265B19A400231116 /* UIComponentsFactory.swift in Sources */,
-				C5904696265B26B200231116 /* ChatScreenView.swift in Sources */,
 				C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */,
+				2150FEF6265BAF660058FA89 /* ChatInformationRepresentable.swift in Sources */,
 				2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */,
 				C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */,
 				C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */,
 				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
+				2150FEF4265BAD400058FA89 /* ChatTableVewCell.swift in Sources */,
 				2150FEB9265AB9070058FA89 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
