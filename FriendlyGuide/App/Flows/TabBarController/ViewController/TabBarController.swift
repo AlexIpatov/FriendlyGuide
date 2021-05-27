@@ -58,7 +58,7 @@ class TabBarController: UITabBarController {
         viewControllers.append(mapScreenNavigationController)
         
         //3. ChatScreen
-        let chatScreenViewController = ChatScreenViewController()
+        let chatScreenViewController = ChatListViewController()
         chatScreenViewController.tabBarItem = UITabBarItem(title: "Chat",
                                                            image: UIImage(systemName: "bubble.left.and.bubble.right"),
                                                            selectedImage: UIImage(systemName: "bubble.left.and.bubble.right.fill"))

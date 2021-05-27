@@ -7,6 +7,11 @@ target 'FriendlyGuide' do
 
   # Pods for FriendlyGuide
   pod 'GoogleMaps', '4.2.0'
+  
+  # Pods for chat
+  pod 'QuickBlox', '~> 2.17.5'
+  pod 'Quickblox-WebRTC', '~> 2.7.4'
+  pod 'MessageKit' 
 
   target 'FriendlyGuideTests' do
     inherit! :search_paths
