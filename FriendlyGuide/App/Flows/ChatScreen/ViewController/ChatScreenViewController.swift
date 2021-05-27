@@ -24,7 +24,7 @@ class ChatScreenViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - ViewController Lifecycle
+    //MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -37,6 +37,6 @@ class ChatScreenViewController: UIViewController {
     //MARK: - Configuration Methods
     func configureViewController() {
         view.backgroundColor = .white
-        self.title = "Чат"
+        self.title = "Chat"
     }
 }
