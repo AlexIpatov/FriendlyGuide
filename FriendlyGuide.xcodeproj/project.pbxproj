@@ -209,10 +209,6 @@
 		2150FEE7265ABE580058FA89 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
-				21B71F99266011E600460564 /* ChatManager.swift */,
-				21B71F9326600F5A00460564 /* ChatDialogsManager.swift */,
-				21B71F9526600F9800460564 /* ChatUsersManager.swift */,
-				21B71F972660115D00460564 /* ChatMessagesManager.swift */,
 				21B71F89265E82EB00460564 /* Chat */,
 			);
 			path = BusinessLogic;
@@ -299,6 +295,10 @@
 		21B71F89265E82EB00460564 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				21B71F99266011E600460564 /* ChatManager.swift */,
+				21B71F9326600F5A00460564 /* ChatDialogsManager.swift */,
+				21B71F9526600F9800460564 /* ChatUsersManager.swift */,
+				21B71F972660115D00460564 /* ChatMessagesManager.swift */,
 				21B71F85265E7D5700460564 /* QBChatManager.swift */,
 				21B71F8A265E83B400460564 /* ChatAuthenticator.swift */,
 				21B71F8C265E8A4100460564 /* QBChatAuthentificator.swift */,
