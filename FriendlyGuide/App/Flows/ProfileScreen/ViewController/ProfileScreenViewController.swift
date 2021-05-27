@@ -37,6 +37,6 @@ class ProfileScreenViewController: UIViewController {
     //MARK: - Configuration Methods
     func configureViewController() {
         view.backgroundColor = .white
-        self.title = "Профиль"
+        self.title = "Profile"
     }
 }
