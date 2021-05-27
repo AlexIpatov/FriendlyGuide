@@ -16,10 +16,13 @@ extension UIFont {
         return UIFont.init(name: "Thonburi", size: 16)!
     }
     static func smallTitleFont() -> UIFont {
-        return UIFont.init(name: "Thonburi", size: 17)!
+        return UIFont.init(name: "Charter Roman", size: 17)!
+    }
+    static func subTitleFont() -> UIFont {
+        return UIFont.init(name: "Charter Roman", size: 13)!
     }
     static func boldTitleFont() -> UIFont {
-        return UIFont.init(name: "Thonburi.bold", size: 17)!
+        return UIFont.init(name: "Thonburi-bold", size: 18)!
     }
 }
 

@@ -13,10 +13,21 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
     static var reuseId: String = "NewsCell"
 
     // MARK: - UI components
-    private(set) lazy var cityNameLabel = UILabel(text: "",
+    private(set) lazy var titlelabel = UILabel(text: "TestNameForEVENTLargeTestadwdawaw",
                                                font: .smallTitleFont(),
                                                textColor: .black,
-                                               textAlignment: .left)
+                                               numberOfLines: 2,
+                                               textAlignment: .left,
+                                               adjustsFontSizeToFitWidth: true)
+
+    private(set) lazy var subTitlelabel = UILabel(text: "TestNameForEVENTLargeTestadwdawaw",
+                                               font: .subTitleFont(),
+                                               textColor: .systemGray,
+                                               numberOfLines: 2,
+                                               textAlignment: .left
+                                              )
+
+    private(set) lazy var imageView = UIImageView(cornerRadius: 35)
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -30,18 +41,22 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
 
     // MARK: - Configure
     func configure<U>(with value: U) where U : Hashable {
-        guard let city: MocCity = value as? MocCity else { return }
-        cityNameLabel.text = city.name
+        guard let news: MocNews = value as? MocNews else { return }
+        titlelabel.text = news.title
+        imageView.image = UIImage(named: "mocImage")
     }
     // MARK: - Configuration Methods
     private func setupLayer() {
         backgroundColor = .white
     }
     private func setupConstraints() {
-        contentView.addSubview(cityNameLabel)
+        addSubview(imageView)
         NSLayoutConstraint.activate([
-            cityNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            cityNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
+            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
+            imageView.heightAnchor.constraint(equalToConstant: 70),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+
         ])
     }
 }

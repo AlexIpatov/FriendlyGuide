@@ -34,7 +34,6 @@ class SelectCityCell: UICollectionViewCell, SelfConfiguringCell {
         guard let city: MocCity = value as? MocCity else { return }
         setCityLabel.text = city.name
     }
-
     // MARK: - Configuration Methods
     func configureUI() {
         contentView.addSubview(pointerImageView)
