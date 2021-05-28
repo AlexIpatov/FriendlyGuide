@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let requestFactory = requestFactory else {
             return
         }
-        let tabBarController = TabBarController()
+        let tabBarController = TabBarController(requestFactory: requestFactory)
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
