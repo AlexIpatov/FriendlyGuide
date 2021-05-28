@@ -7,7 +7,11 @@
 
 import UIKit
 
-class ChatTableVewCell: UITableViewCell {
+protocol ChatTableVewCell: UITableViewCell {
+    func fillIn(with dialod: Dialog)
+}
+
+class ChatTableVewCellImpl: UITableViewCell {
     
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()

@@ -30,6 +30,14 @@
 		21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE78265E7DC60052C076 /* HttpMethod.swift */; };
 		21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE79265E7DC60052C076 /* EndPointType.swift */; };
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
+		21D3EBB82661095D007D01CE /* MVCDisignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBB72661095D007D01CE /* MVCDisignable.swift */; };
+		21D3EBBA26610977007D01CE /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBB926610977007D01CE /* ChatListModel.swift */; };
+		21D3EBBC2661098F007D01CE /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBB2661098F007D01CE /* ChatListView.swift */; };
+		21D3EBBE266109B9007D01CE /* ChartListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBD266109B9007D01CE /* ChartListTableView.swift */; };
+		21D3EBC026610A11007D01CE /* QBChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBF26610A11007D01CE /* QBChatListModel.swift */; };
+		21D3EBC726610D7C007D01CE /* QBDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBC626610D7C007D01CE /* QBDialogWrapper.swift */; };
+		21D3EBC9266110E9007D01CE /* ChatListViewConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBC8266110E9007D01CE /* ChatListViewConnectable.swift */; };
+		21D3EBCB266110F7007D01CE /* ChatListModelConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */; };
 		B768E637D8ED434D98E87DC3 /* Pods_FriendlyGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */; };
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
 		C5904686265B0EAD00231116 /* TravelScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904685265B0EAD00231116 /* TravelScreenViewController.swift */; };
@@ -92,6 +100,14 @@
 		21B71F9526600F9800460564 /* ChatUsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsersManager.swift; sourceTree = "<group>"; };
 		21B71F972660115D00460564 /* ChatMessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessagesManager.swift; sourceTree = "<group>"; };
 		21B71F99266011E600460564 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		21D3EBB72661095D007D01CE /* MVCDisignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVCDisignable.swift; sourceTree = "<group>"; };
+		21D3EBB926610977007D01CE /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
+		21D3EBBB2661098F007D01CE /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		21D3EBBD266109B9007D01CE /* ChartListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartListTableView.swift; sourceTree = "<group>"; };
+		21D3EBBF26610A11007D01CE /* QBChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBChatListModel.swift; sourceTree = "<group>"; };
+		21D3EBC626610D7C007D01CE /* QBDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBDialogWrapper.swift; sourceTree = "<group>"; };
+		21D3EBC8266110E9007D01CE /* ChatListViewConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewConnectable.swift; sourceTree = "<group>"; };
+		21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModelConnectable.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
 		5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide_FriendlyGuideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				21B71F9026600D8F00460564 /* Dialog.swift */,
+				21D3EBC626610D7C007D01CE /* QBDialogWrapper.swift */,
 			);
 			path = "Dialog Models";
 			sourceTree = "<group>";
@@ -344,6 +361,36 @@
 				21B71F85265E7D5700460564 /* QBChatManager.swift */,
 			);
 			path = "Chat Managers Impl";
+			sourceTree = "<group>";
+		};
+		21D3EBC326610A62007D01CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				21D3EBB926610977007D01CE /* ChatListModel.swift */,
+				21D3EBBF26610A11007D01CE /* QBChatListModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		21D3EBC426610A69007D01CE /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */,
+				21D3EBC8266110E9007D01CE /* ChatListViewConnectable.swift */,
+				21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */,
+				21B71F8E265E932C00460564 /* ChatViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		21D3EBC526610A70007D01CE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21D3EBBB2661098F007D01CE /* ChatListView.swift */,
+				21D3EBBD266109B9007D01CE /* ChartListTableView.swift */,
+				2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		43B513E69338F43FDD6A721D /* Frameworks */ = {
@@ -409,9 +456,10 @@
 		C590467B265B088600231116 /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
-				2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */,
-				2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */,
-				21B71F8E265E932C00460564 /* ChatViewController.swift */,
+				21D3EBB72661095D007D01CE /* MVCDisignable.swift */,
+				21D3EBC526610A70007D01CE /* Views */,
+				21D3EBC426610A69007D01CE /* Controllers */,
+				21D3EBC326610A62007D01CE /* Models */,
 			);
 			path = ChatScreen;
 			sourceTree = "<group>";
@@ -789,9 +837,12 @@
 				21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */,
 				21B71F982660115D00460564 /* ChatMessagesManager.swift in Sources */,
 				21B71F9426600F5A00460564 /* ChatDialogsManager.swift in Sources */,
+				21D3EBC9266110E9007D01CE /* ChatListViewConnectable.swift in Sources */,
 				2150FEF0265BAC8C0058FA89 /* ChatConnectable.swift in Sources */,
+				21D3EBC026610A11007D01CE /* QBChatListModel.swift in Sources */,
 				C5904694265B241400231116 /* TravelScreenView.swift in Sources */,
 				C5904686265B0EAD00231116 /* TravelScreenViewController.swift in Sources */,
+				21D3EBB82661095D007D01CE /* MVCDisignable.swift in Sources */,
 				21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */,
 				C5904684265B0AA700231116 /* TabBarController.swift in Sources */,
 				2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */,
@@ -801,15 +852,20 @@
 				2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */,
 				C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */,
 				21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */,
+				21D3EBBC2661098F007D01CE /* ChatListView.swift in Sources */,
 				21B71F9A266011E600460564 /* ChatManager.swift in Sources */,
 				21B71F9126600D8F00460564 /* Dialog.swift in Sources */,
 				21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */,
 				C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */,
 				C91CEE88265E7DC70052C076 /* JsonParameterEncoder.swift in Sources */,
+				21D3EBBA26610977007D01CE /* ChatListModel.swift in Sources */,
 				C91CEE81265E7DC70052C076 /* ErrorParser.swift in Sources */,
+				21D3EBC726610D7C007D01CE /* QBDialogWrapper.swift in Sources */,
+				21D3EBCB266110F7007D01CE /* ChatListModelConnectable.swift in Sources */,
 				C91CEE86265E7DC70052C076 /* ParameterEncoding.swift in Sources */,
 				21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */,
 				C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */,
+				21D3EBBE266109B9007D01CE /* ChartListTableView.swift in Sources */,
 				21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */,
 				C91CEE89265E7DC70052C076 /* NetworkErrors.swift in Sources */,
 				21D3EBB126603F54007D01CE /* AbstractErrorParser.swift in Sources */,

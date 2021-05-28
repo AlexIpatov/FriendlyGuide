@@ -8,9 +8,9 @@
 import Foundation
 
 protocol ChatDialogsManager {
-    func getAllDialogs(limit: Int,
-                       skipFirst: Int,
-                       complition: @escaping (_ dialog: Dialog?) -> Void)
+    func getDialogs(limit: Int,
+                    skipFirst: Int,
+                    complition: @escaping (_ dialog: Dialog?) -> Void)
     
     func createGroupDialog(withName name: String,
                            photo: String?,
