@@ -8,10 +8,17 @@
 import Foundation
 import Quickblox
 
-struct QBChatListModel {
-    var dialogs = [QBChatDialog]()
+struct QBChatListModel: ChatListModel {
     
-    func getDialogs(limit: Int, skipFirst: Int) {
-        
+    private var dialogs = [QBChatDialog]()
+    
+    weak var delegate: ChatListModelConnectable?
+    
+    func getDialog(at indexPath: IndexPath) -> Dialog {
+        return QBDialogWrapper()
+    }
+    
+    func getNumberOfDialogs() -> Int {
+        0
     }
 }
