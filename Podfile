@@ -7,6 +7,7 @@ target 'FriendlyGuide' do
 
   # Pods for FriendlyGuide
   pod 'GoogleMaps', '4.2.0'
+  pod 'Kingfisher', '~> 6.0'
   
   # Pods for chat
   pod 'QuickBlox', '~> 2.17.5'

@@ -14,6 +14,7 @@ struct EventsListResource: EndPointType {
     var httpMethod: HTTPMethod = .get
     var parameters: Parameters = [:]
     var queryItems: [URLQueryItem] = [
-        URLQueryItem(name: "lang", value: "ru")
+        URLQueryItem(name: "lang", value: "ru"),
+        URLQueryItem(name: "fields", value: "id,title,images,dates")
     ]
 }

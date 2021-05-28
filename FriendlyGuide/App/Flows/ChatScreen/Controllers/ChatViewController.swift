@@ -20,8 +20,7 @@ struct Message: MessageType {
     var kind: MessageKind
 }
 
-class ChatViewController: MessagesViewController {
-    
+class ChatViewController: MessagesViewController {  
     private let currentUser: SenderType
     private var messages = [MessageType]()
     
@@ -49,7 +48,7 @@ extension ChatViewController: MessagesDataSource {
     func currentSender() -> SenderType {
         return currentUser
     }
-    
+
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         messages[indexPath.section]
     }
@@ -59,10 +58,8 @@ extension ChatViewController: MessagesDataSource {
     }
 }
 
-extension ChatViewController: MessagesDisplayDelegate {
-    
+extension ChatViewController: MessagesDisplayDelegate {  
 }
 
 extension ChatViewController: MessagesLayoutDelegate {
-    
 }
