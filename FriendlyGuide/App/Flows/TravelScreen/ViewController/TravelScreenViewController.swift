@@ -13,6 +13,7 @@ class TravelScreenViewController: UIViewController {
         return TravelScreenView()
     }()
     // MARK: - Properties
+    var requestFactory: RequestFactory
     var currentCity = MocCity(name: "Санкт - Петербург",
                               slug: "spb")
     var places = [MocPlace]() {
@@ -31,7 +32,8 @@ class TravelScreenViewController: UIViewController {
         }
     }
     // MARK: - Init
-    init() {
+    init(requestFactory: RequestFactory) {
+        self.requestFactory = requestFactory
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -80,7 +82,10 @@ class TravelScreenViewController: UIViewController {
         snapshot.appendItems([currentCity], toSection: .city)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
-
+    // MARK: - Request data methods
+    private func requestData() {
+       let eventsFactory = requestFactory.makeGetEventsListFactory()
+    }
 
 }
 // MARK: - Data Source
