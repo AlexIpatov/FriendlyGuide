@@ -35,7 +35,7 @@ class TabBarController: UITabBarController {
         
         //1. TravelScreen
         let travelScreenViewController = TravelScreenViewController()
-        travelScreenViewController.tabBarItem = UITabBarItem(title: "Travel",
+        travelScreenViewController.tabBarItem = UITabBarItem(title: "Путешествие",
                                                              image: UIImage(systemName: "figure.walk.diamond"),
                                                              selectedImage: UIImage(systemName: "figure.walk.diamond.fill"))
         let travelNavigationController = UINavigationController(rootViewController: travelScreenViewController)
@@ -47,7 +47,7 @@ class TabBarController: UITabBarController {
         
         //2. MapScreen
         let mapScreenViewController = MapScreenViewController()
-        mapScreenViewController.tabBarItem = UITabBarItem(title: "Map",
+        mapScreenViewController.tabBarItem = UITabBarItem(title: "Карта",
                                                           image: UIImage(systemName: "map"),
                                                           selectedImage: UIImage(systemName: "map.fill"))
         let mapScreenNavigationController = UINavigationController(rootViewController: mapScreenViewController)
@@ -59,7 +59,7 @@ class TabBarController: UITabBarController {
         
         //3. ChatScreen
         let chatScreenViewController = ChatListViewController()
-        chatScreenViewController.tabBarItem = UITabBarItem(title: "Chat",
+        chatScreenViewController.tabBarItem = UITabBarItem(title: "Чат",
                                                            image: UIImage(systemName: "bubble.left.and.bubble.right"),
                                                            selectedImage: UIImage(systemName: "bubble.left.and.bubble.right.fill"))
         let chatNavigationController = UINavigationController(rootViewController: chatScreenViewController)
@@ -71,7 +71,7 @@ class TabBarController: UITabBarController {
         
         //4. ProfileScreen
         let profileScreenViewController = ProfileScreenViewController()
-        profileScreenViewController.tabBarItem = UITabBarItem(title: "Profile",
+        profileScreenViewController.tabBarItem = UITabBarItem(title: "Профиль",
                                                               image: UIImage(systemName: "person.circle"),
                                                               selectedImage: UIImage(systemName: "person.circle.fill"))
         let profileNavigationController = UINavigationController(rootViewController: profileScreenViewController)
