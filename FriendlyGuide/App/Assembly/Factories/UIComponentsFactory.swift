@@ -4,7 +4,7 @@
 //
 //  Created by Sergey Razgulyaev on 24.05.2021.
 //
-
+/*
 import UIKit
 import GoogleMaps
 
@@ -75,3 +75,4 @@ struct UIComponentsFactory {
         return button
     }
 }
+*/
