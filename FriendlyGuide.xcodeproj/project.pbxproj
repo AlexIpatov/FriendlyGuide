@@ -9,22 +9,23 @@
 /* Begin PBXBuildFile section */
 		017A3E4F7AF543837DC02CD7 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */; };
 		21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21421407266128610007A031 /* ChatListViewControllerBuilder.swift */; };
+		2142140A2661344B0007A031 /* ChatTableVewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214214092661344B0007A031 /* ChatTableVewCell.swift */; };
+		2142141026613AFA0007A031 /* ChatConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142140F26613AFA0007A031 /* ChatConnectable.swift */; };
+		2142141226613B100007A031 /* ChatAuthorizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142141126613B100007A031 /* ChatAuthorizable.swift */; };
+		2142141426613B440007A031 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142141326613B440007A031 /* User.swift */; };
 		2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEB6265AB9070058FA89 /* AppDelegate.swift */; };
 		2150FEB9265AB9070058FA89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEB8265AB9070058FA89 /* SceneDelegate.swift */; };
 		2150FEC0265AB9090058FA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2150FEBF265AB9090058FA89 /* Assets.xcassets */; };
 		2150FEC3265AB9090058FA89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2150FEC1265AB9090058FA89 /* LaunchScreen.storyboard */; };
 		2150FECE265AB9090058FA89 /* FriendlyGuideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FECD265AB9090058FA89 /* FriendlyGuideTests.swift */; };
 		2150FED9265AB9090058FA89 /* FriendlyGuideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */; };
-		2150FEF0265BAC8C0058FA89 /* ChatConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEEF265BAC8C0058FA89 /* ChatConnectable.swift */; };
 		2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */; };
-		2150FEF4265BAD400058FA89 /* ChatTableVewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */; };
-		2150FEF6265BAF660058FA89 /* ChatInformationRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */; };
+		2150FEF4265BAD400058FA89 /* ChatTableVewCellImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF3265BAD400058FA89 /* ChatTableVewCellImpl.swift */; };
 		21ADFDE32661276D007A1671 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBB2661098F007D01CE /* ChatListView.swift */; };
 		21ADFDE526612774007A1671 /* ChartListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBD266109B9007D01CE /* ChartListTableView.swift */; };
 		21ADFDE62661277C007A1671 /* ChatListModelConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */; };
 		21ADFDE726612781007A1671 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBB926610977007D01CE /* ChatListModel.swift */; };
 		21ADFDE826612784007A1671 /* QBChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBF26610A11007D01CE /* QBChatListModel.swift */; };
-		21ADFDE9266127A1007A1671 /* QBDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBC626610D7C007D01CE /* QBDialogWrapper.swift */; };
 		21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F85265E7D5700460564 /* QBChatManager.swift */; };
 		21B71F8B265E83B400460564 /* ChatAuthenticatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8A265E83B400460564 /* ChatAuthenticatorManager.swift */; };
 		21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8E265E932C00460564 /* ChatViewController.swift */; };
@@ -140,6 +141,10 @@
 		13702F993F2CF8FFDC1C0C0A /* Pods-FriendlyGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.release.xcconfig"; sourceTree = "<group>"; };
 		17D3CD1E21A8270E4E5699B4 /* Pods-FriendlyGuide-FriendlyGuideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide-FriendlyGuideUITests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests.release.xcconfig"; sourceTree = "<group>"; };
 		21421407266128610007A031 /* ChatListViewControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewControllerBuilder.swift; sourceTree = "<group>"; };
+		214214092661344B0007A031 /* ChatTableVewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableVewCell.swift; sourceTree = "<group>"; };
+		2142140F26613AFA0007A031 /* ChatConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConnectable.swift; sourceTree = "<group>"; };
+		2142141126613B100007A031 /* ChatAuthorizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAuthorizable.swift; sourceTree = "<group>"; };
+		2142141326613B440007A031 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2150FEB3265AB9070058FA89 /* FriendlyGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendlyGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2150FEB6265AB9070058FA89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2150FEB8265AB9070058FA89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,10 +157,8 @@
 		2150FED4265AB9090058FA89 /* FriendlyGuideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyGuideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyGuideUITests.swift; sourceTree = "<group>"; };
 		2150FEDA265AB9090058FA89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2150FEEF265BAC8C0058FA89 /* ChatConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConnectable.swift; sourceTree = "<group>"; };
 		2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
-		2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableVewCell.swift; sourceTree = "<group>"; };
-		2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInformationRepresentable.swift; sourceTree = "<group>"; };
+		2150FEF3265BAD400058FA89 /* ChatTableVewCellImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableVewCellImpl.swift; sourceTree = "<group>"; };
 		21B71F85265E7D5700460564 /* QBChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBChatManager.swift; sourceTree = "<group>"; };
 		21B71F8A265E83B400460564 /* ChatAuthenticatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAuthenticatorManager.swift; sourceTree = "<group>"; };
 		21B71F8E265E932C00460564 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -168,7 +171,6 @@
 		21D3EBBB2661098F007D01CE /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		21D3EBBD266109B9007D01CE /* ChartListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartListTableView.swift; sourceTree = "<group>"; };
 		21D3EBBF26610A11007D01CE /* QBChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBChatListModel.swift; sourceTree = "<group>"; };
-		21D3EBC626610D7C007D01CE /* QBDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBDialogWrapper.swift; sourceTree = "<group>"; };
 		21D3EBC8266110E9007D01CE /* ChatListViewConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewConnectable.swift; sourceTree = "<group>"; };
 		21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModelConnectable.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -390,9 +392,8 @@
 				C96B948326612068007AD0DA /* Events */,
 				C96B94752661204E007AD0DA /* Coordinates */,
 				C96B947026612018007AD0DA /* Cities */,
-				21B71F9226600D9A00460564 /* Dialog Models */,
+				21B71F9226600D9A00460564 /* Dialogs */,
 				21B71F87265E7F2200460564 /* User Models */,
-				2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -460,17 +461,11 @@
 		21B71F87265E7F2200460564 /* User Models */ = {
 			isa = PBXGroup;
 			children = (
-				21B71F88265E7F2B00460564 /* Chat Users */,
+				2142141326613B440007A031 /* User.swift */,
+				2142140F26613AFA0007A031 /* ChatConnectable.swift */,
+				2142141126613B100007A031 /* ChatAuthorizable.swift */,
 			);
 			path = "User Models";
-			sourceTree = "<group>";
-		};
-		21B71F88265E7F2B00460564 /* Chat Users */ = {
-			isa = PBXGroup;
-			children = (
-				2150FEEF265BAC8C0058FA89 /* ChatConnectable.swift */,
-			);
-			path = "Chat Users";
 			sourceTree = "<group>";
 		};
 		21B71F89265E82EB00460564 /* Chat */ = {
@@ -482,13 +477,12 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		21B71F9226600D9A00460564 /* Dialog Models */ = {
+		21B71F9226600D9A00460564 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
 				21B71F9026600D8F00460564 /* Dialog.swift */,
-				21D3EBC626610D7C007D01CE /* QBDialogWrapper.swift */,
 			);
-			path = "Dialog Models";
+			path = Dialogs;
 			sourceTree = "<group>";
 		};
 		21D3EBB52660404C007D01CE /* Chat Managers */ = {
@@ -535,7 +529,8 @@
 			children = (
 				21D3EBBB2661098F007D01CE /* ChatListView.swift */,
 				21D3EBBD266109B9007D01CE /* ChartListTableView.swift */,
-				2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */,
+				214214092661344B0007A031 /* ChatTableVewCell.swift */,
+				2150FEF3265BAD400058FA89 /* ChatTableVewCellImpl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1375,7 +1370,6 @@
 				C5C316F12660F6AC00518405 /* EventCell.swift in Sources */,
 				21B71F9426600F5A00460564 /* ChatDialogsManager.swift in Sources */,
 				21D3EBC9266110E9007D01CE /* ChatListViewConnectable.swift in Sources */,
-				2150FEF0265BAC8C0058FA89 /* ChatConnectable.swift in Sources */,
 				21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */,
 				C5904684265B0AA700231116 /* TabBarController.swift in Sources */,
 				C5C316DF2660F6A000518405 /* CitiesCell.swift in Sources */,
@@ -1393,7 +1387,6 @@
 				C96B94AC26612079007AD0DA /* News.swift in Sources */,
 				C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */,
 				C5C316F42660F6AC00518405 /* SectionHeader.swift in Sources */,
-				2150FEF6265BAF660058FA89 /* ChatInformationRepresentable.swift in Sources */,
 				2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */,
 				C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */,
 				21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */,
@@ -1401,14 +1394,15 @@
 				21B71F9A266011E600460564 /* ChatManager.swift in Sources */,
 				C96B94A026612068007AD0DA /* DayEvent.swift in Sources */,
 				C5C316E12660F6A000518405 /* CitiesViewController.swift in Sources */,
-				21ADFDE9266127A1007A1671 /* QBDialogWrapper.swift in Sources */,
 				C96B94D0266120DD007AD0DA /* GetEventsListFactory.swift in Sources */,
 				C96B949F26612068007AD0DA /* DayEventsList.swift in Sources */,
 				21B71F9126600D8F00460564 /* Dialog.swift in Sources */,
+				2142141026613AFA0007A031 /* ChatConnectable.swift in Sources */,
 				21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */,
 				C96B94AB26612079007AD0DA /* NewsImage.swift in Sources */,
 				C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */,
 				21ADFDE826612784007A1671 /* QBChatListModel.swift in Sources */,
+				2142140A2661344B0007A031 /* ChatTableVewCell.swift in Sources */,
 				C5C3166F2660E62200518405 /* DismissAnimation.swift in Sources */,
 				C96B94CE266120DD007AD0DA /* RequestFactory.swift in Sources */,
 				C91CEE88265E7DC70052C076 /* JsonParameterEncoder.swift in Sources */,
@@ -1419,6 +1413,7 @@
 				21ADFDE62661277C007A1671 /* ChatListModelConnectable.swift in Sources */,
 				C96B94D2266120DD007AD0DA /* GetEventDetail.swift in Sources */,
 				C96B947F2661205E007AD0DA /* EventDetailResource.swift in Sources */,
+				2142141426613B440007A031 /* User.swift in Sources */,
 				C5C3166E2660E62200518405 /* SliderPresentationController.swift in Sources */,
 				C5C3167C2660E7BB00518405 /* OnMapViewController.swift in Sources */,
 				C96B947326612019007AD0DA /* CityName.swift in Sources */,
@@ -1429,6 +1424,7 @@
 				C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */,
 				C5C316F02660F6AC00518405 /* TravelScreenEnum.swift in Sources */,
 				C96B949C26612068007AD0DA /* DateElement.swift in Sources */,
+				2142141226613B100007A031 /* ChatAuthorizable.swift in Sources */,
 				21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */,
 				C96B94B62661208D007AD0DA /* PlacesList.swift in Sources */,
 				C5C316532660E3F100518405 /* SelfConfiguringCell.swift in Sources */,
@@ -1460,7 +1456,7 @@
 				C5C3165D2660E41C00518405 /* UIButton + Extensions.swift in Sources */,
 				C96B94A926612079007AD0DA /* NewsDetail.swift in Sources */,
 				C96B949426612068007AD0DA /* EventsList.swift in Sources */,
-				2150FEF4265BAD400058FA89 /* ChatTableVewCell.swift in Sources */,
+				2150FEF4265BAD400058FA89 /* ChatTableVewCellImpl.swift in Sources */,
 				2150FEB9265AB9070058FA89 /* SceneDelegate.swift in Sources */,
 				C96B949E26612068007AD0DA /* EventType.swift in Sources */,
 				C96B94CC266120DD007AD0DA /* GetCityDetail.swift in Sources */,

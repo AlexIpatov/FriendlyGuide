@@ -58,7 +58,7 @@ final class QBChatManager: ChatManager {
 extension QBChatManager: ChatDialogsManager {
     func createGroupDialog(withName name: String,
                            photo: String?,
-                           occupants: [ChatUser],
+                           occupants: [ChatConnectable],
                            completion: @escaping (_ dialog: Dialog?) -> Void) {
         
         let chatDialog = QBChatDialog(dialogID: nil, type: .group)
@@ -80,7 +80,7 @@ extension QBChatManager: ChatDialogsManager {
         })
     }
     
-    func getDialogs(limit: Int, skipFirst: Int, complition: @escaping (_ dialog: Dialog?) -> Void) {
+    func getDialogs(limit: Int, skipFirst: Int, complition: @escaping (_ dialogs: [Dialog]) -> Void) {
         QBRequest.dialogs(for: QBResponsePage(limit: limit, skip: skipFirst),
                           extendedRequest: nil,
                           successBlock: { (response, dialogs, dialogsUsersIDs, page) in
@@ -108,7 +108,7 @@ extension QBChatManager: ChatMessagesManager {
 // MARK: - ChatAuthenticatorManager
 
 extension QBChatManager: ChatAuthenticatorManager {
-    func signUp(newUser: ChatUser) {
+    func signUp(newUser: ChatAuthorizable & ChatConnectable) {
         let newQBUUser = QBUUser()
         newQBUUser.login = newUser.login
         newQBUUser.fullName = newUser.fullName
@@ -126,7 +126,7 @@ extension QBChatManager: ChatAuthenticatorManager {
         })
     }
     
-    func login(user: ChatUser) {
+    func login(user: ChatAuthorizable) {
         QBRequest.logIn(withUserLogin: user.login, password: user.password) { [weak self] response, qbUser in
             
             qbUser.password = user.password

@@ -10,5 +10,5 @@ import UIKit
 protocol ChatListView: UIView {
     var delegate: ChatListViewConnectable? { get set }
 
-    func updateUI(at indexPaths: [IndexPath])
+    func updateUI(at indexes: [Int])
 }

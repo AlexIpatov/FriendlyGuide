@@ -20,25 +20,24 @@ struct Message: MessageType {
     var kind: MessageKind
 }
 
-class ChatViewController: MessagesViewController {
-
+class ChatViewController: MessagesViewController {  
     private let currentUser: SenderType
     private var messages = [MessageType]()
-
-    init(currentUser: ChatUser) {
+    
+    init(currentUser: ChatConnectable) {
         self.currentUser = Sender(senderId: "\(currentUser.userID)",
                                   displayName: currentUser.fullName)
-
+        
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
@@ -53,16 +52,14 @@ extension ChatViewController: MessagesDataSource {
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         messages[indexPath.section]
     }
-
+    
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         messages.count
     }
 }
 
-extension ChatViewController: MessagesDisplayDelegate {
-
+extension ChatViewController: MessagesDisplayDelegate {  
 }
 
 extension ChatViewController: MessagesLayoutDelegate {
-
 }
