@@ -7,12 +7,12 @@
 
 import UIKit
 
-class ChatListViewController: UIViewController, MVCDisignable {
+class ChatListViewController: UIViewController {
 
     var customView: ChatListView
     var model: ChatListModel
     
-    required init(view: ChatListView, model: ChatListModel) {
+    init(view: ChatListView, model: ChatListModel) {
         self.customView = view
         self.model = model
         

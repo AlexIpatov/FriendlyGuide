@@ -20,7 +20,6 @@
 		2150FEF4265BAD400058FA89 /* ChatTableVewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */; };
 		2150FEF6265BAF660058FA89 /* ChatInformationRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */; };
 		21ADFDE32661276D007A1671 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBB2661098F007D01CE /* ChatListView.swift */; };
-		21ADFDE426612770007A1671 /* MVCDisignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBB72661095D007D01CE /* MVCDisignable.swift */; };
 		21ADFDE526612774007A1671 /* ChartListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBD266109B9007D01CE /* ChartListTableView.swift */; };
 		21ADFDE62661277C007A1671 /* ChatListModelConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */; };
 		21ADFDE726612781007A1671 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBB926610977007D01CE /* ChatListModel.swift */; };
@@ -165,7 +164,6 @@
 		21B71F9526600F9800460564 /* ChatUsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsersManager.swift; sourceTree = "<group>"; };
 		21B71F972660115D00460564 /* ChatMessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessagesManager.swift; sourceTree = "<group>"; };
 		21B71F99266011E600460564 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
-		21D3EBB72661095D007D01CE /* MVCDisignable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVCDisignable.swift; sourceTree = "<group>"; };
 		21D3EBB926610977007D01CE /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		21D3EBBB2661098F007D01CE /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		21D3EBBD266109B9007D01CE /* ChartListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartListTableView.swift; sourceTree = "<group>"; };
@@ -428,6 +426,7 @@
 		2150FEEB265ABE8A0058FA89 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				21D3EBB62660408A007D01CE /* Chat */,
 				C91CEE70265E7DC60052C076 /* Network */,
 			);
 			path = Core;
@@ -479,7 +478,6 @@
 			children = (
 				21B71F99266011E600460564 /* ChatManager.swift */,
 				21D3EBB52660404C007D01CE /* Chat Managers */,
-				21D3EBB62660408A007D01CE /* Chat Managers Impl */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -504,12 +502,12 @@
 			path = "Chat Managers";
 			sourceTree = "<group>";
 		};
-		21D3EBB62660408A007D01CE /* Chat Managers Impl */ = {
+		21D3EBB62660408A007D01CE /* Chat */ = {
 			isa = PBXGroup;
 			children = (
 				21B71F85265E7D5700460564 /* QBChatManager.swift */,
 			);
-			path = "Chat Managers Impl";
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		21D3EBC326610A62007D01CE /* Models */ = {
@@ -580,7 +578,6 @@
 		C590467B265B088600231116 /* ChatScreen */ = {
 			isa = PBXGroup;
 			children = (
-				21D3EBB72661095D007D01CE /* MVCDisignable.swift */,
 				21D3EBC526610A70007D01CE /* Views */,
 				21D3EBC426610A69007D01CE /* Controllers */,
 				21D3EBC326610A62007D01CE /* Models */,
@@ -1470,7 +1467,6 @@
 				C5C316F52660F6AC00518405 /* PlaceCell.swift in Sources */,
 				C96B949826612068007AD0DA /* EventPlace.swift in Sources */,
 				C96B949526612068007AD0DA /* Event.swift in Sources */,
-				21ADFDE426612770007A1671 /* MVCDisignable.swift in Sources */,
 				C96B94B82661208D007AD0DA /* PlaceDetail.swift in Sources */,
 				C96B94CA266120DD007AD0DA /* GetCityNamesFactory.swift in Sources */,
 			);
