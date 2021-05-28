@@ -18,6 +18,7 @@
 		2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */; };
 		2150FEF4265BAD400058FA89 /* ChatTableVewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */; };
 		2150FEF6265BAF660058FA89 /* ChatInformationRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */; };
+		21ADFDE22661241E007A1671 /* ChatListViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADFDE12661241E007A1671 /* ChatListViewControllerBuilder.swift */; };
 		21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F85265E7D5700460564 /* QBChatManager.swift */; };
 		21B71F8B265E83B400460564 /* ChatAuthenticatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8A265E83B400460564 /* ChatAuthenticatorManager.swift */; };
 		21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8E265E932C00460564 /* ChatViewController.swift */; };
@@ -92,6 +93,7 @@
 		2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableVewCell.swift; sourceTree = "<group>"; };
 		2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInformationRepresentable.swift; sourceTree = "<group>"; };
+		21ADFDE12661241E007A1671 /* ChatListViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewControllerBuilder.swift; sourceTree = "<group>"; };
 		21B71F85265E7D5700460564 /* QBChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBChatManager.swift; sourceTree = "<group>"; };
 		21B71F8A265E83B400460564 /* ChatAuthenticatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAuthenticatorManager.swift; sourceTree = "<group>"; };
 		21B71F8E265E932C00460564 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		2150FEE9265ABE630058FA89 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				21ADFDE0266123F7007A1671 /* Buiders */,
 				2150FEEE265B7FE20058FA89 /* Factories */,
 			);
 			path = Assembly;
@@ -307,6 +310,14 @@
 				C590468F265B19A400231116 /* UIComponentsFactory.swift */,
 			);
 			path = Factories;
+			sourceTree = "<group>";
+		};
+		21ADFDE0266123F7007A1671 /* Buiders */ = {
+			isa = PBXGroup;
+			children = (
+				21ADFDE12661241E007A1671 /* ChatListViewControllerBuilder.swift */,
+			);
+			path = Buiders;
 			sourceTree = "<group>";
 		};
 		21B71F87265E7F2200460564 /* User Models */ = {
@@ -842,6 +853,7 @@
 				21D3EBC026610A11007D01CE /* QBChatListModel.swift in Sources */,
 				C5904694265B241400231116 /* TravelScreenView.swift in Sources */,
 				C5904686265B0EAD00231116 /* TravelScreenViewController.swift in Sources */,
+				21ADFDE22661241E007A1671 /* ChatListViewControllerBuilder.swift in Sources */,
 				21D3EBB82661095D007D01CE /* MVCDisignable.swift in Sources */,
 				21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */,
 				C5904684265B0AA700231116 /* TabBarController.swift in Sources */,
