@@ -7,8 +7,8 @@
 
 protocol ChatAuthenticatorManager {
     // create new user
-    func signUp(newUser: ChatUser)
+    func signUp(newUser: ChatAuthorizable & ChatConnectable)
     
     //autorize exist user
-    func login(user: ChatUser)
+    func login(user: ChatAuthorizable)
 }

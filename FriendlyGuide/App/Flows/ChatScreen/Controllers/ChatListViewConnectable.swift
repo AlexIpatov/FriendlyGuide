@@ -8,6 +8,7 @@
 import Foundation
 
 protocol ChatListViewConnectable: AnyObject {
-    func numberOfRowsInSection(section: Int) -> Int
-    func cellForRowAt(indexPath: IndexPath) -> Dialog
+    func numberOfDialogs() -> Int
+    func dialog(at index: Int) -> Dialog
+    func tapOnDialog(at index: Int)
 }

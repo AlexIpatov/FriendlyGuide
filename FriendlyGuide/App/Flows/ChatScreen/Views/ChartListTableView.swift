@@ -36,18 +36,19 @@ class ChartListTableView: UIView {
 }
 
 extension ChartListTableView: ChatListView {
-    func updateUI(at indexPaths: [IndexPath]) {
-        tableView.reloadRows(at: indexPaths, with: .fade)
+    func updateUI(at indexes: [Int]) {
+        tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
+                             with: .fade)
     }
 }
 
 extension ChartListTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        delegate?.numberOfRowsInSection(section: section) ?? 0
+        delegate?.numberOfDialogs() ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let dialogModel = delegate?.cellForRowAt(indexPath: indexPath),
+        if let dialogModel = delegate?.dialog(at: indexPath.row),
            let cell = tableView.dequeueReusableCell(withIdentifier: "") as? ChatTableVewCell {
             cell.fillIn(with: dialogModel)
             return cell

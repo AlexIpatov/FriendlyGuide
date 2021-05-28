@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ChatListModelConnectable: AnyObject {
-    func didFinishedRecieveData(at indexPaths: [IndexPath])
+    func didFinishedRecieveData(at indexes: [Int])
 }
