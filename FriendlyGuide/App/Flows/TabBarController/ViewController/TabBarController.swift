@@ -8,8 +8,11 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    // MARK: - Properties
+    var requestFactory: RequestFactory
     // MARK: - Init
-    init() {
+    init(requestFactory: RequestFactory) {
+        self.requestFactory = requestFactory
         super.init(nibName: nil, bundle: nil)
         self.viewControllers = createViewControllers()
     }
