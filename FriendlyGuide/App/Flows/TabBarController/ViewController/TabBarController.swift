@@ -37,7 +37,7 @@ class TabBarController: UITabBarController {
         var viewControllers = [UIViewController]()
         
         //1. TravelScreen
-        let travelScreenViewController = TravelScreenViewController()
+        let travelScreenViewController = TravelScreenViewController(requestFactory: requestFactory)
         travelScreenViewController.tabBarItem = UITabBarItem(title: "Путешествие",
                                                              image: UIImage(systemName: "figure.walk.diamond"),
                                                              selectedImage: UIImage(systemName: "figure.walk.diamond.fill"))
