@@ -41,7 +41,7 @@ class EventCell: UICollectionViewCell, SelfConfiguringCell {
     func configure<U>(with value: U) where U : Hashable {
     guard let event: Event = value as? Event else { return }
         titlelabel.text = event.title
-        imageView.kf.setImage(with: URL(string: event.images.first))
+        imageView.kf.setImage(with: URL(string: event.images.first?.image ?? ""))
         subTitlelabel.datesToString(dateElement: event.dates.first)
 
     }
