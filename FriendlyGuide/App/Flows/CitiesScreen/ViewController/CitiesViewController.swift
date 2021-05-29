@@ -3,58 +3,48 @@
 //  FriendlyGuide
 //
 //  Created by Александр Ипатов on 25.05.2021.
-//
+//CityName(slug: "online", name: "Онлайн")
 
 import UIKit
-// TODO - Убрать мок структуру перевести таблицу на реальные данные когда будет готова сеть
-struct MocCity: Hashable {
-    var name: String
-    var slug: String
-}
 
 class CitiesViewController: UIViewController {
     // MARK: - UI components
     private lazy var citiesScreenView: CitiesView = {
         return CitiesView()
     }()
-
     // MARK: - Properties
-    private var cities = [MocCity(name: "Москва",
-                                  slug: "msk"),
-                          MocCity(name: "Санкт - Петербург",
-                                  slug: "спб")] {
+    private var cities = [CityName]() {
         didSet {
+            // Remove "online" from cities
+            cities.removeAll {$0.slug == "online"}
             citiesScreenView.tableView.reloadData()
         }
     }
-
+    var requestFactory: RequestFactory
+    weak var selectionDelegate: CitiesViewControllerDelegate?
     // MARK: - Init
-    init() {
+    init(requestFactory: RequestFactory) {
+        self.requestFactory = requestFactory
         super.init(nibName: nil, bundle: nil)
     }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         setupTableView()
         setupButtonsTargets()
-
+        requestData()
     }
-
     override func loadView() {
         view = citiesScreenView
     }
-
     //MARK: -  Methods
     func configureViewController() {
         self.title = ""
     }
-
     // MARK: - Setup TableView
     private func setupTableView() {
         citiesScreenView.tableView.register(CitiesCell.self,
@@ -62,12 +52,25 @@ class CitiesViewController: UIViewController {
         citiesScreenView.tableView.delegate = self
         citiesScreenView.tableView.dataSource = self
     }
-
+    // MARK: - Button Methods
     @objc private func canсelButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
+    // MARK: - Request methods
+    private func requestData() {
+        let getCityNameFactory = requestFactory.makeGetCityNameFactory()
+        getCityNameFactory.getCityNames { [weak self] response in
+            guard let self = self else {return}
+            switch response {
+            case .success(let cities):
+                self.cities = cities
+            case .failure(let error):
+                self.showAlert(with: "Ошибка!",
+                               and: error.localizedDescription)
+            }
+        }
+    }
 }
-
 // MARK: - UITableViewDataSource
 extension CitiesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,6 +88,8 @@ extension CitiesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension CitiesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCity = cities[indexPath.row]
+        selectionDelegate?.selectCity(city: selectedCity)
         dismiss(animated: true, completion: nil)
     }
 }

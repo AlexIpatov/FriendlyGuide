@@ -47,6 +47,7 @@
 		4A7D3ABE266250CD000C4298 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3ABD266250CD000C4298 /* AuthError.swift */; };
 		4A7D3AC026625290000C4298 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3ABF26625290000C4298 /* SignUpView.swift */; };
 		4A7D3AC4266252B6000C4298 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */; };
+		4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AC92662898A000C4298 /* CitiesViewControllerDelegate.swift */; };
 		B768E637D8ED434D98E87DC3 /* Pods_FriendlyGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */; };
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
 		C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904687265B0F6F00231116 /* MapScreenViewController.swift */; };
@@ -190,6 +191,7 @@
 		4A7D3ABD266250CD000C4298 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		4A7D3ABF26625290000C4298 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4A7D3AC92662898A000C4298 /* CitiesViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewControllerDelegate.swift; sourceTree = "<group>"; };
 		5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide_FriendlyGuideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB5D3A3CB0562114B140561 /* Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -639,6 +641,14 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
+		4A7D3AC826628947000C4298 /* CitiesViewConntrollerDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3AC92662898A000C4298 /* CitiesViewControllerDelegate.swift */,
+			);
+			path = CitiesViewConntrollerDelegate;
+			sourceTree = "<group>";
+		};
 		C5904678265B083900231116 /* MapScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -828,6 +838,7 @@
 		C5C316D82660F6A000518405 /* CitiesScreen */ = {
 			isa = PBXGroup;
 			children = (
+				4A7D3AC826628947000C4298 /* CitiesViewConntrollerDelegate */,
 				C5C316D92660F6A000518405 /* Cell */,
 				C5C316DB2660F6A000518405 /* View */,
 				C5C316DD2660F6A000518405 /* ViewController */,
@@ -1521,6 +1532,7 @@
 				C96B94822661205E007AD0DA /* CityDetailResource.swift in Sources */,
 				C96B94CF266120DD007AD0DA /* GetEventsList.swift in Sources */,
 				C91CEE86265E7DC70052C076 /* ParameterEncoding.swift in Sources */,
+				4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */,
 				21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */,
 				C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */,
 				4A7D3ABE266250CD000C4298 /* AuthError.swift in Sources */,

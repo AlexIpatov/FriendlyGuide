@@ -14,7 +14,7 @@ class CitiesView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .white
         tableView.rowHeight = 60
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         tableView.layer.cornerRadius = 24
         addSubview(tableView)
         return tableView
@@ -34,12 +34,10 @@ class CitiesView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     // MARK: - Configuration Methods
     func configureUI() {
         addSubview(tableView)
         addSubview(canсelButton)
-
         NSLayoutConstraint.activate([
             tableView.centerXAnchor.constraint(equalTo: centerXAnchor),
             tableView.centerYAnchor.constraint(equalTo: centerYAnchor),

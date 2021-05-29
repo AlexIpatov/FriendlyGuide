@@ -19,7 +19,7 @@ class SelectCityCell: UICollectionViewCell, SelfConfiguringCell {
                                 font: .smallButtonFont(),
                                 textColor: .black,
                                 numberOfLines: 1,
-                                textAlignment: .center,
+                                textAlignment: .left,
                                 adjustsFontSizeToFitWidth: true)
     // MARK: - Init
     override init(frame: CGRect) {
@@ -31,7 +31,7 @@ class SelectCityCell: UICollectionViewCell, SelfConfiguringCell {
     }
     // MARK: - Configure
     func configure<U>(with value: U) where U : Hashable {
-        guard let city: MocCity = value as? MocCity else { return }
+        guard let city: CityName = value as? CityName else { return }
         setCityLabel.text = city.name
     }
     // MARK: - Configuration Methods
@@ -39,12 +39,12 @@ class SelectCityCell: UICollectionViewCell, SelfConfiguringCell {
         contentView.addSubview(pointerImageView)
         contentView.addSubview(setCityLabel)
         NSLayoutConstraint.activate([
-            pointerImageView.rightAnchor.constraint(equalTo: setCityLabel.leftAnchor),
+            pointerImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             pointerImageView.heightAnchor.constraint(equalTo: setCityLabel.heightAnchor),
             pointerImageView.widthAnchor.constraint(equalTo: pointerImageView.heightAnchor),
             pointerImageView.centerYAnchor.constraint(equalTo:setCityLabel.centerYAnchor),
 
-            setCityLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            setCityLabel.leftAnchor.constraint(equalTo: pointerImageView.rightAnchor, constant: 10),
             setCityLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
