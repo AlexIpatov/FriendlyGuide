@@ -3,7 +3,7 @@
 //  FriendlyGuide
 //
 //  Created by Александр Ипатов on 25.05.2021.
-//
+//CityName(slug: "online", name: "Онлайн")
 
 import UIKit
 
@@ -12,24 +12,24 @@ class CitiesViewController: UIViewController {
     private lazy var citiesScreenView: CitiesView = {
         return CitiesView()
     }()
-
     // MARK: - Properties
     private var cities = [CityName]() {
         didSet {
+            // Remove "online" from cities
+            cities.removeAll {$0.slug == "online"}
             citiesScreenView.tableView.reloadData()
         }
     }
     var requestFactory: RequestFactory
+    weak var selectionDelegate: CitiesViewControllerDelegate?
     // MARK: - Init
     init(requestFactory: RequestFactory) {
         self.requestFactory = requestFactory
         super.init(nibName: nil, bundle: nil)
     }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     // MARK: - ViewController Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,7 +65,8 @@ class CitiesViewController: UIViewController {
             case .success(let cities):
                 self.cities = cities
             case .failure(let error):
-                self.showAlert(with: "Ошибка!", and: error.localizedDescription)
+                self.showAlert(with: "Ошибка!",
+                               and: error.localizedDescription)
             }
         }
     }
@@ -87,6 +88,8 @@ extension CitiesViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension CitiesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCity = cities[indexPath.row]
+        selectionDelegate?.selectCity(city: selectedCity)
         dismiss(animated: true, completion: nil)
     }
 }

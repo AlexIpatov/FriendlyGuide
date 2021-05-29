@@ -41,7 +41,8 @@ class CitiesCell: UITableViewCell, SelfConfiguringCell {
         contentView.addSubview(cityNameLabel)
         NSLayoutConstraint.activate([
             cityNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            cityNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
+            cityNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            cityNameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
     }
 }
