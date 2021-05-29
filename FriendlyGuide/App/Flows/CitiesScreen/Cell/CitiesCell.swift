@@ -30,7 +30,7 @@ class CitiesCell: UITableViewCell, SelfConfiguringCell {
 
     // MARK: - Configure
     func configure<U>(with value: U) where U : Hashable {
-        guard let city: MocCity = value as? MocCity else { return }
+        guard let city: CityName = value as? CityName else { return }
         cityNameLabel.text = city.name
     }
     //MARK: - Configuration Methods

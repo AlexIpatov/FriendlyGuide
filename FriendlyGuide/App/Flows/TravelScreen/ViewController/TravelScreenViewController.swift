@@ -14,8 +14,7 @@ class TravelScreenViewController: UIViewController {
     }()
     // MARK: - Properties
     var requestFactory: RequestFactory
-    var currentCity = MocCity(name: "Санкт - Петербург",
-                              slug: "spb")
+    var currentCity: CityName?
     var places = [MocPlace]() {
         didSet {
             reloadData()
@@ -154,7 +153,7 @@ extension TravelScreenViewController: UICollectionViewDelegate {
         case .news, .events, .places:
             print("tapped")
         case .city:
-            let cityVC = CitiesViewController()
+            let cityVC = CitiesViewController(requestFactory: requestFactory)
             cityVC.modalPresentationStyle = .fullScreen
             present(cityVC, animated: true, completion: nil)
         }
