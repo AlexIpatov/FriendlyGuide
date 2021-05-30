@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// TODO Добавить возможность выбрать локацию и добавить текущую дату 
 struct EventsListResource: EndPointType {
     typealias ModelType = EventsList
     var host: BaseURL = .kudago
