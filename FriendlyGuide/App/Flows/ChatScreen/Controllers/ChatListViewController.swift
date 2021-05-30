@@ -9,8 +9,8 @@ import UIKit
 
 class ChatListViewController: UIViewController {
 
-    var customView: ChatListView
-    var model: ChatListModel
+    private var customView: ChatListView
+    private var model: ChatListModel
     
     init(view: ChatListView, model: ChatListModel) {
         self.customView = view

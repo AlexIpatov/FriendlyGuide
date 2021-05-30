@@ -7,14 +7,21 @@
 
 import Foundation
 
-struct User: ChatAuthorizable
+struct User: Authorizable
              & ChatConnectable {
 
-    var userID: UInt    
+    static var instance: User = {
+        return User(userID: 1,
+                    fullName: "",
+                    login: "",
+                    password: "")
+    }()
+    
+    var userID: UInt
     var fullName: String
     
     var login: String
 
     var password: String
-    var oldPassword: String
+    var oldPassword: String?
 }

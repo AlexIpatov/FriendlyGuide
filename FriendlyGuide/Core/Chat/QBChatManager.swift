@@ -105,35 +105,55 @@ extension QBChatManager: ChatMessagesManager {
     
 }
 
-// MARK: - ChatAuthenticatorManager
+// MARK: - AuthenticatorManager
 
-extension QBChatManager: ChatAuthenticatorManager {
-    func signUp(newUser: ChatAuthorizable & ChatConnectable) {
+extension QBChatManager: AuthenticatorManager {
+    func signUp(fullName: String, login: String, password: String,
+                complition: @escaping (Result<Bool, Error>) -> Void) {
         let newQBUUser = QBUUser()
-        newQBUUser.login = newUser.login
-        newQBUUser.fullName = newUser.fullName
-        newQBUUser.password = newUser.password
+        newQBUUser.login = login
+        newQBUUser.fullName = fullName
+        newQBUUser.password = password
         
         QBRequest.signUp(newQBUUser, successBlock: { [weak self] response, user in
             guard let self = self else { return }
-            self.login(user: newUser)
+            
+            
+            self.login(login: login, password: password) { result in
+                switch result {
+                case .failure(let error):
+                    complition(.failure(error))
+                case .success(let result):
+                    User.instance.fullName = fullName
+                    complition(.success(result))
+                }
+            }
             
         }, errorBlock: { response in
             if response.status == QBResponseStatusCode.validationFailed {
                 print("Validation faild!")
-                return
+            }
+            
+            if let error = response.error?.error {
+                complition(.failure(error))
             }
         })
     }
     
-    func login(user: ChatAuthorizable) {
-        QBRequest.logIn(withUserLogin: user.login, password: user.password) { [weak self] response, qbUser in
+    func login(login: String, password: String,
+               complition: @escaping (Result<Bool, Error>) -> Void) {
+        QBRequest.logIn(withUserLogin: login, password: password) { [weak self] response, qbUser in
             
-            qbUser.password = user.password
+            User.instance.login = login
+            User.instance.password = password
+            
+            qbUser.password = password
             self?.connectToChat(user: qbUser)
+            complition(.success(true))
             
         } errorBlock: { response in
             print("Some problems with autentificate user")
+            complition(.success(false))
         }
     }
     
