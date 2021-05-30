@@ -28,9 +28,11 @@ extension UILabel {
         guard let dateElement = dateElement else {
             return
         }
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "dd.MM.yy"
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yy"
+        let startStringDate = formatter.string(from: dateElement.start)
+        let endStringDate = formatter.string(from: dateElement.end)
 
-        self.text = String("\(dateElement.start) - \(dateElement.end)")
+        self.text = String("\(startStringDate) - \(endStringDate)")
     }
 }

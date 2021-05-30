@@ -14,12 +14,12 @@ class EventCell: UICollectionViewCell, SelfConfiguringCell {
     static var reuseId: String = "EventCell"
 
     // MARK: - UI components
-    private(set) lazy var titlelabel = UILabel(text: "TestNameForEVENTLargeTestadwdawaw",
+    private(set) lazy var titlelabel = UILabel(text: "",
                                                font: .smallTitleFont(),
                                                textColor: .black,
                                                numberOfLines: 2,
                                                textAlignment: .left)
-    private(set) lazy var subTitlelabel = UILabel(text: "TestNameForEVENTLargeTestadwdawaw",
+    private(set) lazy var subTitlelabel = UILabel(text: "",
                                                font: .subTitleFont(),
                                                textColor: .systemGray,
                                                numberOfLines: 2,
