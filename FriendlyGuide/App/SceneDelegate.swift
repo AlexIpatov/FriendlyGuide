@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var requestFactory = RequestFactory()
+    var userSettings = UserSettings()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -17,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
 
-        let tabBarController = TabBarController(requestFactory: requestFactory)
+        let tabBarController = TabBarController(requestFactory: requestFactory,
+                                                userSettings: userSettings)
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }

@@ -13,9 +13,11 @@ class TravelScreenViewController: UIViewController {
         return TravelScreenView()
     }()
     // MARK: - Properties
+    var userSettings: UserSettings
     var requestFactory: RequestFactory
-    var currentCity: CityName? {
+    lazy var currentCity: CityName? = userSettings.loadCurrentCity() {
         didSet {
+            userSettings.saveCurrentCity(city: currentCity)
             reloadData()
         }
     }
@@ -35,8 +37,10 @@ class TravelScreenViewController: UIViewController {
         }
     }
     // MARK: - Init
-    init(requestFactory: RequestFactory) {
+    init(requestFactory: RequestFactory,
+         userSettings: UserSettings) {
         self.requestFactory = requestFactory
+        self.userSettings = userSettings
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {

@@ -23,7 +23,7 @@ extension UILabel {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
     }
-
+    
     func datesToString(dateElement: DateElement?) {
         guard let dateElement = dateElement else {
             return
@@ -32,7 +32,7 @@ extension UILabel {
         formatter.dateFormat = "dd.MM.yy"
         let startStringDate = formatter.string(from: dateElement.start)
         let endStringDate = formatter.string(from: dateElement.end)
-
+        
         self.text = String("\(startStringDate) - \(endStringDate)")
     }
 }
