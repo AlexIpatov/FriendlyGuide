@@ -10,5 +10,6 @@ import Foundation
 struct Event: Codable, Hashable {
     let id: Int
     let title: String
-    let slug: String
+    let dates: [DateElement]
+    let images: [Image]
 }

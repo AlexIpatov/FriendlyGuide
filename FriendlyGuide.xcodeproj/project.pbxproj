@@ -9,35 +9,53 @@
 /* Begin PBXBuildFile section */
 		017A3E4F7AF543837DC02CD7 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */; };
 		21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21421407266128610007A031 /* ChatListViewControllerBuilder.swift */; };
+		2142140A2661344B0007A031 /* ChatTableVewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214214092661344B0007A031 /* ChatTableVewCell.swift */; };
+		2142141026613AFA0007A031 /* ChatConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142140F26613AFA0007A031 /* ChatConnectable.swift */; };
+		2142141226613B100007A031 /* Authorizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142141126613B100007A031 /* Authorizable.swift */; };
+		2142141426613B440007A031 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142141326613B440007A031 /* User.swift */; };
 		2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEB6265AB9070058FA89 /* AppDelegate.swift */; };
 		2150FEB9265AB9070058FA89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEB8265AB9070058FA89 /* SceneDelegate.swift */; };
 		2150FEC0265AB9090058FA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2150FEBF265AB9090058FA89 /* Assets.xcassets */; };
 		2150FEC3265AB9090058FA89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2150FEC1265AB9090058FA89 /* LaunchScreen.storyboard */; };
 		2150FECE265AB9090058FA89 /* FriendlyGuideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FECD265AB9090058FA89 /* FriendlyGuideTests.swift */; };
 		2150FED9265AB9090058FA89 /* FriendlyGuideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */; };
-		2150FEF0265BAC8C0058FA89 /* ChatConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEEF265BAC8C0058FA89 /* ChatConnectable.swift */; };
 		2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */; };
-		2150FEF4265BAD400058FA89 /* ChatTableVewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */; };
-		2150FEF6265BAF660058FA89 /* ChatInformationRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */; };
+		2150FEF4265BAD400058FA89 /* ChatTableVewCellImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FEF3265BAD400058FA89 /* ChatTableVewCellImpl.swift */; };
 		21ADFDE32661276D007A1671 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBB2661098F007D01CE /* ChatListView.swift */; };
 		21ADFDE526612774007A1671 /* ChartListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBD266109B9007D01CE /* ChartListTableView.swift */; };
 		21ADFDE62661277C007A1671 /* ChatListModelConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */; };
 		21ADFDE726612781007A1671 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBB926610977007D01CE /* ChatListModel.swift */; };
 		21ADFDE826612784007A1671 /* QBChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBF26610A11007D01CE /* QBChatListModel.swift */; };
-		21ADFDE9266127A1007A1671 /* QBDialogWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBC626610D7C007D01CE /* QBDialogWrapper.swift */; };
 		21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F85265E7D5700460564 /* QBChatManager.swift */; };
-		21B71F8B265E83B400460564 /* ChatAuthenticatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8A265E83B400460564 /* ChatAuthenticatorManager.swift */; };
+		21B71F8B265E83B400460564 /* AuthenticatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8A265E83B400460564 /* AuthenticatorManager.swift */; };
 		21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8E265E932C00460564 /* ChatViewController.swift */; };
 		21B71F9126600D8F00460564 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9026600D8F00460564 /* Dialog.swift */; };
 		21B71F9426600F5A00460564 /* ChatDialogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9326600F5A00460564 /* ChatDialogsManager.swift */; };
 		21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9526600F9800460564 /* ChatUsersManager.swift */; };
 		21B71F982660115D00460564 /* ChatMessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F972660115D00460564 /* ChatMessagesManager.swift */; };
 		21B71F9A266011E600460564 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F99266011E600460564 /* ChatManager.swift */; };
+		21C21C52266141FD0016CC23 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C51266141FD0016CC23 /* AuthViewController.swift */; };
+		21C21C572661541B0016CC23 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C562661541B0016CC23 /* AuthView.swift */; };
+		21C21C592661542F0016CC23 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C582661542F0016CC23 /* AuthModel.swift */; };
+		21C21C5B266154610016CC23 /* AuthViewConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C5A266154610016CC23 /* AuthViewConnectable.swift */; };
+		21C21C5D2661547D0016CC23 /* AuthViewControllerImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C5C2661547D0016CC23 /* AuthViewControllerImpl.swift */; };
+		21C21C5F26617B280016CC23 /* BasicAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C5E26617B280016CC23 /* BasicAuthView.swift */; };
+		21C21C61266408AB0016CC23 /* BasicAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C60266408AB0016CC23 /* BasicAuthModel.swift */; };
 		21D3EBB126603F54007D01CE /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE73265E7DC60052C076 /* AbstractErrorParser.swift */; };
 		21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE78265E7DC60052C076 /* HttpMethod.swift */; };
 		21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE79265E7DC60052C076 /* EndPointType.swift */; };
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
 		21D3EBC9266110E9007D01CE /* ChatListViewConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBC8266110E9007D01CE /* ChatListViewConnectable.swift */; };
+		4A7D3AAF26623C72000C4298 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AAE26623C72000C4298 /* AuthView.swift */; };
+		4A7D3AB126623C83000C4298 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB026623C83000C4298 /* AuthViewController.swift */; };
+		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
+		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
+		4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB926625080000C4298 /* AuthValidators.swift */; };
+		4A7D3ABE266250CD000C4298 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3ABD266250CD000C4298 /* AuthError.swift */; };
+		4A7D3AC026625290000C4298 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3ABF26625290000C4298 /* SignUpView.swift */; };
+		4A7D3AC4266252B6000C4298 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */; };
+		4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AC92662898A000C4298 /* CitiesViewControllerDelegate.swift */; };
+		4A9E66C62663ADB500AF8274 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E66C52663ADB500AF8274 /* UserSettings.swift */; };
 		B768E637D8ED434D98E87DC3 /* Pods_FriendlyGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */; };
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
 		C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904687265B0F6F00231116 /* MapScreenViewController.swift */; };
@@ -141,6 +159,10 @@
 		13702F993F2CF8FFDC1C0C0A /* Pods-FriendlyGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.release.xcconfig"; sourceTree = "<group>"; };
 		17D3CD1E21A8270E4E5699B4 /* Pods-FriendlyGuide-FriendlyGuideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide-FriendlyGuideUITests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests.release.xcconfig"; sourceTree = "<group>"; };
 		21421407266128610007A031 /* ChatListViewControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewControllerBuilder.swift; sourceTree = "<group>"; };
+		214214092661344B0007A031 /* ChatTableVewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableVewCell.swift; sourceTree = "<group>"; };
+		2142140F26613AFA0007A031 /* ChatConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConnectable.swift; sourceTree = "<group>"; };
+		2142141126613B100007A031 /* Authorizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authorizable.swift; sourceTree = "<group>"; };
+		2142141326613B440007A031 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2150FEB3265AB9070058FA89 /* FriendlyGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendlyGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2150FEB6265AB9070058FA89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2150FEB8265AB9070058FA89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,26 +175,40 @@
 		2150FED4265AB9090058FA89 /* FriendlyGuideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyGuideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyGuideUITests.swift; sourceTree = "<group>"; };
 		2150FEDA265AB9090058FA89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2150FEEF265BAC8C0058FA89 /* ChatConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConnectable.swift; sourceTree = "<group>"; };
 		2150FEF1265BACCF0058FA89 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
-		2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableVewCell.swift; sourceTree = "<group>"; };
-		2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInformationRepresentable.swift; sourceTree = "<group>"; };
+		2150FEF3265BAD400058FA89 /* ChatTableVewCellImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableVewCellImpl.swift; sourceTree = "<group>"; };
 		21B71F85265E7D5700460564 /* QBChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBChatManager.swift; sourceTree = "<group>"; };
-		21B71F8A265E83B400460564 /* ChatAuthenticatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAuthenticatorManager.swift; sourceTree = "<group>"; };
+		21B71F8A265E83B400460564 /* AuthenticatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorManager.swift; sourceTree = "<group>"; };
 		21B71F8E265E932C00460564 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		21B71F9026600D8F00460564 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		21B71F9326600F5A00460564 /* ChatDialogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDialogsManager.swift; sourceTree = "<group>"; };
 		21B71F9526600F9800460564 /* ChatUsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsersManager.swift; sourceTree = "<group>"; };
 		21B71F972660115D00460564 /* ChatMessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessagesManager.swift; sourceTree = "<group>"; };
 		21B71F99266011E600460564 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		21C21C51266141FD0016CC23 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		21C21C562661541B0016CC23 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		21C21C582661542F0016CC23 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		21C21C5A266154610016CC23 /* AuthViewConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewConnectable.swift; sourceTree = "<group>"; };
+		21C21C5C2661547D0016CC23 /* AuthViewControllerImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewControllerImpl.swift; sourceTree = "<group>"; };
+		21C21C5E26617B280016CC23 /* BasicAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAuthView.swift; sourceTree = "<group>"; };
+		21C21C60266408AB0016CC23 /* BasicAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAuthModel.swift; sourceTree = "<group>"; };
 		21D3EBB926610977007D01CE /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		21D3EBBB2661098F007D01CE /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		21D3EBBD266109B9007D01CE /* ChartListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartListTableView.swift; sourceTree = "<group>"; };
 		21D3EBBF26610A11007D01CE /* QBChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBChatListModel.swift; sourceTree = "<group>"; };
-		21D3EBC626610D7C007D01CE /* QBDialogWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBDialogWrapper.swift; sourceTree = "<group>"; };
 		21D3EBC8266110E9007D01CE /* ChatListViewConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewConnectable.swift; sourceTree = "<group>"; };
 		21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModelConnectable.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
+		4A7D3AAE26623C72000C4298 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		4A7D3AB026623C83000C4298 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Entensions.swift"; sourceTree = "<group>"; };
+		4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Extensions.swift"; sourceTree = "<group>"; };
+		4A7D3AB926625080000C4298 /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
+		4A7D3ABD266250CD000C4298 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		4A7D3ABF26625290000C4298 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4A7D3AC92662898A000C4298 /* CitiesViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewControllerDelegate.swift; sourceTree = "<group>"; };
+		4A9E66C52663ADB500AF8274 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide_FriendlyGuideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB5D3A3CB0562114B140561 /* Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -377,6 +413,7 @@
 		2150FEE7265ABE580058FA89 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				4A9E66C42663AD8C00AF8274 /* UserSettings */,
 				C96B94B9266120DD007AD0DA /* Network */,
 				21B71F89265E82EB00460564 /* Chat */,
 			);
@@ -392,9 +429,8 @@
 				C96B948326612068007AD0DA /* Events */,
 				C96B94752661204E007AD0DA /* Coordinates */,
 				C96B947026612018007AD0DA /* Cities */,
-				21B71F9226600D9A00460564 /* Dialog Models */,
+				21B71F9226600D9A00460564 /* Dialogs */,
 				21B71F87265E7F2200460564 /* User Models */,
-				2150FEF5265BAF660058FA89 /* ChatInformationRepresentable.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -402,6 +438,7 @@
 		2150FEE9265ABE630058FA89 /* Assembly */ = {
 			isa = PBXGroup;
 			children = (
+				4A7D3AB826625068000C4298 /* Helpers */,
 				21421406266128590007A031 /* Builders */,
 				C5C316512660E3CA00518405 /* Protocols */,
 				C5C316542660E40B00518405 /* Extensions */,
@@ -413,6 +450,7 @@
 		2150FEEA265ABE730058FA89 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				21C21C50266141EA0016CC23 /* Auth */,
 				C5C316632660E62200518405 /* SliderController */,
 				C5904681265B0A3800231116 /* TabBarController */,
 				C5C316D82660F6A000518405 /* CitiesScreen */,
@@ -462,46 +500,69 @@
 		21B71F87265E7F2200460564 /* User Models */ = {
 			isa = PBXGroup;
 			children = (
-				21B71F88265E7F2B00460564 /* Chat Users */,
+				2142141326613B440007A031 /* User.swift */,
+				2142140F26613AFA0007A031 /* ChatConnectable.swift */,
+				2142141126613B100007A031 /* Authorizable.swift */,
 			);
 			path = "User Models";
-			sourceTree = "<group>";
-		};
-		21B71F88265E7F2B00460564 /* Chat Users */ = {
-			isa = PBXGroup;
-			children = (
-				2150FEEF265BAC8C0058FA89 /* ChatConnectable.swift */,
-			);
-			path = "Chat Users";
 			sourceTree = "<group>";
 		};
 		21B71F89265E82EB00460564 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
 				21B71F99266011E600460564 /* ChatManager.swift */,
-				21D3EBB52660404C007D01CE /* Chat Managers */,
+				21B71F9326600F5A00460564 /* ChatDialogsManager.swift */,
+				21B71F9526600F9800460564 /* ChatUsersManager.swift */,
+				21B71F972660115D00460564 /* ChatMessagesManager.swift */,
+				21B71F8A265E83B400460564 /* AuthenticatorManager.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
 		};
-		21B71F9226600D9A00460564 /* Dialog Models */ = {
+		21B71F9226600D9A00460564 /* Dialogs */ = {
 			isa = PBXGroup;
 			children = (
 				21B71F9026600D8F00460564 /* Dialog.swift */,
-				21D3EBC626610D7C007D01CE /* QBDialogWrapper.swift */,
 			);
-			path = "Dialog Models";
+			path = Dialogs;
 			sourceTree = "<group>";
 		};
-		21D3EBB52660404C007D01CE /* Chat Managers */ = {
+		21C21C50266141EA0016CC23 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				21B71F9326600F5A00460564 /* ChatDialogsManager.swift */,
-				21B71F9526600F9800460564 /* ChatUsersManager.swift */,
-				21B71F972660115D00460564 /* ChatMessagesManager.swift */,
-				21B71F8A265E83B400460564 /* ChatAuthenticatorManager.swift */,
+				21C21C5526614EC00016CC23 /* Controllers */,
+				21C21C5426614EBB0016CC23 /* Models */,
+				21C21C5326614EB60016CC23 /* Views */,
 			);
-			path = "Chat Managers";
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		21C21C5326614EB60016CC23 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21C21C562661541B0016CC23 /* AuthView.swift */,
+				21C21C5E26617B280016CC23 /* BasicAuthView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		21C21C5426614EBB0016CC23 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				21C21C582661542F0016CC23 /* AuthModel.swift */,
+				21C21C60266408AB0016CC23 /* BasicAuthModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		21C21C5526614EC00016CC23 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				21C21C51266141FD0016CC23 /* AuthViewController.swift */,
+				21C21C5A266154610016CC23 /* AuthViewConnectable.swift */,
+				21C21C5C2661547D0016CC23 /* AuthViewControllerImpl.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		21D3EBB62660408A007D01CE /* Chat */ = {
@@ -537,7 +598,8 @@
 			children = (
 				21D3EBBB2661098F007D01CE /* ChatListView.swift */,
 				21D3EBBD266109B9007D01CE /* ChartListTableView.swift */,
-				2150FEF3265BAD400058FA89 /* ChatTableVewCell.swift */,
+				214214092661344B0007A031 /* ChatTableVewCell.swift */,
+				2150FEF3265BAD400058FA89 /* ChatTableVewCellImpl.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -550,6 +612,97 @@
 				0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A7D3AAB26623C48000C4298 /* AuthScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3AAC26623C5A000C4298 /* View */,
+				4A7D3AAD26623C60000C4298 /* ViewController */,
+			);
+			path = AuthScreen;
+			sourceTree = "<group>";
+		};
+		4A7D3AAC26623C5A000C4298 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3AAE26623C72000C4298 /* AuthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A7D3AAD26623C60000C4298 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3AB026623C83000C4298 /* AuthViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4A7D3AB226623D3B000C4298 /* SignUpScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3AC126625296000C4298 /* View */,
+				4A7D3AC22662529D000C4298 /* ViewController */,
+			);
+			path = SignUpScreen;
+			sourceTree = "<group>";
+		};
+		4A7D3AB826625068000C4298 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3ABC26625099000C4298 /* Errors */,
+				4A7D3ABB2662508E000C4298 /* Validators */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4A7D3ABB2662508E000C4298 /* Validators */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3AB926625080000C4298 /* AuthValidators.swift */,
+			);
+			path = Validators;
+			sourceTree = "<group>";
+		};
+		4A7D3ABC26625099000C4298 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3ABD266250CD000C4298 /* AuthError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
+		4A7D3AC126625296000C4298 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3ABF26625290000C4298 /* SignUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A7D3AC22662529D000C4298 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		4A7D3AC826628947000C4298 /* CitiesViewConntrollerDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3AC92662898A000C4298 /* CitiesViewControllerDelegate.swift */,
+			);
+			path = CitiesViewConntrollerDelegate;
+			sourceTree = "<group>";
+		};
+		4A9E66C42663AD8C00AF8274 /* UserSettings */ = {
+			isa = PBXGroup;
+			children = (
+				4A9E66C52663ADB500AF8274 /* UserSettings.swift */,
+			);
+			path = UserSettings;
 			sourceTree = "<group>";
 		};
 		C5904678265B083900231116 /* MapScreen */ = {
@@ -646,6 +799,8 @@
 				C5C316592660E41C00518405 /* UILabel + Extensions.swift */,
 				C5C316572660E41C00518405 /* UITextField + Extensions.swift */,
 				C5C316582660E41C00518405 /* UIViewController + Extensions.swift */,
+				4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */,
+				4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -739,6 +894,7 @@
 		C5C316D82660F6A000518405 /* CitiesScreen */ = {
 			isa = PBXGroup;
 			children = (
+				4A7D3AC826628947000C4298 /* CitiesViewConntrollerDelegate */,
 				C5C316D92660F6A000518405 /* Cell */,
 				C5C316DB2660F6A000518405 /* View */,
 				C5C316DD2660F6A000518405 /* ViewController */,
@@ -1377,14 +1533,16 @@
 				21ADFDE32661276D007A1671 /* ChatListView.swift in Sources */,
 				C5C316F12660F6AC00518405 /* EventCell.swift in Sources */,
 				21B71F9426600F5A00460564 /* ChatDialogsManager.swift in Sources */,
+				4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */,
 				21D3EBC9266110E9007D01CE /* ChatListViewConnectable.swift in Sources */,
-				2150FEF0265BAC8C0058FA89 /* ChatConnectable.swift in Sources */,
 				21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */,
+				4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */,
 				C5904684265B0AA700231116 /* TabBarController.swift in Sources */,
 				C5C316DF2660F6A000518405 /* CitiesCell.swift in Sources */,
 				C96B94CB266120DD007AD0DA /* GetCityNames.swift in Sources */,
 				2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */,
 				C5C316602660E41C00518405 /* UILabel + Extensions.swift in Sources */,
+				4A7D3AC026625290000C4298 /* SignUpView.swift in Sources */,
 				21ADFDE726612781007A1671 /* ChatListModel.swift in Sources */,
 				C96B94D1266120DD007AD0DA /* GetEventDetailFactory.swift in Sources */,
 				C5C316722660E62200518405 /* PresentAnimation.swift in Sources */,
@@ -1396,22 +1554,25 @@
 				C96B94AC26612079007AD0DA /* News.swift in Sources */,
 				C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */,
 				C5C316F42660F6AC00518405 /* SectionHeader.swift in Sources */,
-				2150FEF6265BAF660058FA89 /* ChatInformationRepresentable.swift in Sources */,
 				2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */,
+				21C21C5D2661547D0016CC23 /* AuthViewControllerImpl.swift in Sources */,
 				C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */,
 				21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */,
+				4A9E66C62663ADB500AF8274 /* UserSettings.swift in Sources */,
 				C5C3165E2660E41C00518405 /* UITextField + Extensions.swift in Sources */,
 				21B71F9A266011E600460564 /* ChatManager.swift in Sources */,
 				C96B94A026612068007AD0DA /* DayEvent.swift in Sources */,
 				C5C316E12660F6A000518405 /* CitiesViewController.swift in Sources */,
-				21ADFDE9266127A1007A1671 /* QBDialogWrapper.swift in Sources */,
 				C96B94D0266120DD007AD0DA /* GetEventsListFactory.swift in Sources */,
+				4A7D3AC4266252B6000C4298 /* SignUpViewController.swift in Sources */,
 				C96B949F26612068007AD0DA /* DayEventsList.swift in Sources */,
 				21B71F9126600D8F00460564 /* Dialog.swift in Sources */,
+				2142141026613AFA0007A031 /* ChatConnectable.swift in Sources */,
 				21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */,
 				C96B94AB26612079007AD0DA /* NewsImage.swift in Sources */,
 				C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */,
 				21ADFDE826612784007A1671 /* QBChatListModel.swift in Sources */,
+				2142140A2661344B0007A031 /* ChatTableVewCell.swift in Sources */,
 				C5C3166F2660E62200518405 /* DismissAnimation.swift in Sources */,
 				C96B94CE266120DD007AD0DA /* RequestFactory.swift in Sources */,
 				C91CEE88265E7DC70052C076 /* JsonParameterEncoder.swift in Sources */,
@@ -1422,17 +1583,24 @@
 				21ADFDE62661277C007A1671 /* ChatListModelConnectable.swift in Sources */,
 				C96B94D2266120DD007AD0DA /* GetEventDetail.swift in Sources */,
 				C96B947F2661205E007AD0DA /* EventDetailResource.swift in Sources */,
+				2142141426613B440007A031 /* User.swift in Sources */,
+				4A7D3AB126623C83000C4298 /* AuthViewController.swift in Sources */,
 				C5C3166E2660E62200518405 /* SliderPresentationController.swift in Sources */,
 				C5C3167C2660E7BB00518405 /* OnMapViewController.swift in Sources */,
 				C96B947326612019007AD0DA /* CityName.swift in Sources */,
 				C96B94822661205E007AD0DA /* CityDetailResource.swift in Sources */,
+				21C21C572661541B0016CC23 /* AuthView.swift in Sources */,
 				C96B94CF266120DD007AD0DA /* GetEventsList.swift in Sources */,
 				C91CEE86265E7DC70052C076 /* ParameterEncoding.swift in Sources */,
+				4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */,
 				21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */,
 				C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */,
+				21C21C52266141FD0016CC23 /* AuthViewController.swift in Sources */,
 				C5C316F02660F6AC00518405 /* TravelScreenEnum.swift in Sources */,
 				C96B949C26612068007AD0DA /* DateElement.swift in Sources */,
+				2142141226613B100007A031 /* Authorizable.swift in Sources */,
 				21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */,
+				21C21C5B266154610016CC23 /* AuthViewConnectable.swift in Sources */,
 				C96B94B62661208D007AD0DA /* PlacesList.swift in Sources */,
 				C5C316532660E3F100518405 /* SelfConfiguringCell.swift in Sources */,
 				C91CEE89265E7DC70052C076 /* NetworkErrors.swift in Sources */,
@@ -1448,15 +1616,19 @@
 				C96B94B52661208D007AD0DA /* Places.swift in Sources */,
 				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
 				C96B94AD26612079007AD0DA /* NewsList.swift in Sources */,
-				21B71F8B265E83B400460564 /* ChatAuthenticatorManager.swift in Sources */,
+				21B71F8B265E83B400460564 /* AuthenticatorManager.swift in Sources */,
 				C96B949626612068007AD0DA /* EventParticipant.swift in Sources */,
+				21C21C592661542F0016CC23 /* AuthModel.swift in Sources */,
 				C5C316F72660F6AC00518405 /* TravelScreenViewController.swift in Sources */,
 				21ADFDE526612774007A1671 /* ChartListTableView.swift in Sources */,
+				4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */,
 				C5C316612660E41C00518405 /* UIImageView + Extensions.swift in Sources */,
 				C96B94772661204E007AD0DA /* Coordinates.swift in Sources */,
+				21C21C61266408AB0016CC23 /* BasicAuthModel.swift in Sources */,
 				C5C316712660E62200518405 /* SliderTransition.swift in Sources */,
 				C5C316F32660F6AC00518405 /* SelectCityCell.swift in Sources */,
 				C96B949726612068007AD0DA /* EventLocation.swift in Sources */,
+				21C21C5F26617B280016CC23 /* BasicAuthView.swift in Sources */,
 				C96B949D26612068007AD0DA /* EventDetail.swift in Sources */,
 				C96B947426612019007AD0DA /* CityDetail.swift in Sources */,
 				C96B94D626613671007AD0DA /* DayEventsResource.swift in Sources */,
@@ -1464,7 +1636,8 @@
 				C5C3165D2660E41C00518405 /* UIButton + Extensions.swift in Sources */,
 				C96B94A926612079007AD0DA /* NewsDetail.swift in Sources */,
 				C96B949426612068007AD0DA /* EventsList.swift in Sources */,
-				2150FEF4265BAD400058FA89 /* ChatTableVewCell.swift in Sources */,
+				4A7D3AAF26623C72000C4298 /* AuthView.swift in Sources */,
+				2150FEF4265BAD400058FA89 /* ChatTableVewCellImpl.swift in Sources */,
 				2150FEB9265AB9070058FA89 /* SceneDelegate.swift in Sources */,
 				C96B949E26612068007AD0DA /* EventType.swift in Sources */,
 				C96B94CC266120DD007AD0DA /* GetCityDetail.swift in Sources */,
@@ -1570,7 +1743,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1625,7 +1798,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

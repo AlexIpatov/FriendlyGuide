@@ -10,10 +10,10 @@ import Foundation
 protocol ChatDialogsManager {
     func getDialogs(limit: Int,
                     skipFirst: Int,
-                    complition: @escaping (_ dialog: Dialog?) -> Void)
+                    complition: @escaping (_ dialogs: [Dialog]) -> Void)
     
     func createGroupDialog(withName name: String,
                            photo: String?,
-                           occupants: [ChatUser],
+                           occupants: [ChatConnectable],
                            completion: @escaping (_ dialog: Dialog?) -> Void)
 }

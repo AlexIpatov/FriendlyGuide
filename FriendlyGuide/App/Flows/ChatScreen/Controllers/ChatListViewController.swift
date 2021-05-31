@@ -9,8 +9,8 @@ import UIKit
 
 class ChatListViewController: UIViewController {
 
-    var customView: ChatListView
-    var model: ChatListModel
+    private var customView: ChatListView
+    private var model: ChatListModel
     
     init(view: ChatListView, model: ChatListModel) {
         self.customView = view
@@ -32,18 +32,23 @@ class ChatListViewController: UIViewController {
 // MARK: - ChatListViewController
 
 extension ChatListViewController: ChatListViewConnectable {
-    func numberOfRowsInSection(section: Int) -> Int {
-        model.getNumberOfDialogs()
+    func numberOfDialogs() -> Int {
+        model.numberOfDialogs()
     }
     
-    func cellForRowAt(indexPath: IndexPath) -> Dialog {
-        model.getDialog(at: indexPath)
+    func dialog(at index: Int) -> Dialog {
+        model.dialog(at: index)
+    }
+    
+    func tapOnDialog(at index: Int) {
+        let dialog = model.dialog(at: index)
+        // TODO
     }
 }
 
 extension ChatListViewController: ChatListModelConnectable {
-    func didFinishedRecieveData(at indexPaths: [IndexPath]) {
-        customView.updateUI(at: indexPaths)
+    func didFinishedRecieveData(at indexes: [Int]) {
+        customView.updateUI(at: indexes)
     }
 }
 

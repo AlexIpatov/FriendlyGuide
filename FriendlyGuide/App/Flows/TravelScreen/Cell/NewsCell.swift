@@ -56,7 +56,6 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
             imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
             imageView.heightAnchor.constraint(equalToConstant: 70),
             imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
-
         ])
     }
 }

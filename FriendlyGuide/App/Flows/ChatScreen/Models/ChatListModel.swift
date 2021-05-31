@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol ChatListModel {
+protocol ChatListModel: AnyObject {
     var delegate: ChatListModelConnectable? { get set }
     
-    func getDialog(at indexPath: IndexPath) -> Dialog
-    func getNumberOfDialogs() -> Int
+    func dialog(at index: Int) -> Dialog
+    func numberOfDialogs() -> Int
 }

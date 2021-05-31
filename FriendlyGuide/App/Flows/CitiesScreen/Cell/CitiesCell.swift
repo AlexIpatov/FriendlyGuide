@@ -30,7 +30,7 @@ class CitiesCell: UITableViewCell, SelfConfiguringCell {
 
     // MARK: - Configure
     func configure<U>(with value: U) where U : Hashable {
-        guard let city: MocCity = value as? MocCity else { return }
+        guard let city: CityName = value as? CityName else { return }
         cityNameLabel.text = city.name
     }
     //MARK: - Configuration Methods
@@ -41,7 +41,8 @@ class CitiesCell: UITableViewCell, SelfConfiguringCell {
         contentView.addSubview(cityNameLabel)
         NSLayoutConstraint.activate([
             cityNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            cityNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
+            cityNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            cityNameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
     }
 }

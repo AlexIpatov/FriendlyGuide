@@ -13,14 +13,20 @@ class TravelScreenViewController: UIViewController {
         return TravelScreenView()
     }()
     // MARK: - Properties
-    var currentCity = MocCity(name: "Санкт - Петербург",
-                              slug: "spb")
+    var userSettings: UserSettings
+    var requestFactory: RequestFactory
+    lazy var currentCity: CityName? = userSettings.loadCurrentCity() {
+        didSet {
+            userSettings.saveCurrentCity(city: currentCity)
+            reloadData()
+        }
+    }
     var places = [MocPlace]() {
         didSet {
             reloadData()
         }
     }
-    var events = [MocEvent]() {
+    var events = [Event]() {
         didSet {
             reloadData()
         }
@@ -31,7 +37,10 @@ class TravelScreenViewController: UIViewController {
         }
     }
     // MARK: - Init
-    init() {
+    init(requestFactory: RequestFactory,
+         userSettings: UserSettings) {
+        self.requestFactory = requestFactory
+        self.userSettings = userSettings
         super.init(nibName: nil, bundle: nil)
     }
     required init?(coder: NSCoder) {
@@ -46,6 +55,7 @@ class TravelScreenViewController: UIViewController {
         createDataSource()
         reloadData()
         mockFetch()
+        requestData()
     }
     override func loadView() {
         view = travelScreenView
@@ -80,42 +90,54 @@ class TravelScreenViewController: UIViewController {
         snapshot.appendItems([currentCity], toSection: .city)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
-
-
+    // MARK: - Request data methods
+    private func requestData() {
+        let eventsFactory = requestFactory.makeGetEventsListFactory()
+        eventsFactory.getEventsList { [ weak self] response in
+            guard let self = self else {return}
+            switch response {
+            case .success(let events):
+                self.events = events.results
+            case .failure(let error):
+                self.showAlert(with: "Error!",
+                               and: error.localizedDescription)
+            }
+        }
+    }
 }
 // MARK: - Data Source
 extension TravelScreenViewController {
     private func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<TravelSection,
                                                         AnyHashable>(collectionView: travelScreenView.collectionView,
-                                                                                    cellProvider: {(collectionView,
-                                                                                                    indexPath, item) -> UICollectionViewCell? in
-                                                                                        guard let section = TravelSection(rawValue: indexPath.section) else {
-                                                                                            fatalError("Unknown section kind")
-                                                                                        }
-                                                                                        switch section {
-                                                                                        case .city:
-                                                                                            return self.configure(collectionView: collectionView,
-                                                                                                                  cellType: SelectCityCell.self,
-                                                                                                                  with: item,
-                                                                                                                  for: indexPath)
-                                                                                        case .events:
-                                                                                            return self.configure(collectionView: collectionView,
-                                                                                                                  cellType: EventCell.self,
-                                                                                                                  with: item,
-                                                                                                                  for: indexPath)
-                                                                                        case .places:
-                                                                                            return self.configure(collectionView: collectionView,
-                                                                                                                  cellType: PlaceCell.self,
-                                                                                                                  with: item,
-                                                                                                                  for: indexPath)
-                                                                                        case .news:
-                                                                                            return self.configure(collectionView: collectionView,
-                                                                                                                  cellType: NewsCell.self,
-                                                                                                                  with: item,
-                                                                                                                  for: indexPath)
-                                                                                        }
-                                                                                    })
+                                                                     cellProvider: {(collectionView,
+                                                                                     indexPath, item) -> UICollectionViewCell? in
+                                                                        guard let section = TravelSection(rawValue: indexPath.section) else {
+                                                                            fatalError("Unknown section kind")
+                                                                        }
+                                                                        switch section {
+                                                                        case .city:
+                                                                            return self.configure(collectionView: collectionView,
+                                                                                                  cellType: SelectCityCell.self,
+                                                                                                  with: item,
+                                                                                                  for: indexPath)
+                                                                        case .events:
+                                                                            return self.configure(collectionView: collectionView,
+                                                                                                  cellType: EventCell.self,
+                                                                                                  with: item,
+                                                                                                  for: indexPath)
+                                                                        case .places:
+                                                                            return self.configure(collectionView: collectionView,
+                                                                                                  cellType: PlaceCell.self,
+                                                                                                  with: item,
+                                                                                                  for: indexPath)
+                                                                        case .news:
+                                                                            return self.configure(collectionView: collectionView,
+                                                                                                  cellType: NewsCell.self,
+                                                                                                  with: item,
+                                                                                                  for: indexPath)
+                                                                        }
+                                                                     })
         dataSource?.supplementaryViewProvider = { collectionView, kind, indexPath in
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                                       withReuseIdentifier: SectionHeader.reuseId,
@@ -128,23 +150,27 @@ extension TravelScreenViewController {
                                     textColor: .gray)
             return sectionHeader
         }
-
     }
 }
-
-    // MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate
 extension TravelScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let section = TravelSection(rawValue: indexPath.section) else { return }
-    //    guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) else { return }
+        //    guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) else { return }
         switch section {
         case .news, .events, .places:
             print("tapped")
         case .city:
-            let cityVC = CitiesViewController()
+            let cityVC = CitiesViewController(requestFactory: requestFactory)
             cityVC.modalPresentationStyle = .fullScreen
+            cityVC.selectionDelegate = self
             present(cityVC, animated: true, completion: nil)
         }
+    }
+}
+extension TravelScreenViewController: CitiesViewControllerDelegate {
+    func selectCity(city: CityName) {
+        currentCity = city
     }
 }
 // MARK: - Mock structs
@@ -191,7 +217,7 @@ extension TravelScreenViewController {
     func mockFetch() {
         news.append (MocNews(id: 33820, publicationDate: 1621939342, title: "ВКонтакте создала сервис, помогающий заботиться о домашних животных", images: Optional([MocImage(image: "https://kudago.com/media/images/news/97/fc/97fcd251036b9895e9b6cd910efc4425.jpg", source: MocSource(name: "shutterstock.com", link: ""))])))
 
-                places.append (MocPlace(id: 157, coords: nil, title: "Музей современного искусства Эрарта", address: "29-я линия В. О., д. 2", subway: "Василеостровская, Приморская, Спортивная", images: Optional([MocImage(image: "https://kudago.com/media/images/place/83/20/83206505e69f74906bd996c42c4c0fc9.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/de/89/de89ef20687ea507e57107bfdf0e5735.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")),MocImage(image: "https://kudago.com/media/images/place/20/80/2080284223698961282551f7c87f6685.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/bd/f6/bdf60df83d98b8337908752a85639de6.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/07/a4/07a4791f04d063dddb49abcdbfa6daa0.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/23/b4/23b46c37ccb99e5f942184f820d8a445.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/ef/96/ef96bbafdfcba465421cd98957cdb68b.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00"))])))
-                events.append(MocEvent(id: 192427, dates: [MocDateElement(start: 1622062800, end: 1622149200)], title: "День города – 2021", price: "", images: Optional([MocImage(image: "https://kudago.com/media/images/event/cf/0b/cf0bae38bde5841d30f28a51ecb75268.jpg", source: MocSource(name: "tury.bars-tur.ru", link: "http://www.tury.bars-tur.ru/ks/sankt-peterburg-programma-den-goroda-v-severnoy-stolice-otel-klassik-tur-925-303.html")), MocImage(image: "https://kudago.com/media/images/event/51/02/5102ad3423383d1a7067ba9c1baccd35.jpg", source: MocSource(name: "tury.bars-tur.ru", link: "http://www.tury.bars-tur.ru/ks/sankt-peterburg-programma-den-goroda-v-severnoy-stolice-otel-klassik-tur-925-303.html")), MocImage(image: "https://kudago.com/media/images/event/de/95/de957f7fb2ba0c077bc9b7d1e74564b7.jpg", source: MocSource(name: "tury.bars-tur.ru", link: "http://www.tury.bars-tur.ru/ks/sankt-peterburg-programma-den-goroda-v-severnoy-stolice-otel-klassik-tur-925-303.html")), MocImage(image: "https://kudago.com/media/images/event/55/75/55752a78dc2f5c64a88803e2401acc4c.jpg", source: MocSource(name: "", link: "https://peterburg.guide/prazdniki-i-festivali/den-goroda/")), MocImage(image: "https://kudago.com/media/images/event/f3/31/f3312d60bf9328a064e50ac03c475fd6.jpg", source: MocSource(name: "", link: "https://www.open24spb.ru/segodnya/den-goroda/"))])))
+        places.append (MocPlace(id: 157, coords: nil, title: "Музей современного искусства Эрарта", address: "29-я линия В. О., д. 2", subway: "Василеостровская, Приморская, Спортивная", images: Optional([MocImage(image: "https://kudago.com/media/images/place/83/20/83206505e69f74906bd996c42c4c0fc9.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/de/89/de89ef20687ea507e57107bfdf0e5735.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")),MocImage(image: "https://kudago.com/media/images/place/20/80/2080284223698961282551f7c87f6685.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/bd/f6/bdf60df83d98b8337908752a85639de6.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/07/a4/07a4791f04d063dddb49abcdbfa6daa0.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/23/b4/23b46c37ccb99e5f942184f820d8a445.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/ef/96/ef96bbafdfcba465421cd98957cdb68b.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00"))])))
+
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class EventCell: UICollectionViewCell, SelfConfiguringCell {
 
@@ -13,12 +14,12 @@ class EventCell: UICollectionViewCell, SelfConfiguringCell {
     static var reuseId: String = "EventCell"
 
     // MARK: - UI components
-    private(set) lazy var titlelabel = UILabel(text: "TestNameForEVENTLargeTestadwdawaw",
+    private(set) lazy var titlelabel = UILabel(text: "",
                                                font: .smallTitleFont(),
                                                textColor: .black,
                                                numberOfLines: 2,
                                                textAlignment: .left)
-    private(set) lazy var subTitlelabel = UILabel(text: "TestNameForEVENTLargeTestadwdawaw",
+    private(set) lazy var subTitlelabel = UILabel(text: "",
                                                font: .subTitleFont(),
                                                textColor: .systemGray,
                                                numberOfLines: 2,
@@ -38,9 +39,11 @@ class EventCell: UICollectionViewCell, SelfConfiguringCell {
 
     // MARK: - Configure
     func configure<U>(with value: U) where U : Hashable {
-    guard let event: MocEvent = value as? MocEvent else { return }
+    guard let event: Event = value as? Event else { return }
         titlelabel.text = event.title
-        imageView.image = UIImage(named: "mocImage")
+        imageView.kf.setImage(with: URL(string: event.images.first?.image ?? ""))
+        subTitlelabel.datesToString(dateElement: event.dates.first)
+
     }
     // MARK: - Configuration Methods
     private func setupLayer() {
