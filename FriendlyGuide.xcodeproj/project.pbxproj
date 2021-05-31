@@ -115,6 +115,7 @@
 		C96B94D0266120DD007AD0DA /* GetEventsListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94C6266120DD007AD0DA /* GetEventsListFactory.swift */; };
 		C96B94D1266120DD007AD0DA /* GetEventDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94C8266120DD007AD0DA /* GetEventDetailFactory.swift */; };
 		C96B94D2266120DD007AD0DA /* GetEventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94C9266120DD007AD0DA /* GetEventDetail.swift */; };
+		C96B94D626613671007AD0DA /* DayEventsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94D526613671007AD0DA /* DayEventsResource.swift */; };
 		DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -255,6 +256,7 @@
 		C96B94C6266120DD007AD0DA /* GetEventsListFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventsListFactory.swift; sourceTree = "<group>"; };
 		C96B94C8266120DD007AD0DA /* GetEventDetailFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventDetailFactory.swift; sourceTree = "<group>"; };
 		C96B94C9266120DD007AD0DA /* GetEventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventDetail.swift; sourceTree = "<group>"; };
+		C96B94D526613671007AD0DA /* DayEventsResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayEventsResource.swift; sourceTree = "<group>"; };
 		CE002376636440E6DCE35FBA /* Pods-FriendlyGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE7CC528BA65E998B145C20A /* Pods-FriendlyGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -908,6 +910,7 @@
 		C96B94792661205E007AD0DA /* EventsResource */ = {
 			isa = PBXGroup;
 			children = (
+				C96B94D526613671007AD0DA /* DayEventsResource.swift */,
 				C96B947A2661205E007AD0DA /* EventDetailResource.swift */,
 				C96B947B2661205E007AD0DA /* EventsListResource.swift */,
 			);
@@ -1456,6 +1459,7 @@
 				C96B949726612068007AD0DA /* EventLocation.swift in Sources */,
 				C96B949D26612068007AD0DA /* EventDetail.swift in Sources */,
 				C96B947426612019007AD0DA /* CityDetail.swift in Sources */,
+				C96B94D626613671007AD0DA /* DayEventsResource.swift in Sources */,
 				C96B94802661205E007AD0DA /* EventsListResource.swift in Sources */,
 				C5C3165D2660E41C00518405 /* UIButton + Extensions.swift in Sources */,
 				C96B94A926612079007AD0DA /* NewsDetail.swift in Sources */,

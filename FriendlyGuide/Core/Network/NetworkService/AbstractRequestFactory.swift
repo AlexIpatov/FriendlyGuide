@@ -20,8 +20,9 @@ extension AbstractRequestFactory {
                  withCompletion completion: @escaping (Result<EndPoint.ModelType, NetworkingError>) -> Void) {
         do {
             let request = try self.buildRequest(from: route)
-            let task = sessionManager.dataTask(with: request, completionHandler: {
+            let task = sessionManager.dataTask(with: request, completionHandler: { [ weak self]
                 (data: Data?, response: URLResponse?, error: Error?) -> Void in
+                guard let self = self else { return }
                        if error != nil {
                            completion(.failure(NetworkingError.invalidRequest))
                        }
