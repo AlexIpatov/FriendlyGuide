@@ -10,7 +10,7 @@ import UIKit
 class SliderPresentationController: UIPresentationController {
     override var frameOfPresentedViewInContainerView: CGRect {
         let bounds = containerView!.bounds
-        return CGRect(x: 0, y: bounds.height / 3, width: bounds.width, height: bounds.height * 2 / 3)
+        return CGRect(x: 0, y: bounds.height / 4, width: bounds.width, height: bounds.height * 3 / 4)
     }
     
     override func presentationTransitionWillBegin() {

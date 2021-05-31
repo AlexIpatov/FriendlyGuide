@@ -90,6 +90,7 @@
 		C5C316F52660F6AC00518405 /* PlaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C316EB2660F6AC00518405 /* PlaceCell.swift */; };
 		C5C316F62660F6AC00518405 /* TravelScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C316ED2660F6AC00518405 /* TravelScreenView.swift */; };
 		C5C316F72660F6AC00518405 /* TravelScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C316EF2660F6AC00518405 /* TravelScreenViewController.swift */; };
+		C5C317F52665147400518405 /* UISegmentedControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C317F42665147400518405 /* UISegmentedControl + Extensions.swift */; };
 		C91CEE81265E7DC70052C076 /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE74265E7DC60052C076 /* ErrorParser.swift */; };
 		C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE77265E7DC60052C076 /* AbstractRequestFactory.swift */; };
 		C91CEE86265E7DC70052C076 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7B265E7DC60052C076 /* ParameterEncoding.swift */; };
@@ -245,6 +246,7 @@
 		C5C316EB2660F6AC00518405 /* PlaceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceCell.swift; sourceTree = "<group>"; };
 		C5C316ED2660F6AC00518405 /* TravelScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelScreenView.swift; sourceTree = "<group>"; };
 		C5C316EF2660F6AC00518405 /* TravelScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelScreenViewController.swift; sourceTree = "<group>"; };
+		C5C317F42665147400518405 /* UISegmentedControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl + Extensions.swift"; sourceTree = "<group>"; };
 		C91CEE73265E7DC60052C076 /* AbstractErrorParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractErrorParser.swift; sourceTree = "<group>"; };
 		C91CEE74265E7DC60052C076 /* ErrorParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		C91CEE77265E7DC60052C076 /* AbstractRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRequestFactory.swift; sourceTree = "<group>"; };
@@ -779,6 +781,7 @@
 				C5C316582660E41C00518405 /* UIViewController + Extensions.swift */,
 				4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */,
 				4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */,
+				C5C317F42665147400518405 /* UISegmentedControl + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1515,6 +1518,7 @@
 				217AB258266424D000A0AF66 /* BasicValidator.swift in Sources */,
 				21D3EBC9266110E9007D01CE /* ChatListViewConnectable.swift in Sources */,
 				21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */,
+				C5C317F52665147400518405 /* UISegmentedControl + Extensions.swift in Sources */,
 				4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */,
 				C5904684265B0AA700231116 /* TabBarController.swift in Sources */,
 				C5C316DF2660F6A000518405 /* CitiesCell.swift in Sources */,

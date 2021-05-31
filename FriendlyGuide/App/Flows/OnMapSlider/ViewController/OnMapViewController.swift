@@ -29,17 +29,36 @@ class OnMapViewController: UIViewController {
     }
     
     // MARK: - Properties
-    private var allPlacesAndEvents = [MocPlacesAndEvents(name: "Калуга",
-                                  slug: "klg"),
-                          MocPlacesAndEvents(name: "Воронеж",
-                                  slug: "vrn"),
-                          MocPlacesAndEvents(name: "Саратов",
-                                  slug: "srt")] {
+    private var allPlaces = [
+        MocPlace(id: 123, coords: nil, title: "Музей", address: "", subway: "", images: nil),
+        MocPlace(id: 234, coords: nil, title: "Театр", address: "", subway: "", images: nil),
+        MocPlace(id: 345, coords: nil, title: "Кино", address: "", subway: "", images: nil),
+        MocPlace(id: 111, coords: nil, title: "Если одинаковое поле", address: "", subway: "", images: nil)
+    ] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
+    
+    private var allEvents = [
+        MocEvent(id: 456, dates: [], title: "Выступление клоунов", price: "1500", images: nil),
+        MocEvent(id: 567, dates: [], title: "Чемпионат мира по боксу", price: "200", images: nil),
+        MocEvent(id: 678, dates: [], title: "Выставка кошек", price: "600", images: nil),
+        MocEvent(id: 222, dates: [], title: "Если одинаковое поле", price: "600", images: nil)
+    ] {
+        didSet {
+            onMapSliderView.placesAndEventsTableView.reloadData()
+        }
+    }
+    
     private var filteredPlacesAndEvents: [MocPlacesAndEvents] = []
+    
+    private var filteredPlaces: [MocPlace] = []
+    private var filteredEvents: [MocEvent] = []
+    
+    private var selectedSegmentIndex: Int {
+        self.onMapSliderView.sourceSelectionSegmentedControl.selectedSegmentIndex
+    }
     
     //MARK: - Properties for search
     private var searchText: String {
@@ -51,6 +70,7 @@ class OnMapViewController: UIViewController {
         super.viewDidLoad()
         configureViewController()
         configureTableView()
+        configureSourceSelectionSegmentedControl()
         configureSearchTextField()
         configureButtons()
         configureKeyboard()
@@ -76,13 +96,35 @@ class OnMapViewController: UIViewController {
     }
     
     @objc func searchTextFieldDidChanged(_ sender: UIButton) {
-        filteredPlacesAndEvents = []
-        for placeOrEvent in allPlacesAndEvents {
-            if placeOrEvent.name.lowercased().contains(searchText.lowercased()) {
-                filteredPlacesAndEvents.append(placeOrEvent)
+        switch selectedSegmentIndex {
+        case 0:
+            prepareFilteredPlaces()
+            break;
+        case 1:
+            prepareFilteredEvents()
+            break;
+        default:
+            break;
+    }
+        onMapSliderView.placesAndEventsTableView.reloadData()
+    }
+    
+    private func prepareFilteredPlaces() {
+        filteredPlaces = []
+        for place in allPlaces {
+            if place.title.lowercased().contains(searchText.lowercased()) {
+                filteredPlaces.append(place)
             }
         }
-        onMapSliderView.placesAndEventsTableView.reloadData()
+    }
+    
+    private func prepareFilteredEvents() {
+        filteredEvents = []
+        for event in allEvents {
+            if event.title.lowercased().contains(searchText.lowercased()) {
+                filteredEvents.append(event)
+            }
+        }
     }
     
     private func configureButtons() {
@@ -96,28 +138,68 @@ class OnMapViewController: UIViewController {
     @objc func tapRemoveSliderButton(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
+    
+    private func configureSourceSelectionSegmentedControl() {
+        onMapSliderView.sourceSelectionSegmentedControl.addTarget(self, action: #selector(selectSource(_:)), for: .valueChanged)
+    }
+    
+    @objc func selectSource(_ sender: UISegmentedControl) {
+        switch selectedSegmentIndex {
+            case 0:
+                prepareFilteredPlaces()
+                onMapSliderView.searchTextField.placeholder = "Введите место для поиска"
+                break;
+            case 1:
+                prepareFilteredEvents()
+                onMapSliderView.searchTextField.placeholder = "Введите событие для поиска"
+                break;
+            default:
+                break;
+        }
+        onMapSliderView.placesAndEventsTableView.reloadData()
+    }
 }
 // MARK: - UITableViewDataSource
 extension OnMapViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
-            return allPlacesAndEvents.count
+        if selectedSegmentIndex == 0 {
+            if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
+                return allPlaces.count
+            } else {
+                return filteredPlaces.count
+            }
         } else {
-            return filteredPlacesAndEvents.count
+            if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
+                return allEvents.count
+            } else {
+                return filteredEvents.count
+            }
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OnMapSliderTableViewCell.reuseId,
                                                        for: indexPath) as? OnMapSliderTableViewCell else {return UITableViewCell()}
-        if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
-            let selectedCity = allPlacesAndEvents[indexPath.row]
-            cell.configure(with: selectedCity)
-            return cell
+        if selectedSegmentIndex == 0 {
+            if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
+                let selectedPlace = allPlaces[indexPath.row]
+                cell.configure(with: selectedPlace)
+                return cell
+            } else {
+                let selectedCity = filteredPlaces[indexPath.row]
+                cell.configure(with: selectedCity)
+                return cell
+            }
         } else {
-            let selectedCity = filteredPlacesAndEvents[indexPath.row]
-            cell.configure(with: selectedCity)
-            return cell
+            if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
+                let selectedEvent = allEvents[indexPath.row]
+                cell.configure(with: selectedEvent)
+                return cell
+            } else {
+                let selectedCity = filteredEvents[indexPath.row]
+                cell.configure(with: selectedCity)
+                return cell
+            }
         }
     }
 }
