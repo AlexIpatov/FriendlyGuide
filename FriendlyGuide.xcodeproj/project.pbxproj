@@ -51,7 +51,6 @@
 		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
 		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
 		4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB926625080000C4298 /* AuthValidators.swift */; };
-		4A7D3ABE266250CD000C4298 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3ABD266250CD000C4298 /* AuthError.swift */; };
 		4A7D3AC026625290000C4298 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3ABF26625290000C4298 /* SignUpView.swift */; };
 		4A7D3AC4266252B6000C4298 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */; };
 		4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AC92662898A000C4298 /* CitiesViewControllerDelegate.swift */; };
@@ -133,6 +132,10 @@
 		C96B94D0266120DD007AD0DA /* GetEventsListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94C6266120DD007AD0DA /* GetEventsListFactory.swift */; };
 		C96B94D1266120DD007AD0DA /* GetEventDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94C8266120DD007AD0DA /* GetEventDetailFactory.swift */; };
 		C96B94D2266120DD007AD0DA /* GetEventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94C9266120DD007AD0DA /* GetEventDetail.swift */; };
+		C9E638402664EB09008F7F04 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6383D2664EB09008F7F04 /* AuthView.swift */; };
+		C9E638412664EB0A008F7F04 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6383F2664EB09008F7F04 /* AuthViewController.swift */; };
+		C9E638472664EB3D008F7F04 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E638442664EB3C008F7F04 /* SignUpView.swift */; };
+		C9E638482664EB3D008F7F04 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E638462664EB3C008F7F04 /* SignUpViewController.swift */; };
 		DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -291,6 +294,10 @@
 		C96B94C6266120DD007AD0DA /* GetEventsListFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventsListFactory.swift; sourceTree = "<group>"; };
 		C96B94C8266120DD007AD0DA /* GetEventDetailFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventDetailFactory.swift; sourceTree = "<group>"; };
 		C96B94C9266120DD007AD0DA /* GetEventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventDetail.swift; sourceTree = "<group>"; };
+		C9E6383D2664EB09008F7F04 /* AuthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		C9E6383F2664EB09008F7F04 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		C9E638442664EB3C008F7F04 /* SignUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		C9E638462664EB3C008F7F04 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CE002376636440E6DCE35FBA /* Pods-FriendlyGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE7CC528BA65E998B145C20A /* Pods-FriendlyGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -353,6 +360,7 @@
 				2150FEB4265AB9070058FA89 /* Products */,
 				1207F27390D1BF531A718BDB /* Pods */,
 				43B513E69338F43FDD6A721D /* Frameworks */,
+				C9E6383A2664EA0B008F7F04 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -448,6 +456,8 @@
 		2150FEEA265ABE730058FA89 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				C9E638422664EB3C008F7F04 /* SignUpScreen */,
+				C9E6383B2664EB09008F7F04 /* AuthScreen */,
 				21C21C50266141EA0016CC23 /* Auth */,
 				C5C316632660E62200518405 /* SliderController */,
 				C5904681265B0A3800231116 /* TabBarController */,
@@ -612,40 +622,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4A7D3AAB26623C48000C4298 /* AuthScreen */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AAC26623C5A000C4298 /* View */,
-				4A7D3AAD26623C60000C4298 /* ViewController */,
-			);
-			path = AuthScreen;
-			sourceTree = "<group>";
-		};
-		4A7D3AAC26623C5A000C4298 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AAE26623C72000C4298 /* AuthView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		4A7D3AAD26623C60000C4298 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AB026623C83000C4298 /* AuthViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		4A7D3AB226623D3B000C4298 /* SignUpScreen */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AC126625296000C4298 /* View */,
-				4A7D3AC22662529D000C4298 /* ViewController */,
-			);
-			path = SignUpScreen;
-			sourceTree = "<group>";
-		};
 		4A7D3AB826625068000C4298 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -669,22 +645,6 @@
 				4A7D3ABD266250CD000C4298 /* AuthError.swift */,
 			);
 			path = Errors;
-			sourceTree = "<group>";
-		};
-		4A7D3AC126625296000C4298 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3ABF26625290000C4298 /* SignUpView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		4A7D3AC22662529D000C4298 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		4A7D3AC826628947000C4298 /* CitiesViewConntrollerDelegate */ = {
@@ -1250,6 +1210,67 @@
 			path = EventDetail;
 			sourceTree = "<group>";
 		};
+		C9E6383A2664EA0B008F7F04 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				4A7D3ABF26625290000C4298 /* SignUpView.swift */,
+				4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */,
+				4A7D3AB026623C83000C4298 /* AuthViewController.swift */,
+				4A7D3AAE26623C72000C4298 /* AuthView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		C9E6383B2664EB09008F7F04 /* AuthScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C9E6383C2664EB09008F7F04 /* View */,
+				C9E6383E2664EB09008F7F04 /* ViewController */,
+			);
+			path = AuthScreen;
+			sourceTree = "<group>";
+		};
+		C9E6383C2664EB09008F7F04 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C9E6383D2664EB09008F7F04 /* AuthView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C9E6383E2664EB09008F7F04 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C9E6383F2664EB09008F7F04 /* AuthViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		C9E638422664EB3C008F7F04 /* SignUpScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C9E638432664EB3C008F7F04 /* View */,
+				C9E638452664EB3C008F7F04 /* ViewController */,
+			);
+			path = SignUpScreen;
+			sourceTree = "<group>";
+		};
+		C9E638432664EB3C008F7F04 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C9E638442664EB3C008F7F04 /* SignUpView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C9E638452664EB3C008F7F04 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C9E638462664EB3C008F7F04 /* SignUpViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1523,6 +1544,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E638412664EB0A008F7F04 /* AuthViewController.swift in Sources */,
 				21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */,
 				C96B949926612068007AD0DA /* ImageSource.swift in Sources */,
 				C96B94AA26612079007AD0DA /* NewsPlace.swift in Sources */,
@@ -1600,6 +1622,7 @@
 				21C21C5B266154610016CC23 /* AuthViewConnectable.swift in Sources */,
 				C96B94B62661208D007AD0DA /* PlacesList.swift in Sources */,
 				C5C316532660E3F100518405 /* SelfConfiguringCell.swift in Sources */,
+				C9E638472664EB3D008F7F04 /* SignUpView.swift in Sources */,
 				C91CEE89265E7DC70052C076 /* NetworkErrors.swift in Sources */,
 				C5C3165C2660E41C00518405 /* UIFont + Extensions.swift in Sources */,
 				C96B94CD266120DD007AD0DA /* GetCityDetailFactory.swift in Sources */,
@@ -1609,7 +1632,9 @@
 				21D3EBB126603F54007D01CE /* AbstractErrorParser.swift in Sources */,
 				C96B94B72661208D007AD0DA /* PlaceImage.swift in Sources */,
 				C96B949B26612068007AD0DA /* EventAgent.swift in Sources */,
+				C9E638402664EB09008F7F04 /* AuthView.swift in Sources */,
 				21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */,
+				C9E638482664EB3D008F7F04 /* SignUpViewController.swift in Sources */,
 				C96B94B52661208D007AD0DA /* Places.swift in Sources */,
 				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
 				C96B94AD26612079007AD0DA /* NewsList.swift in Sources */,
