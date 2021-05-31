@@ -108,40 +108,38 @@ extension QBChatManager: ChatMessagesManager {
 // MARK: - AuthenticatorManager
 
 extension QBChatManager: AuthenticatorManager {
+    enum QBChatManagerError: LocalizedError {
+        case unknown
+        
+        var errorDescription: String? {
+            "Неизвестная ошибка"
+        }
+    }
+    
     func signUp(fullName: String, login: String, password: String,
-                complition: @escaping (Result<Bool, Error>) -> Void) {
+                complition: @escaping (Result<User, Error>) -> Void) {
         let newQBUUser = QBUUser()
         newQBUUser.login = login
         newQBUUser.fullName = fullName
         newQBUUser.password = password
         
-        QBRequest.signUp(newQBUUser, successBlock: { [weak self] response, user in
-            guard let self = self else { return }
-            
-            
-            self.login(login: login, password: password) { result in
-                switch result {
-                case .failure(let error):
-                    complition(.failure(error))
-                case .success(let result):
-                    User.instance.fullName = fullName
-                    complition(.success(result))
-                }
-            }
+        QBRequest.signUp(newQBUUser, successBlock: { response, user in
+            User.instance.fullName = fullName
+            User.instance.password = password
+            User.instance.login = login
+            complition(.success(User.instance))
             
         }, errorBlock: { response in
             if response.status == QBResponseStatusCode.validationFailed {
                 print("Validation faild!")
             }
             
-            if let error = response.error?.error {
-                complition(.failure(error))
-            }
+            complition(.failure(response.error?.error ?? QBChatManagerError.unknown))
         })
     }
     
     func login(login: String, password: String,
-               complition: @escaping (Result<Bool, Error>) -> Void) {
+               complition: @escaping (Result<User, Error>) -> Void) {
         QBRequest.logIn(withUserLogin: login, password: password) { [weak self] response, qbUser in
             
             User.instance.login = login
@@ -149,18 +147,17 @@ extension QBChatManager: AuthenticatorManager {
             
             qbUser.password = password
             self?.connectToChat(user: qbUser)
-            complition(.success(true))
+            complition(.success(User.instance))
             
         } errorBlock: { response in
             print("Some problems with autentificate user")
-            complition(.success(false))
+            complition(.failure(response.error?.error ?? QBChatManagerError.unknown))
         }
     }
     
     private func connectToChat(user: QBUUser) {
         if QBChat.instance.isConnected == true {
             print("uset already connected to the chat server")
-            
         } else {
             QBChat.instance.connect(withUserID: user.id, password: user.password ?? "") { error in
                 if let error = error {

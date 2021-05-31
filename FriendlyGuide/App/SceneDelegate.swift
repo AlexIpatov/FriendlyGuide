@@ -8,7 +8,9 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
     var window: UIWindow?
+    
     var requestFactory = RequestFactory()
     var userSettings = UserSettings()
 

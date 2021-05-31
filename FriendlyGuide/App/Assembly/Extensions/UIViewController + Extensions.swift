@@ -35,4 +35,13 @@ extension UIViewController {
         cell.configure(with: value)
         return cell
     }
+    
+    func showErrorAlert(title: String, error: Error, actions: [UIAlertAction]) {
+        let alertController = UIAlertController(title: title,
+                                                message: error.localizedDescription,
+                                                preferredStyle: .alert)
+        
+        actions.forEach { alertController.addAction($0) }
+        present(alertController, animated: true, completion: nil)
+    }
 }
