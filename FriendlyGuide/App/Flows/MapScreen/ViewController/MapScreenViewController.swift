@@ -23,11 +23,8 @@ class MapScreenViewController: UIViewController {
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     
-    private var selectedOnSliderPlaceTitle: String?
-    private var selectedOnSliderPlaceCoord: MocCoords?
-    
-    private var selectedOnSliderEventTitle: String?
-    private var selectedOnSliderEventDates: [MocDateElement]?
+    private var selectedOnSliderPlace: MocPlace?    
+    private var selectedOnSliderEvent: MocEvent?
     
     //MARK: - Slider properties
     private let transition = SliderTransition()
@@ -136,18 +133,12 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
     func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T : Hashable {
         if type(of: selectedPlaceOrEvent) == MocPlace.self {
             guard let selectedPlace: MocPlace = selectedPlaceOrEvent as? MocPlace else { return }
-            selectedOnSliderPlaceTitle = selectedPlace.title
-            selectedOnSliderPlaceCoord = selectedPlace.coords
-            selectedOnSliderEventTitle = ""
-            selectedOnSliderEventDates = []
+            selectedOnSliderPlace = selectedPlace
         } else if type(of: selectedPlaceOrEvent) == MocEvent.self {
             guard let selectedEvent: MocEvent = selectedPlaceOrEvent as? MocEvent else { return }
-            selectedOnSliderEventTitle = selectedEvent.title
-            selectedOnSliderEventDates = selectedEvent.dates
-            selectedOnSliderPlaceTitle = ""
-            selectedOnSliderPlaceCoord = nil
+            selectedOnSliderEvent = selectedEvent
         }
-        print("selectedOnSliderPlaceTitle = \(String(describing: selectedOnSliderPlaceTitle))")
-        print("selectedOnSliderEventTitle = \(String(describing: selectedOnSliderEventTitle))")
+        print("selectedOnSliderPlace = \(String(describing: selectedOnSliderPlace))")
+        print("selectedOnSliderEvent = \(String(describing: selectedOnSliderEvent))")
     }
 }
