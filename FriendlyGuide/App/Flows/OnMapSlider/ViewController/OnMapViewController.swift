@@ -7,10 +7,9 @@
 
 import UIKit
 
-// TODO - Убрать мок структуру перевести таблицу на реальные данные когда будет готова сеть
-struct MocPlacesAndEvents: Hashable {
-    var name: String
-    var slug: String
+//MARK: - Protocol
+protocol OnMapViewControllerDelegate: AnyObject {
+    func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T: Hashable
 }
 
 class OnMapViewController: UIViewController {
@@ -39,7 +38,6 @@ class OnMapViewController: UIViewController {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
-    
     private var allEvents = [
         MocEvent(id: 456, dates: [], title: "Выступление клоунов", price: "1500", images: nil),
         MocEvent(id: 567, dates: [], title: "Чемпионат мира по боксу", price: "200", images: nil),
@@ -50,15 +48,13 @@ class OnMapViewController: UIViewController {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
-    
-    private var filteredPlacesAndEvents: [MocPlacesAndEvents] = []
-    
     private var filteredPlaces: [MocPlace] = []
     private var filteredEvents: [MocEvent] = []
     
     private var selectedSegmentIndex: Int {
         self.onMapSliderView.sourceSelectionSegmentedControl.selectedSegmentIndex
     }
+    weak var placeOrEventDelegate: OnMapViewControllerDelegate?
     
     //MARK: - Properties for search
     private var searchText: String {
@@ -105,7 +101,7 @@ class OnMapViewController: UIViewController {
             break;
         default:
             break;
-    }
+        }
         onMapSliderView.placesAndEventsTableView.reloadData()
     }
     
@@ -145,16 +141,16 @@ class OnMapViewController: UIViewController {
     
     @objc func selectSource(_ sender: UISegmentedControl) {
         switch selectedSegmentIndex {
-            case 0:
-                prepareFilteredPlaces()
-                onMapSliderView.searchTextField.placeholder = "Введите место для поиска"
-                break;
-            case 1:
-                prepareFilteredEvents()
-                onMapSliderView.searchTextField.placeholder = "Введите событие для поиска"
-                break;
-            default:
-                break;
+        case 0:
+            prepareFilteredPlaces()
+            onMapSliderView.searchTextField.placeholder = "Введите место для поиска"
+            break;
+        case 1:
+            prepareFilteredEvents()
+            onMapSliderView.searchTextField.placeholder = "Введите событие для поиска"
+            break;
+        default:
+            break;
         }
         onMapSliderView.placesAndEventsTableView.reloadData()
     }
@@ -179,15 +175,17 @@ extension OnMapViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OnMapSliderTableViewCell.reuseId,
-                                                       for: indexPath) as? OnMapSliderTableViewCell else {return UITableViewCell()}
+                                                       for: indexPath) as? OnMapSliderTableViewCell else {
+            return UITableViewCell()
+        }
         if selectedSegmentIndex == 0 {
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
                 let selectedPlace = allPlaces[indexPath.row]
                 cell.configure(with: selectedPlace)
                 return cell
             } else {
-                let selectedCity = filteredPlaces[indexPath.row]
-                cell.configure(with: selectedCity)
+                let selectedPlace = filteredPlaces[indexPath.row]
+                cell.configure(with: selectedPlace)
                 return cell
             }
         } else {
@@ -196,30 +194,48 @@ extension OnMapViewController: UITableViewDataSource {
                 cell.configure(with: selectedEvent)
                 return cell
             } else {
-                let selectedCity = filteredEvents[indexPath.row]
-                cell.configure(with: selectedCity)
+                let selectedEvent = filteredEvents[indexPath.row]
+                cell.configure(with: selectedEvent)
                 return cell
             }
         }
     }
 }
+
 // MARK: - UITableViewDelegate
 extension OnMapViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if selectedSegmentIndex == 0 {
+            var selectedPlace = MocPlace(id: 0, coords: nil, title: "", address: "", subway: "", images: nil)
+            if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
+                selectedPlace = allPlaces[indexPath.row]
+            } else {
+                selectedPlace = filteredPlaces[indexPath.row]
+            }
+            placeOrEventDelegate?.selectPlaceOrEvent(selectedPlaceOrEvent: selectedPlace)
+        } else {
+            var selectedEvent = MocEvent(id: 0, dates: [], title: "", price: "", images: nil)
+            if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
+                selectedEvent = allEvents[indexPath.row]
+            } else {
+                selectedEvent = filteredEvents[indexPath.row]
+            }
+            placeOrEventDelegate?.selectPlaceOrEvent(selectedPlaceOrEvent: selectedEvent)
+        }
         dismiss(animated: true, completion: nil)
     }
 }
 
 //MARK: - Keyboard configuration
 extension OnMapViewController {
-        func configureKeyboard() {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardByTap))
-            onMapSliderView.headerView.addGestureRecognizer(tapGesture)
-        }
+    func configureKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardByTap))
+        onMapSliderView.headerView.addGestureRecognizer(tapGesture)
+    }
     
-        @objc func hideKeyboardByTap() {
-            onMapSliderView.endEditing(true)
-        }
+    @objc func hideKeyboardByTap() {
+        onMapSliderView.endEditing(true)
+    }
 }
 
 

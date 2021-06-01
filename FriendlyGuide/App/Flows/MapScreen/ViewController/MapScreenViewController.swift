@@ -23,6 +23,12 @@ class MapScreenViewController: UIViewController {
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     
+    private var selectedOnSliderPlaceTitle: String?
+    private var selectedOnSliderPlaceCoord: MocCoords?
+    
+    private var selectedOnSliderEventTitle: String?
+    private var selectedOnSliderEventDates: [MocDateElement]?
+    
     //MARK: - Slider properties
     private let transition = SliderTransition()
     
@@ -74,6 +80,7 @@ class MapScreenViewController: UIViewController {
         let child = OnMapViewController()
         child.transitioningDelegate = transition
         child.modalPresentationStyle = .custom
+        child.placeOrEventDelegate = self
         self.present(child, animated: true, completion: nil)
     }
     
@@ -121,5 +128,26 @@ class MapScreenViewController: UIViewController {
 extension MapScreenViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print(coordinate)
+    }
+}
+
+//MARK: - Extension with OnMapViewControllerDelegate
+extension MapScreenViewController: OnMapViewControllerDelegate {
+    func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T : Hashable {
+        if type(of: selectedPlaceOrEvent) == MocPlace.self {
+            guard let selectedPlace: MocPlace = selectedPlaceOrEvent as? MocPlace else { return }
+            selectedOnSliderPlaceTitle = selectedPlace.title
+            selectedOnSliderPlaceCoord = selectedPlace.coords
+            selectedOnSliderEventTitle = ""
+            selectedOnSliderEventDates = []
+        } else if type(of: selectedPlaceOrEvent) == MocEvent.self {
+            guard let selectedEvent: MocEvent = selectedPlaceOrEvent as? MocEvent else { return }
+            selectedOnSliderEventTitle = selectedEvent.title
+            selectedOnSliderEventDates = selectedEvent.dates
+            selectedOnSliderPlaceTitle = ""
+            selectedOnSliderPlaceCoord = nil
+        }
+        print("selectedOnSliderPlaceTitle = \(String(describing: selectedOnSliderPlaceTitle))")
+        print("selectedOnSliderEventTitle = \(String(describing: selectedOnSliderEventTitle))")
     }
 }
