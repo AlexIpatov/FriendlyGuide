@@ -25,9 +25,11 @@ extension GetEventsList: AbstractRequestFactory {
 }
 
 extension GetEventsList: GetEventsListFactory {
-    func getEventsList(completionHandler: @escaping (Result<EndPoint.ModelType,
+    func getEventsList(cityTag: String,
+                       actualSince: String,
+                       completionHandler: @escaping (Result<EndPoint.ModelType,
                                                             NetworkingError>) -> Void) {
-        let route = EventsListResource()
+        let route = EventsListResource(cityTag: cityTag, actualSince: actualSince)
         request(route, withCompletion: completionHandler)
     }
 }

@@ -46,14 +46,9 @@
 		21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE79265E7DC60052C076 /* EndPointType.swift */; };
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
 		21D3EBC9266110E9007D01CE /* ChatListViewConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBC8266110E9007D01CE /* ChatListViewConnectable.swift */; };
-		4A7D3AAF26623C72000C4298 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AAE26623C72000C4298 /* AuthView.swift */; };
-		4A7D3AB126623C83000C4298 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB026623C83000C4298 /* AuthViewController.swift */; };
 		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
 		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
 		4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB926625080000C4298 /* AuthValidators.swift */; };
-		4A7D3ABE266250CD000C4298 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3ABD266250CD000C4298 /* AuthError.swift */; };
-		4A7D3AC026625290000C4298 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3ABF26625290000C4298 /* SignUpView.swift */; };
-		4A7D3AC4266252B6000C4298 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */; };
 		4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AC92662898A000C4298 /* CitiesViewControllerDelegate.swift */; };
 		4A9E66C62663ADB500AF8274 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E66C52663ADB500AF8274 /* UserSettings.swift */; };
 		B768E637D8ED434D98E87DC3 /* Pods_FriendlyGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */; };
@@ -134,6 +129,14 @@
 		C96B94D1266120DD007AD0DA /* GetEventDetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94C8266120DD007AD0DA /* GetEventDetailFactory.swift */; };
 		C96B94D2266120DD007AD0DA /* GetEventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94C9266120DD007AD0DA /* GetEventDetail.swift */; };
 		C96B94D626613671007AD0DA /* DayEventsResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94D526613671007AD0DA /* DayEventsResource.swift */; };
+		C9DEE1E426666FFE00C545CF /* GetNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE1E326666FFE00C545CF /* GetNews.swift */; };
+		C9DEE1E62666701100C545CF /* GetNewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE1E52666701100C545CF /* GetNewsFactory.swift */; };
+		C9DEE1E92666717E00C545CF /* NewsListResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE1E82666717E00C545CF /* NewsListResource.swift */; };
+		C9DEE1EC266676AE00C545CF /* PlacesResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE1EB266676AE00C545CF /* PlacesResource.swift */; };
+		C9DEE1EF26667BAA00C545CF /* GetPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE1EE26667BAA00C545CF /* GetPlaces.swift */; };
+		C9DEE1F126667BBA00C545CF /* GetPlacesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE1F026667BBA00C545CF /* GetPlacesFactory.swift */; };
+		C9E6385026650AA5008F7F04 /* TravelDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6384F26650AA5008F7F04 /* TravelDataProvider.swift */; };
+		C9E6385326650D7B008F7F04 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E6385226650D7B008F7F04 /* DataProvider.swift */; };
 		DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -199,14 +202,10 @@
 		21D3EBC8266110E9007D01CE /* ChatListViewConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewConnectable.swift; sourceTree = "<group>"; };
 		21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModelConnectable.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
-		4A7D3AAE26623C72000C4298 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
-		4A7D3AB026623C83000C4298 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Entensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB926625080000C4298 /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
 		4A7D3ABD266250CD000C4298 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
-		4A7D3ABF26625290000C4298 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4A7D3AC92662898A000C4298 /* CitiesViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewControllerDelegate.swift; sourceTree = "<group>"; };
 		4A9E66C52663ADB500AF8274 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide_FriendlyGuideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -293,6 +292,14 @@
 		C96B94C8266120DD007AD0DA /* GetEventDetailFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventDetailFactory.swift; sourceTree = "<group>"; };
 		C96B94C9266120DD007AD0DA /* GetEventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventDetail.swift; sourceTree = "<group>"; };
 		C96B94D526613671007AD0DA /* DayEventsResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayEventsResource.swift; sourceTree = "<group>"; };
+		C9DEE1E326666FFE00C545CF /* GetNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNews.swift; sourceTree = "<group>"; };
+		C9DEE1E52666701100C545CF /* GetNewsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewsFactory.swift; sourceTree = "<group>"; };
+		C9DEE1E82666717E00C545CF /* NewsListResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsListResource.swift; sourceTree = "<group>"; };
+		C9DEE1EB266676AE00C545CF /* PlacesResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesResource.swift; sourceTree = "<group>"; };
+		C9DEE1EE26667BAA00C545CF /* GetPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaces.swift; sourceTree = "<group>"; };
+		C9DEE1F026667BBA00C545CF /* GetPlacesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlacesFactory.swift; sourceTree = "<group>"; };
+		C9E6384F26650AA5008F7F04 /* TravelDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDataProvider.swift; sourceTree = "<group>"; };
+		C9E6385226650D7B008F7F04 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		CE002376636440E6DCE35FBA /* Pods-FriendlyGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE7CC528BA65E998B145C20A /* Pods-FriendlyGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -413,6 +420,7 @@
 		2150FEE7265ABE580058FA89 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				C9E6384E26650A50008F7F04 /* DataRepository */,
 				4A9E66C42663AD8C00AF8274 /* UserSettings */,
 				C96B94B9266120DD007AD0DA /* Network */,
 				21B71F89265E82EB00460564 /* Chat */,
@@ -614,40 +622,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4A7D3AAB26623C48000C4298 /* AuthScreen */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AAC26623C5A000C4298 /* View */,
-				4A7D3AAD26623C60000C4298 /* ViewController */,
-			);
-			path = AuthScreen;
-			sourceTree = "<group>";
-		};
-		4A7D3AAC26623C5A000C4298 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AAE26623C72000C4298 /* AuthView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		4A7D3AAD26623C60000C4298 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AB026623C83000C4298 /* AuthViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		4A7D3AB226623D3B000C4298 /* SignUpScreen */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AC126625296000C4298 /* View */,
-				4A7D3AC22662529D000C4298 /* ViewController */,
-			);
-			path = SignUpScreen;
-			sourceTree = "<group>";
-		};
 		4A7D3AB826625068000C4298 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,22 +645,6 @@
 				4A7D3ABD266250CD000C4298 /* AuthError.swift */,
 			);
 			path = Errors;
-			sourceTree = "<group>";
-		};
-		4A7D3AC126625296000C4298 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3ABF26625290000C4298 /* SignUpView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		4A7D3AC22662529D000C4298 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4A7D3AC3266252B6000C4298 /* SignUpViewController.swift */,
-			);
-			path = ViewController;
 			sourceTree = "<group>";
 		};
 		4A7D3AC826628947000C4298 /* CitiesViewConntrollerDelegate */ = {
@@ -1057,6 +1015,8 @@
 		C96B94782661205E007AD0DA /* EndPoints */ = {
 			isa = PBXGroup;
 			children = (
+				C9DEE1EA2666769200C545CF /* PlacesResource */,
+				C9DEE1E72666715F00C545CF /* NewsResource */,
 				C96B94792661205E007AD0DA /* EventsResource */,
 				C96B947C2661205E007AD0DA /* CitiesResource */,
 			);
@@ -1184,9 +1144,7 @@
 		C96B94B9266120DD007AD0DA /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C96B94BA266120DD007AD0DA /* Cities */,
-				C96B94C1266120DD007AD0DA /* RequestFactory */,
-				C96B94C3266120DD007AD0DA /* Events */,
+				C9E6384D2665084B008F7F04 /* Factories */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1251,6 +1209,69 @@
 				C96B94C9266120DD007AD0DA /* GetEventDetail.swift */,
 			);
 			path = EventDetail;
+			sourceTree = "<group>";
+		};
+		C9DEE1E2266668A900C545CF /* News */ = {
+			isa = PBXGroup;
+			children = (
+				C9DEE1E326666FFE00C545CF /* GetNews.swift */,
+				C9DEE1E52666701100C545CF /* GetNewsFactory.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		C9DEE1E72666715F00C545CF /* NewsResource */ = {
+			isa = PBXGroup;
+			children = (
+				C9DEE1E82666717E00C545CF /* NewsListResource.swift */,
+			);
+			path = NewsResource;
+			sourceTree = "<group>";
+		};
+		C9DEE1EA2666769200C545CF /* PlacesResource */ = {
+			isa = PBXGroup;
+			children = (
+				C9DEE1EB266676AE00C545CF /* PlacesResource.swift */,
+			);
+			path = PlacesResource;
+			sourceTree = "<group>";
+		};
+		C9DEE1ED26667B8F00C545CF /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				C9DEE1EE26667BAA00C545CF /* GetPlaces.swift */,
+				C9DEE1F026667BBA00C545CF /* GetPlacesFactory.swift */,
+			);
+			path = Places;
+			sourceTree = "<group>";
+		};
+		C9E6384D2665084B008F7F04 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				C96B94C1266120DD007AD0DA /* RequestFactory */,
+				C9DEE1ED26667B8F00C545CF /* Places */,
+				C9DEE1E2266668A900C545CF /* News */,
+				C96B94BA266120DD007AD0DA /* Cities */,
+				C96B94C3266120DD007AD0DA /* Events */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		C9E6384E26650A50008F7F04 /* DataRepository */ = {
+			isa = PBXGroup;
+			children = (
+				C9E6385126650D5C008F7F04 /* Protocols */,
+				C9E6384F26650AA5008F7F04 /* TravelDataProvider.swift */,
+			);
+			path = DataRepository;
+			sourceTree = "<group>";
+		};
+		C9E6385126650D5C008F7F04 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C9E6385226650D7B008F7F04 /* DataProvider.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1526,13 +1547,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9E6385026650AA5008F7F04 /* TravelDataProvider.swift in Sources */,
 				21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */,
 				C96B949926612068007AD0DA /* ImageSource.swift in Sources */,
 				C96B94AA26612079007AD0DA /* NewsPlace.swift in Sources */,
+				C9DEE1E62666701100C545CF /* GetNewsFactory.swift in Sources */,
 				21B71F982660115D00460564 /* ChatMessagesManager.swift in Sources */,
 				21ADFDE32661276D007A1671 /* ChatListView.swift in Sources */,
 				C5C316F12660F6AC00518405 /* EventCell.swift in Sources */,
 				21B71F9426600F5A00460564 /* ChatDialogsManager.swift in Sources */,
+				C9DEE1F126667BBA00C545CF /* GetPlacesFactory.swift in Sources */,
 				4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */,
 				21D3EBC9266110E9007D01CE /* ChatListViewConnectable.swift in Sources */,
 				21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */,
@@ -1542,9 +1566,9 @@
 				C96B94CB266120DD007AD0DA /* GetCityNames.swift in Sources */,
 				2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */,
 				C5C316602660E41C00518405 /* UILabel + Extensions.swift in Sources */,
-				4A7D3AC026625290000C4298 /* SignUpView.swift in Sources */,
 				21ADFDE726612781007A1671 /* ChatListModel.swift in Sources */,
 				C96B94D1266120DD007AD0DA /* GetEventDetailFactory.swift in Sources */,
+				C9DEE1EF26667BAA00C545CF /* GetPlaces.swift in Sources */,
 				C5C316722660E62200518405 /* PresentAnimation.swift in Sources */,
 				C5C3167B2660E7BB00518405 /* OnMapSliderView.swift in Sources */,
 				C5C316E02660F6A000518405 /* CitiesView.swift in Sources */,
@@ -1564,7 +1588,6 @@
 				C96B94A026612068007AD0DA /* DayEvent.swift in Sources */,
 				C5C316E12660F6A000518405 /* CitiesViewController.swift in Sources */,
 				C96B94D0266120DD007AD0DA /* GetEventsListFactory.swift in Sources */,
-				4A7D3AC4266252B6000C4298 /* SignUpViewController.swift in Sources */,
 				C96B949F26612068007AD0DA /* DayEventsList.swift in Sources */,
 				21B71F9126600D8F00460564 /* Dialog.swift in Sources */,
 				2142141026613AFA0007A031 /* ChatConnectable.swift in Sources */,
@@ -1576,6 +1599,7 @@
 				C5C3166F2660E62200518405 /* DismissAnimation.swift in Sources */,
 				C96B94CE266120DD007AD0DA /* RequestFactory.swift in Sources */,
 				C91CEE88265E7DC70052C076 /* JsonParameterEncoder.swift in Sources */,
+				C9DEE1E92666717E00C545CF /* NewsListResource.swift in Sources */,
 				C5C316F62660F6AC00518405 /* TravelScreenView.swift in Sources */,
 				C91CEE81265E7DC70052C076 /* ErrorParser.swift in Sources */,
 				C5C316702660E62200518405 /* SliderWithDimmingViewController.swift in Sources */,
@@ -1584,7 +1608,6 @@
 				C96B94D2266120DD007AD0DA /* GetEventDetail.swift in Sources */,
 				C96B947F2661205E007AD0DA /* EventDetailResource.swift in Sources */,
 				2142141426613B440007A031 /* User.swift in Sources */,
-				4A7D3AB126623C83000C4298 /* AuthViewController.swift in Sources */,
 				C5C3166E2660E62200518405 /* SliderPresentationController.swift in Sources */,
 				C5C3167C2660E7BB00518405 /* OnMapViewController.swift in Sources */,
 				C96B947326612019007AD0DA /* CityName.swift in Sources */,
@@ -1601,6 +1624,7 @@
 				2142141226613B100007A031 /* Authorizable.swift in Sources */,
 				21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */,
 				21C21C5B266154610016CC23 /* AuthViewConnectable.swift in Sources */,
+				C9E6385326650D7B008F7F04 /* DataProvider.swift in Sources */,
 				C96B94B62661208D007AD0DA /* PlacesList.swift in Sources */,
 				C5C316532660E3F100518405 /* SelfConfiguringCell.swift in Sources */,
 				C91CEE89265E7DC70052C076 /* NetworkErrors.swift in Sources */,
@@ -1612,6 +1636,7 @@
 				21D3EBB126603F54007D01CE /* AbstractErrorParser.swift in Sources */,
 				C96B94B72661208D007AD0DA /* PlaceImage.swift in Sources */,
 				C96B949B26612068007AD0DA /* EventAgent.swift in Sources */,
+				C9DEE1EC266676AE00C545CF /* PlacesResource.swift in Sources */,
 				21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */,
 				C96B94B52661208D007AD0DA /* Places.swift in Sources */,
 				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
@@ -1636,13 +1661,13 @@
 				C5C3165D2660E41C00518405 /* UIButton + Extensions.swift in Sources */,
 				C96B94A926612079007AD0DA /* NewsDetail.swift in Sources */,
 				C96B949426612068007AD0DA /* EventsList.swift in Sources */,
-				4A7D3AAF26623C72000C4298 /* AuthView.swift in Sources */,
 				2150FEF4265BAD400058FA89 /* ChatTableVewCellImpl.swift in Sources */,
 				2150FEB9265AB9070058FA89 /* SceneDelegate.swift in Sources */,
 				C96B949E26612068007AD0DA /* EventType.swift in Sources */,
 				C96B94CC266120DD007AD0DA /* GetCityDetail.swift in Sources */,
 				C5C316F52660F6AC00518405 /* PlaceCell.swift in Sources */,
 				C96B949826612068007AD0DA /* EventPlace.swift in Sources */,
+				C9DEE1E426666FFE00C545CF /* GetNews.swift in Sources */,
 				C96B949526612068007AD0DA /* Event.swift in Sources */,
 				C96B94B82661208D007AD0DA /* PlaceDetail.swift in Sources */,
 				C96B94CA266120DD007AD0DA /* GetCityNamesFactory.swift in Sources */,

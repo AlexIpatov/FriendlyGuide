@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Initial settings for chat
         QBChatManager.initialise()
-        
+        let dp = TravelDataProvider()
+        dp.getData(cityTag: "spb")
         return true
     }
 

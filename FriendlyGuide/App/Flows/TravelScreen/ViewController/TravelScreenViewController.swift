@@ -55,7 +55,7 @@ class TravelScreenViewController: UIViewController {
         createDataSource()
         reloadData()
         mockFetch()
-        requestData()
+     //   requestData()
     }
     override func loadView() {
         view = travelScreenView
@@ -93,7 +93,7 @@ class TravelScreenViewController: UIViewController {
     // MARK: - Request data methods
     private func requestData() {
         let eventsFactory = requestFactory.makeGetEventsListFactory()
-        eventsFactory.getEventsList { [ weak self] response in
+        eventsFactory.getEventsList(cityTag: "spb", actualSince: "1444385206") { [ weak self] response in
             guard let self = self else {return}
             switch response {
             case .success(let events):

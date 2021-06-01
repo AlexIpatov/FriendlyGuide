@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+protocol GetNewsFactory {
+    func getNews(cityTag: String,
+                 completionHandler: @escaping (Result<NewsList, NetworkingError>) -> Void)
+}
