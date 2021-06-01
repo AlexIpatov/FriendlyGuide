@@ -672,7 +672,6 @@
 				217AB26826643DF000A0AF66 /* Controllers */,
 				217AB26726643DE300A0AF66 /* Views */,
 				217AB26626643DCD00A0AF66 /* Models */,
-				2125EF6D26666ABA00F73EB4 /* TimeredErrorView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -729,6 +728,7 @@
 		4A7D3AB826625068000C4298 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2125EF6D26666ABA00F73EB4 /* TimeredErrorView.swift */,
 				4A7D3ABC26625099000C4298 /* Errors */,
 				4A7D3ABB2662508E000C4298 /* Validators */,
 			);
