@@ -1,5 +1,5 @@
 //
-//  BasicAuthView.swift
+//  LogInView.swift
 //  FriendlyGuide
 //
 //  Created by Валерий Макрогузов on 28.05.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BasicAuthView: UIView {
+class LogInView: UIView {
     private lazy var logInButton: UIButton = {
         let button = UIButton()
         
@@ -23,6 +23,23 @@ class BasicAuthView: UIView {
         
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    private lazy var gotoRegisterButton: UIButton = {
+        let button = UIButton()
+        
+        button.layer.cornerRadius = 10
+        button.backgroundColor = UIColor.white
+        button.layer.borderWidth = 3
+        button.layer.borderColor = UIColor.black.cgColor
+        
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("Register", for: .normal)
+        button.addTarget(self, action: #selector(gotoRegisterButtonWasTapped(_:)),
+                         for: .touchUpInside)
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+
     }()
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
@@ -47,7 +64,7 @@ class BasicAuthView: UIView {
         return textField
     }()
     
-    weak var delegate: AuthViewConnectable?
+    weak var delegate: LogInViewController?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,20 +77,27 @@ class BasicAuthView: UIView {
     }
     
     @objc private func logInButtonWasTapped(_ sender: UIButton) {
-        delegate?.logIn()
+        delegate?.logInButtonWasTapped()
+    }
+    
+    @objc private func gotoRegisterButtonWasTapped(_ sender: UIButton) {
+        delegate?.gotoRegisterButtonWasTapped()
     }
     
     private func configureUI() {
         self.backgroundColor = .white
         
-        let textFieldsStackView = UIStackView(arrangedSubviews: [loginTextField, passwordTextField])
+        let textFieldsStackView = UIStackView(arrangedSubviews: [loginTextField,
+                                                                 passwordTextField])
         textFieldsStackView.axis = .vertical
         textFieldsStackView.alignment = .fill
         textFieldsStackView.distribution = .equalSpacing
         textFieldsStackView.spacing = 10
         textFieldsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        let mainStackView = UIStackView(arrangedSubviews: [textFieldsStackView, logInButton])
+        let mainStackView = UIStackView(arrangedSubviews: [textFieldsStackView,
+                                                           logInButton,
+                                                           gotoRegisterButton])
         mainStackView.axis = .vertical
         mainStackView.alignment = .fill
         mainStackView.distribution = .equalCentering
@@ -95,11 +119,7 @@ class BasicAuthView: UIView {
     }
 }
 
-extension BasicAuthView: AuthView {
-    
-}
-
-extension BasicAuthView: UITextFieldDelegate {
+extension LogInView: UITextFieldDelegate {
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
         checkValidation(for: textField)
     }
@@ -113,9 +133,9 @@ extension BasicAuthView: UITextFieldDelegate {
         let updateResult: Bool?
         
         if textField === passwordTextField {
-            updateResult = delegate?.changePassword(on: textField.text ?? "")
+            updateResult = delegate?.update(password: textField.text ?? "")
         } else {
-            updateResult = delegate?.changeLogin(on: textField.text ?? "")
+            updateResult = delegate?.update(login: textField.text ?? "")
         }
         
         return updateResult ?? false
