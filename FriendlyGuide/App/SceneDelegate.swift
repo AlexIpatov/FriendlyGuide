@@ -10,20 +10,19 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var appStartManager: AppStartManager?
     
-    var requestFactory = RequestFactory()
-    var userSettings = UserSettings()
+//    var requestFactory = RequestFactory()
+//    var userSettings = UserSettings()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-
-        let tabBarController = TabBarController(requestFactory: requestFactory,
-                                                userSettings: userSettings)
-        window?.rootViewController = tabBarController
-        window?.makeKeyAndVisible()
+        
+        appStartManager = AppStartManager(window: window)
+        appStartManager?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

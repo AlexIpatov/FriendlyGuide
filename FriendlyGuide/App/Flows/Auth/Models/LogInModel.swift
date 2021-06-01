@@ -11,11 +11,11 @@ protocol LogInModelRepresentable {
     var login: String { get }
     var password: String { get }
 
-    func tryToUpdate(login: String) -> Result<Bool, Error>
-    func tryToUpdate(password: String) -> Result<Bool, Error>
+    func tryToUpdate(login: String) -> Error?
+    func tryToUpdate(password: String) -> Error?
 }
 
-class LogInModel {
+final class LogInModel {
    
     var login: String = ""
     var password: String = ""
@@ -31,23 +31,23 @@ class LogInModel {
 }
 
 extension LogInModel: LogInModelRepresentable {
-    func tryToUpdate(login: String) -> Result<Bool, Error> {
+    func tryToUpdate(login: String) -> Error? {
         do {
             try loginValidator.validate(login: login)
             self.login = login
-            return .success(true)
+            return nil
         } catch {
-            return .failure(error)
+            return error
         }
     }
 
-    func tryToUpdate(password: String) -> Result<Bool, Error> {
+    func tryToUpdate(password: String) -> Error? {
         do {
             try passwordValidator.validate(password: password)
             self.password = password
-            return .success(true)
+            return nil
         } catch {
-            return .failure(error)
+            return error
         }
     }
 }

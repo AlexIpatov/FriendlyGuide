@@ -107,7 +107,7 @@ extension QBChatManager: ChatMessagesManager {
 
 // MARK: - AuthenticatorManager
 
-extension QBChatManager: AuthenticatorManager {
+extension QBChatManager: ChatAuthRequestFactory {
     enum QBChatManagerError: LocalizedError {
         case unknown
         

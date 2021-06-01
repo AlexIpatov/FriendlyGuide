@@ -16,7 +16,7 @@ enum PasswordValidationError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .tooShortPassword:
-            return "Пароль должен содержать больше 8 символов"
+            return "Пароль должен содержать не меньше 8 символов"
         case .mustHaveOneCapitalLetter:
             return "Пароль должен содержать как минимум одну заглавную букву"
         case .mustHaveOneLowercaseLetter:

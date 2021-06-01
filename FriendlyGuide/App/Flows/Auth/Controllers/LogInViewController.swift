@@ -7,32 +7,42 @@
 
 import UIKit
 
-protocol LogInViewDelegate {
+protocol LogInViewDelegate: AnyObject {
     func logInButtonWasTapped()
+    func useBiometricButtonWasTaped()
     func gotoRegisterButtonWasTapped()
     
-    func update(login: String) -> Bool
-    func update(password: String) -> Bool
+    func textFieldDidEndEditing(_ textField: UITextField, password: String)
+    func textFieldDidEndEditing(_ textField: UITextField, login: String)
 }
 
 final class LogInViewController: UIViewController {
-    private var model: LogInModelRepresentable
-    private var manager: ChatManager {
-        QBChatManager.instance
-    }
-    
     private var window: UIWindow? {
         UIApplication.shared.windows.first
     }
     
+    private var model: LogInModelRepresentable
+    private var chatManager: ChatManager
+    private var customView: LoginViewRepresentable
     private let registerViewControllerBuilder: RegisterViewControllerBuilder
     private let appMainViewControllerBuilder: AppMainViewControllerBuilder
+    private let localAuthRequestFactory: LocalAuthRequestFactory
+    private let keychainRequestFactory: KeychainRequestFactory
     
-    init(model: LogInModelRepresentable, customView: UIView,
+    private let errorTimeredView = TimeredLableView(style: .error)
+    
+    init(model: LogInModelRepresentable, customView: (UIView & LoginViewRepresentable),
          registerViewControllerBuilder: RegisterViewControllerBuilder,
-         appMainViewControllerBuilder: AppMainViewControllerBuilder) {
+         appMainViewControllerBuilder: AppMainViewControllerBuilder,
+         localAuthRequestFactory: LocalAuthRequestFactory,
+         keychainRequestFactory: KeychainRequestFactory,
+         chatManager: ChatManager) {
         self.appMainViewControllerBuilder = appMainViewControllerBuilder
         self.registerViewControllerBuilder = registerViewControllerBuilder
+        self.localAuthRequestFactory = localAuthRequestFactory
+        self.keychainRequestFactory = keychainRequestFactory
+        self.chatManager = chatManager
+        self.customView = customView
         self.model = model
         
         super.init(nibName: nil, bundle: nil)
@@ -43,49 +53,32 @@ final class LogInViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-
     private var okAction: UIAlertAction {
         UIAlertAction(title: "OK",
-                      style: .default,
-                      handler: nil)
-    }
-    
-    private var gotoRegisterAction: UIAlertAction {
-        UIAlertAction(title: "Register",
-                      style: .default) { [weak self] _ in
-            self?.gotoRegisterButtonWasTapped()
-        }
-    }
-    
-    private func showAlert(title: String, error: Error, style: UIAlertController.Style, actions: [UIAlertAction]) {
-        let alertController = UIAlertController(title: title,
-                                                message: error.localizedDescription,
-                                                preferredStyle: style)
-        
-        actions.forEach { alertController.addAction($0) }
-        present(alertController, animated: true, completion: nil)
+                      style: .default)
     }
 }
 
 extension LogInViewController: LogInViewDelegate {
-    func update(login: String) -> Bool {
-        check(model.tryToUpdate(login: login))
+    func textFieldDidEndEditing(_ textField: UITextField, login: String) {
+        if let error = model.tryToUpdate(login: login) {
+            errorTimeredView.show(in: view,
+                                  y: 100,
+                                  with: error,
+                                  duration: 1)
+            customView.shake(textField)
+            textField.text = ""
+        }
     }
     
-    func update(password: String) -> Bool {
-        check(model.tryToUpdate(password: password))
-    }
-    
-    private func check(_ result: Result<Bool, Error>) -> Bool {
-        switch result {
-        case .failure(let error):
-            self.showAlert(title: "Update Error",
-                           error: error,
-                           style: .alert,
-                           actions: [self.okAction])
-            return false
-        case .success(let updateResult):
-            return updateResult
+    func textFieldDidEndEditing(_ textField: UITextField, password: String) {
+        if let error = model.tryToUpdate(password: password) {
+            errorTimeredView.show(in: view,
+                                  y: 100,
+                                  with: error,
+                                  duration: 1)
+            customView.shake(textField)
+            textField.text = ""
         }
     }
     
@@ -95,24 +88,66 @@ extension LogInViewController: LogInViewDelegate {
     }
     
     func logInButtonWasTapped() {
-        manager.login(login: model.login, password: model.password) { [weak self] result in
+        login(with: model.login, and: model.password)
+    }
+    
+    private func login(with login: String, and password: String) {
+        chatManager.login(login: model.login, password: model.password) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .failure(let error):
-                self.showAlert(title: "Log In Error",
-                               error: error,
-                               style: .alert,
-                               actions: [self.okAction, self.gotoRegisterAction])
+                self.showErrorAlert(title: "Log In Error",
+                                    error: error, actions: [self.okAction])
+                self.customView.showRegisterButton()
             case .success:
                 self.presentAppMainViewController()
             }
         }
     }
-    
+
     private func presentAppMainViewController() {
         let app = appMainViewControllerBuilder.build()
         window?.rootViewController = app
         window?.makeKeyAndVisible()
     }
+    
+    func useBiometricButtonWasTaped() {
+        localAuthRequestFactory.canEvaluate { [weak self] (canEvaluate, _, error) in
+            guard let self = self else {
+                return
+            }
+            
+            guard canEvaluate else {
+                guard let error = error else { return }
+                self.showErrorAlert(title: "",
+                                     error: error,
+                                     actions: [self.okAction])
+                return
+            }
+            
+            localAuthRequestFactory.evaluate { [weak self] (success, error) in
+                guard let self = self else {
+                    return
+                }
+                
+                guard success else {
+                    guard let error = error else { return }
+                    self.showErrorAlert(title: "",
+                                         error: error,
+                                         actions: [self.okAction])
+                    return
+                }
+                
+                if let login: String = self.keychainRequestFactory.get(request: LoginKeychainRequest()),
+                   let password: String = self.keychainRequestFactory.get(request: PasswordKeychainRequest()) {
+                    self.login(with: login, and: password)
+                }
+                
+                self.presentAppMainViewController()
+            }
+        }
+    }
 }
+
+

@@ -20,7 +20,7 @@ protocol RegisterModelRepresentable: AnyObject {
 }
 
 
-class RegisterModel {
+final class RegisterModel {
     enum RegisterError: LocalizedError {
         case pasworsdMismatch
         
@@ -32,10 +32,10 @@ class RegisterModel {
         }
     }
     
-    var name: String = ""
-    var login: String = ""
-    var password: String = ""
-    var confirmPassword: String = ""
+    private(set) var name: String = ""
+    private(set) var login: String = ""
+    private(set) var password: String = ""
+    private(set) var confirmPassword: String = ""
 
     private let passwordValidator: PasswordValidator
     private let loginValidator: LoginValidator

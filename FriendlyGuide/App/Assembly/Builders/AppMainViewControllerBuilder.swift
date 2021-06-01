@@ -7,6 +7,16 @@
 
 import UIKit
 
-protocol AppMainViewControllerBuilder {
-    func build() -> UIViewController
+final class AppMainViewControllerBuilder {
+    private lazy var requestFactory: RequestFactory = {
+        RequestFactory()
+    }()
+    private lazy var userSettings: UserSettings = {
+        UserSettings()
+    }()
+    
+    func build() -> UIViewController {
+        TabBarController(requestFactory: requestFactory,
+                         userSettings: userSettings)
+    }
 }

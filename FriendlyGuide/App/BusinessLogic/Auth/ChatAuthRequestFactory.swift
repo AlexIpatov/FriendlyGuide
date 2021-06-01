@@ -1,11 +1,11 @@
 //
-//  AuthenticatorManager.swift
+//  ChatAuthRequestFactory.swift
 //  FriendlyGuide
 //
 //  Created by Валерий Макрогузов on 26.05.2021.
 //
 
-protocol AuthenticatorManager {
+protocol ChatAuthRequestFactory {
     // create new user
     func signUp(fullName: String, login: String, password: String,
                 complition: @escaping (Result<User, Error>) -> Void)

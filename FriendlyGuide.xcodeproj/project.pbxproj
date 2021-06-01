@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		017A3E4F7AF543837DC02CD7 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */; };
+		210F00B62666D459005121C5 /* LocalAuthRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210F00B52666D459005121C5 /* LocalAuthRequestFactory.swift */; };
+		210F00B82666D480005121C5 /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210F00B72666D480005121C5 /* BiometricIDAuth.swift */; };
+		210F00BC2666D633005121C5 /* KeychainRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210F00BB2666D633005121C5 /* KeychainRequestFactory.swift */; };
+		210F00BF2666D6FB005121C5 /* LocksmithKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210F00BE2666D6FB005121C5 /* LocksmithKeychain.swift */; };
+		210F00C22666D859005121C5 /* LoginKeychainRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210F00C12666D859005121C5 /* LoginKeychainRequest.swift */; };
+		210F00C52666D891005121C5 /* PasswordKeychainRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210F00C42666D891005121C5 /* PasswordKeychainRequest.swift */; };
+		2125EF6E26666ABA00F73EB4 /* TimeredErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2125EF6D26666ABA00F73EB4 /* TimeredErrorView.swift */; };
 		21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21421407266128610007A031 /* ChatListViewControllerBuilder.swift */; };
 		2142140A2661344B0007A031 /* ChatTableVewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214214092661344B0007A031 /* ChatTableVewCell.swift */; };
 		2142141026613AFA0007A031 /* ChatConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2142140F26613AFA0007A031 /* ChatConnectable.swift */; };
@@ -32,13 +39,15 @@
 		21ADF4FE26650C3A00007D34 /* LogInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADF4FD26650C3A00007D34 /* LogInModel.swift */; };
 		21ADF500266511EB00007D34 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADF4FF266511EB00007D34 /* RegisterViewController.swift */; };
 		21ADF5022665142900007D34 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADF5012665142900007D34 /* RegisterModel.swift */; };
+		21ADF504266585A800007D34 /* LogInViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADF503266585A800007D34 /* LogInViewControllerBuilder.swift */; };
+		21ADF5062665874700007D34 /* AppStartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADF5052665874700007D34 /* AppStartManager.swift */; };
 		21ADFDE32661276D007A1671 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBB2661098F007D01CE /* ChatListView.swift */; };
 		21ADFDE526612774007A1671 /* ChartListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBD266109B9007D01CE /* ChartListTableView.swift */; };
 		21ADFDE62661277C007A1671 /* ChatListModelConnectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBCA266110F7007D01CE /* ChatListModelConnectable.swift */; };
 		21ADFDE726612781007A1671 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBB926610977007D01CE /* ChatListModel.swift */; };
 		21ADFDE826612784007A1671 /* QBChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBBF26610A11007D01CE /* QBChatListModel.swift */; };
 		21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F85265E7D5700460564 /* QBChatManager.swift */; };
-		21B71F8B265E83B400460564 /* AuthenticatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8A265E83B400460564 /* AuthenticatorManager.swift */; };
+		21B71F8B265E83B400460564 /* ChatAuthRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8A265E83B400460564 /* ChatAuthRequestFactory.swift */; };
 		21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8E265E932C00460564 /* ChatViewController.swift */; };
 		21B71F9126600D8F00460564 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9026600D8F00460564 /* Dialog.swift */; };
 		21B71F9426600F5A00460564 /* ChatDialogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9326600F5A00460564 /* ChatDialogsManager.swift */; };
@@ -165,6 +174,13 @@
 		0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13702F993F2CF8FFDC1C0C0A /* Pods-FriendlyGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.release.xcconfig"; sourceTree = "<group>"; };
 		17D3CD1E21A8270E4E5699B4 /* Pods-FriendlyGuide-FriendlyGuideUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide-FriendlyGuideUITests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests.release.xcconfig"; sourceTree = "<group>"; };
+		210F00B52666D459005121C5 /* LocalAuthRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthRequestFactory.swift; sourceTree = "<group>"; };
+		210F00B72666D480005121C5 /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricIDAuth.swift; sourceTree = "<group>"; };
+		210F00BB2666D633005121C5 /* KeychainRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainRequestFactory.swift; sourceTree = "<group>"; };
+		210F00BE2666D6FB005121C5 /* LocksmithKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocksmithKeychain.swift; sourceTree = "<group>"; };
+		210F00C12666D859005121C5 /* LoginKeychainRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginKeychainRequest.swift; sourceTree = "<group>"; };
+		210F00C42666D891005121C5 /* PasswordKeychainRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordKeychainRequest.swift; sourceTree = "<group>"; };
+		2125EF6D26666ABA00F73EB4 /* TimeredErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeredErrorView.swift; sourceTree = "<group>"; };
 		21421407266128610007A031 /* ChatListViewControllerBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatListViewControllerBuilder.swift; sourceTree = "<group>"; };
 		214214092661344B0007A031 /* ChatTableVewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTableVewCell.swift; sourceTree = "<group>"; };
 		2142140F26613AFA0007A031 /* ChatConnectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConnectable.swift; sourceTree = "<group>"; };
@@ -195,8 +211,10 @@
 		21ADF4FD26650C3A00007D34 /* LogInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInModel.swift; sourceTree = "<group>"; };
 		21ADF4FF266511EB00007D34 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		21ADF5012665142900007D34 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		21ADF503266585A800007D34 /* LogInViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewControllerBuilder.swift; sourceTree = "<group>"; };
+		21ADF5052665874700007D34 /* AppStartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartManager.swift; sourceTree = "<group>"; };
 		21B71F85265E7D5700460564 /* QBChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBChatManager.swift; sourceTree = "<group>"; };
-		21B71F8A265E83B400460564 /* AuthenticatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorManager.swift; sourceTree = "<group>"; };
+		21B71F8A265E83B400460564 /* ChatAuthRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAuthRequestFactory.swift; sourceTree = "<group>"; };
 		21B71F8E265E932C00460564 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		21B71F9026600D8F00460564 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		21B71F9326600F5A00460564 /* ChatDialogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDialogsManager.swift; sourceTree = "<group>"; };
@@ -353,12 +371,55 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		210F00B42666D3DE005121C5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				21B71F8A265E83B400460564 /* ChatAuthRequestFactory.swift */,
+				210F00B52666D459005121C5 /* LocalAuthRequestFactory.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		210F00B92666D491005121C5 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				210F00B72666D480005121C5 /* BiometricIDAuth.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		210F00BA2666D61F005121C5 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				210F00BB2666D633005121C5 /* KeychainRequestFactory.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		210F00BD2666D6F3005121C5 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				210F00BE2666D6FB005121C5 /* LocksmithKeychain.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		210F00C02666D841005121C5 /* KeychainRequest */ = {
+			isa = PBXGroup;
+			children = (
+				210F00C12666D859005121C5 /* LoginKeychainRequest.swift */,
+				210F00C42666D891005121C5 /* PasswordKeychainRequest.swift */,
+			);
+			path = KeychainRequest;
+			sourceTree = "<group>";
+		};
 		21421406266128590007A031 /* Builders */ = {
 			isa = PBXGroup;
 			children = (
 				21421407266128610007A031 /* ChatListViewControllerBuilder.swift */,
 				217AB25D2664321700A0AF66 /* RegisterViewControllerBuilder.swift */,
 				217AB25F2664324900A0AF66 /* AppMainViewControllerBuilder.swift */,
+				21ADF503266585A800007D34 /* LogInViewControllerBuilder.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -419,6 +480,7 @@
 			children = (
 				2150FEB6265AB9070058FA89 /* AppDelegate.swift */,
 				2150FEB8265AB9070058FA89 /* SceneDelegate.swift */,
+				21ADF5052665874700007D34 /* AppStartManager.swift */,
 				2150FEE7265ABE580058FA89 /* BusinessLogic */,
 				2150FEE8265ABE5D0058FA89 /* Entity */,
 				2150FEE9265ABE630058FA89 /* Assembly */,
@@ -430,8 +492,10 @@
 		2150FEE7265ABE580058FA89 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				210F00BA2666D61F005121C5 /* Keychain */,
 				217AB24D2664239D00A0AF66 /* Validators */,
 				4A9E66C42663AD8C00AF8274 /* UserSettings */,
+				210F00B42666D3DE005121C5 /* Auth */,
 				C96B94B9266120DD007AD0DA /* Network */,
 				21B71F89265E82EB00460564 /* Chat */,
 			);
@@ -441,6 +505,7 @@
 		2150FEE8265ABE5D0058FA89 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				210F00C02666D841005121C5 /* KeychainRequest */,
 				C96B94782661205E007AD0DA /* EndPoints */,
 				C96B94AE2661208D007AD0DA /* Places */,
 				C96B94A126612079007AD0DA /* News */,
@@ -485,6 +550,8 @@
 		2150FEEB265ABE8A0058FA89 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				210F00BD2666D6F3005121C5 /* Keychain */,
+				210F00B92666D491005121C5 /* Auth */,
 				217AB259266424DB00A0AF66 /* Validarors */,
 				21D3EBB62660408A007D01CE /* Chat */,
 				C91CEE70265E7DC60052C076 /* Network */,
@@ -587,7 +654,6 @@
 				21B71F9326600F5A00460564 /* ChatDialogsManager.swift */,
 				21B71F9526600F9800460564 /* ChatUsersManager.swift */,
 				21B71F972660115D00460564 /* ChatMessagesManager.swift */,
-				21B71F8A265E83B400460564 /* AuthenticatorManager.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -606,6 +672,7 @@
 				217AB26826643DF000A0AF66 /* Controllers */,
 				217AB26726643DE300A0AF66 /* Views */,
 				217AB26626643DCD00A0AF66 /* Models */,
+				2125EF6D26666ABA00F73EB4 /* TimeredErrorView.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -1571,14 +1638,17 @@
 				21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */,
 				C96B949926612068007AD0DA /* ImageSource.swift in Sources */,
 				C96B94AA26612079007AD0DA /* NewsPlace.swift in Sources */,
+				210F00C22666D859005121C5 /* LoginKeychainRequest.swift in Sources */,
 				21B71F982660115D00460564 /* ChatMessagesManager.swift in Sources */,
 				21ADFDE32661276D007A1671 /* ChatListView.swift in Sources */,
 				C5C316F12660F6AC00518405 /* EventCell.swift in Sources */,
 				21B71F9426600F5A00460564 /* ChatDialogsManager.swift in Sources */,
+				210F00BF2666D6FB005121C5 /* LocksmithKeychain.swift in Sources */,
 				4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */,
 				217AB2562664243C00A0AF66 /* LoginValidationError.swift in Sources */,
 				217AB258266424D000A0AF66 /* BasicValidator.swift in Sources */,
 				21D3EBC9266110E9007D01CE /* ChatListViewConnectable.swift in Sources */,
+				210F00C52666D891005121C5 /* PasswordKeychainRequest.swift in Sources */,
 				21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */,
 				C5C317F52665147400518405 /* UISegmentedControl + Extensions.swift in Sources */,
 				4A7F8D2526662D0100C69FBD /* DetailEventViewController.swift in Sources */,
@@ -1589,11 +1659,14 @@
 				2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */,
 				C5C316602660E41C00518405 /* UILabel + Extensions.swift in Sources */,
 				217AB2542664243100A0AF66 /* PasswordValidationError.swift in Sources */,
+				21ADF504266585A800007D34 /* LogInViewControllerBuilder.swift in Sources */,
 				21ADFDE726612781007A1671 /* ChatListModel.swift in Sources */,
 				4A7F8D1D26662C7900C69FBD /* DetailImageCell.swift in Sources */,
 				C96B94D1266120DD007AD0DA /* GetEventDetailFactory.swift in Sources */,
+				210F00B62666D459005121C5 /* LocalAuthRequestFactory.swift in Sources */,
 				C5C316722660E62200518405 /* PresentAnimation.swift in Sources */,
 				C5C3167B2660E7BB00518405 /* OnMapSliderView.swift in Sources */,
+				210F00B82666D480005121C5 /* BiometricIDAuth.swift in Sources */,
 				C5C316E02660F6A000518405 /* CitiesView.swift in Sources */,
 				C5C316F22660F6AC00518405 /* NewsCell.swift in Sources */,
 				C5904690265B19A400231116 /* UIComponentsFactory.swift in Sources */,
@@ -1624,6 +1697,7 @@
 				21ADFDE826612784007A1671 /* QBChatListModel.swift in Sources */,
 				2142140A2661344B0007A031 /* ChatTableVewCell.swift in Sources */,
 				C5C3166F2660E62200518405 /* DismissAnimation.swift in Sources */,
+				21ADF5062665874700007D34 /* AppStartManager.swift in Sources */,
 				C96B94CE266120DD007AD0DA /* RequestFactory.swift in Sources */,
 				C91CEE88265E7DC70052C076 /* JsonParameterEncoder.swift in Sources */,
 				C5C316F62660F6AC00518405 /* TravelScreenView.swift in Sources */,
@@ -1637,6 +1711,7 @@
 				2142141426613B440007A031 /* User.swift in Sources */,
 				C5C3166E2660E62200518405 /* SliderPresentationController.swift in Sources */,
 				C5C3167C2660E7BB00518405 /* OnMapViewController.swift in Sources */,
+				210F00BC2666D633005121C5 /* KeychainRequestFactory.swift in Sources */,
 				C96B947326612019007AD0DA /* CityName.swift in Sources */,
 				C96B94822661205E007AD0DA /* CityDetailResource.swift in Sources */,
 				C96B94CF266120DD007AD0DA /* GetEventsList.swift in Sources */,
@@ -1655,6 +1730,7 @@
 				C96B94CD266120DD007AD0DA /* GetCityDetailFactory.swift in Sources */,
 				C5C316622660E41C00518405 /* String + Extensions.swift in Sources */,
 				C96B949A26612068007AD0DA /* Image.swift in Sources */,
+				2125EF6E26666ABA00F73EB4 /* TimeredErrorView.swift in Sources */,
 				C5C3167A2660E7BB00518405 /* OnMapSliderTableViewCell.swift in Sources */,
 				21D3EBB126603F54007D01CE /* AbstractErrorParser.swift in Sources */,
 				C96B94B72661208D007AD0DA /* PlaceImage.swift in Sources */,
@@ -1663,7 +1739,7 @@
 				C96B94B52661208D007AD0DA /* Places.swift in Sources */,
 				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
 				C96B94AD26612079007AD0DA /* NewsList.swift in Sources */,
-				21B71F8B265E83B400460564 /* AuthenticatorManager.swift in Sources */,
+				21B71F8B265E83B400460564 /* ChatAuthRequestFactory.swift in Sources */,
 				C96B949626612068007AD0DA /* EventParticipant.swift in Sources */,
 				C5C316F72660F6AC00518405 /* TravelScreenViewController.swift in Sources */,
 				21ADFDE526612774007A1671 /* ChartListTableView.swift in Sources */,

@@ -34,12 +34,12 @@ extension BasicValidator: PasswordValidator {
         
         if !isContain(password.range(of: PasswordValidator.atLeastOneCapitalLetter.rawValue,
                                     options: .regularExpression)) {
-            throw PasswordValidationError.tooShortPassword
+            throw PasswordValidationError.mustHaveOneCapitalLetter
         }
         
         if !isContain(password.range(of: PasswordValidator.atLeastOneLowercaseLetter.rawValue,
                                     options: .regularExpression)) {
-            throw PasswordValidationError.tooShortPassword
+            throw PasswordValidationError.mustHaveOneLowercaseLetter
         }
         
 //        if !isContain(password.range(of: PasswordValidator.atLeastOneDigit.rawValue,
