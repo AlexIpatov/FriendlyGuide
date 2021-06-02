@@ -71,6 +71,8 @@
 		4A7F8D2126662CB600C69FBD /* DetailMoreInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F8D2026662CB600C69FBD /* DetailMoreInfoCell.swift */; };
 		4A7F8D2326662CCF00C69FBD /* DetailEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F8D2226662CCF00C69FBD /* DetailEventView.swift */; };
 		4A7F8D2526662D0100C69FBD /* DetailEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7F8D2426662D0100C69FBD /* DetailEventViewController.swift */; };
+		4A9E29AD2667E48300C3D5EA /* CustomRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E29AC2667E48300C3D5EA /* CustomRefreshView.swift */; };
+		4A9E29AF2667E64800C3D5EA /* UIRefreshControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E29AE2667E64800C3D5EA /* UIRefreshControl + Extensions.swift */; };
 		4A9E66C62663ADB500AF8274 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9E66C52663ADB500AF8274 /* UserSettings.swift */; };
 		B768E637D8ED434D98E87DC3 /* Pods_FriendlyGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */; };
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
@@ -249,6 +251,8 @@
 		4A7F8D2026662CB600C69FBD /* DetailMoreInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMoreInfoCell.swift; sourceTree = "<group>"; };
 		4A7F8D2226662CCF00C69FBD /* DetailEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventView.swift; sourceTree = "<group>"; };
 		4A7F8D2426662D0100C69FBD /* DetailEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEventViewController.swift; sourceTree = "<group>"; };
+		4A9E29AC2667E48300C3D5EA /* CustomRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRefreshView.swift; sourceTree = "<group>"; };
+		4A9E29AE2667E64800C3D5EA /* UIRefreshControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl + Extensions.swift"; sourceTree = "<group>"; };
 		4A9E66C52663ADB500AF8274 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		5EDBB6865E63CCF3C32EE119 /* Pods_FriendlyGuide_FriendlyGuideUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide_FriendlyGuideUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -550,6 +554,7 @@
 		2150FEEA265ABE730058FA89 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				4A9E29AB2667E45E00C3D5EA /* CustomRefreshView */,
 				4A7F8D1326662BEA00C69FBD /* DetailScreen */,
 				21C21C50266141EA0016CC23 /* Auth */,
 				C5C316632660E62200518405 /* SliderController */,
@@ -822,6 +827,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		4A9E29AB2667E45E00C3D5EA /* CustomRefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				4A9E29AC2667E48300C3D5EA /* CustomRefreshView.swift */,
+			);
+			path = CustomRefreshView;
+			sourceTree = "<group>";
+		};
 		4A9E66C42663AD8C00AF8274 /* UserSettings */ = {
 			isa = PBXGroup;
 			children = (
@@ -927,6 +940,7 @@
 				4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */,
 				4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */,
 				C5C317F42665147400518405 /* UISegmentedControl + Extensions.swift */,
+				4A9E29AE2667E64800C3D5EA /* UIRefreshControl + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1777,6 +1791,7 @@
 				21B71F9A266011E600460564 /* ChatManager.swift in Sources */,
 				C96B94A026612068007AD0DA /* DayEvent.swift in Sources */,
 				C5C316E12660F6A000518405 /* CitiesViewController.swift in Sources */,
+				4A9E29AD2667E48300C3D5EA /* CustomRefreshView.swift in Sources */,
 				C96B949F26612068007AD0DA /* DayEventsList.swift in Sources */,
 				21B71F9126600D8F00460564 /* Dialog.swift in Sources */,
 				2142141026613AFA0007A031 /* ChatConnectable.swift in Sources */,
@@ -1847,6 +1862,7 @@
 				C9DEE2132666A36200C545CF /* GetEventsListFactory.swift in Sources */,
 				C9DEE2182666A3B600C545CF /* NewsListResource.swift in Sources */,
 				C96B947426612019007AD0DA /* CityDetail.swift in Sources */,
+				4A9E29AF2667E64800C3D5EA /* UIRefreshControl + Extensions.swift in Sources */,
 				C96B94802661205E007AD0DA /* EventsListResource.swift in Sources */,
 				217AB24F266423BC00A0AF66 /* PasswordValidator.swift in Sources */,
 				C5C3165D2660E41C00518405 /* UIButton + Extensions.swift in Sources */,

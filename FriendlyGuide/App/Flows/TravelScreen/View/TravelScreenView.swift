@@ -9,11 +9,14 @@ import UIKit
 
 class TravelScreenView: UIView {
     // MARK: - UI components
+    var refreshControl = UIRefreshControl(title: "Loading...")
+
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: bounds,
                                               collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .white
+        collectionView.refreshControl = refreshControl
         addSubview(collectionView)
         return collectionView
     }()

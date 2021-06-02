@@ -11,11 +11,12 @@ struct News: Codable, Hashable {
     let id: Int
     let publicationDate: Int
     let title: String
-    let slug: String
+    let images: [Image]
+    let description: String?
 
     enum CodingKeys: String, CodingKey {
         case id
         case publicationDate = "publication_date"
-        case title, slug
+        case title, images, description
     }
 }

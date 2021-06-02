@@ -9,11 +9,14 @@ import UIKit
 
 class TabBarController: UITabBarController {
     // MARK: - Properties
+    var dataProvider: DataProvider
     var userSettings: UserSettings
     var requestFactory: RequestFactory
     // MARK: - Init
     init(requestFactory: RequestFactory,
-         userSettings: UserSettings) {
+         userSettings: UserSettings,
+         dataProvider: DataProvider) {
+        self.dataProvider = dataProvider
         self.requestFactory = requestFactory
         self.userSettings = userSettings
         super.init(nibName: nil, bundle: nil)
@@ -41,7 +44,7 @@ class TabBarController: UITabBarController {
         
         //1. TravelScreen
         let travelScreenViewController = TravelScreenViewController(requestFactory: requestFactory,
-                                                                    userSettings: userSettings)
+                                                                    userSettings: userSettings, dataProvider: dataProvider)
         travelScreenViewController.tabBarItem = UITabBarItem(title: "Путешествие",
                                                              image: UIImage(systemName: "figure.walk.diamond"),
                                                              selectedImage: UIImage(systemName: "figure.walk.diamond.fill"))

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PlaceCell: UICollectionViewCell, SelfConfiguringCell {
 
@@ -38,9 +39,9 @@ class PlaceCell: UICollectionViewCell, SelfConfiguringCell {
     }
     // MARK: - Configure
     func configure<U>(with value: U) where U : Hashable {
-        guard let place: MocPlace = value as? MocPlace else { return }
+        guard let place: Places = value as? Places else { return }
         titlelabel.text = place.title
-        imageView.image = UIImage(named: "mocImage")
+        imageView.kf.setImage(with: URL(string: place.images.first?.image ?? ""))
     }
     //MARK: - Configuration Methods
     private func setupLayer() {
