@@ -9,5 +9,5 @@ import Foundation
 
 protocol DataProvider {
     typealias TravelData = (events: [Event], news: [News], places: [Places])
-    func getData(cityTag: String) -> Void
+    func getData(cityTag: String, withCompletion completion: @escaping (Result<TravelData, NetworkingError>) -> Void)
 }

@@ -1096,6 +1096,14 @@
 			path = NetworkErrors;
 			sourceTree = "<group>";
 		};
+		C967AEC826678A4900BAB62F /* TravelDataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				C9DEE21D2666A57E00C545CF /* TravelDataProvider.swift */,
+			);
+			path = TravelDataProvider;
+			sourceTree = "<group>";
+		};
 		C96B947026612018007AD0DA /* Cities */ = {
 			isa = PBXGroup;
 			children = (
@@ -1360,7 +1368,7 @@
 		C9DEE21C2666A57D00C545CF /* DataProvider */ = {
 			isa = PBXGroup;
 			children = (
-				C9DEE21D2666A57E00C545CF /* TravelDataProvider.swift */,
+				C967AEC826678A4900BAB62F /* TravelDataProvider */,
 				C9DEE21E2666A57E00C545CF /* Protocols */,
 			);
 			path = DataProvider;
