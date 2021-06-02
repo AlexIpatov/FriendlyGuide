@@ -147,6 +147,8 @@
 		C9DEE2152666A36200C545CF /* GetEventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE2082666A36200C545CF /* GetEventDetail.swift */; };
 		C9DEE2182666A3B600C545CF /* NewsListResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE2172666A3B600C545CF /* NewsListResource.swift */; };
 		C9DEE21B2666A3C400C545CF /* PlacesResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE21A2666A3C400C545CF /* PlacesResource.swift */; };
+		C9DEE2202666A57E00C545CF /* TravelDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE21D2666A57E00C545CF /* TravelDataProvider.swift */; };
+		C9DEE2212666A57E00C545CF /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE21F2666A57E00C545CF /* DataProvider.swift */; };
 		DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -320,6 +322,8 @@
 		C9DEE2082666A36200C545CF /* GetEventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventDetail.swift; sourceTree = "<group>"; };
 		C9DEE2172666A3B600C545CF /* NewsListResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListResource.swift; sourceTree = "<group>"; };
 		C9DEE21A2666A3C400C545CF /* PlacesResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesResource.swift; sourceTree = "<group>"; };
+		C9DEE21D2666A57E00C545CF /* TravelDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelDataProvider.swift; sourceTree = "<group>"; };
+		C9DEE21F2666A57E00C545CF /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		CE002376636440E6DCE35FBA /* Pods-FriendlyGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE7CC528BA65E998B145C20A /* Pods-FriendlyGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -442,6 +446,7 @@
 		2150FEE7265ABE580058FA89 /* BusinessLogic */ = {
 			isa = PBXGroup;
 			children = (
+				C9DEE21C2666A57D00C545CF /* DataProvider */,
 				217AB24D2664239D00A0AF66 /* Validators */,
 				4A9E66C42663AD8C00AF8274 /* UserSettings */,
 				C96B94B9266120DD007AD0DA /* Network */,
@@ -1352,6 +1357,23 @@
 			path = PlacesResource;
 			sourceTree = "<group>";
 		};
+		C9DEE21C2666A57D00C545CF /* DataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				C9DEE21D2666A57E00C545CF /* TravelDataProvider.swift */,
+				C9DEE21E2666A57E00C545CF /* Protocols */,
+			);
+			path = DataProvider;
+			sourceTree = "<group>";
+		};
+		C9DEE21E2666A57E00C545CF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C9DEE21F2666A57E00C545CF /* DataProvider.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1658,6 +1680,7 @@
 				C5C316F22660F6AC00518405 /* NewsCell.swift in Sources */,
 				C5904690265B19A400231116 /* UIComponentsFactory.swift in Sources */,
 				C9DEE2102666A36200C545CF /* GetCityDetailFactory.swift in Sources */,
+				C9DEE2202666A57E00C545CF /* TravelDataProvider.swift in Sources */,
 				C9DEE20F2666A36200C545CF /* GetCityDetail.swift in Sources */,
 				C5C3165F2660E41C00518405 /* UIViewController + Extensions.swift in Sources */,
 				C96B94AC26612079007AD0DA /* News.swift in Sources */,
@@ -1722,6 +1745,7 @@
 				C96B94B52661208D007AD0DA /* Places.swift in Sources */,
 				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
 				C9DEE2142666A36200C545CF /* GetEventDetailFactory.swift in Sources */,
+				C9DEE2212666A57E00C545CF /* DataProvider.swift in Sources */,
 				C96B94AD26612079007AD0DA /* NewsList.swift in Sources */,
 				21B71F8B265E83B400460564 /* AuthenticatorManager.swift in Sources */,
 				C96B949626612068007AD0DA /* EventParticipant.swift in Sources */,

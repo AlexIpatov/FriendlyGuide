@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+protocol GetPlacesFactory {
+    func getPlaces(cityTag: String,
+                   showingSince: String,
+                   completionHandler: @escaping (Result<PlacesList, NetworkingError>) -> Void)
+}
