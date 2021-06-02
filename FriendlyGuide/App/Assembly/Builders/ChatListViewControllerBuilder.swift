@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ChatListViewControllerBuilder {
+final class ChatListViewControllerBuilder {
     func build(withFrame frame: CGRect) -> (ChatListModelConnectable
                                             & ChatListViewConnectable
                                             & UIViewController) {

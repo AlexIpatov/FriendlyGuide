@@ -10,7 +10,7 @@ import Foundation
 protocol ChatManager: ChatDialogsManager,
                       ChatMessagesManager,
                       ChatUsersManager,
-                      AuthenticatorManager {
+                      ChatAuthRequestFactory {
     static func initialise()
     static var instance: Self { get }
 }

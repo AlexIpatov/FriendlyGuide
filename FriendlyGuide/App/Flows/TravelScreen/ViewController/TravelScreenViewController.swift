@@ -156,9 +156,13 @@ extension TravelScreenViewController {
 extension TravelScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let section = TravelSection(rawValue: indexPath.section) else { return }
-        //    guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) else { return }
         switch section {
-        case .news, .events, .places:
+        case .events:
+            guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Event else { return }
+            let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id)
+            detailVC.modalPresentationStyle = .fullScreen
+            present(detailVC, animated: true, completion: nil)
+        case .news, .places:
             print("tapped")
         case .city:
             let cityVC = CitiesViewController(requestFactory: requestFactory)
@@ -218,6 +222,5 @@ extension TravelScreenViewController {
         news.append (MocNews(id: 33820, publicationDate: 1621939342, title: "ВКонтакте создала сервис, помогающий заботиться о домашних животных", images: Optional([MocImage(image: "https://kudago.com/media/images/news/97/fc/97fcd251036b9895e9b6cd910efc4425.jpg", source: MocSource(name: "shutterstock.com", link: ""))])))
 
         places.append (MocPlace(id: 157, coords: nil, title: "Музей современного искусства Эрарта", address: "29-я линия В. О., д. 2", subway: "Василеостровская, Приморская, Спортивная", images: Optional([MocImage(image: "https://kudago.com/media/images/place/83/20/83206505e69f74906bd996c42c4c0fc9.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/de/89/de89ef20687ea507e57107bfdf0e5735.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")),MocImage(image: "https://kudago.com/media/images/place/20/80/2080284223698961282551f7c87f6685.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/bd/f6/bdf60df83d98b8337908752a85639de6.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/07/a4/07a4791f04d063dddb49abcdbfa6daa0.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/23/b4/23b46c37ccb99e5f942184f820d8a445.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/ef/96/ef96bbafdfcba465421cd98957cdb68b.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00"))])))
-
     }
 }

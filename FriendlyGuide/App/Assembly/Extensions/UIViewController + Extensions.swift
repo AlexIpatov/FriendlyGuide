@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+
 extension UIViewController {
 
     // MARK: - Alert
@@ -34,5 +36,21 @@ extension UIViewController {
                                                             for: indexPath) as? T else { fatalError() }
         cell.configure(with: value)
         return cell
+    }
+}
+
+
+protocol ErrorAllertPresentable {
+    func showErrorAlert(title: String, error: Error, actions: [UIAlertAction])
+}
+
+extension UIViewController: ErrorAllertPresentable {
+    func showErrorAlert(title: String, error: Error, actions: [UIAlertAction]) {
+        let alertController = UIAlertController(title: title,
+                                                message: error.localizedDescription,
+                                                preferredStyle: .alert)
+        
+        actions.forEach { alertController.addAction($0) }
+        present(alertController, animated: true, completion: nil)
     }
 }

@@ -12,8 +12,11 @@ target 'FriendlyGuide' do
   # Pods for chat
   pod 'QuickBlox', '~> 2.17.5'
   pod 'Quickblox-WebRTC', '~> 2.7.4'
-  pod 'MessageKit' 
-
+  pod 'MessageKit'
+  
+  # Keychain
+  pod 'Locksmith', '~> 4.0.0'
+  
   target 'FriendlyGuideTests' do
     inherit! :search_paths
     # Pods for testing
