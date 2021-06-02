@@ -15,9 +15,9 @@ class TravelDataProvider{
     private let queue = DispatchQueue(label: "Serial queue")
     private let group = DispatchGroup()
     
-    var eventsLoadingCompleted = false
-    var newsLoadingCompleted = false
-    var placesLoadingCompleted = false
+    private var eventsLoadingCompleted = false
+    private var newsLoadingCompleted = false
+    private var placesLoadingCompleted = false
     
     init(requestFactory: RequestFactory = RequestFactory()) {
         self.requestFactory = requestFactory
@@ -27,40 +27,42 @@ class TravelDataProvider{
 
 extension TravelDataProvider: DataProvider {
     
-    func getData(cityTag: String) -> Void {
+    func getData(cityTag: String,
+                 actualSince: String,
+                 showingSince: String,
+                 withCompletion completion: @escaping (Result<TravelData, NetworkingError>) -> Void) {
         let newsFactory = requestFactory.makeGetNewsFactory()
         let placesFactory = requestFactory.makeGetPlacesFactory()
         let eventsFactory = requestFactory.makeGetEventsListFactory()
+        var events = [Event]()
+        var news = [News]()
+        var places = [Places]()
         
         group.enter()
         queue.async {
-            eventsFactory.getEventsList(cityTag: cityTag, actualSince: "1444385206") {[weak self] response in
+            eventsFactory.getEventsList(cityTag: cityTag, actualSince: actualSince) {[weak self] response in
                         guard let self = self else { return }
                         switch response {
                         case.success(let response):
-                            //self.travelData?.events = response.results
-                            print("EventsLoaded")
+                            events = response.results
                             self.eventsLoadingCompleted = true
                             self.group.leave()
                         case.failure(let error):
-                            print(error.localizedDescription)
-                            self.group.leave()
+                            completion(.failure(error))
                         }
                     }
         }
         group.enter()
         queue.async {
-            placesFactory.getPlaces(cityTag: cityTag, showingSince: "1444385206") {[weak self] response in
+            placesFactory.getPlaces(cityTag: cityTag, showingSince: showingSince) {[weak self] response in
                         guard let self = self else { return }
                         switch response {
                         case.success(let response):
-                            //self.travelData?.events = response.results
-                            print("PlacesLoaded")
+                            places = response.places
                             self.placesLoadingCompleted = true
                             self.group.leave()
                         case.failure(let error):
-                            print(error.localizedDescription)
-                            self.group.leave()
+                            completion(.failure(error))
                         }
                     }
         }
@@ -70,23 +72,34 @@ extension TravelDataProvider: DataProvider {
                         guard let self = self else { return }
                         switch response {
                         case.success(let response):
-                            //self.travelData?.events = response.results
-                            print("NewsLoaded")
-                            self.placesLoadingCompleted = true
+                            news = response.news
+                            self.newsLoadingCompleted = true
                             self.group.leave()
                         case.failure(let error):
-                            print(error.localizedDescription)
-                            self.group.leave()
+                            completion(.failure(error))
                         }
                     }
         }
         
         group.notify(queue: queue) {
-            
-            print("All operations completed. \(self.eventsLoadingCompleted), \(self.placesLoadingCompleted), \(self.newsLoadingCompleted)")
-                }
-        
+            if self.eventsLoadingCompleted && self.newsLoadingCompleted && self.placesLoadingCompleted {
+                completion(.success((events, news, places)))
+            } else {
+                completion(.failure(NetworkingError.invalidRequest))
+            }
     }
-        
 }
 
+}
+//let dp = TravelDataProvider()
+//dp.getData(cityTag: "spb",
+//           actualSince: "1444385206",
+//           showingSince: "1444385206") { [weak self] response in
+//    switch response {
+//    case .success(let data):
+//        let events = data.events
+//        events.forEach { print($0.title) }
+//    case .failure(let error):
+//        print(error.localizedDescription)
+//    }
+//}
