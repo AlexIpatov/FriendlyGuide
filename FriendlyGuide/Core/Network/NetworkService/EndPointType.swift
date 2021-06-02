@@ -34,6 +34,10 @@ extension BaseURL {
 enum Path {
     case cities
     case events
+    case eventsOfTheDay
+    case places
+    case news
+    case search
 }
 extension Path {
     var path: String {
@@ -42,6 +46,14 @@ extension Path {
             return "/public-api/v1.4/locations"
         case .events:
             return "/public-api/v1.4/events"
+        case .eventsOfTheDay:
+            return "/public-api/v1.4/events-of-the-day"
+        case .places:
+            return "/public-api/v1.4/places"
+        case .news:
+            return "/public-api/v1.4/news"
+        case .search:
+            return "/public-api/v1.4/search"
         }
     }
 }

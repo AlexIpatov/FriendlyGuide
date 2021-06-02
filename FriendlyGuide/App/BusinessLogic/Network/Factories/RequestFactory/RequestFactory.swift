@@ -42,4 +42,16 @@ class RequestFactory {
                            sessionManager: commonSession)
     }
     
+    func makeGetNewsFactory() -> GetNewsFactory {
+        let encoder = URLPathParameterEncoder()
+        return GetNews(encoder: encoder,
+                           sessionManager: commonSession)
+    }
+    
+    func makeGetPlacesFactory() -> GetPlacesFactory {
+        let encoder = URLPathParameterEncoder()
+        return GetPlaces(encoder: encoder,
+                           sessionManager: commonSession)
+    }
+    
 }

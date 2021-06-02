@@ -9,12 +9,15 @@ import Foundation
 
 struct Places: Codable, Hashable {
     let id: Int
-    let title, slug, address, phone: String
-    let siteURL: String
-    let subway: String
-    let isClosed: Bool
-    let location: String
-    let hasParkingLot: Bool
+    let title: String
+    let slug: String
+    let address: String?
+    let phone: String?
+    let siteURL: String?
+    let subway: String?
+    let isClosed: Bool?
+    let location: String?
+    let hasParkingLot: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id, title, slug, address, phone

@@ -1,13 +1,13 @@
 //
-//  GetEventsList.swift
+//  GetNews.swift
 //  FriendlyGuide
 //
-//  Created by Alexander Pelevinov on 27.05.2021.
+//  Created by Alexander Pelevinov on 01.06.2021.
 //
 
 import Foundation
 
-class GetEventsList {
+class GetNews {
     let sessionManager: URLSession
     let encoder: ParameterEncoder
     init(
@@ -18,16 +18,17 @@ class GetEventsList {
     }
 }
 
-extension GetEventsList: AbstractRequestFactory {
-    typealias EndPoint = EventsListResource
+extension GetNews: AbstractRequestFactory {
+    typealias EndPoint = NewsListResource
     func request(withCompletion completion:
                     @escaping (Result<EndPoint.ModelType, NetworkingError>) -> Void) {}
 }
 
-extension GetEventsList: GetEventsListFactory {
-    func getEventsList(completionHandler: @escaping (Result<EndPoint.ModelType,
-                                                            NetworkingError>) -> Void) {
-        let route = EventsListResource()
+extension GetNews: GetNewsFactory {
+    func getNews(cityTag: String,
+                 completionHandler: @escaping (Result<EndPoint.ModelType,
+                                                      NetworkingError>) -> Void) {
+        let route = NewsListResource(cityTag: cityTag)
         request(route, withCompletion: completionHandler)
     }
 }
