@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsCell: UICollectionViewCell, SelfConfiguringCell {
 
@@ -13,21 +14,21 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
     static var reuseId: String = "NewsCell"
 
     // MARK: - UI components
-    private(set) lazy var titlelabel = UILabel(text: "TestNameForEVENTLargeTestadwdawaw",
+    private(set) lazy var titlelabel = UILabel(text: "",
                                                font: .smallTitleFont(),
                                                textColor: .black,
                                                numberOfLines: 2,
                                                textAlignment: .left,
                                                adjustsFontSizeToFitWidth: true)
 
-    private(set) lazy var subTitlelabel = UILabel(text: "TestNameForEVENTLargeTestadwdawaw",
+    private(set) lazy var subTitlelabel = UILabel(text: "",
                                                font: .subTitleFont(),
                                                textColor: .systemGray,
                                                numberOfLines: 2,
                                                textAlignment: .left
                                               )
 
-    private(set) lazy var imageView = UIImageView(cornerRadius: 35)
+    private(set) lazy var imageView = UIImageView(cornerRadius: 20)
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -41,9 +42,10 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
 
     // MARK: - Configure
     func configure<U>(with value: U) where U : Hashable {
-        guard let news: MocNews = value as? MocNews else { return }
+        guard let news: News = value as? News else { return }
         titlelabel.text = news.title
-        imageView.image = UIImage(named: "mocImage")
+        subTitlelabel.text = news.description
+        imageView.kf.setImage(with: URL(string: news.images.first?.image ?? ""))
     }
     // MARK: - Configuration Methods
     private func setupLayer() {
@@ -51,11 +53,22 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
     }
     private func setupConstraints() {
         addSubview(imageView)
+        addSubview(titlelabel)
+        addSubview(subTitlelabel)
         NSLayoutConstraint.activate([
-            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 5),
-            imageView.heightAnchor.constraint(equalToConstant: 70),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+            imageView.heightAnchor.constraint(equalTo: heightAnchor),
+            imageView.widthAnchor.constraint(equalTo: heightAnchor),
+
+            titlelabel.topAnchor.constraint(equalTo: topAnchor),
+            titlelabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 7),
+            titlelabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
+
+            subTitlelabel.topAnchor.constraint(equalTo: titlelabel.bottomAnchor, constant: 2),
+            subTitlelabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 5),
+            subTitlelabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
+            subTitlelabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
         ])
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 struct PlacesListResource: EndPointType {
     typealias ModelType = PlacesList
     var host: BaseURL = .kudago
-    var path: Path = .news
+    var path: Path = .places
     var httpMethod: HTTPMethod = .get
     var cityTag: String
     var showingSince: String
@@ -20,7 +20,7 @@ struct PlacesListResource: EndPointType {
             URLQueryItem(name: "lang", value: "ru"),
             URLQueryItem(name: "location", value: cityTag),
             URLQueryItem(name: "showing_since", value: showingSince),
-           // URLQueryItem(name: "fields", value: "images")
+            URLQueryItem(name: "fields", value: "id,title,coords,address,images,subway")
         ]
     }
 }

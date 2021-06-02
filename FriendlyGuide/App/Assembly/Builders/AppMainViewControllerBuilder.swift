@@ -14,9 +14,13 @@ final class AppMainViewControllerBuilder {
     private lazy var userSettings: UserSettings = {
         UserSettings()
     }()
+    private lazy var travelDataProvider: TravelDataProvider = {
+        TravelDataProvider()
+    }()
     
     func build() -> UIViewController {
         TabBarController(requestFactory: requestFactory,
-                         userSettings: userSettings)
+                         userSettings: userSettings,
+                         dataProvider: travelDataProvider)
     }
 }

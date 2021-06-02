@@ -43,7 +43,6 @@ class EventCell: UICollectionViewCell, SelfConfiguringCell {
         titlelabel.text = event.title
         imageView.kf.setImage(with: URL(string: event.images.first?.image ?? ""))
         subTitlelabel.datesToString(dateElement: event.dates.first)
-
     }
     // MARK: - Configuration Methods
     private func setupLayer() {
