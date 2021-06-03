@@ -12,7 +12,7 @@ class TravelScreenView: UIView {
     var refreshControl = UIRefreshControl(title: "Загрузка...")
 
     var cityNameView = UIButton(title: "Выберите город",
-                                image: UIImage(systemName: "mappin.and.ellipse"),
+                                image: UIImage(systemName: "flag"),
                                 font: .smallButtonFont(),
                                 cornerRadius: 0,
                                 tintColor: .darkGray)
