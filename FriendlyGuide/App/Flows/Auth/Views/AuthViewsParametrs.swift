@@ -32,6 +32,10 @@ struct AuthViewsParametrs {
     static let textFieldBackgroundColor: UIColor = .white
     
     
+    static func errorViewOffset(inView: UIView) -> CGFloat {
+        return inView.frame.height * 0.25
+    }
+    
     static var placeholderInsetsView: UIView {
         UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0),
                              size: CGSize(width: 30, height: 1)))

@@ -17,7 +17,7 @@ final class TimeredLableView: UIView {
         let backgroundColor: UIColor
         let textColor: UIColor
         
-        static let error = Style(backgroundColor: .red,
+        static let error = Style(backgroundColor: .systemRed,
                                  textColor: .white)
         static let normal = Style(backgroundColor: .white,
                                   textColor: .black)

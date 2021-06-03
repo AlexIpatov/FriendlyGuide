@@ -80,7 +80,7 @@ extension LogInViewController: LogInViewDelegate {
     private func update(textField: UITextField, with error: Error?) {
         error.map { error in
             errorTimeredView.show(in: view,
-                                  y: 100,
+                                  y: AuthViewsParametrs.errorViewOffset(inView: view),
                                   with: error,
                                   duration: 1)
             textField.shake()
@@ -97,7 +97,7 @@ extension LogInViewController: LogInViewDelegate {
     func logInButtonWasTapped() {
         if model.login.isEmpty {
             errorTimeredView.show(in: view,
-                                  y: 100,
+                                  y: AuthViewsParametrs.errorViewOffset(inView: self.view),
                                   with: LogInControllerError.noLogin,
                                   duration: 1)
             return
@@ -105,7 +105,7 @@ extension LogInViewController: LogInViewDelegate {
         
         if model.password.isEmpty {
             errorTimeredView.show(in: view,
-                                  y: 100,
+                                  y: AuthViewsParametrs.errorViewOffset(inView: self.view),
                                   with: LogInControllerError.noPassword,
                                   duration: 1)
             return
@@ -121,7 +121,7 @@ extension LogInViewController: LogInViewDelegate {
             switch result {
             case .failure(let error):
                 self.errorTimeredView.show(in: self.view,
-                                           y: 100,
+                                           y: AuthViewsParametrs.errorViewOffset(inView: self.view),
                                            with: error,
                                            duration: 1)
                 self.customView.showRegisterButton()
@@ -146,7 +146,7 @@ extension LogInViewController: LogInViewDelegate {
             guard canEvaluate else {
                 guard let error = error else { return }
                 self.errorTimeredView.show(in: self.view,
-                                           y: 100,
+                                           y: AuthViewsParametrs.errorViewOffset(inView: self.view),
                                            with: error,
                                            duration: 1)
                 return
@@ -160,7 +160,7 @@ extension LogInViewController: LogInViewDelegate {
                 guard success else {
                     guard let error = error else { return }
                     self.errorTimeredView.show(in: self.view,
-                                               y: 100,
+                                               y: AuthViewsParametrs.errorViewOffset(inView: self.view),
                                                with: error,
                                                duration: 1)
                     return
