@@ -142,3 +142,4 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
         print("selectedOnSliderEvent = \(String(describing: selectedOnSliderEvent))")
     }
 }
+
