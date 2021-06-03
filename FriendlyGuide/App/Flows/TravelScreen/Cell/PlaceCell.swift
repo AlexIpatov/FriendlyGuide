@@ -20,7 +20,7 @@ class PlaceCell: UICollectionViewCell, SelfConfiguringCell {
                                                numberOfLines: 2,
                                                textAlignment: .left)
 
-    private(set) lazy var subTitlelabel = UILabel(text: "TestNameForEVENTLargeTestadwdawaw",
+    private(set) lazy var subTitlelabel = UILabel(text: "",
                                                font: .subTitleFont(),
                                                textColor: .systemGray,
                                                numberOfLines: 2,
@@ -41,7 +41,12 @@ class PlaceCell: UICollectionViewCell, SelfConfiguringCell {
     func configure<U>(with value: U) where U : Hashable {
         guard let place: Places = value as? Places else { return }
         titlelabel.text = place.title
-        imageView.kf.setImage(with: URL(string: place.images.first?.image ?? ""))
+        if let subway = place.subway {
+            subTitlelabel.text = "м.\(subway)"
+        } else {
+            subTitlelabel.text = place.address
+        }
+        imageView.kf.setImage(with: URL(string: place.images?.first?.image ?? ""))
     }
     //MARK: - Configuration Methods
     private func setupLayer() {

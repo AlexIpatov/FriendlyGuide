@@ -19,6 +19,7 @@ class TravelScreenViewController: UIViewController {
     lazy var currentCity: CityName? = userSettings.loadCurrentCity() {
         didSet {
             userSettings.saveCurrentCity(city: currentCity)
+            setCityTitle() 
             requestData()
         }
     }
@@ -46,6 +47,8 @@ class TravelScreenViewController: UIViewController {
         createDataSource()
         requestData()
         addTargets()
+        setCityTitle()
+        configNavigationBar()
     }
     override func loadView() {
         view = travelScreenView
@@ -55,11 +58,18 @@ class TravelScreenViewController: UIViewController {
         view.backgroundColor = .white
         self.title = "Путешествие"
     }
+    // MARK: - Config navigation bar
+    private func configNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: travelScreenView.cityNameView)
+    }
+    private func setCityTitle() {
+        guard let cityTitle = currentCity?.name else {return}
+        travelScreenView.cityNameView.setTitle(cityTitle, for: .normal)
+    }
     // MARK: - CollectionView set up
     var dataSource: UICollectionViewDiffableDataSource<TravelSection, AnyHashable>?
     private func setupCollectionView() {
-        travelScreenView.collectionView.register(SelectCityCell.self,
-                                                 forCellWithReuseIdentifier: SelectCityCell.reuseId)
         travelScreenView.collectionView.register(EventCell.self,
                                                  forCellWithReuseIdentifier: EventCell.reuseId)
         travelScreenView.collectionView.register(PlaceCell.self,
@@ -73,11 +83,10 @@ class TravelScreenViewController: UIViewController {
     }
     private func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<TravelSection, AnyHashable>()
-        snapshot.appendSections([.city, .events, .places, .news])
+        snapshot.appendSections([.events, .places, .news])
         snapshot.appendItems(events, toSection: .events)
         snapshot.appendItems(places, toSection: .places)
         snapshot.appendItems(news, toSection: .news)
-        snapshot.appendItems([currentCity], toSection: .city)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
     // MARK: - Request data methods
@@ -89,10 +98,12 @@ class TravelScreenViewController: UIViewController {
             guard let self = self else { return }
             switch response {
             case .success((let events, let news, let places)):
-                self.events = events
-                self.news = news
-                self.places = places
-                self.reloadData()
+                DispatchQueue.main.async {
+                    self.events = events
+                    self.news = news
+                    self.places = places
+                    self.reloadData()
+                }
             case .failure(let error):
                 self.showAlert(with: "Ошибка!", and: error.localizedDescription)
             }
@@ -111,11 +122,6 @@ extension TravelScreenViewController {
                                                                             fatalError("Unknown section kind")
                                                                         }
                                                                         switch section {
-                                                                        case .city:
-                                                                            return self.configure(collectionView: collectionView,
-                                                                                                  cellType: SelectCityCell.self,
-                                                                                                  with: item,
-                                                                                                  for: indexPath)
                                                                         case .events:
                                                                             return self.configure(collectionView: collectionView,
                                                                                                   cellType: EventCell.self,
@@ -156,14 +162,9 @@ extension TravelScreenViewController: UICollectionViewDelegate {
             guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Event else { return }
             let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id)
             detailVC.modalPresentationStyle = .fullScreen
-            present(detailVC, animated: true, completion: nil)
+            navigationController?.present(detailVC, animated: true)
         case .news, .places:
             print("tapped")
-        case .city:
-            let cityVC = CitiesViewController(requestFactory: requestFactory)
-            cityVC.modalPresentationStyle = .fullScreen
-            cityVC.selectionDelegate = self
-            present(cityVC, animated: true, completion: nil)
         }
     }
 }
@@ -175,12 +176,21 @@ extension TravelScreenViewController: CitiesViewControllerDelegate {
 // MARK: - Actions
 extension TravelScreenViewController {
     func addTargets() {
-        travelScreenView.refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        travelScreenView.refreshControl.addTarget(self, action: #selector(refreshData),
+                                                  for: .valueChanged)
+        travelScreenView.cityNameView.addTarget(self, action: #selector(cityNameViewTapped),
+                                                for: .touchUpInside)
     }
     @objc func refreshData() {
         travelScreenView.refreshControl.beginRefreshing()
         requestData()
         travelScreenView.refreshControl.endRefreshing()
+    }
+    @objc func cityNameViewTapped() {
+        let cityVC = CitiesViewController(requestFactory: requestFactory)
+        cityVC.modalPresentationStyle = .fullScreen
+        cityVC.selectionDelegate = self
+        present(cityVC, animated: true, completion: nil)
     }
 }
 // MARK: - Mock structs
