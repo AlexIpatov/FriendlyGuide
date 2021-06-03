@@ -26,9 +26,4 @@ final class AppStartManager {
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
     }
-    
-//    let tabBarController = TabBarController(requestFactory: requestFactory,
-//                                            userSettings: userSettings)
-//    window?.rootViewController = tabBarController
-//    window?.makeKeyAndVisible()
 }
