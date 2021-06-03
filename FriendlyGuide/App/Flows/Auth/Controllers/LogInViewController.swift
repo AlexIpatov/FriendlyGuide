@@ -95,10 +95,6 @@ extension LogInViewController: LogInViewDelegate {
     }
     
     func logInButtonWasTapped() {
-        login(with: model.login, and: model.password)
-    }
-    
-    private func login(with login: String, and password: String) {
         if model.login.isEmpty {
             errorTimeredView.show(in: view,
                                   y: 100,
@@ -114,7 +110,11 @@ extension LogInViewController: LogInViewDelegate {
                                   duration: 1)
             return
         }
-        
+
+        login(with: model.login, and: model.password)
+    }
+    
+    private func login(with login: String, and password: String) {
         chatManager.login(login: model.login, password: model.password) { [weak self] result in
             guard let self = self else { return }
             

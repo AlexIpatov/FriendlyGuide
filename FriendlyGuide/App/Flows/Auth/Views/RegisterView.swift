@@ -25,6 +25,8 @@ final class RegisterView: UIView {
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "login"
+        textField.leftView = AuthViewsParametrs
+            .placeholderInsetsImageView(with: "person")
         
         setUpCommonParametrs(for: textField)
         return textField
@@ -32,6 +34,8 @@ final class RegisterView: UIView {
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "password"
+        textField.leftView = AuthViewsParametrs
+            .placeholderInsetsImageView(with: "key")
         
         setUpCommonParametrs(for: textField)
         return textField
@@ -39,6 +43,8 @@ final class RegisterView: UIView {
     private lazy var confirmPasswordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "confirm password"
+        textField.leftView = AuthViewsParametrs
+            .placeholderInsetsImageView(with: "key.fill")
         
         setUpCommonParametrs(for: textField)
         return textField
@@ -129,7 +135,6 @@ final class RegisterView: UIView {
     
     private func setUpCommonParametrs(for textField: UITextField) {
         textField.delegate = self
-        textField.leftView = AuthViewsParametrs.placeholderInsetsView
         textField.leftViewMode = .always
     }
     

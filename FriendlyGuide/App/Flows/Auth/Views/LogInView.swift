@@ -16,7 +16,7 @@ protocol LoginViewRepresentable {
 final class LogInView: UIView {
     private lazy var logInButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Log In", for: .normal)
+        button.setTitle("Войти", for: .normal)
         button.addTarget(self, action: #selector(logInButtonWasTapped(_:)),
                          for: .touchUpInside)
         setUpCommonParametrs(for: button)
@@ -24,27 +24,11 @@ final class LogInView: UIView {
     }()
     private lazy var gotoRegisterButton: UIButton = {
         let button = UIButton()
-        button.isHidden = true
-        
-        button.setTitle("Register", for: .normal)
+        button.setTitle("Зареристрироваться", for: .normal)
         button.addTarget(self, action: #selector(gotoRegisterButtonWasTapped(_:)),
                          for: .touchUpInside)
         setUpCommonParametrs(for: button)
         return button
-    }()
-    private lazy var loginTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "login"
-        
-        setUpCommonParametrs(for: textField)
-        return textField
-    }()
-    private lazy var passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "password"
-        
-        setUpCommonParametrs(for: textField)
-        return textField
     }()
     private lazy var useBiometricButton: UIButton = {
         let button = UIButton()
@@ -62,6 +46,32 @@ final class LogInView: UIView {
         button.addTarget(self, action: #selector(useBiometricButtonWasTaped(_:)),
                          for: .touchUpInside)
         return button
+    }()
+    private lazy var loginTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "login"
+        textField.leftView = AuthViewsParametrs
+            .placeholderInsetsImageView(with: "person")
+        
+        setUpCommonParametrs(for: textField)
+        return textField
+    }()
+    private lazy var passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "password"
+        textField.leftView = AuthViewsParametrs
+            .placeholderInsetsImageView(with: "key")
+        
+        setUpCommonParametrs(for: textField)
+        return textField
+    }()
+    private lazy var buttonsStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+                                        logInButton,
+                                        useBiometricButton ],
+                                    axis: .vertical,
+                                    spacing: AuthViewsParametrs.buttonsSpacing)
+        return stackView
     }()
     
     weak var delegate: LogInViewDelegate?
@@ -90,17 +100,19 @@ final class LogInView: UIView {
         
     private func setUpCommonParametrs(for textField: UITextField) {
         textField.delegate = self
-        textField.leftView = AuthViewsParametrs.placeholderInsetsView
         textField.leftViewMode = .always
     }
     
     private func setUpCommonParametrs(for button: UIButton) {
         button.layer.cornerRadius = AuthViewsParametrs.cornerRadius
-        button.layer.borderWidth = AuthViewsParametrs.borderWidth
-        button.layer.borderColor = AuthViewsParametrs.borderColor
+        button.layer.shadowColor = AuthViewsParametrs.shadowColor
+        button.layer.shadowRadius = AuthViewsParametrs.shadowRadius
+        button.layer.shadowOpacity = AuthViewsParametrs.shadowOpacity
+        button.layer.shadowOffset = .zero
         
         button.backgroundColor = AuthViewsParametrs.buttonBackgroundColor
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(AuthViewsParametrs.buttonTitleColor,
+                             for: .normal)
     }
     
     private func addGestureRecognizers() {
@@ -114,21 +126,27 @@ final class LogInView: UIView {
                                                                  passwordTextField ],
                                               axis: .vertical,
                                               spacing: AuthViewsParametrs.textFieldsSpacing)
-        textFieldsStackView.layer.borderWidth = AuthViewsParametrs.borderWidth
-        textFieldsStackView.layer.borderColor = AuthViewsParametrs.borderColor
         textFieldsStackView.layer.cornerRadius = AuthViewsParametrs.cornerRadius
+        textFieldsStackView.backgroundColor = AuthViewsParametrs.textFieldBackgroundColor
+        textFieldsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        
-        let buttonsStackView = UIStackView(arrangedSubviews: [
-                                            logInButton,
-                                            gotoRegisterButton,
-                                            useBiometricButton ],
-                                           axis: .vertical,
-                                           spacing: AuthViewsParametrs.buttonsSpacing)
+        let shadowView = UIView()
+        shadowView.layer.shadowOpacity = AuthViewsParametrs.shadowOpacity
+        shadowView.layer.shadowRadius = AuthViewsParametrs.shadowRadius
+        shadowView.layer.shadowOffset = AuthViewsParametrs.shadowOffset
+        shadowView.layer.shadowColor = AuthViewsParametrs.shadowColor
+        shadowView.layer.shadowPath = CGPath(rect: CGRect(x: 0, y: 0,
+                                                          width: frame.width * 0.7,
+                                                          height: textFieldsStackView.arrangedSubviews.reduce(0) { height, view in
+                                                            if view is UITextField {
+                                                                return height + AuthViewsParametrs.textFieldHeight
+                                                            } else { return height }
+                                                          }), transform: nil)
+        shadowView.addSubview(textFieldsStackView)
         
         
         let mainStackView = UIStackView(arrangedSubviews: [
-                                            textFieldsStackView,
+                                            shadowView,
                                             buttonsStackView ],
                                         axis: .vertical,
                                         spacing: AuthViewsParametrs.textFieldsButtonsSpacing)
@@ -139,8 +157,17 @@ final class LogInView: UIView {
         
         
         NSLayoutConstraint.activate([
+            textFieldsStackView.topAnchor.constraint(equalTo: shadowView.topAnchor),
+            textFieldsStackView.bottomAnchor.constraint(equalTo: shadowView.bottomAnchor),
+            textFieldsStackView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
+            textFieldsStackView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
+            
+            
             loginTextField.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.textFieldHeight),
             passwordTextField.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.textFieldHeight),
+            
+            logInButton.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.buttonHeight),
+            gotoRegisterButton.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.buttonHeight),
             
             mainStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             mainStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -177,7 +204,8 @@ extension LogInView: LoginViewRepresentable {
         UIView.transition(with: gotoRegisterButton,
                           duration: 0.8,
                           options: .transitionCrossDissolve) { [weak self] in
-            self?.gotoRegisterButton.isHidden = false
+            guard let self = self else { return }
+            self.buttonsStackView.addArrangedSubview(self.gotoRegisterButton)
         }
     }
 }
