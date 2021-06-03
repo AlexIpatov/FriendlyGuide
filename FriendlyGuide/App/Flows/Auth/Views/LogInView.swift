@@ -122,7 +122,6 @@ final class LogInView: UIView {
     
     private func configureUI() {
         let textFieldsStackView = UIStackView(arrangedSubviews: [loginTextField,
-                                                                 AuthViewsParametrs.separatorView,
                                                                  passwordTextField ],
                                               axis: .vertical,
                                               spacing: AuthViewsParametrs.textFieldsSpacing)
@@ -162,15 +161,14 @@ final class LogInView: UIView {
             textFieldsStackView.leadingAnchor.constraint(equalTo: shadowView.leadingAnchor),
             textFieldsStackView.trailingAnchor.constraint(equalTo: shadowView.trailingAnchor),
             
-            
             loginTextField.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.textFieldHeight),
             passwordTextField.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.textFieldHeight),
             
             logInButton.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.buttonHeight),
             gotoRegisterButton.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.buttonHeight),
             
-            mainStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             mainStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: frame.height * 0.4),
             mainStackView.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
         ])
     }

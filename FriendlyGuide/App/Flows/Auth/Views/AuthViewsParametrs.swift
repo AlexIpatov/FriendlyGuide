@@ -21,12 +21,12 @@ struct AuthViewsParametrs {
     
     
     static let buttonHeight: CGFloat = 50
-    static let buttonBackgroundColor: UIColor = .blue
+    static let buttonBackgroundColor: UIColor = .systemBlue
     static let buttonTitleColor: UIColor = .white
     
     static let textFieldsSpacing: CGFloat = 0
-    static let textFieldsButtonsSpacing: CGFloat = 60
-    static let buttonsSpacing: CGFloat = 10
+    static let textFieldsButtonsSpacing: CGFloat = 30
+    static let buttonsSpacing: CGFloat = 20
     
     static let textFieldHeight: CGFloat = 45
     static let textFieldBackgroundColor: UIColor = .white
