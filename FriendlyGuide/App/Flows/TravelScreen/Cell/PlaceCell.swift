@@ -41,7 +41,8 @@ class PlaceCell: UICollectionViewCell, SelfConfiguringCell {
     func configure<U>(with value: U) where U : Hashable {
         guard let place: Places = value as? Places else { return }
         titlelabel.text = place.title
-        if let subway = place.subway {
+        if let subway = place.subway,
+           subway != ""{
             subTitlelabel.text = "м.\(subway)"
         } else {
             subTitlelabel.text = place.address

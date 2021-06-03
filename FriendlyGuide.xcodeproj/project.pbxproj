@@ -1111,8 +1111,8 @@
 				C5C316E62660F6AC00518405 /* EventCell.swift */,
 				C5C316E72660F6AC00518405 /* NewsCell.swift */,
 				C5C316E82660F6AC00518405 /* SelectCityCell.swift */,
-				C5C316E92660F6AC00518405 /* CollectionViewElements */,
 				C5C316EB2660F6AC00518405 /* PlaceCell.swift */,
+				C5C316E92660F6AC00518405 /* CollectionViewElements */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
