@@ -11,8 +11,8 @@ final class AppStartManager {
     
     private var window: UIWindow?
     
-    private lazy var rootViewController: UIViewController = {
-        LogInViewControllerBuilder()
+    private lazy var rootViewController: (LogInViewDelegate & UIViewController) = {
+        AuthControllersFactory(window: window)
             .build(with: window?.bounds ?? .zero)
     }()
     

@@ -8,15 +8,17 @@
 import Foundation
 
 protocol RegisterModelRepresentable: AnyObject {
+    var delegate: RegisterModelDelegate? { get set }
+    
     var name: String { get }
     var login: String { get }
     var password: String { get }
     var confirmPassword: String { get }
 
-    func tryToUpdate(name: String) -> Result<Bool, Error>
-    func tryToUpdate(login: String) -> Result<Bool, Error>
-    func tryToUpdate(password: String) -> Result<Bool, Error>
-    func tryToUpdate(confirmPassword: String) -> Result<Bool, Error>
+    func tryToUpdate(name: String) -> Error?
+    func tryToUpdate(login: String) -> Error?
+    func tryToUpdate(password: String) -> Error?
+    func tryToUpdate(confirmPassword: String) -> Error?
 }
 
 
@@ -32,52 +34,73 @@ final class RegisterModel {
         }
     }
     
-    private(set) var name: String = ""
-    private(set) var login: String = ""
-    private(set) var password: String = ""
-    private(set) var confirmPassword: String = ""
+    private(set) var name: String = "" {
+        didSet { sendNotificationsIfNeed() }
+    }
+    private(set) var login: String = "" {
+        didSet { sendNotificationsIfNeed() }
+    }
+    private(set) var password: String = "" {
+        didSet { sendNotificationsIfNeed() }
+    }
+    private(set) var confirmPassword: String = "" {
+        didSet { sendNotificationsIfNeed() }
+    }
 
     private let passwordValidator: PasswordValidator
     private let loginValidator: LoginValidator
     
+    weak var delegate: RegisterModelDelegate?
     init(passwordValidator: PasswordValidator,
          loginValidator: LoginValidator) {
         self.passwordValidator = passwordValidator
         self.loginValidator = loginValidator
     }
+    
+    private func sendNotificationsIfNeed() {
+        if !login.isEmpty &&
+            !name.isEmpty &&
+            !password.isEmpty &&
+            !confirmPassword.isEmpty {
+            delegate?.prepareToShowSignInButton()
+        }
+        
+        if !password.isEmpty {
+            delegate?.prepareToShowConfirmPasswordTextField()
+        }
+    }
 }
 
 extension RegisterModel: RegisterModelRepresentable {
-    func tryToUpdate(login: String) -> Result<Bool, Error> {
+    func tryToUpdate(login: String) -> Error? {
         do {
             try loginValidator.validate(login: login)
             self.login = login
-            return .success(true)
+            return nil
         } catch {
-            return .failure(error)
+            return error
         }
     }
     
-    func tryToUpdate(password: String) -> Result<Bool, Error> {
+    func tryToUpdate(password: String) -> Error? {
         do {
             try passwordValidator.validate(password: password)
             self.password = password
-            return .success(true)
+            return nil
         } catch {
-            return .failure(error)
+            return error
         }
     }
     
-    func tryToUpdate(confirmPassword: String) -> Result<Bool, Error> {
+    func tryToUpdate(confirmPassword: String) -> Error? {
         if password == confirmPassword {
             self.confirmPassword = confirmPassword
-            return .success(true)
-        } else { return .failure(RegisterError.pasworsdMismatch) }
+            return nil
+        } else { return RegisterError.pasworsdMismatch }
     }
     
-    func tryToUpdate(name: String) -> Result<Bool, Error> {
+    func tryToUpdate(name: String) -> Error? {
         self.name = name
-        return .success(true)
+        return nil
     }
 }
-

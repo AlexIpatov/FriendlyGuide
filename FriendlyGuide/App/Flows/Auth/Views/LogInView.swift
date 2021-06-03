@@ -8,89 +8,63 @@
 import UIKit
 
 protocol LoginViewRepresentable {
-    func showRegisterButton()
-    func shake(_ textField: UITextField)
-}
-
-fileprivate struct Constants {
-    static let cornerRadius: CGFloat = 10
-    static let borderWidth: CGFloat = 2
-    static let textFieldHeight: CGFloat = 40
-    static let textFieldsButtonsSpacing: CGFloat = 30
-    static let buttonsSpacing: CGFloat = 10
-    static let textFieldsSpacing: CGFloat = 0
+    var delegate: LogInViewDelegate? { get set }
     
-    static var placeholderInsetsView: UIView {
-        UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0),
-                             size: CGSize(width: 10, height: 1)))
-    }
+    func showRegisterButton()
 }
 
 final class LogInView: UIView {
     private lazy var logInButton: UIButton = {
         let button = UIButton()
-        
-        button.layer.cornerRadius = Constants.cornerRadius
-        button.backgroundColor = UIColor.white
-        button.layer.borderWidth = Constants.borderWidth
-        button.layer.borderColor = UIColor.black.cgColor
-        
-        button.setTitleColor(.black, for: .normal)
         button.setTitle("Log In", for: .normal)
         button.addTarget(self, action: #selector(logInButtonWasTapped(_:)),
                          for: .touchUpInside)
-        
+        setUpCommonParametrs(for: button)
         return button
     }()
     private lazy var gotoRegisterButton: UIButton = {
         let button = UIButton()
-        
-        button.layer.cornerRadius = Constants.cornerRadius
-        button.backgroundColor = UIColor.white
-        button.layer.borderWidth = Constants.borderWidth
-        button.layer.borderColor = UIColor.black.cgColor
         button.isHidden = true
         
-        button.setTitleColor(.black, for: .normal)
         button.setTitle("Register", for: .normal)
         button.addTarget(self, action: #selector(gotoRegisterButtonWasTapped(_:)),
                          for: .touchUpInside)
-        
+        setUpCommonParametrs(for: button)
         return button
-
     }()
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
-        
-        textField.delegate = self
         textField.placeholder = "login"
-        textField.leftView = Constants.placeholderInsetsView
-        textField.leftViewMode = .always
         
+        setUpCommonParametrs(for: textField)
         return textField
     }()
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        
-        textField.delegate = self
         textField.placeholder = "password"
-        textField.leftView = Constants.placeholderInsetsView
-        textField.leftViewMode = .always
         
+        setUpCommonParametrs(for: textField)
         return textField
     }()
     private lazy var useBiometricButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "faceid")?
-                            .withConfiguration(UIImage.SymbolConfiguration(font: .systemFont(ofSize: 50))), for: .normal)
+        
+        let imageConfiguration = UIImage
+            .SymbolConfiguration(font: .systemFont(ofSize: 50))
+        
+        let image = UIImage(systemName: "faceid",
+                            withConfiguration: imageConfiguration)
+        
+        button.setImage(image, for: .normal)
         button.imageView?.clipsToBounds = true
         button.imageView?.contentMode = .scaleAspectFit
-        button.addTarget(self, action: #selector(useBiometricButtonWasTaped(_:)), for: .touchUpInside)
+        
+        button.addTarget(self, action: #selector(useBiometricButtonWasTaped(_:)),
+                         for: .touchUpInside)
         return button
     }()
     
     weak var delegate: LogInViewDelegate?
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
@@ -113,30 +87,51 @@ final class LogInView: UIView {
     @objc private func useBiometricButtonWasTaped(_ sender: UIButton) {
         delegate?.useBiometricButtonWasTaped()
     }
+        
+    private func setUpCommonParametrs(for textField: UITextField) {
+        textField.delegate = self
+        textField.leftView = AuthViewsParametrs.placeholderInsetsView
+        textField.leftViewMode = .always
+    }
+    
+    private func setUpCommonParametrs(for button: UIButton) {
+        button.layer.cornerRadius = AuthViewsParametrs.cornerRadius
+        button.layer.borderWidth = AuthViewsParametrs.borderWidth
+        button.layer.borderColor = AuthViewsParametrs.borderColor
+        
+        button.backgroundColor = AuthViewsParametrs.buttonBackgroundColor
+        button.setTitleColor(.black, for: .normal)
+    }
+    
+    private func addGestureRecognizers() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing))
+        addGestureRecognizer(tap)
+    }
     
     private func configureUI() {
-        let separatorView = UIView()
-        separatorView.backgroundColor = .black
-        separatorView.isUserInteractionEnabled = false
-        
-        let textFieldsStackView = UIStackView(arrangedSubviews: [loginTextField, separatorView, passwordTextField],
+        let textFieldsStackView = UIStackView(arrangedSubviews: [loginTextField,
+                                                                 AuthViewsParametrs.separatorView,
+                                                                 passwordTextField ],
                                               axis: .vertical,
-                                              spacing: Constants.textFieldsSpacing)
-        textFieldsStackView.layer.borderWidth = Constants.borderWidth
-        textFieldsStackView.layer.borderColor = UIColor.black.cgColor
-        textFieldsStackView.layer.cornerRadius = Constants.cornerRadius
+                                              spacing: AuthViewsParametrs.textFieldsSpacing)
+        textFieldsStackView.layer.borderWidth = AuthViewsParametrs.borderWidth
+        textFieldsStackView.layer.borderColor = AuthViewsParametrs.borderColor
+        textFieldsStackView.layer.cornerRadius = AuthViewsParametrs.cornerRadius
         
         
-        
-        let buttonsStackView = UIStackView(arrangedSubviews: [logInButton, gotoRegisterButton, useBiometricButton],
+        let buttonsStackView = UIStackView(arrangedSubviews: [
+                                            logInButton,
+                                            gotoRegisterButton,
+                                            useBiometricButton ],
                                            axis: .vertical,
-                                           spacing: Constants.buttonsSpacing)
+                                           spacing: AuthViewsParametrs.buttonsSpacing)
         
         
-        
-        let mainStackView = UIStackView(arrangedSubviews: [textFieldsStackView, buttonsStackView],
+        let mainStackView = UIStackView(arrangedSubviews: [
+                                            textFieldsStackView,
+                                            buttonsStackView ],
                                         axis: .vertical,
-                                        spacing: Constants.textFieldsButtonsSpacing)
+                                        spacing: AuthViewsParametrs.textFieldsButtonsSpacing)
         mainStackView.alignment = .fill
         mainStackView.distribution = .fill
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -144,19 +139,13 @@ final class LogInView: UIView {
         
         
         NSLayoutConstraint.activate([
-            loginTextField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight),
-            passwordTextField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight),
-            separatorView.heightAnchor.constraint(equalToConstant: Constants.borderWidth),
+            loginTextField.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.textFieldHeight),
+            passwordTextField.heightAnchor.constraint(equalToConstant: AuthViewsParametrs.textFieldHeight),
             
             mainStackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             mainStackView.centerXAnchor.constraint(equalTo: centerXAnchor),
             mainStackView.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
         ])
-    }
-    
-    private func addGestureRecognizers() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing))
-        addGestureRecognizer(tap)
     }
 }
 
@@ -190,20 +179,5 @@ extension LogInView: LoginViewRepresentable {
                           options: .transitionCrossDissolve) { [weak self] in
             self?.gotoRegisterButton.isHidden = false
         }
-    }
-    
-    func shake(_ textField: UITextField) {
-        let animation = CABasicAnimation(keyPath: "position")
-        animation.duration = 0.07
-        animation.repeatCount = 4
-        animation.autoreverses = true
-        
-        animation.fromValue = CGPoint(x: textField.center.x - 10,
-                                      y: textField.center.y)
-        
-        animation.toValue = CGPoint(x: textField.center.x + 10,
-                                    y: textField.center.y) 
-
-        textField.layer.add(animation, forKey: "position")
     }
 }

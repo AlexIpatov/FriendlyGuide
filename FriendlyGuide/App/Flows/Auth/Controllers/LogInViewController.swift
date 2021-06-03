@@ -7,6 +7,19 @@
 
 import UIKit
 
+enum LogInControllerError: LocalizedError {
+    case noPassword, noLogin
+    
+    var errorDescription: String? {
+        switch self {
+        case .noLogin:
+            return "Необходимо ввести логин"
+        case .noPassword:
+            return "Для начала необходимо задать пароль"
+        }
+    }
+}
+
 protocol LogInViewDelegate: AnyObject {
     func logInButtonWasTapped()
     func useBiometricButtonWasTaped()
@@ -17,10 +30,7 @@ protocol LogInViewDelegate: AnyObject {
 }
 
 final class LogInViewController: UIViewController {
-    private var window: UIWindow? {
-        UIApplication.shared.windows.first
-    }
-    
+    private var window: UIWindow?
     private var model: LogInModelRepresentable
     private var chatManager: ChatManager
     private var customView: LoginViewRepresentable
@@ -36,13 +46,15 @@ final class LogInViewController: UIViewController {
          appMainViewControllerBuilder: AppMainViewControllerBuilder,
          localAuthRequestFactory: LocalAuthRequestFactory,
          keychainRequestFactory: KeychainRequestFactory,
-         chatManager: ChatManager) {
+         chatManager: ChatManager,
+         window: UIWindow?) {
         self.appMainViewControllerBuilder = appMainViewControllerBuilder
         self.registerViewControllerBuilder = registerViewControllerBuilder
         self.localAuthRequestFactory = localAuthRequestFactory
         self.keychainRequestFactory = keychainRequestFactory
         self.chatManager = chatManager
         self.customView = customView
+        self.window = window
         self.model = model
         
         super.init(nibName: nil, bundle: nil)
@@ -52,38 +64,33 @@ final class LogInViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    private var okAction: UIAlertAction {
-        UIAlertAction(title: "OK",
-                      style: .default)
-    }
 }
 
 extension LogInViewController: LogInViewDelegate {
     func textFieldDidEndEditing(_ textField: UITextField, login: String) {
-        if let error = model.tryToUpdate(login: login) {
-            errorTimeredView.show(in: view,
-                                  y: 100,
-                                  with: error,
-                                  duration: 1)
-            customView.shake(textField)
-            textField.text = ""
-        }
+        update(textField: textField,
+               with: model.tryToUpdate(login: login))
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, password: String) {
-        if let error = model.tryToUpdate(password: password) {
+        update(textField: textField,
+               with: model.tryToUpdate(password: password))
+    }
+    
+    private func update(textField: UITextField, with error: Error?) {
+        error.map { error in
             errorTimeredView.show(in: view,
                                   y: 100,
                                   with: error,
                                   duration: 1)
-            customView.shake(textField)
+            textField.shake()
             textField.text = ""
         }
     }
     
     func gotoRegisterButtonWasTapped() {
-        let registerVC = registerViewControllerBuilder.build()
+        let registerVC = registerViewControllerBuilder.build(with: view.bounds)
+        registerVC.modalPresentationStyle = .fullScreen
         navigationController?.present(registerVC, animated: true)
     }
     
@@ -92,20 +99,38 @@ extension LogInViewController: LogInViewDelegate {
     }
     
     private func login(with login: String, and password: String) {
+        if model.login.isEmpty {
+            errorTimeredView.show(in: view,
+                                  y: 100,
+                                  with: LogInControllerError.noLogin,
+                                  duration: 1)
+            return
+        }
+        
+        if model.password.isEmpty {
+            errorTimeredView.show(in: view,
+                                  y: 100,
+                                  with: LogInControllerError.noPassword,
+                                  duration: 1)
+            return
+        }
+        
         chatManager.login(login: model.login, password: model.password) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .failure(let error):
-                self.showErrorAlert(title: "Log In Error",
-                                    error: error, actions: [self.okAction])
+                self.errorTimeredView.show(in: self.view,
+                                           y: 100,
+                                           with: error,
+                                           duration: 1)
                 self.customView.showRegisterButton()
             case .success:
                 self.presentAppMainViewController()
             }
         }
     }
-
+    
     private func presentAppMainViewController() {
         let app = appMainViewControllerBuilder.build()
         window?.rootViewController = app
@@ -120,9 +145,10 @@ extension LogInViewController: LogInViewDelegate {
             
             guard canEvaluate else {
                 guard let error = error else { return }
-                self.showErrorAlert(title: "",
-                                     error: error,
-                                     actions: [self.okAction])
+                self.errorTimeredView.show(in: self.view,
+                                           y: 100,
+                                           with: error,
+                                           duration: 1)
                 return
             }
             
@@ -133,9 +159,10 @@ extension LogInViewController: LogInViewDelegate {
                 
                 guard success else {
                     guard let error = error else { return }
-                    self.showErrorAlert(title: "",
-                                         error: error,
-                                         actions: [self.okAction])
+                    self.errorTimeredView.show(in: self.view,
+                                               y: 100,
+                                               with: error,
+                                               duration: 1)
                     return
                 }
                 

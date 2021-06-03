@@ -35,6 +35,10 @@
 		217AB258266424D000A0AF66 /* BasicValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB257266424D000A0AF66 /* BasicValidator.swift */; };
 		217AB25E2664321700A0AF66 /* RegisterViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB25D2664321700A0AF66 /* RegisterViewControllerBuilder.swift */; };
 		217AB2602664324900A0AF66 /* AppMainViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB25F2664324900A0AF66 /* AppMainViewControllerBuilder.swift */; };
+		21A2E6E5266906AC00254342 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E4266906AC00254342 /* UIView + Extensions.swift */; };
+		21A2E6E72669095300254342 /* AuthControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E62669095300254342 /* AuthControllersFactory.swift */; };
+		21A2E6EA26690DE100254342 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E926690DE100254342 /* RegisterView.swift */; };
+		21A2E6EC266933FB00254342 /* AuthViewsParametrs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6EB266933FB00254342 /* AuthViewsParametrs.swift */; };
 		21ADF4FC2665032B00007D34 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADF4FB2665032B00007D34 /* LogInViewController.swift */; };
 		21ADF4FE26650C3A00007D34 /* LogInModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADF4FD26650C3A00007D34 /* LogInModel.swift */; };
 		21ADF500266511EB00007D34 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADF4FF266511EB00007D34 /* RegisterViewController.swift */; };
@@ -217,6 +221,10 @@
 		217AB257266424D000A0AF66 /* BasicValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicValidator.swift; sourceTree = "<group>"; };
 		217AB25D2664321700A0AF66 /* RegisterViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewControllerBuilder.swift; sourceTree = "<group>"; };
 		217AB25F2664324900A0AF66 /* AppMainViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainViewControllerBuilder.swift; sourceTree = "<group>"; };
+		21A2E6E4266906AC00254342 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
+		21A2E6E62669095300254342 /* AuthControllersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthControllersFactory.swift; sourceTree = "<group>"; };
+		21A2E6E926690DE100254342 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		21A2E6EB266933FB00254342 /* AuthViewsParametrs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewsParametrs.swift; sourceTree = "<group>"; };
 		21ADF4FB2665032B00007D34 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		21ADF4FD26650C3A00007D34 /* LogInModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInModel.swift; sourceTree = "<group>"; };
 		21ADF4FF266511EB00007D34 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -436,10 +444,9 @@
 		21421406266128590007A031 /* Builders */ = {
 			isa = PBXGroup;
 			children = (
+				21A2E6E826690B5700254342 /* Auth */,
 				21421407266128610007A031 /* ChatListViewControllerBuilder.swift */,
-				217AB25D2664321700A0AF66 /* RegisterViewControllerBuilder.swift */,
 				217AB25F2664324900A0AF66 /* AppMainViewControllerBuilder.swift */,
-				21ADF503266585A800007D34 /* LogInViewControllerBuilder.swift */,
 			);
 			path = Builders;
 			sourceTree = "<group>";
@@ -645,7 +652,9 @@
 		217AB26726643DE300A0AF66 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				21A2E6EB266933FB00254342 /* AuthViewsParametrs.swift */,
 				21C21C5E26617B280016CC23 /* LogInView.swift */,
+				21A2E6E926690DE100254342 /* RegisterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -657,6 +666,16 @@
 				21ADF4FF266511EB00007D34 /* RegisterViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		21A2E6E826690B5700254342 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				21A2E6E62669095300254342 /* AuthControllersFactory.swift */,
+				217AB25D2664321700A0AF66 /* RegisterViewControllerBuilder.swift */,
+				21ADF503266585A800007D34 /* LogInViewControllerBuilder.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		21B71F87265E7F2200460564 /* User Models */ = {
@@ -941,6 +960,7 @@
 				4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */,
 				C5C317F42665147400518405 /* UISegmentedControl + Extensions.swift */,
 				4A9E29AE2667E64800C3D5EA /* UIRefreshControl + Extensions.swift */,
+				21A2E6E4266906AC00254342 /* UIView + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1760,6 +1780,7 @@
 				C5C316DF2660F6A000518405 /* CitiesCell.swift in Sources */,
 				2150FEF2265BACCF0058FA89 /* ChatListViewController.swift in Sources */,
 				C9DEE2092666A36200C545CF /* GetPlaces.swift in Sources */,
+				21A2E6E72669095300254342 /* AuthControllersFactory.swift in Sources */,
 				C9DEE20E2666A36200C545CF /* GetCityNames.swift in Sources */,
 				C5C316602660E41C00518405 /* UILabel + Extensions.swift in Sources */,
 				217AB2542664243100A0AF66 /* PasswordValidationError.swift in Sources */,
@@ -1843,9 +1864,11 @@
 				21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */,
 				C96B94B52661208D007AD0DA /* Places.swift in Sources */,
 				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
+				21A2E6EC266933FB00254342 /* AuthViewsParametrs.swift in Sources */,
 				C9DEE2142666A36200C545CF /* GetEventDetailFactory.swift in Sources */,
 				C96B94AD26612079007AD0DA /* NewsList.swift in Sources */,
 				21B71F8B265E83B400460564 /* ChatAuthRequestFactory.swift in Sources */,
+				21A2E6EA26690DE100254342 /* RegisterView.swift in Sources */,
 				C96B949626612068007AD0DA /* EventParticipant.swift in Sources */,
 				C5C316F72660F6AC00518405 /* TravelScreenViewController.swift in Sources */,
 				C9DEE21B2666A3C400C545CF /* PlacesResource.swift in Sources */,
@@ -1876,6 +1899,7 @@
 				C96B949826612068007AD0DA /* EventPlace.swift in Sources */,
 				C9DEE2122666A36200C545CF /* GetEventsList.swift in Sources */,
 				C96B949526612068007AD0DA /* Event.swift in Sources */,
+				21A2E6E5266906AC00254342 /* UIView + Extensions.swift in Sources */,
 				C96B94B82661208D007AD0DA /* PlaceDetail.swift in Sources */,
 				21ADF5022665142900007D34 /* RegisterModel.swift in Sources */,
 				4A7F8D1B26662C6300C69FBD /* DetailNameCell.swift in Sources */,

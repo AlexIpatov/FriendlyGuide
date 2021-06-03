@@ -7,34 +7,54 @@
 
 import UIKit
 
+enum RegisterControllerError: LocalizedError {
+    case noName, noPassword, noConfirmPassword, noLogin
     
-protocol RegisterViewDelegate {
+    var errorDescription: String? {
+        switch self {
+        case .noName:
+            return "Для начала введите имя"
+        case .noLogin:
+            return "Необходимо ввести логин"
+        case .noPassword:
+            return "Для начала необходимо задать пароль"
+        case .noConfirmPassword:
+            return "Подтвердите пароль"
+        }
+    }
+}
+
+protocol RegisterViewDelegate: AnyObject {
     func registerButtonWasTapped()
     
-    func update(name: String) -> Bool
-    func update(login: String) -> Bool
-    func update(password: String) -> Bool
-    func update(confirmPassword: String) -> Bool
+    func textFieldDidEndEditing(_ textField: UITextField, name: String)
+    func textFieldDidEndEditing(_ textField: UITextField, login: String)
+    func textFieldDidEndEditing(_ textField: UITextField, password: String)
+    func textFieldDidEndEditing(_ textField: UITextField, confirmPassword: String)
+}
+
+protocol RegisterModelDelegate: AnyObject {
+    func prepareToShowSignInButton()
+    func prepareToShowConfirmPasswordTextField()
 }
 
 final class RegisterViewController: UIViewController {
+    
+    private let errorTimeredView = TimeredLableView(style: .error)
+    
+    private var customView: RegisterViewRepresentable
     private var model: RegisterModel
-    private var chatManager: ChatManager {
-        QBChatManager.instance
-    }
+    
+    private var chatManager: ChatManager
     
     private var window: UIWindow? {
         UIApplication.shared.windows.first
     }
     
-    private var okAction: UIAlertAction {
-        UIAlertAction(title: "OK",
-                      style: .default,
-                      handler: nil)
-    }
-
-
-    init(model: RegisterModel, customView: UIView) {
+    init(model: RegisterModel, customView: (RegisterViewRepresentable & UIView),
+         chatManager: ChatManager) {
+        self.chatManager = chatManager
+        self.customView = customView
         self.model = model
         
         super.init(nibName: nil, bundle: nil)
@@ -47,35 +67,71 @@ final class RegisterViewController: UIViewController {
 }
 
 extension RegisterViewController: RegisterViewDelegate {
-    func update(login: String) -> Bool {
-        check(model.tryToUpdate(login: login))
+    func textFieldDidEndEditing(_ textField: UITextField, name: String) {
+        update(textField: textField,
+               with: model.tryToUpdate(name: name))
     }
     
-    func update(password: String) -> Bool {
-        check(model.tryToUpdate(password: password))
+    func textFieldDidEndEditing(_ textField: UITextField, login: String) {
+        update(textField: textField,
+               with: model.tryToUpdate(login: login))
     }
     
-    func update(confirmPassword: String) -> Bool {
-        check(model.tryToUpdate(confirmPassword: confirmPassword))
+    func textFieldDidEndEditing(_ textField: UITextField, password: String) {
+        update(textField: textField,
+               with: model.tryToUpdate(password: password))
     }
     
-    func update(name: String) -> Bool {
-        check(model.tryToUpdate(name: name))
+    func textFieldDidEndEditing(_ textField: UITextField, confirmPassword: String) {
+        update(textField: textField,
+               with: model.tryToUpdate(confirmPassword: confirmPassword))
     }
     
-    private func check(_ result: Result<Bool, Error>) -> Bool {
-        switch result {
-        case .failure(let error):
-            showErrorAlert(title: "Update Error",
-                           error: error,
-                           actions: [okAction])
-            return false
-        case .success(let updateResult):
-            return updateResult
+    private func update(textField: UITextField, with error: Error?) {
+        error.map { error in
+            errorTimeredView.show(in: view,
+                                  y: 100,
+                                  with: error,
+                                  duration: 1)
+            textField.shake()
+            textField.text = ""
         }
     }
     
     func registerButtonWasTapped() {
+        if model.name.isEmpty {
+            self.errorTimeredView.show(in: self.view,
+                                       y: 100,
+                                       with: RegisterControllerError.noName,
+                                       duration: 1)
+            return
+        }
+        
+        if model.login.isEmpty {
+            self.errorTimeredView.show(in: self.view,
+                                       y: 100,
+                                       with: RegisterControllerError.noLogin,
+                                       duration: 1)
+            return
+        }
+        
+        if model.password.isEmpty {
+            self.errorTimeredView.show(in: self.view,
+                                       y: 100,
+                                       with: RegisterControllerError.noPassword,
+                                       duration: 1)
+            return
+        }
+        
+        if model.confirmPassword.isEmpty {
+            self.errorTimeredView.show(in: self.view,
+                                       y: 100,
+                                       with: RegisterControllerError.noConfirmPassword,
+                                       duration: 1)
+            return
+        }
+        
+        
         chatManager.signUp(fullName: model.name,
                            login: model.login,
                            password: model.password) { [weak self] result in
@@ -87,10 +143,21 @@ extension RegisterViewController: RegisterViewDelegate {
             case .success:
                 self.navigationController?.popViewController(animated: true)
             case .failure(let error):
-                self.showErrorAlert(title: "Register Error",
-                                    error: error,
-                                    actions: [self.okAction])
+                self.errorTimeredView.show(in: self.view,
+                                           y: 100,
+                                           with: error,
+                                           duration: 1)
             }
         }
+    }
+}
+
+extension RegisterViewController: RegisterModelDelegate {
+    func prepareToShowConfirmPasswordTextField() {
+        customView.showConfirmPasswordTextField()
+    }
+    
+    func prepareToShowSignInButton() {
+        customView.showSignInButton()
     }
 }
