@@ -9,7 +9,13 @@ import UIKit
 
 class TravelScreenView: UIView {
     // MARK: - UI components
-    var refreshControl = UIRefreshControl(title: "Loading...")
+    var refreshControl = UIRefreshControl(title: "Загрузка...")
+
+    var cityNameView = UIButton(title: "Выберите город",
+                                image: UIImage(systemName: "mappin.and.ellipse"),
+                                font: .smallButtonFont(),
+                                cornerRadius: 0,
+                                tintColor: .darkGray)
 
     private(set) lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: bounds,
@@ -38,8 +44,6 @@ extension TravelScreenView {
                 fatalError("Unknown section kind")
             }
             switch section {
-            case .city:
-                return self.creatCityLayout()
             case .events:
                 return self.createEventsLayout()
             case .places:
@@ -53,18 +57,6 @@ extension TravelScreenView {
         config.interSectionSpacing = 5
         layout.configuration = config
         return layout
-    }
-    private func creatCityLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(150),
-                                              heightDimension: .fractionalHeight(1))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension:  .fractionalWidth(1),
-                                               heightDimension: .absolute(50))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-
-        return section
     }
     private func createEventsLayout() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),

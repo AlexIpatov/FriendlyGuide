@@ -17,14 +17,14 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
     private(set) lazy var titlelabel = UILabel(text: "",
                                                font: .smallTitleFont(),
                                                textColor: .black,
-                                               numberOfLines: 2,
+                                               numberOfLines: 3,
                                                textAlignment: .left,
                                                adjustsFontSizeToFitWidth: true)
 
     private(set) lazy var subTitlelabel = UILabel(text: "",
                                                font: .subTitleFont(),
                                                textColor: .systemGray,
-                                               numberOfLines: 2,
+                                               numberOfLines: 1,
                                                textAlignment: .left
                                               )
 
@@ -65,10 +65,10 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
             titlelabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 7),
             titlelabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
 
-            subTitlelabel.topAnchor.constraint(equalTo: titlelabel.bottomAnchor, constant: 2),
+            subTitlelabel.topAnchor.constraint(equalTo: titlelabel.bottomAnchor, constant: 4),
             subTitlelabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 5),
             subTitlelabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
-            subTitlelabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+           // subTitlelabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
         ])
     }
 }
