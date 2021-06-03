@@ -8,6 +8,6 @@
 import Foundation
 
 struct Coordinates: Codable, Hashable {
-    let lat: Double
-    let lon: Double
+    let lat: Double?
+    let lon: Double?
 }

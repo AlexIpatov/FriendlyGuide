@@ -25,14 +25,19 @@ extension UILabel {
     }
     
     func datesToString(dateElement: DateElement?) {
-        guard let dateElement = dateElement else {
+        guard let dateElement = dateElement,
+              // Исключил заглушки в api
+              dateElement.start != Date(timeIntervalSince1970: -62135433000),
+              dateElement.end != Date(timeIntervalSince1970: 253370754000) else {
             return
         }
         let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yy"
-        let startStringDate = formatter.string(from: dateElement.start)
-        let endStringDate = formatter.string(from: dateElement.end)
-        
-        self.text = String("\(startStringDate) - \(endStringDate)")
+
+        let startStringDateInString = formatter.string(from: dateElement.start)
+        let endStringDateInString = formatter.string(from: dateElement.end)
+
+        self.text = String("\(startStringDateInString) - \(endStringDateInString)")
     }
 }
+

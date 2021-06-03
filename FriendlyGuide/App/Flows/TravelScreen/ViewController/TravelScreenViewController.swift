@@ -91,10 +91,11 @@ class TravelScreenViewController: UIViewController {
     }
     // MARK: - Request data methods
     private func requestData() {
-        //TODO сделать норм дату 
+       let currentDate = String(Date().timeIntervalSince1970)
+        print(currentDate)
         self.dataProvider.getData(cityTag: currentCity?.slug ?? "",
-                                  actualSince: String(Date().timeIntervalSince1970),
-                                  showingSince: String(Date().timeIntervalSince1970)) { [weak self] response in
+                                  actualSince: currentDate,
+                                  showingSince: currentDate) { [weak self] response in
             guard let self = self else { return }
             switch response {
             case .success((let events, let news, let places)):
@@ -162,7 +163,7 @@ extension TravelScreenViewController: UICollectionViewDelegate {
             guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Event else { return }
             let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id)
             detailVC.modalPresentationStyle = .fullScreen
-            navigationController?.present(detailVC, animated: true)
+            navigationController?.pushViewController(detailVC, animated: true)
         case .news, .places:
             print("tapped")
         }
