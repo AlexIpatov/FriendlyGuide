@@ -1,16 +1,20 @@
 //
-//  LogInViewControllerBuilder.swift
+//  AuthControllersFactory.swift
 //  FriendlyGuide
 //
-//  Created by Валерий Макрогузов on 31.05.2021.
+//  Created by Валерий Макрогузов on 03.06.2021.
 //
 
 import UIKit
 
-final class LogInViewControllerBuilder {
-    private lazy var registerViewControllerBuilder: RegisterViewControllerBuilder = {
-        RegisterViewControllerBuilder()
-    }()
+final class AuthControllersFactory {
+    private var registerViewControllerBuilder: RegisterViewControllerBuilder {
+        self
+    }
+    
+    private var chatManager: ChatManager {
+        QBChatManager.instance
+    }
     
     private lazy var appMainViewControllerBuilder: AppMainViewControllerBuilder = {
         AppMainViewControllerBuilder()
@@ -31,7 +35,14 @@ final class LogInViewControllerBuilder {
     private lazy var keychainRequestFactory: KeychainRequestFactory = {
         LocksmithKeychain()
     }()
-    
+
+    private let window: UIWindow?
+    init(window: UIWindow?) {
+        self.window = window
+    }
+}
+
+extension AuthControllersFactory: LogInViewControllerBuilder {
     func build(with frame: CGRect) -> (LogInViewDelegate & UIViewController) {
         let model = LogInModel(passwordValidator: passwordValidator,
                                loginValidator: loginValidator)
@@ -45,9 +56,22 @@ final class LogInViewControllerBuilder {
                                                       appMainViewControllerBuilder: appMainViewControllerBuilder,
                                                       localAuthRequestFactory: localAuthRequestFactory,
                                                       keychainRequestFactory: keychainRequestFactory,
-                                                      chatManager: QBChatManager.instance)
+                                                      chatManager: chatManager,
+                                                      window: window)
         
         view.delegate = loginViewController
         return loginViewController
+    }
+}
+extension AuthControllersFactory: RegisterViewControllerBuilder {
+    func build(with frame: CGRect) -> (RegisterViewDelegate & UIViewController) {
+        let model = RegisterModel(passwordValidator: passwordValidator,
+                                  loginValidator: loginValidator)
+        
+        let view = RegisterView(frame: frame)
+        
+        return RegisterViewController(model: model,
+                                      customView: view,
+                                      chatManager:chatManager)
     }
 }

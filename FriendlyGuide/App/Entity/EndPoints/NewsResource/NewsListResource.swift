@@ -18,7 +18,9 @@ struct NewsListResource: EndPointType {
         [
             URLQueryItem(name: "lang", value: "ru"),
             URLQueryItem(name: "location", value: cityTag),
-            URLQueryItem(name: "actual_only", value: "true")
+            URLQueryItem(name: "actual_only", value: "true"),
+            URLQueryItem(name: "fields", value: "id,publication_date,title,description,images"),
+            URLQueryItem(name: "text_format", value: "text"),
         ]
     }
 }

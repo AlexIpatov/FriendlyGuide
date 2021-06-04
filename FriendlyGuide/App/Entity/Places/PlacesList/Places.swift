@@ -10,21 +10,13 @@ import Foundation
 struct Places: Codable, Hashable {
     let id: Int
     let title: String
-    let slug: String
     let address: String?
-    let phone: String?
-    let siteURL: String?
+    let coords: Coordinates?
     let subway: String?
-    let isClosed: Bool?
-    let location: String?
-    let hasParkingLot: Bool?
+    let images: [Image]?
 
     enum CodingKeys: String, CodingKey {
-        case id, title, slug, address, phone
-        case siteURL = "site_url"
-        case subway
-        case isClosed = "is_closed"
-        case location
-        case hasParkingLot = "has_parking_lot"
+        case id, title, images, address, subway, coords
     }
 }
+

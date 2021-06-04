@@ -8,12 +8,10 @@
 import Foundation
 
 enum TravelSection: Int, CaseIterable {
-    case city, events, places, news
+    case events, places, news
 
     func description() -> String {
         switch self {
-        case .city:
-            return "City"
         case .events:
             return "События"
         case .places:

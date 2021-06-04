@@ -13,32 +13,24 @@ class TravelScreenViewController: UIViewController {
         return TravelScreenView()
     }()
     // MARK: - Properties
-    var userSettings: UserSettings
     var requestFactory: RequestFactory
+    var dataProvider: DataProvider
+    var userSettings: UserSettings
     lazy var currentCity: CityName? = userSettings.loadCurrentCity() {
         didSet {
             userSettings.saveCurrentCity(city: currentCity)
-            reloadData()
+            setCityTitle() 
+            requestData()
         }
     }
-    var places = [MocPlace]() {
-        didSet {
-            reloadData()
-        }
-    }
-    var events = [Event]() {
-        didSet {
-            reloadData()
-        }
-    }
-    var news = [MocNews]() {
-        didSet {
-            reloadData()
-        }
-    }
+    var places = [Places]()
+    var events = [Event]()
+    var news = [News]()
     // MARK: - Init
     init(requestFactory: RequestFactory,
-         userSettings: UserSettings) {
+         userSettings: UserSettings,
+         dataProvider: DataProvider) {
+        self.dataProvider = dataProvider
         self.requestFactory = requestFactory
         self.userSettings = userSettings
         super.init(nibName: nil, bundle: nil)
@@ -53,9 +45,10 @@ class TravelScreenViewController: UIViewController {
         configureViewController()
         setupCollectionView()
         createDataSource()
-        reloadData()
-        mockFetch()
-     //   requestData()
+        requestData()
+        addTargets()
+        setCityTitle()
+        configNavigationBar()
     }
     override func loadView() {
         view = travelScreenView
@@ -65,11 +58,18 @@ class TravelScreenViewController: UIViewController {
         view.backgroundColor = .white
         self.title = "Путешествие"
     }
+    // MARK: - Config navigation bar
+    private func configNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: travelScreenView.cityNameView)
+    }
+    private func setCityTitle() {
+        guard let cityTitle = currentCity?.name else {return}
+        travelScreenView.cityNameView.setTitle(cityTitle, for: .normal)
+    }
     // MARK: - CollectionView set up
     var dataSource: UICollectionViewDiffableDataSource<TravelSection, AnyHashable>?
     private func setupCollectionView() {
-        travelScreenView.collectionView.register(SelectCityCell.self,
-                                                 forCellWithReuseIdentifier: SelectCityCell.reuseId)
         travelScreenView.collectionView.register(EventCell.self,
                                                  forCellWithReuseIdentifier: EventCell.reuseId)
         travelScreenView.collectionView.register(PlaceCell.self,
@@ -83,28 +83,35 @@ class TravelScreenViewController: UIViewController {
     }
     private func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<TravelSection, AnyHashable>()
-        snapshot.appendSections([.city, .events, .places, .news])
+        snapshot.appendSections([.events, .places, .news])
         snapshot.appendItems(events, toSection: .events)
         snapshot.appendItems(places, toSection: .places)
         snapshot.appendItems(news, toSection: .news)
-        snapshot.appendItems([currentCity], toSection: .city)
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
     // MARK: - Request data methods
     private func requestData() {
-        let eventsFactory = requestFactory.makeGetEventsListFactory()
-        eventsFactory.getEventsList(cityTag: "spb", actualSince: "1444385206") { [ weak self] response in
-            guard let self = self else {return}
+       let currentDate = String(Date().timeIntervalSince1970)
+        print(currentDate)
+        self.dataProvider.getData(cityTag: currentCity?.slug ?? "",
+                                  actualSince: currentDate,
+                                  showingSince: currentDate) { [weak self] response in
+            guard let self = self else { return }
             switch response {
-            case .success(let events):
-                self.events = events.results
+            case .success((let events, let news, let places)):
+                DispatchQueue.main.async {
+                    self.events = events
+                    self.news = news
+                    self.places = places
+                    self.reloadData()
+                }
             case .failure(let error):
-                self.showAlert(with: "Error!",
-                               and: error.localizedDescription)
+                self.showAlert(with: "Ошибка!", and: error.localizedDescription)
             }
         }
     }
 }
+
 // MARK: - Data Source
 extension TravelScreenViewController {
     private func createDataSource() {
@@ -116,11 +123,6 @@ extension TravelScreenViewController {
                                                                             fatalError("Unknown section kind")
                                                                         }
                                                                         switch section {
-                                                                        case .city:
-                                                                            return self.configure(collectionView: collectionView,
-                                                                                                  cellType: SelectCityCell.self,
-                                                                                                  with: item,
-                                                                                                  for: indexPath)
                                                                         case .events:
                                                                             return self.configure(collectionView: collectionView,
                                                                                                   cellType: EventCell.self,
@@ -161,20 +163,35 @@ extension TravelScreenViewController: UICollectionViewDelegate {
             guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Event else { return }
             let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id)
             detailVC.modalPresentationStyle = .fullScreen
-            present(detailVC, animated: true, completion: nil)
+            navigationController?.pushViewController(detailVC, animated: true)
         case .news, .places:
             print("tapped")
-        case .city:
-            let cityVC = CitiesViewController(requestFactory: requestFactory)
-            cityVC.modalPresentationStyle = .fullScreen
-            cityVC.selectionDelegate = self
-            present(cityVC, animated: true, completion: nil)
         }
     }
 }
 extension TravelScreenViewController: CitiesViewControllerDelegate {
     func selectCity(city: CityName) {
         currentCity = city
+    }
+}
+// MARK: - Actions
+extension TravelScreenViewController {
+    func addTargets() {
+        travelScreenView.refreshControl.addTarget(self, action: #selector(refreshData),
+                                                  for: .valueChanged)
+        travelScreenView.cityNameView.addTarget(self, action: #selector(cityNameViewTapped),
+                                                for: .touchUpInside)
+    }
+    @objc func refreshData() {
+        travelScreenView.refreshControl.beginRefreshing()
+        requestData()
+        travelScreenView.refreshControl.endRefreshing()
+    }
+    @objc func cityNameViewTapped() {
+        let cityVC = CitiesViewController(requestFactory: requestFactory)
+        cityVC.modalPresentationStyle = .fullScreen
+        cityVC.selectionDelegate = self
+        present(cityVC, animated: true, completion: nil)
     }
 }
 // MARK: - Mock structs
@@ -216,11 +233,4 @@ struct MocDateElement: Codable, Hashable {
 }
 struct MocCoords: Codable, Hashable {
     let lat, lon: Double
-}
-extension TravelScreenViewController {
-    func mockFetch() {
-        news.append (MocNews(id: 33820, publicationDate: 1621939342, title: "ВКонтакте создала сервис, помогающий заботиться о домашних животных", images: Optional([MocImage(image: "https://kudago.com/media/images/news/97/fc/97fcd251036b9895e9b6cd910efc4425.jpg", source: MocSource(name: "shutterstock.com", link: ""))])))
-
-        places.append (MocPlace(id: 157, coords: nil, title: "Музей современного искусства Эрарта", address: "29-я линия В. О., д. 2", subway: "Василеостровская, Приморская, Спортивная", images: Optional([MocImage(image: "https://kudago.com/media/images/place/83/20/83206505e69f74906bd996c42c4c0fc9.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/de/89/de89ef20687ea507e57107bfdf0e5735.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")),MocImage(image: "https://kudago.com/media/images/place/20/80/2080284223698961282551f7c87f6685.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/bd/f6/bdf60df83d98b8337908752a85639de6.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/07/a4/07a4791f04d063dddb49abcdbfa6daa0.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/23/b4/23b46c37ccb99e5f942184f820d8a445.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00")), MocImage(image: "https://kudago.com/media/images/place/ef/96/ef96bbafdfcba465421cd98957cdb68b.jpg", source: MocSource(name: "vk.com", link: "https://vk.com/album-19191317_00"))])))
-    }
 }
