@@ -144,6 +144,7 @@
 		C96B94B62661208D007AD0DA /* PlacesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94B12661208D007AD0DA /* PlacesList.swift */; };
 		C96B94B72661208D007AD0DA /* PlaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94B32661208D007AD0DA /* PlaceImage.swift */; };
 		C96B94B82661208D007AD0DA /* PlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96B94B42661208D007AD0DA /* PlaceDetail.swift */; };
+		C978FD452669111400042715 /* TravelDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C978FD442669111400042715 /* TravelDataProviderTests.swift */; };
 		C9DEE2092666A36200C545CF /* GetPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE1F42666A36200C545CF /* GetPlaces.swift */; };
 		C9DEE20A2666A36200C545CF /* GetPlacesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE1F52666A36200C545CF /* GetPlacesFactory.swift */; };
 		C9DEE20B2666A36200C545CF /* GetNewsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE1F72666A36200C545CF /* GetNewsFactory.swift */; };
@@ -328,6 +329,7 @@
 		C96B94B12661208D007AD0DA /* PlacesList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesList.swift; sourceTree = "<group>"; };
 		C96B94B32661208D007AD0DA /* PlaceImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceImage.swift; sourceTree = "<group>"; };
 		C96B94B42661208D007AD0DA /* PlaceDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceDetail.swift; sourceTree = "<group>"; };
+		C978FD442669111400042715 /* TravelDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDataProviderTests.swift; sourceTree = "<group>"; };
 		C9DEE1F42666A36200C545CF /* GetPlaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlaces.swift; sourceTree = "<group>"; };
 		C9DEE1F52666A36200C545CF /* GetPlacesFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPlacesFactory.swift; sourceTree = "<group>"; };
 		C9DEE1F72666A36200C545CF /* GetNewsFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetNewsFactory.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 		2150FECC265AB9090058FA89 /* FriendlyGuideTests */ = {
 			isa = PBXGroup;
 			children = (
+				C978FD43266910B700042715 /* Network */,
 				2150FECD265AB9090058FA89 /* FriendlyGuideTests.swift */,
 				2150FECF265AB9090058FA89 /* Info.plist */,
 			);
@@ -1349,6 +1352,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		C978FD43266910B700042715 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C978FD442669111400042715 /* TravelDataProviderTests.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		C9DEE1F22666A36200C545CF /* Factories */ = {
 			isa = PBXGroup;
 			children = (
@@ -1874,6 +1885,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C978FD452669111400042715 /* TravelDataProviderTests.swift in Sources */,
 				2150FECE265AB9090058FA89 /* FriendlyGuideTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
