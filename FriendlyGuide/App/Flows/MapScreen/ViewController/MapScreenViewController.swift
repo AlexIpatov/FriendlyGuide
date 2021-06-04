@@ -27,7 +27,7 @@ class MapScreenViewController: UIViewController {
     private var selectedOnSliderPlace: MocPlace?    
     private var selectedOnSliderEvent: MocEvent?
     private var selectedOnSliderPlaceOrEventImage: UIImage?
-    private var selfieImage: UIImage? = UIImage(systemName: "figure.walk.circle.fill")
+    private var selfieImage: UIImage? = UIImage(systemName: "figure.walk")
     private var defaultOnMapMarkerImage = UIImage(systemName: "mappin")
 
     
@@ -88,6 +88,7 @@ class MapScreenViewController: UIViewController {
         configureShowCurrentLocationButton()
     }
     
+    // FindPlaceOrEventButton
     func configureFindPlaceOrEventButton() {
         mapScreenView.findPlaceOrEventButton.addTarget(self, action: #selector(tapFindPlaceOrEventButton(_:)), for: .touchUpInside)
     }
@@ -100,6 +101,7 @@ class MapScreenViewController: UIViewController {
         self.present(child, animated: true, completion: nil)
     }
     
+    // BuildingRouteButton
     func configureBuildingRouteButton() {
         mapScreenView.buildingRouteButton.addTarget(self, action: #selector(tapBuildingRouteButton(_:)), for: .touchUpInside)
     }
@@ -108,6 +110,7 @@ class MapScreenViewController: UIViewController {
         print("BuildingRouteButton tapped")
     }
     
+    // СlearRouteButton
     func configureСlearRouteButton() {
         mapScreenView.clearRouteButton.addTarget(self, action: #selector(tapClearRouteButton(_:)), for: .touchUpInside)
     }
@@ -116,22 +119,27 @@ class MapScreenViewController: UIViewController {
         print("ClearRouteButton tapped")
     }
     
+    // ZoomInMapButton
     func configureZoomInMapButton() {
         mapScreenView.zoomInMapButton.addTarget(self, action: #selector(tapZoomInMapButton(_:)), for: .touchUpInside)
     }
     
     @objc func tapZoomInMapButton(_ sender: UIButton) {
-        print("ZoomInMapButton tapped")
+        let zoomInValue = mapScreenView.mapView.camera.zoom + 1
+        mapScreenView.mapView.animate(toZoom: zoomInValue)
     }
     
+    // ZoomOutMapButton
     func configureZoomOutMapButton() {
         mapScreenView.zoomOutMapButton.addTarget(self, action: #selector(tapZoomOutMapButton(_:)), for: .touchUpInside)
     }
     
     @objc func tapZoomOutMapButton(_ sender: UIButton) {
-        print("ZoomOutMapButton tapped")
+        let zoomOutValue = mapScreenView.mapView.camera.zoom - 1
+        mapScreenView.mapView.animate(toZoom: zoomOutValue)
     }
     
+    // ShowCurrentLocationButton
     func configureShowCurrentLocationButton() {
         mapScreenView.showCurrentLocationButton.addTarget(self, action: #selector(tapShowCurrentLocationButton(_:)), for: .touchUpInside)
     }
@@ -152,7 +160,7 @@ class MapScreenViewController: UIViewController {
                         markerTitle: String?) {
         let frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0)
         let onMapMarkerImageView = UIImageView(frame: frame)
-        onMapMarkerImageView.tintColor = .systemGreen
+        onMapMarkerImageView.tintColor = .systemRed
         if let image = markerImage {
             onMapMarkerImageView.image = image
             onMapMarkerImageView.layer.cornerRadius = onMapMarkerImageView.bounds.width / 2
@@ -168,6 +176,11 @@ class MapScreenViewController: UIViewController {
         
         onMapMarker.position = coordinate
         onMapMarker.map = mapScreenView.mapView
+    }
+    
+    func deleteOnMapMarker() {
+        onMapMarker.map = nil
+        onMapMarker = GMSMarker()
     }
     
     func addOnMapRoute(currentCoordinate: CLLocationCoordinate2D) {
