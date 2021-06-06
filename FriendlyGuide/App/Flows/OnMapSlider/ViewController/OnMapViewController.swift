@@ -29,10 +29,10 @@ class OnMapViewController: UIViewController {
     
     // MARK: - Properties
     private var allPlaces = [
-        Places(id: 123, title: "Музей", address: nil, coords: nil, subway: nil, images: []),
-        Places(id: 234, title: "Театр", address: "", coords: nil, subway: "", images: []),
-        Places(id: 345, title: "Кино", address: "", coords: nil, subway: "", images: []),
-        Places(id: 111, title: "Если одинаковое поле", address: "", coords: nil, subway: "", images: [])
+        Places(id: 123, title: "Государственный музей А.С.Пушкина", address: "Хрущёвский пер., 2/12", coords: Coordinates(lat: 55.743548, lon: 37.597612), subway: "Кропоткинская", images: []),
+        Places(id: 234, title: "Государственный академический Большой театр России", address: "Театральная площадь, 1", coords: Coordinates(lat: 55.760221, lon: 37.618561), subway: "Театральная", images: []),
+        Places(id: 345, title: "Радуга Кино", address: "просп. Андропова, 8", coords: Coordinates(lat: 55.695720, lon: 37.665070), subway: "Технопарк", images: []),
+        Places(id: 111, title: "Если одинаковое поле без координат", address: "", coords: nil, subway: "", images: [])
     ] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
@@ -42,7 +42,7 @@ class OnMapViewController: UIViewController {
         Event(id: 456, title: "Выступление клоунов", dates: [], images: []),
         Event(id: 567, title: "Чемпионат мира по боксу", dates: [], images: []),
         Event(id: 678, title: "Выставка кошек", dates: [], images: []),
-        Event(id: 222, title: "Если одинаковое поле", dates: [], images: [])
+        Event(id: 222, title: "Если одинаковое поле без координат", dates: [], images: [])
     ] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
