@@ -24,8 +24,8 @@ class MapScreenViewController: UIViewController {
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     
-    private var selectedOnSliderPlace: MocPlace?    
-    private var selectedOnSliderEvent: MocEvent?
+    private var selectedOnSliderPlace: Places?
+    private var selectedOnSliderEvent: Event?
     private var selectedOnSliderPlaceOrEventImage: UIImage?
     private var selfieImage: UIImage? = UIImage(systemName: "figure.walk")
     private var defaultOnMapMarkerImage = UIImage(systemName: "mappin")
@@ -220,11 +220,11 @@ extension MapScreenViewController: GMSMapViewDelegate {
 //MARK: - Extension with OnMapViewControllerDelegate
 extension MapScreenViewController: OnMapViewControllerDelegate {
     func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T : Hashable {
-        if type(of: selectedPlaceOrEvent) == MocPlace.self {
-            guard let selectedPlace: MocPlace = selectedPlaceOrEvent as? MocPlace else { return }
+        if type(of: selectedPlaceOrEvent) == Places.self {
+            guard let selectedPlace: Places = selectedPlaceOrEvent as? Places else { return }
             selectedOnSliderPlace = selectedPlace
-        } else if type(of: selectedPlaceOrEvent) == MocEvent.self {
-            guard let selectedEvent: MocEvent = selectedPlaceOrEvent as? MocEvent else { return }
+        } else if type(of: selectedPlaceOrEvent) == Event.self {
+            guard let selectedEvent: Event = selectedPlaceOrEvent as? Event else { return }
             selectedOnSliderEvent = selectedEvent
         }
         print("selectedOnSliderPlace = \(String(describing: selectedOnSliderPlace))")
