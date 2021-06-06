@@ -27,7 +27,6 @@ class DetailNameCell: UICollectionViewCell, SelfConfiguringCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     // MARK: - Configure
     func configure<U>(with value: U) where U : Hashable {
     guard let event: Event = value as? Event else { return }

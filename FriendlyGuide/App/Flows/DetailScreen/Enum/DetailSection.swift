@@ -8,18 +8,18 @@
 import Foundation
 
 enum DetailSection: Int, CaseIterable {
-    case title, photos, description, moreInfo
+    case photos, description, moreInfo, place
 
     func description() -> String {
         switch self {
-        case .title:
-            return "title"
         case .photos:
             return "photos"
         case .description:
             return "description"
         case .moreInfo:
             return "moreInfo"
+        case .place:
+            return "place"
         }
     }
 }
