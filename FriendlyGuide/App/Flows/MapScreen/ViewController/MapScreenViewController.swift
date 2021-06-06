@@ -221,12 +221,24 @@ extension MapScreenViewController: GMSMapViewDelegate {
 extension MapScreenViewController: OnMapViewControllerDelegate {
     func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T : Hashable {
         if type(of: selectedPlaceOrEvent) == Places.self {
-            guard let selectedPlace: Places = selectedPlaceOrEvent as? Places else { return }
+            guard let selectedPlace: Places = selectedPlaceOrEvent as? Places else {
+                return
+            }
             selectedOnSliderPlace = selectedPlace
+            
+            guard let selectedLatitude = selectedOnSliderPlace?.coords?.lat,
+                  let selectedLongitude = selectedOnSliderPlace?.coords?.lon else {
+                return
+            }
+            let selectedOnSliderPlaceCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
+            moveMapScreenCameraToPosition(coordinate: selectedOnSliderPlaceCoordinates, zoom: 17)
+            addOnMapMarker(coordinate: selectedOnSliderPlaceCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderPlace?.title)
         } else if type(of: selectedPlaceOrEvent) == Event.self {
             guard let selectedEvent: Event = selectedPlaceOrEvent as? Event else { return }
             selectedOnSliderEvent = selectedEvent
+            // TO DO - Decide with the movement of the camera and show information about the event
         }
+        
         print("selectedOnSliderPlace = \(String(describing: selectedOnSliderPlace))")
         print("selectedOnSliderEvent = \(String(describing: selectedOnSliderEvent))")
     }
