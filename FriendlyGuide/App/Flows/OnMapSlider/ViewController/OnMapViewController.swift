@@ -29,27 +29,27 @@ class OnMapViewController: UIViewController {
     
     // MARK: - Properties
     private var allPlaces = [
-        MocPlace(id: 123, coords: nil, title: "Музей", address: "", subway: "", images: nil),
-        MocPlace(id: 234, coords: nil, title: "Театр", address: "", subway: "", images: nil),
-        MocPlace(id: 345, coords: nil, title: "Кино", address: "", subway: "", images: nil),
-        MocPlace(id: 111, coords: nil, title: "Если одинаковое поле", address: "", subway: "", images: nil)
+        Places(id: 123, title: "Музей", address: nil, coords: nil, subway: nil, images: []),
+        Places(id: 234, title: "Театр", address: "", coords: nil, subway: "", images: []),
+        Places(id: 345, title: "Кино", address: "", coords: nil, subway: "", images: []),
+        Places(id: 111, title: "Если одинаковое поле", address: "", coords: nil, subway: "", images: [])
     ] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
     private var allEvents = [
-        MocEvent(id: 456, dates: [], title: "Выступление клоунов", price: "1500", images: nil),
-        MocEvent(id: 567, dates: [], title: "Чемпионат мира по боксу", price: "200", images: nil),
-        MocEvent(id: 678, dates: [], title: "Выставка кошек", price: "600", images: nil),
-        MocEvent(id: 222, dates: [], title: "Если одинаковое поле", price: "600", images: nil)
+        Event(id: 456, title: "Выступление клоунов", dates: [], images: []),
+        Event(id: 567, title: "Чемпионат мира по боксу", dates: [], images: []),
+        Event(id: 678, title: "Выставка кошек", dates: [], images: []),
+        Event(id: 222, title: "Если одинаковое поле", dates: [], images: [])
     ] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
-    private var filteredPlaces: [MocPlace] = []
-    private var filteredEvents: [MocEvent] = []
+    private var filteredPlaces: [Places] = []
+    private var filteredEvents: [Event] = []
     
     private var selectedSegmentIndex: Int {
         self.onMapSliderView.sourceSelectionSegmentedControl.selectedSegmentIndex
@@ -206,7 +206,7 @@ extension OnMapViewController: UITableViewDataSource {
 extension OnMapViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedSegmentIndex == 0 {
-            var selectedPlace = MocPlace(id: 0, coords: nil, title: "", address: "", subway: "", images: nil)
+            var selectedPlace = Places(id: 0, title: "", address: "", coords: nil, subway: "", images: [])
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
                 selectedPlace = allPlaces[indexPath.row]
             } else {
@@ -214,7 +214,7 @@ extension OnMapViewController: UITableViewDelegate {
             }
             placeOrEventDelegate?.selectPlaceOrEvent(selectedPlaceOrEvent: selectedPlace)
         } else {
-            var selectedEvent = MocEvent(id: 0, dates: [], title: "", price: "", images: nil)
+            var selectedEvent = Event(id: 0, title: "", dates: [], images: [])
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
                 selectedEvent = allEvents[indexPath.row]
             } else {
@@ -237,6 +237,3 @@ extension OnMapViewController {
         onMapSliderView.endEditing(true)
     }
 }
-
-
-
