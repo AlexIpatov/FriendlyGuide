@@ -9,4 +9,5 @@ import Foundation
 
 struct EventPlace: Codable, Hashable {
     let id: Int
+    let coords: Coordinates?
 }

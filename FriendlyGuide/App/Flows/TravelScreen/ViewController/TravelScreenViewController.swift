@@ -23,7 +23,7 @@ class TravelScreenViewController: UIViewController {
             requestData()
         }
     }
-    var places = [Places]()
+    var places = [Place]()
     var events = [Event]()
     var news = [News]()
     // MARK: - Init
