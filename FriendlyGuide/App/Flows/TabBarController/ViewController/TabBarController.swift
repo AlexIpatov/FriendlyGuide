@@ -69,7 +69,7 @@ class TabBarController: UITabBarController {
         
         //3. ChatScreen
         let chatBuilder = ChatListViewControllerBuilder()
-        let chatScreenViewController = chatBuilder.build(withFrame: self.view.bounds)
+        let chatScreenViewController = chatBuilder.build(with: self.view.bounds)
         chatScreenViewController.tabBarItem = UITabBarItem(title: "Чат",
                                                            image: UIImage(systemName: "bubble.left.and.bubble.right"),
                                                            selectedImage: UIImage(systemName: "bubble.left.and.bubble.right.fill"))

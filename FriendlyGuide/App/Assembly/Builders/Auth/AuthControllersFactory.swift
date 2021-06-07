@@ -35,7 +35,7 @@ final class AuthControllersFactory {
     private lazy var keychainRequestFactory: KeychainRequestFactory = {
         LocksmithKeychain()
     }()
-
+    
     private let window: UIWindow?
     init(window: UIWindow?) {
         self.window = window
@@ -68,10 +68,14 @@ extension AuthControllersFactory: RegisterViewControllerBuilder {
         let model = RegisterModel(passwordValidator: passwordValidator,
                                   loginValidator: loginValidator)
         
+        
         let view = RegisterView(frame: frame)
         
-        return RegisterViewController(model: model,
-                                      customView: view,
-                                      chatManager:chatManager)
+        let controller = RegisterViewController(model: model,
+                                                customView: view,
+                                                chatManager:chatManager)
+        model.delegate = controller
+        view.delegate = controller
+        return controller
     }
 }

@@ -80,13 +80,13 @@ extension QBChatManager: ChatDialogsManager {
         })
     }
     
-    func getDialogs(limit: Int, skipFirst: Int, complition: @escaping (_ dialogs: [Dialog]) -> Void) {
+    func getDialogs(limit: Int,
+                    skipFirst: Int,
+                    complition: @escaping (_ dialogs: [Dialog], _ total: Int) -> Void) {
         QBRequest.dialogs(for: QBResponsePage(limit: limit, skip: skipFirst),
                           extendedRequest: nil,
                           successBlock: { (response, dialogs, dialogsUsersIDs, page) in
-                            
-                            
-                            
+                            complition(dialogs, Int(page.totalEntries))
                           }, errorBlock: { [weak self] response in
                             debugPrint("[ChatManager] getAllUserDialog error:\(self?.errorMessage(for: response) ?? "")")
                           })

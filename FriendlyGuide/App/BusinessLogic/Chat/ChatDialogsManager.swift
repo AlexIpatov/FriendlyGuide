@@ -10,7 +10,7 @@ import Foundation
 protocol ChatDialogsManager {
     func getDialogs(limit: Int,
                     skipFirst: Int,
-                    complition: @escaping (_ dialogs: [Dialog]) -> Void)
+                    complition: @escaping (_ dialogs: [Dialog], _ total: Int) -> Void)
     
     func createGroupDialog(withName name: String,
                            photo: String?,

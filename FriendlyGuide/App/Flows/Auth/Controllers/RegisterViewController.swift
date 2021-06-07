@@ -43,7 +43,7 @@ final class RegisterViewController: UIViewController {
     private let errorTimeredView = TimeredLableView(style: .error)
     
     private var customView: RegisterViewRepresentable
-    private var model: RegisterModel
+    private var model: RegisterModelRepresentable
     
     private var chatManager: ChatManager
     
@@ -51,7 +51,7 @@ final class RegisterViewController: UIViewController {
         UIApplication.shared.windows.first
     }
     
-    init(model: RegisterModel, customView: (RegisterViewRepresentable & UIView),
+    init(model: RegisterModelRepresentable, customView: (RegisterViewRepresentable & UIView),
          chatManager: ChatManager) {
         self.chatManager = chatManager
         self.customView = customView
@@ -63,6 +63,12 @@ final class RegisterViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?
+            .setNavigationBarHidden(false, animated: true)
     }
 }
 

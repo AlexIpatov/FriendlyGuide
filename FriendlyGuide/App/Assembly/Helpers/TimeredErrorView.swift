@@ -7,12 +7,11 @@
 
 import UIKit
 
+fileprivate struct Constants {
+    static let infoLableInsets: CGFloat = 15
+}
+
 final class TimeredLableView: UIView {
-    
-    enum Position {
-        case top, bottom
-    }
-    
     struct Style {
         let backgroundColor: UIColor
         let textColor: UIColor
@@ -27,10 +26,15 @@ final class TimeredLableView: UIView {
     private lazy var infoLable: UILabel = {
         let lable = UILabel()
         lable.layer.cornerRadius = 10
+        lable.textColor = style.textColor
+        lable.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(lable)
         return lable
     }()
 
     private let style: Style
+    private var yInset: CGFloat?
     
     private weak var view: UIView?
     
@@ -38,9 +42,7 @@ final class TimeredLableView: UIView {
         self.style = style
         
         super.init(frame: .zero)
-        infoLable.textColor = style.textColor
-        addSubview(infoLable)
-        
+        translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = style.backgroundColor
         isUserInteractionEnabled = false
         layer.cornerRadius = 10
@@ -58,12 +60,24 @@ final class TimeredLableView: UIView {
         
         
         setText(error.localizedDescription)
-        setFrame(to: position, in: view)
         view.addSubview(self)
+
+        removeConstraints(constraints)
+        NSLayoutConstraint.activate([
+            infoLable.topAnchor.constraint(equalTo: topAnchor),
+            infoLable.bottomAnchor.constraint(equalTo: bottomAnchor),
+            infoLable.leadingAnchor.constraint(equalTo: leadingAnchor),
+            infoLable.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            topAnchor.constraint(equalTo: view.topAnchor, constant: position),
+            widthAnchor.constraint(equalToConstant: infoLable.frame.width + Constants.infoLableInsets),
+            heightAnchor.constraint(equalToConstant: infoLable.frame.height + Constants.infoLableInsets)
+        ])
         
         dismiss(after: duration)
     }
-    
+
     private func setText(_ error: String) {
         infoLable.attributedText = NSAttributedString(string: error,
                                                       attributes: [
@@ -76,22 +90,7 @@ final class TimeredLableView: UIView {
         infoLable.lineBreakMode = .byWordWrapping
         infoLable.sizeToFit()
     }
-    
-    private func setFrame(to position: CGFloat, in view: UIView) {
-        let inset: CGFloat = 10
         
-        infoLable.frame.origin.x = inset
-        infoLable.frame.origin.y = inset
-        
-        let origin = CGPoint(x: (view.frame.maxX / 2) - (infoLable.frame.width / 2),
-                             y: position)
-        
-        let size = CGSize(width: infoLable.frame.width + 2 * inset,
-                          height: infoLable.frame.height + 2 * inset)
-        
-        frame = CGRect(origin: origin, size: size)
-    }
-    
     private func dismiss(after delay: TimeInterval) {
         UIView.animate(withDuration: 1, delay: delay, options: .curveLinear) { [weak self] in
             self?.alpha = 0
