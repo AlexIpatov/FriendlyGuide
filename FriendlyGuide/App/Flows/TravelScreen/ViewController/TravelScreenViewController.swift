@@ -92,22 +92,21 @@ class TravelScreenViewController: UIViewController {
     // MARK: - Request data methods
     private func requestData() {
        let currentDate = String(Date().timeIntervalSince1970)
-        print(currentDate)
-        self.dataProvider.getData(cityTag: currentCity?.slug ?? "",
+            self.dataProvider.getData(cityTag: self.currentCity?.slug ?? "",
                                   actualSince: currentDate,
                                   showingSince: currentDate) { [weak self] response in
+                DispatchQueue.main.async {
             guard let self = self else { return }
             switch response {
             case .success((let events, let news, let places)):
-                DispatchQueue.main.async {
                     self.events = events
                     self.news = news
                     self.places = places
                     self.reloadData()
-                }
             case .failure(let error):
                 self.showAlert(with: "Ошибка!", and: error.localizedDescription)
             }
+        }
         }
     }
 }
