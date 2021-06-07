@@ -24,11 +24,12 @@ class MapScreenViewController: UIViewController {
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     
-    private var selectedOnSliderPlace: Places?
+    private var selectedOnSliderPlace: Place?
     private var selectedOnSliderEvent: Event?
     private var selectedOnSliderPlaceOrEventImage: UIImage?
     private var selfieImage: UIImage? = UIImage(systemName: "figure.walk")
     private var defaultOnMapMarkerImage = UIImage(systemName: "mappin")
+    private var initialSegmentIndex: Int?
 
     
     //MARK: - Slider properties
@@ -94,7 +95,7 @@ class MapScreenViewController: UIViewController {
     }
     
     @objc func tapFindPlaceOrEventButton(_ sender: UIButton) {
-        let child = OnMapViewController()
+        let child = OnMapViewController(initialSegmentIndex: initialSegmentIndex ?? 0)
         child.transitioningDelegate = transition
         child.modalPresentationStyle = .custom
         child.placeOrEventDelegate = self
@@ -219,27 +220,53 @@ extension MapScreenViewController: GMSMapViewDelegate {
 
 //MARK: - Extension with OnMapViewControllerDelegate
 extension MapScreenViewController: OnMapViewControllerDelegate {
-    func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T : Hashable {
-        if type(of: selectedPlaceOrEvent) == Places.self {
-            guard let selectedPlace: Places = selectedPlaceOrEvent as? Places else {
-                return
-            }
-            selectedOnSliderPlace = selectedPlace
-            
-            guard let selectedLatitude = selectedOnSliderPlace?.coords?.lat,
-                  let selectedLongitude = selectedOnSliderPlace?.coords?.lon else {
-                return
-            }
-            let selectedOnSliderPlaceCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
-            moveMapScreenCameraToPosition(coordinate: selectedOnSliderPlaceCoordinates, zoom: 17)
-            addOnMapMarker(coordinate: selectedOnSliderPlaceCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderPlace?.title)
-        } else if type(of: selectedPlaceOrEvent) == Event.self {
-            guard let selectedEvent: Event = selectedPlaceOrEvent as? Event else { return }
-            selectedOnSliderEvent = selectedEvent
-            // TO DO - Decide with the movement of the camera and show information about the event
+    func selectPlace(selectedPlace: Place) {
+        selectedOnSliderPlace = selectedPlace
+        guard let selectedLatitude = selectedOnSliderPlace?.coords?.lat,
+              let selectedLongitude = selectedOnSliderPlace?.coords?.lon else {
+            return
         }
-        
+        let selectedOnSliderPlaceCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
+        moveMapScreenCameraToPosition(coordinate: selectedOnSliderPlaceCoordinates, zoom: 17)
+        addOnMapMarker(coordinate: selectedOnSliderPlaceCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderPlace?.title)
         print("selectedOnSliderPlace = \(String(describing: selectedOnSliderPlace))")
+    }
+    
+    func selectEvent(selectedEvent: Event) {
+        selectedOnSliderEvent = selectedEvent
+        guard let selectedLatitude = selectedOnSliderEvent?.place?.coords?.lat,
+              let selectedLongitude = selectedOnSliderEvent?.place?.coords?.lon else {
+            return
+        }
+        let selectedOnSliderEventCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
+        moveMapScreenCameraToPosition(coordinate: selectedOnSliderEventCoordinates, zoom: 17)
+        addOnMapMarker(coordinate: selectedOnSliderEventCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderEvent?.title)
         print("selectedOnSliderEvent = \(String(describing: selectedOnSliderEvent))")
     }
+    
+    func saveSelectedSegmentIndex(index: Int) {
+        initialSegmentIndex = index
+    }
+    
+//    func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T : Hashable {
+//        if type(of: selectedPlaceOrEvent) == Place.self {
+//            guard let selectedPlace: Place = selectedPlaceOrEvent as? Place else {
+//                return
+//            }
+//            selectedOnSliderPlace = selectedPlace
+//
+//            guard let selectedLatitude = selectedOnSliderPlace?.coords?.lat,
+//                  let selectedLongitude = selectedOnSliderPlace?.coords?.lon else {
+//                return
+//            }
+//            let selectedOnSliderPlaceCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
+//            moveMapScreenCameraToPosition(coordinate: selectedOnSliderPlaceCoordinates, zoom: 17)
+//            addOnMapMarker(coordinate: selectedOnSliderPlaceCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderPlace?.title)
+//        } else if type(of: selectedPlaceOrEvent) == Event.self {
+//            guard let selectedEvent: Event = selectedPlaceOrEvent as? Event else { return }
+//            selectedOnSliderEvent = selectedEvent
+//            // TO DO - Decide with the movement of the camera and show information about the event
+//        }
+        
+//    }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol DataProvider {
-    typealias TravelData = (events: [Event], news: [News], places: [Places])
+    typealias TravelData = (events: [Event], news: [News], places: [Place])
     func getData(cityTag: String,
                  actualSince: String,
                  showingSince: String,

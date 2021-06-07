@@ -11,7 +11,7 @@ struct PlacesList: Codable, Hashable {
     let count: Int
     let next: String?
     let previous: String?
-    let places: [Places]
+    let places: [Place]
     
     enum CodingKeys: String, CodingKey {
         case count
