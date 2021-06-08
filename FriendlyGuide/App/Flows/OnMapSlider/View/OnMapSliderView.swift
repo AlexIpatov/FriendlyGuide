@@ -21,12 +21,8 @@ class OnMapSliderView: UIView {
         return viewForTable
     }()
     
-    private(set) lazy var removeSliderButton = UIButton(title: "",
-                                                        image: UIImage(systemName: "chevron.compact.down"),
-                                                        font: .smallButtonFont(),
-                                                        cornerRadius: 0.0,
-                                                        backgroundColor: .white,
-                                                        tintColor: .systemBlue)
+    private(set) lazy var removeSliderButton = UIButton(image: UIImage(systemName: "chevron.compact.down"),
+                                                        backgroundColor: .white)
     
     private(set) lazy var sliderTitleNameLabel = UILabel(text: "Поиск",
                                                          font: .smallTitleFont(),

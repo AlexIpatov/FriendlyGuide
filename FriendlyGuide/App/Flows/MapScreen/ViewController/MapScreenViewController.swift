@@ -16,28 +16,36 @@ class MapScreenViewController: UIViewController {
     }()
     
     //MARK: - Properties
-    private let locationManager = CLLocationManager()
+    private var backgroundTask: UIBackgroundTaskIdentifier?
+    private let locationManager = LocationManager.instance
+    
     private var initialCoordinate = CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156)
     private var currentCoordinate = CLLocationCoordinate2D()
+    
     private var onMapMarker = GMSMarker()
+    private var defaultOnMapMarkerImage = UIImage(systemName: "mappin")
+
     private var mapScreenCamera = GMSCameraPosition()
+    
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     
     private var selectedOnSliderPlace: Place?
     private var selectedOnSliderEvent: Event?
-    private var selectedOnSliderPlaceOrEventImage: UIImage?
-    private var selfieImage: UIImage? = UIImage(systemName: "figure.walk")
-    private var defaultOnMapMarkerImage = UIImage(systemName: "mappin")
     private var initialSegmentIndex: Int?
-
+    
+    private var selectedOnSliderPlaceOrEventImage: UIImage?
+    private var selfieImage: UIImage?
+    
+    private let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     
     //MARK: - Slider properties
     private let transition = SliderTransition()
     
     //MARK: - Init
-    init() {
+    init(selfieImage: UIImage) {
         super.init(nibName: nil, bundle: nil)
+        self.selfieImage = selfieImage
     }
     
     required init?(coder: NSCoder) {
@@ -45,17 +53,18 @@ class MapScreenViewController: UIViewController {
     }
     
     //MARK: - ViewController LifeCycle
+    override func loadView() {
+        self.view = mapScreenView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         configureLocationManager()
+        configureBackgroundTask()
         configureMapScreenCamera()
         configureMap()
         configureButtons()
-    }
-    
-    override func loadView() {
-        self.view = mapScreenView
     }
     
     //MARK: - Configuration methods
@@ -64,10 +73,28 @@ class MapScreenViewController: UIViewController {
     }
     
     private func configureLocationManager() {
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.delegate = self
-        locationManager.requestLocation()
+        locationManager
+            .location
+            .asObservable()
+            .bind { [weak self] location in
+                guard let self = self else { return }
+                guard let location = location else { return }
+                self.routePath?.add(location.coordinate)
+                self.route?.path = self.routePath
+                let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 17)
+                self.addOnMapMarker(coordinate: location.coordinate, markerImage: self.selfieImage, markerTitle: nil)
+                self.addOnMapRoute(currentCoordinate: location.coordinate)
+                self.currentCoordinate = location.coordinate
+                self.mapScreenView.mapView.animate(to: position)
+            }
+    }
+    
+    func configureBackgroundTask() {
+        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
+            guard let self = self else { return }
+            UIApplication.shared.endBackgroundTask(self.backgroundTask!)
+            self.backgroundTask = .invalid
+        }
     }
     
     func configureMapScreenCamera() {
@@ -77,6 +104,7 @@ class MapScreenViewController: UIViewController {
     func configureMap() {
         mapScreenView.mapView.delegate = self
         mapScreenView.mapView.camera = mapScreenCamera
+        currentCoordinate = initialCoordinate
     }
     
     //MARK: - Buttons
@@ -95,7 +123,7 @@ class MapScreenViewController: UIViewController {
     }
     
     @objc func tapFindPlaceOrEventButton(_ sender: UIButton) {
-        let child = OnMapViewController(initialSegmentIndex: initialSegmentIndex ?? 0)
+        let child = OnMapSliderViewController(initialSegmentIndex: initialSegmentIndex ?? 0)
         child.transitioningDelegate = transition
         child.modalPresentationStyle = .custom
         child.placeOrEventDelegate = self
@@ -247,26 +275,4 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
     func saveSelectedSegmentIndex(index: Int) {
         initialSegmentIndex = index
     }
-    
-//    func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T : Hashable {
-//        if type(of: selectedPlaceOrEvent) == Place.self {
-//            guard let selectedPlace: Place = selectedPlaceOrEvent as? Place else {
-//                return
-//            }
-//            selectedOnSliderPlace = selectedPlace
-//
-//            guard let selectedLatitude = selectedOnSliderPlace?.coords?.lat,
-//                  let selectedLongitude = selectedOnSliderPlace?.coords?.lon else {
-//                return
-//            }
-//            let selectedOnSliderPlaceCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
-//            moveMapScreenCameraToPosition(coordinate: selectedOnSliderPlaceCoordinates, zoom: 17)
-//            addOnMapMarker(coordinate: selectedOnSliderPlaceCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderPlace?.title)
-//        } else if type(of: selectedPlaceOrEvent) == Event.self {
-//            guard let selectedEvent: Event = selectedPlaceOrEvent as? Event else { return }
-//            selectedOnSliderEvent = selectedEvent
-//            // TO DO - Decide with the movement of the camera and show information about the event
-//        }
-        
-//    }
 }

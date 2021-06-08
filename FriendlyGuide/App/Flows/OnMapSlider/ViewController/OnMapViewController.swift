@@ -14,7 +14,7 @@ protocol OnMapViewControllerDelegate: AnyObject {
     func saveSelectedSegmentIndex(index: Int)
 }
 
-class OnMapViewController: UIViewController {
+class OnMapSliderViewController: UIViewController {
     // MARK: - UI components
     private lazy var onMapSliderView: OnMapSliderView = {
         return OnMapSliderView()
@@ -66,6 +66,10 @@ class OnMapViewController: UIViewController {
     }
     
     //MARK: - ViewController LifeCycle
+    override func loadView() {
+        view = onMapSliderView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -74,10 +78,6 @@ class OnMapViewController: UIViewController {
         configureSearchTextField()
         configureButtons()
         configureKeyboard()
-    }
-    
-    override func loadView() {
-        view = onMapSliderView
     }
     
     // MARK: - Configuration Methods
@@ -162,7 +162,7 @@ class OnMapViewController: UIViewController {
     }
 }
 // MARK: - UITableViewDataSource
-extension OnMapViewController: UITableViewDataSource {
+extension OnMapSliderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if selectedSegmentIndex == 0 {
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
@@ -209,7 +209,7 @@ extension OnMapViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension OnMapViewController: UITableViewDelegate {
+extension OnMapSliderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedSegmentIndex == 0 {
             var selectedPlace = Place(id: 0, title: "", address: "", coords: nil, subway: "", images: [])
@@ -235,7 +235,7 @@ extension OnMapViewController: UITableViewDelegate {
 }
 
 //MARK: - Keyboard configuration
-extension OnMapViewController {
+extension OnMapSliderViewController {
     func configureKeyboard() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardByTap))
         onMapSliderView.headerView.addGestureRecognizer(tapGesture)
