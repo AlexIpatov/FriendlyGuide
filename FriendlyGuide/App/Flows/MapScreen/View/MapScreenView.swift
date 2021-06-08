@@ -23,8 +23,8 @@ class MapScreenView: UIView {
         tintColor: .systemBlue)
     
     private(set) lazy var buildingRouteButton = UIButton(
-        backgroundImageForNormalState: UIImage(systemName: "figure.walk.circle"),
-        backgroundImageForHighlightedState: UIImage(systemName: "figure.walk.circle.fill"),
+        backgroundImageForNormalState: UIImage(systemName: "arrow.triangle.turn.up.right.circle"),
+        backgroundImageForHighlightedState: UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill"),
         cornerRadius: 20.0,
         backgroundColor: .white,
         tintColor: .systemBlue)
@@ -50,6 +50,13 @@ class MapScreenView: UIView {
         backgroundColor: .white,
         tintColor: .systemBlue)
     
+    private(set) lazy var startTrackingLocationButton = UIButton(
+        backgroundImageForNormalState: UIImage(systemName: "figure.walk.circle"),
+        backgroundImageForHighlightedState: UIImage(systemName: "figure.walk.circle.fill"),
+        cornerRadius: 20.0,
+        backgroundColor: .white,
+        tintColor: .systemBlue)
+    
     private(set) lazy var showCurrentLocationButton = UIButton(
         backgroundImageForNormalState: UIImage(systemName: "location.circle"),
         backgroundImageForHighlightedState: UIImage(systemName: "location.circle.fill"),
@@ -68,12 +75,15 @@ class MapScreenView: UIView {
     }
     
     func configureUI() {
+        startTrackingLocationButton.tag = 0
+
         self.addSubview(mapView)
         mapView.addSubview(findPlaceOrEventButton)
         mapView.addSubview(buildingRouteButton)
         mapView.addSubview(clearRouteButton)
         mapView.addSubview(zoomInMapButton)
         mapView.addSubview(zoomOutMapButton)
+        mapView.addSubview(startTrackingLocationButton)
         mapView.addSubview(showCurrentLocationButton)
         
         NSLayoutConstraint.activate([
@@ -110,7 +120,12 @@ class MapScreenView: UIView {
             showCurrentLocationButton.bottomAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -25.0),
             showCurrentLocationButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -25.0),
             showCurrentLocationButton.heightAnchor.constraint(equalToConstant: 40.0),
-            showCurrentLocationButton.widthAnchor.constraint(equalToConstant: 40.0)
+            showCurrentLocationButton.widthAnchor.constraint(equalToConstant: 40.0),
+            
+            startTrackingLocationButton.bottomAnchor.constraint(equalTo: showCurrentLocationButton.topAnchor, constant: -10.0),
+            startTrackingLocationButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -25.0),
+            startTrackingLocationButton.heightAnchor.constraint(equalToConstant: 40.0),
+            startTrackingLocationButton.widthAnchor.constraint(equalToConstant: 40.0)
         ])
     }
 }
