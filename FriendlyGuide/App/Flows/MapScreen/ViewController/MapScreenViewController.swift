@@ -24,11 +24,12 @@ class MapScreenViewController: UIViewController {
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     
-    private var selectedOnSliderPlace: MocPlace?    
-    private var selectedOnSliderEvent: MocEvent?
+    private var selectedOnSliderPlace: Place?
+    private var selectedOnSliderEvent: Event?
     private var selectedOnSliderPlaceOrEventImage: UIImage?
-    private var selfieImage: UIImage? = UIImage(systemName: "figure.walk.circle.fill")
+    private var selfieImage: UIImage? = UIImage(systemName: "figure.walk")
     private var defaultOnMapMarkerImage = UIImage(systemName: "mappin")
+    private var initialSegmentIndex: Int?
 
     
     //MARK: - Slider properties
@@ -88,18 +89,20 @@ class MapScreenViewController: UIViewController {
         configureShowCurrentLocationButton()
     }
     
+    // FindPlaceOrEventButton
     func configureFindPlaceOrEventButton() {
         mapScreenView.findPlaceOrEventButton.addTarget(self, action: #selector(tapFindPlaceOrEventButton(_:)), for: .touchUpInside)
     }
     
     @objc func tapFindPlaceOrEventButton(_ sender: UIButton) {
-        let child = OnMapViewController()
+        let child = OnMapViewController(initialSegmentIndex: initialSegmentIndex ?? 0)
         child.transitioningDelegate = transition
         child.modalPresentationStyle = .custom
         child.placeOrEventDelegate = self
         self.present(child, animated: true, completion: nil)
     }
     
+    // BuildingRouteButton
     func configureBuildingRouteButton() {
         mapScreenView.buildingRouteButton.addTarget(self, action: #selector(tapBuildingRouteButton(_:)), for: .touchUpInside)
     }
@@ -108,6 +111,7 @@ class MapScreenViewController: UIViewController {
         print("BuildingRouteButton tapped")
     }
     
+    // СlearRouteButton
     func configureСlearRouteButton() {
         mapScreenView.clearRouteButton.addTarget(self, action: #selector(tapClearRouteButton(_:)), for: .touchUpInside)
     }
@@ -116,22 +120,27 @@ class MapScreenViewController: UIViewController {
         print("ClearRouteButton tapped")
     }
     
+    // ZoomInMapButton
     func configureZoomInMapButton() {
         mapScreenView.zoomInMapButton.addTarget(self, action: #selector(tapZoomInMapButton(_:)), for: .touchUpInside)
     }
     
     @objc func tapZoomInMapButton(_ sender: UIButton) {
-        print("ZoomInMapButton tapped")
+        let zoomInValue = mapScreenView.mapView.camera.zoom + 1
+        mapScreenView.mapView.animate(toZoom: zoomInValue)
     }
     
+    // ZoomOutMapButton
     func configureZoomOutMapButton() {
         mapScreenView.zoomOutMapButton.addTarget(self, action: #selector(tapZoomOutMapButton(_:)), for: .touchUpInside)
     }
     
     @objc func tapZoomOutMapButton(_ sender: UIButton) {
-        print("ZoomOutMapButton tapped")
+        let zoomOutValue = mapScreenView.mapView.camera.zoom - 1
+        mapScreenView.mapView.animate(toZoom: zoomOutValue)
     }
     
+    // ShowCurrentLocationButton
     func configureShowCurrentLocationButton() {
         mapScreenView.showCurrentLocationButton.addTarget(self, action: #selector(tapShowCurrentLocationButton(_:)), for: .touchUpInside)
     }
@@ -152,7 +161,7 @@ class MapScreenViewController: UIViewController {
                         markerTitle: String?) {
         let frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0)
         let onMapMarkerImageView = UIImageView(frame: frame)
-        onMapMarkerImageView.tintColor = .systemGreen
+        onMapMarkerImageView.tintColor = .systemRed
         if let image = markerImage {
             onMapMarkerImageView.image = image
             onMapMarkerImageView.layer.cornerRadius = onMapMarkerImageView.bounds.width / 2
@@ -168,6 +177,11 @@ class MapScreenViewController: UIViewController {
         
         onMapMarker.position = coordinate
         onMapMarker.map = mapScreenView.mapView
+    }
+    
+    func deleteOnMapMarker() {
+        onMapMarker.map = nil
+        onMapMarker = GMSMarker()
     }
     
     func addOnMapRoute(currentCoordinate: CLLocationCoordinate2D) {
@@ -206,15 +220,53 @@ extension MapScreenViewController: GMSMapViewDelegate {
 
 //MARK: - Extension with OnMapViewControllerDelegate
 extension MapScreenViewController: OnMapViewControllerDelegate {
-    func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T : Hashable {
-        if type(of: selectedPlaceOrEvent) == MocPlace.self {
-            guard let selectedPlace: MocPlace = selectedPlaceOrEvent as? MocPlace else { return }
-            selectedOnSliderPlace = selectedPlace
-        } else if type(of: selectedPlaceOrEvent) == MocEvent.self {
-            guard let selectedEvent: MocEvent = selectedPlaceOrEvent as? MocEvent else { return }
-            selectedOnSliderEvent = selectedEvent
+    func selectPlace(selectedPlace: Place) {
+        selectedOnSliderPlace = selectedPlace
+        guard let selectedLatitude = selectedOnSliderPlace?.coords?.lat,
+              let selectedLongitude = selectedOnSliderPlace?.coords?.lon else {
+            return
         }
+        let selectedOnSliderPlaceCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
+        moveMapScreenCameraToPosition(coordinate: selectedOnSliderPlaceCoordinates, zoom: 17)
+        addOnMapMarker(coordinate: selectedOnSliderPlaceCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderPlace?.title)
         print("selectedOnSliderPlace = \(String(describing: selectedOnSliderPlace))")
+    }
+    
+    func selectEvent(selectedEvent: Event) {
+        selectedOnSliderEvent = selectedEvent
+        guard let selectedLatitude = selectedOnSliderEvent?.place?.coords?.lat,
+              let selectedLongitude = selectedOnSliderEvent?.place?.coords?.lon else {
+            return
+        }
+        let selectedOnSliderEventCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
+        moveMapScreenCameraToPosition(coordinate: selectedOnSliderEventCoordinates, zoom: 17)
+        addOnMapMarker(coordinate: selectedOnSliderEventCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderEvent?.title)
         print("selectedOnSliderEvent = \(String(describing: selectedOnSliderEvent))")
     }
+    
+    func saveSelectedSegmentIndex(index: Int) {
+        initialSegmentIndex = index
+    }
+    
+//    func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T : Hashable {
+//        if type(of: selectedPlaceOrEvent) == Place.self {
+//            guard let selectedPlace: Place = selectedPlaceOrEvent as? Place else {
+//                return
+//            }
+//            selectedOnSliderPlace = selectedPlace
+//
+//            guard let selectedLatitude = selectedOnSliderPlace?.coords?.lat,
+//                  let selectedLongitude = selectedOnSliderPlace?.coords?.lon else {
+//                return
+//            }
+//            let selectedOnSliderPlaceCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
+//            moveMapScreenCameraToPosition(coordinate: selectedOnSliderPlaceCoordinates, zoom: 17)
+//            addOnMapMarker(coordinate: selectedOnSliderPlaceCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderPlace?.title)
+//        } else if type(of: selectedPlaceOrEvent) == Event.self {
+//            guard let selectedEvent: Event = selectedPlaceOrEvent as? Event else { return }
+//            selectedOnSliderEvent = selectedEvent
+//            // TO DO - Decide with the movement of the camera and show information about the event
+//        }
+        
+//    }
 }

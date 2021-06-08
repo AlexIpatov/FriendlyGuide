@@ -23,7 +23,7 @@ class TravelScreenViewController: UIViewController {
             requestData()
         }
     }
-    var places = [Places]()
+    var places = [Place]()
     var events = [Event]()
     var news = [News]()
     // MARK: - Init
@@ -92,22 +92,21 @@ class TravelScreenViewController: UIViewController {
     // MARK: - Request data methods
     private func requestData() {
        let currentDate = String(Date().timeIntervalSince1970)
-        print(currentDate)
-        self.dataProvider.getData(cityTag: currentCity?.slug ?? "",
+            self.dataProvider.getData(cityTag: self.currentCity?.slug ?? "",
                                   actualSince: currentDate,
                                   showingSince: currentDate) { [weak self] response in
+                DispatchQueue.main.async {
             guard let self = self else { return }
             switch response {
             case .success((let events, let news, let places)):
-                DispatchQueue.main.async {
                     self.events = events
                     self.news = news
                     self.places = places
                     self.reloadData()
-                }
             case .failure(let error):
                 self.showAlert(with: "Ошибка!", and: error.localizedDescription)
             }
+        }
         }
     }
 }
@@ -193,44 +192,4 @@ extension TravelScreenViewController {
         cityVC.selectionDelegate = self
         present(cityVC, animated: true, completion: nil)
     }
-}
-// MARK: - Mock structs
-struct MocPlace: Codable, Hashable {
-    let id: Int
-    let coords: MocCoords?
-    let title, address, subway: String
-    let images: [MocImage]?
-}
-struct MocEvent: Codable, Hashable {
-    let id: Int
-    let dates: [MocDateElement]
-    let title, price: String
-    let images: [MocImage]?
-}
-
-struct MocNews: Codable, Hashable {
-    let id: Int
-    let publicationDate: Int
-    let title: String
-    let images: [MocImage]?
-    enum CodingKeys: String, CodingKey {
-        case id
-        case publicationDate = "publication_date"
-        case title
-        case images
-    }
-}
-struct MocImage: Codable, Hashable {
-    let image: String
-    let source: MocSource
-}
-struct MocSource: Codable, Hashable {
-    let name: String
-    let link: String
-}
-struct MocDateElement: Codable, Hashable {
-    let start, end: Int
-}
-struct MocCoords: Codable, Hashable {
-    let lat, lon: Double
 }

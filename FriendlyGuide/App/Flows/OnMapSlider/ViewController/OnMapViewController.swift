@@ -9,7 +9,9 @@ import UIKit
 
 //MARK: - Protocol
 protocol OnMapViewControllerDelegate: AnyObject {
-    func selectPlaceOrEvent<T>(selectedPlaceOrEvent: T) where T: Hashable
+    func selectPlace(selectedPlace: Place)
+    func selectEvent(selectedEvent: Event)
+    func saveSelectedSegmentIndex(index: Int)
 }
 
 class OnMapViewController: UIViewController {
@@ -19,8 +21,9 @@ class OnMapViewController: UIViewController {
     }()
     
     //MARK: - Init
-    init() {
+    init(initialSegmentIndex: Int) {
         super.init(nibName: nil, bundle: nil)
+        self.initialSegmentIndex = initialSegmentIndex
     }
     
     required init?(coder: NSCoder) {
@@ -29,31 +32,32 @@ class OnMapViewController: UIViewController {
     
     // MARK: - Properties
     private var allPlaces = [
-        MocPlace(id: 123, coords: nil, title: "Музей", address: "", subway: "", images: nil),
-        MocPlace(id: 234, coords: nil, title: "Театр", address: "", subway: "", images: nil),
-        MocPlace(id: 345, coords: nil, title: "Кино", address: "", subway: "", images: nil),
-        MocPlace(id: 111, coords: nil, title: "Если одинаковое поле", address: "", subway: "", images: nil)
+        Place(id: 123, title: "Государственный музей А.С.Пушкина", address: "Хрущёвский пер., 2/12", coords: Coordinates(lat: 55.743548, lon: 37.597612), subway: "Кропоткинская", images: []),
+        Place(id: 234, title: "Государственный академический Большой театр России", address: "Театральная площадь, 1", coords: Coordinates(lat: 55.760221, lon: 37.618561), subway: "Театральная", images: []),
+        Place(id: 345, title: "Радуга Кино", address: "просп. Андропова, 8", coords: Coordinates(lat: 55.695720, lon: 37.665070), subway: "Технопарк", images: []),
+        Place(id: 111, title: "Если одинаковое поле без координат", address: "", coords: nil, subway: "", images: [])
     ] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
     private var allEvents = [
-        MocEvent(id: 456, dates: [], title: "Выступление клоунов", price: "1500", images: nil),
-        MocEvent(id: 567, dates: [], title: "Чемпионат мира по боксу", price: "200", images: nil),
-        MocEvent(id: 678, dates: [], title: "Выставка кошек", price: "600", images: nil),
-        MocEvent(id: 222, dates: [], title: "Если одинаковое поле", price: "600", images: nil)
+        Event(id: 456, title: "Выступление клоунов", dates: [], images: [], place: EventPlace(id: 11, title: "", slug: "", address: "", phone: "", subway: "", location: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.719438, lon: 37.627026), isStub: true)),
+        Event(id: 567, title: "Чемпионат мира по боксу", dates: [], images: [], place: EventPlace(id: 11, title: "", slug: "", address: "", phone: "", subway: "", location: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.714312, lon: 37.567163), isStub: false)),
+        Event(id: 678, title: "Выставка кошек", dates: [], images: [], place: EventPlace(id: 11, title: "", slug: "", address: "", phone: "", subway: "", location: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.798555, lon: 37.670538), isStub: true)),
+        Event(id: 222, title: "Если одинаковое поле без координат", dates: [], images: [], place: nil)
     ] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
-    private var filteredPlaces: [MocPlace] = []
-    private var filteredEvents: [MocEvent] = []
+    private var filteredPlaces: [Place] = []
+    private var filteredEvents: [Event] = []
     
     private var selectedSegmentIndex: Int {
         self.onMapSliderView.sourceSelectionSegmentedControl.selectedSegmentIndex
     }
+    private var initialSegmentIndex: Int?
     weak var placeOrEventDelegate: OnMapViewControllerDelegate?
     
     //MARK: - Properties for search
@@ -79,6 +83,7 @@ class OnMapViewController: UIViewController {
     // MARK: - Configuration Methods
     private func configureViewController() {
         view.backgroundColor = .white
+        self.onMapSliderView.sourceSelectionSegmentedControl.selectedSegmentIndex = initialSegmentIndex ?? 0
     }
     private func configureTableView() {
         onMapSliderView.placesAndEventsTableView.register(OnMapSliderTableViewCell.self,
@@ -132,6 +137,7 @@ class OnMapViewController: UIViewController {
     }
     
     @objc func tapRemoveSliderButton(_ sender: UIButton) {
+        placeOrEventDelegate?.saveSelectedSegmentIndex(index: selectedSegmentIndex)
         dismiss(animated: true, completion: nil)
     }
     
@@ -206,21 +212,23 @@ extension OnMapViewController: UITableViewDataSource {
 extension OnMapViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedSegmentIndex == 0 {
-            var selectedPlace = MocPlace(id: 0, coords: nil, title: "", address: "", subway: "", images: nil)
+            var selectedPlace = Place(id: 0, title: "", address: "", coords: nil, subway: "", images: [])
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
                 selectedPlace = allPlaces[indexPath.row]
             } else {
                 selectedPlace = filteredPlaces[indexPath.row]
             }
-            placeOrEventDelegate?.selectPlaceOrEvent(selectedPlaceOrEvent: selectedPlace)
+            placeOrEventDelegate?.selectPlace(selectedPlace: selectedPlace)
+            placeOrEventDelegate?.saveSelectedSegmentIndex(index: selectedSegmentIndex)
         } else {
-            var selectedEvent = MocEvent(id: 0, dates: [], title: "", price: "", images: nil)
+            var selectedEvent = Event(id: 0, title: "", dates: [], images: [], place: nil)
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
                 selectedEvent = allEvents[indexPath.row]
             } else {
                 selectedEvent = filteredEvents[indexPath.row]
             }
-            placeOrEventDelegate?.selectPlaceOrEvent(selectedPlaceOrEvent: selectedEvent)
+            placeOrEventDelegate?.selectEvent(selectedEvent: selectedEvent)
+            placeOrEventDelegate?.saveSelectedSegmentIndex(index: selectedSegmentIndex)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -237,6 +245,3 @@ extension OnMapViewController {
         onMapSliderView.endEditing(true)
     }
 }
-
-
-

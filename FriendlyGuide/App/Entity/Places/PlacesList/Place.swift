@@ -1,5 +1,5 @@
 //
-//  Places.swift
+//  Place.swift
 //  FriendlyGuide
 //
 //  Created by Alexander Pelevinov on 27.05.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Places: Codable, Hashable {
+struct Place: Codable, Hashable {
     let id: Int
     let title: String
     let address: String?

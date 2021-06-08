@@ -32,7 +32,7 @@ extension TravelDataProvider: DataProvider {
         let eventsFactory = requestFactory.makeGetEventsListFactory()
         var events = [Event]()
         var news = [News]()
-        var places = [Places]()
+        var places = [Place]()
         
         group.enter()
         queue.async {

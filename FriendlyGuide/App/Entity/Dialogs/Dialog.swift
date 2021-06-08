@@ -6,43 +6,14 @@
 //
 
 import Foundation
-import Quickblox
 
-struct Dialog {
-//
-//    var id: String
-//
-//    var createdAt: Date
-//    var updatedAt: Date
-//
-//    var name: String
-//    var photo: String
-//
-//    var lastMessageText: String
-//    var lastMessageDate: Date
-//    var lastMessageUserID: Int
-//    var lastMessageID: Int
-//
-//    var unreadMessagesCount: Int
-//
-//    var occupantIDs: [Int]
-//    var dilogOwnerId: Int
-//
-//    var data: [String: Any]
+protocol Dialog {
+    var dialogId: String { get }
+    var dialogName: String { get set }
+    
+    var dialogLastMessageText: String { get set }
+    var dialogLastMessageUserId: UInt { get set }
+    
+    var dialogImageURL: URL? { get set }
 }
 
-// MARK: - init with QBChatDialog
-
-extension Dialog {
-    init(dialog: QBChatDialog) {
-        
-    }
-}
-
-// MARK: - Empty Dialog
-
-extension Dialog {
-    static var empty: Dialog {
-        Dialog()
-    }
-}

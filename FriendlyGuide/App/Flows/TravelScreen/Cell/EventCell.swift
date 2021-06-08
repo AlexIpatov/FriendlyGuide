@@ -42,7 +42,7 @@ class EventCell: UICollectionViewCell, SelfConfiguringCell {
     guard let event: Event = value as? Event else { return }
         titlelabel.text = event.title
         imageView.kf.setImage(with: URL(string: event.images.first?.image ?? ""))
-        subTitlelabel.datesToString(dateElement: event.dates.first)
+        subTitlelabel.datesToString(dateElement: event.dates.last)
     }
     // MARK: - Configuration Methods
     private func setupLayer() {

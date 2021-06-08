@@ -12,4 +12,5 @@ struct Event: Codable, Hashable {
     let title: String
     let dates: [DateElement]
     let images: [Image]
+    let place: EventPlace?
 }

@@ -200,10 +200,11 @@ extension LogInView: UITextFieldDelegate {
 extension LogInView: LoginViewRepresentable {
     func showRegisterButton() {
         UIView.transition(with: gotoRegisterButton,
-                          duration: 0.8,
+                          duration: 0.5,
                           options: .transitionCrossDissolve) { [weak self] in
             guard let self = self else { return }
-            self.buttonsStackView.addArrangedSubview(self.gotoRegisterButton)
+            self.buttonsStackView.insertArrangedSubview(self.gotoRegisterButton,
+                                                        at: 1)
         }
     }
 }

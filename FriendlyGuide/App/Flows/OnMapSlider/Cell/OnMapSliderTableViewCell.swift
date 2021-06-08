@@ -29,11 +29,11 @@ class OnMapSliderTableViewCell: UITableViewCell, SelfConfiguringCell {
     
     //MARK: - Configuration Methods
     func configure<U>(with value: U) where U : Hashable {
-        if type(of: value) == MocPlace.self {
-            guard let place: MocPlace = value as? MocPlace else { return }
+        if type(of: value) == Place.self {
+            guard let place: Place = value as? Place else { return }
             placeOrEventLabel.text = place.title
-        } else if type(of: value) == MocEvent.self {
-            guard let event: MocEvent = value as? MocEvent else { return }
+        } else if type(of: value) == Event.self {
+            guard let event: Event = value as? Event else { return }
             placeOrEventLabel.text = event.title
         }
     }

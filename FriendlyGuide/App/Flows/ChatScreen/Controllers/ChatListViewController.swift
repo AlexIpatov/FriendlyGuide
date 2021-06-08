@@ -2,55 +2,50 @@
 //  ChatListViewController.swift
 //  FriendlyGuide
 //
-//  Created by Валерий Макрогузов on 24.05.2021.
+//  Created by Валерий Макрогузов on 07.06.2021.
 //
 
 import UIKit
 
-class ChatListViewController: UIViewController {
+protocol ChatListViewDelegate: AnyObject {
+    func fetchData(at index: Int) -> Dialog?
+    func numberOfRowsInSection() -> Int
+}
 
-    private var customView: ChatListView
-    private var model: ChatListModel
-    
-    init(view: ChatListView, model: ChatListModel) {
-        self.customView = view
+protocol ChatListModelDelegate: AnyObject {
+    func didFinishFetchData(at indexes: [Int])
+}
+
+final class ChatListViewController: UIViewController {
+    private var customView: ChatListViewRepresentable
+    private var model: ChatListModelRepresentable
+    init(customView: ChatListViewRepresentable & UIView,
+         model: ChatListModelRepresentable) {
+        self.customView = customView
         self.model = model
         
         super.init(nibName: nil, bundle: nil)
-        self.view = view
-        
-        self.customView.delegate = self
-        self.model.delegate = self
+        self.view = customView
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
-// MARK: - ChatListViewController
-
-extension ChatListViewController: ChatListViewConnectable {
-    func numberOfDialogs() -> Int {
-        model.numberOfDialogs()
+extension ChatListViewController: ChatListViewDelegate {
+    func fetchData(at index: Int) -> Dialog? {
+        model.fetchData(at: index)
     }
     
-    func dialog(at index: Int) -> Dialog {
-        model.dialog(at: index)
-    }
-    
-    func tapOnDialog(at index: Int) {
-        let dialog = model.dialog(at: index)
-        // TODO
+    func numberOfRowsInSection() -> Int {
+        model.numberOfRowsInSection()
     }
 }
 
-extension ChatListViewController: ChatListModelConnectable {
-    func didFinishedRecieveData(at indexes: [Int]) {
-        customView.updateUI(at: indexes)
+extension ChatListViewController: ChatListModelDelegate {
+    func didFinishFetchData(at indexes: [Int]) {
+        customView.didFinishFetchData(at: indexes)
     }
 }
-
-
 

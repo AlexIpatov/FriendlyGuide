@@ -24,13 +24,13 @@ class DetailMoreInfoCell: UICollectionViewCell, SelfConfiguringCell {
     }
     func configure<U>(with value: U) where U : Hashable {
         guard let bodyText: String = value as? String else { return }
-        bodyTextLabel.text = bodyText
+            bodyTextLabel.text = bodyText
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-// MARK: - Setup constraints
 
+    // MARK: - Setup constraints
     private func setupConstraints() {
         contentView.addSubview(bodyTextLabel)
         NSLayoutConstraint.activate([
@@ -38,7 +38,6 @@ class DetailMoreInfoCell: UICollectionViewCell, SelfConfiguringCell {
             bodyTextLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             bodyTextLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             bodyTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5)
-
         ])
 
     }

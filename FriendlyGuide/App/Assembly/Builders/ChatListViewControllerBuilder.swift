@@ -8,18 +8,18 @@
 import UIKit
 
 final class ChatListViewControllerBuilder {
-    func build(withFrame frame: CGRect) -> (ChatListModelConnectable
-                                            & ChatListViewConnectable
-                                            & UIViewController) {
-        ChatListViewController(view: buildView(frame: frame),
-                               model: buildModel())
-    }
-    
-    private func buildModel() -> ChatListModel {
-        QBChatListModel()
-    }
-    
-    private func buildView(frame: CGRect) -> ChatListView {
-        ChartListTableView(frame: frame)
+    func build(with frame: CGRect) -> (ChatListViewDelegate &
+                                       ChatListModelDelegate &
+                                       UIViewController) {
+        
+        let model = ChatListModel(chatDialogsManager: QBChatManager())
+        let view = ChatListView(frame: frame)
+        
+        let controller = ChatListViewController(customView: view,
+                                                model: model)
+        
+        view.delegate = controller
+        model.delegate = controller
+        return controller
     }
 }

@@ -64,6 +64,18 @@ final class LogInViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        useBiometricButtonWasTaped()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?
+            .setNavigationBarHidden(true, animated: true)
+    }
 }
 
 extension LogInViewController: LogInViewDelegate {
@@ -91,7 +103,7 @@ extension LogInViewController: LogInViewDelegate {
     func gotoRegisterButtonWasTapped() {
         let registerVC = registerViewControllerBuilder.build(with: view.bounds)
         registerVC.modalPresentationStyle = .fullScreen
-        navigationController?.present(registerVC, animated: true)
+        navigationController?.pushViewController(registerVC, animated: true)
     }
     
     func logInButtonWasTapped() {
