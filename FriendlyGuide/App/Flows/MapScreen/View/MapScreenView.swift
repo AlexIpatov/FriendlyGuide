@@ -12,51 +12,50 @@ class MapScreenView: UIView {
     private(set) lazy var mapView: GMSMapView = {
         let mapView = GMSMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        mapView.sizeToFit()
         return mapView
     }()
-
-    private(set) lazy var findPlaceOrEventButton = UIButton(title: "",
-                                                         image: .none,
-                                                         font: .smallButtonFont(),
-                                                         cornerRadius: 20.0,
-                                                         backgroundColor: .white,
-                                                         tintColor: .systemBlue)
     
-    private(set) lazy var buildingRouteButton = UIButton(title: "",
-                                                         image: .none,
-                                                         font: .smallButtonFont(),
-                                                         cornerRadius: 20.0,
-                                                         backgroundColor: .white,
-                                                         tintColor: .systemBlue)
+    private(set) lazy var findPlaceOrEventButton = UIButton(
+        backgroundImageForNormalState: UIImage(systemName: "magnifyingglass.circle"),
+        backgroundImageForHighlightedState: UIImage(systemName: "magnifyingglass.circle.fill"),
+        cornerRadius: 20.0,
+        backgroundColor: .white,
+        tintColor: .systemBlue)
     
-    private(set) lazy var clearRouteButton = UIButton(title: "",
-                                                             image: .none,
-                                                             font: .smallButtonFont(),
-                                                             cornerRadius: 20.0,
-                                                             backgroundColor: .white,
-                                                             tintColor: .systemBlue)
+    private(set) lazy var buildingRouteButton = UIButton(
+        backgroundImageForNormalState: UIImage(systemName: "figure.walk.circle"),
+        backgroundImageForHighlightedState: UIImage(systemName: "figure.walk.circle.fill"),
+        cornerRadius: 20.0,
+        backgroundColor: .white,
+        tintColor: .systemBlue)
     
-    private(set) lazy var zoomInMapButton = UIButton(title: "",
-                                                             image: .none,
-                                                             font: .smallButtonFont(),
-                                                             cornerRadius: 20.0,
-                                                             backgroundColor: .white,
-                                                             tintColor: .systemBlue)
+    private(set) lazy var clearRouteButton = UIButton(
+        backgroundImageForNormalState: UIImage(systemName: "xmark.circle"),
+        backgroundImageForHighlightedState: UIImage(systemName: "xmark.circle.fill"),
+        cornerRadius: 20.0,
+        backgroundColor: .white,
+        tintColor: .systemBlue)
     
-    private(set) lazy var zoomOutMapButton = UIButton(title: "",
-                                                         image: .none,
-                                                         font: .smallButtonFont(),
-                                                         cornerRadius: 20.0,
-                                                         backgroundColor: .white,
-                                                         tintColor: .systemBlue)
+    private(set) lazy var zoomInMapButton = UIButton(
+        backgroundImageForNormalState: UIImage(systemName: "plus.circle"),
+        backgroundImageForHighlightedState: UIImage(systemName: "plus.circle.fill"),
+        cornerRadius: 20.0,
+        backgroundColor: .white,
+        tintColor: .systemBlue)
     
-    private(set) lazy var showCurrentLocationButton = UIButton(title: "",
-                                                             image: .none,
-                                                             font: .smallButtonFont(),
-                                                             cornerRadius: 20.0,
-                                                             backgroundColor: .white,
-                                                             tintColor: .systemBlue)
+    private(set) lazy var zoomOutMapButton = UIButton(
+        backgroundImageForNormalState: UIImage(systemName: "minus.circle"),
+        backgroundImageForHighlightedState: UIImage(systemName: "minus.circle.fill"),
+        cornerRadius: 20.0,
+        backgroundColor: .white,
+        tintColor: .systemBlue)
+    
+    private(set) lazy var showCurrentLocationButton = UIButton(
+        backgroundImageForNormalState: UIImage(systemName: "location.circle"),
+        backgroundImageForHighlightedState: UIImage(systemName: "location.circle.fill"),
+        cornerRadius: 20.0,
+        backgroundColor: .white,
+        tintColor: .systemBlue)
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -69,36 +68,6 @@ class MapScreenView: UIView {
     }
     
     func configureUI() {
-        findPlaceOrEventButton.setBackgroundImage(UIImage(systemName: "magnifyingglass.circle"),
-                                                  for: .normal)
-        findPlaceOrEventButton.setBackgroundImage(UIImage(systemName: "magnifyingglass.circle.fill"),
-                                                  for: .highlighted)
-        
-        buildingRouteButton.setBackgroundImage(UIImage(systemName: "figure.walk.circle"),
-                                               for: .normal)
-        buildingRouteButton.setBackgroundImage(UIImage(systemName: "figure.walk.circle.fill"),
-                                               for: .highlighted)
-        
-        clearRouteButton.setBackgroundImage(UIImage(systemName: "xmark.circle"),
-                                            for: .normal)
-        clearRouteButton.setBackgroundImage(UIImage(systemName: "xmark.circle.fill"),
-                                            for: .highlighted)
-        
-        zoomInMapButton.setBackgroundImage(UIImage(systemName: "plus.circle"),
-                                           for: .normal)
-        zoomInMapButton.setBackgroundImage(UIImage(systemName: "plus.circle.fill"),
-                                           for: .highlighted)
-        
-        zoomOutMapButton.setBackgroundImage(UIImage(systemName: "minus.circle"),
-                                            for: .normal)
-        zoomOutMapButton.setBackgroundImage(UIImage(systemName: "minus.circle.fill"),
-                                            for: .highlighted)
-        
-        showCurrentLocationButton.setBackgroundImage(UIImage(systemName: "location.circle"),
-                                                     for: .normal)
-        showCurrentLocationButton.setBackgroundImage(UIImage(systemName: "location.circle.fill"),
-                                                     for: .highlighted)
-        
         self.addSubview(mapView)
         mapView.addSubview(findPlaceOrEventButton)
         mapView.addSubview(buildingRouteButton)

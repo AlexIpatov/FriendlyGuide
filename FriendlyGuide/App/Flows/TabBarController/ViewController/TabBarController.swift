@@ -9,9 +9,15 @@ import UIKit
 
 class TabBarController: UITabBarController {
     // MARK: - Properties
-    var dataProvider: DataProvider
-    var userSettings: UserSettings
-    var requestFactory: RequestFactory
+    private var dataProvider: DataProvider
+    private var userSettings: UserSettings
+    private var requestFactory: RequestFactory
+    private var selfieImage: UIImage?
+        = {
+       return UIImage(systemName: "figure.walk.circle")!
+        //TO DO - Need selfie from user defaults
+    }()
+
     // MARK: - Init
     init(requestFactory: RequestFactory,
          userSettings: UserSettings,
@@ -56,7 +62,7 @@ class TabBarController: UITabBarController {
         viewControllers.append(travelNavigationController)
         
         //2. MapScreen
-        let mapScreenViewController = MapScreenViewController()
+        let mapScreenViewController = MapScreenViewController(selfieImage: selfieImage ?? UIImage(systemName: "figure.walk.circle")!)
         mapScreenViewController.tabBarItem = UITabBarItem(title: "Карта",
                                                           image: UIImage(systemName: "map"),
                                                           selectedImage: UIImage(systemName: "map.fill"))
