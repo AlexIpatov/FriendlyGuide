@@ -14,7 +14,7 @@ final class LocationManager: NSObject {
     //MARK: - Properties
     static let instance = LocationManager()
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
     var location: BehaviorRelay<CLLocation?> = BehaviorRelay(value: nil)
 
     // MARK: - Init

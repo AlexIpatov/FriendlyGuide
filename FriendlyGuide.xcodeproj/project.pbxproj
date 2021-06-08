@@ -82,7 +82,6 @@
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
 		C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904687265B0F6F00231116 /* MapScreenViewController.swift */; };
 		C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904689265B107000231116 /* ProfileScreenViewController.swift */; };
-		C5904690265B19A400231116 /* UIComponentsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590468F265B19A400231116 /* UIComponentsFactory.swift */; };
 		C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904691265B1A0B00231116 /* MapScreenView.swift */; };
 		C5904698265B271400231116 /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904697265B271400231116 /* ProfileScreenView.swift */; };
 		C5C316532660E3F100518405 /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C316522660E3F100518405 /* SelfConfiguringCell.swift */; };
@@ -268,7 +267,6 @@
 		C5904683265B0AA700231116 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C5904687265B0F6F00231116 /* MapScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewController.swift; sourceTree = "<group>"; };
 		C5904689265B107000231116 /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
-		C590468F265B19A400231116 /* UIComponentsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsFactory.swift; sourceTree = "<group>"; };
 		C5904691265B1A0B00231116 /* MapScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenView.swift; sourceTree = "<group>"; };
 		C5904697265B271400231116 /* ProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
 		C5C316522660E3F100518405 /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
@@ -554,7 +552,6 @@
 				21421406266128590007A031 /* Builders */,
 				C5C316512660E3CA00518405 /* Protocols */,
 				C5C316542660E40B00518405 /* Extensions */,
-				2150FEEE265B7FE20058FA89 /* Factories */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -604,14 +601,6 @@
 				2150FEC4265AB9090058FA89 /* Info.plist */,
 			);
 			path = Environments;
-			sourceTree = "<group>";
-		};
-		2150FEEE265B7FE20058FA89 /* Factories */ = {
-			isa = PBXGroup;
-			children = (
-				C590468F265B19A400231116 /* UIComponentsFactory.swift */,
-			);
-			path = Factories;
 			sourceTree = "<group>";
 		};
 		217AB24D2664239D00A0AF66 /* Validators */ = {
@@ -1808,7 +1797,6 @@
 				210F00B82666D480005121C5 /* BiometricIDAuth.swift in Sources */,
 				C5C316E02660F6A000518405 /* CitiesView.swift in Sources */,
 				C5C316F22660F6AC00518405 /* NewsCell.swift in Sources */,
-				C5904690265B19A400231116 /* UIComponentsFactory.swift in Sources */,
 				C9DEE2102666A36200C545CF /* GetCityDetailFactory.swift in Sources */,
 				C9DEE20F2666A36200C545CF /* GetCityDetail.swift in Sources */,
 				C5C3165F2660E41C00518405 /* UIViewController + Extensions.swift in Sources */,
