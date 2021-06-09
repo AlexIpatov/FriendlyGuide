@@ -16,6 +16,8 @@ class DetailMoreInfoCell: UICollectionViewCell, SelfConfiguringCell {
                                                textColor: .black,
                                                numberOfLines: 0,
                                                textAlignment: .left)
+    // MARK: - Properties
+    private let constantForConstraints: CGFloat = 7
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,10 +37,10 @@ class DetailMoreInfoCell: UICollectionViewCell, SelfConfiguringCell {
     private func setupConstraints() {
         contentView.addSubview(bodyTextLabel)
         NSLayoutConstraint.activate([
-            bodyTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            bodyTextLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
+            bodyTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constantForConstraints),
+            bodyTextLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
             bodyTextLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            bodyTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
+            bodyTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -constantForConstraints)
         ])
 
     }

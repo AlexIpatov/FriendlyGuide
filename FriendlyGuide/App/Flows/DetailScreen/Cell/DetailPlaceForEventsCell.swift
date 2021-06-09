@@ -8,6 +8,23 @@
 import UIKit
 import Kingfisher
 
+enum AddressType {
+    case address, subway, phone, siteURL
+
+    func description() -> String {
+        switch self {
+        case .address:
+            return "адрес:"
+        case .subway:
+            return "м."
+        case .phone:
+            return "тел.:"
+        case .siteURL:
+            return "сайт:"
+        }
+    }
+}
+
 class DetailPlaceForEventsCell: UICollectionViewCell, SelfConfiguringCell {
 
     static var reuseId: String = "DetailPlaceForEventsCell"
@@ -45,6 +62,8 @@ class DetailPlaceForEventsCell: UICollectionViewCell, SelfConfiguringCell {
                                    cornerRadius: 0,
                                    backgroundColor: .clear,
                                    tintColor: .systemBlue)
+    // MARK: - Properties
+    private let constantForConstraints: CGFloat = 7
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,15 +74,21 @@ class DetailPlaceForEventsCell: UICollectionViewCell, SelfConfiguringCell {
     func configure<U>(with value: U) where U : Hashable {
         guard let place: EventPlace = value as? EventPlace else { return }
         placeNameLabel.text = place.title
-        subwayLabel.text = "м.\(place.subway ??  "  -  ")"
-        addressLabel.text = place.address
-        phoneLabel.text = "тел.\(place.phone ??  "  -  ")"
-        urlLabel.text = place.siteURL
+        subwayLabel.text = setupPlaceInfoLabel(entity: place.subway, addressType: .subway)
+        addressLabel.text = setupPlaceInfoLabel(entity: place.address, addressType: .address)
+        phoneLabel.text = setupPlaceInfoLabel(entity: place.phone, addressType: .phone)
+        urlLabel.text = setupPlaceInfoLabel(entity: place.siteURL, addressType: .siteURL)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    func setupPlaceInfoLabel(entity: String?, addressType: AddressType) -> String? {
+        guard let entity = entity,
+              entity != "" else {
+            return nil
+        }
+        return "\(addressType.description()) \(entity)"
+    }
     // MARK: - Setup constraints
     private func setupConstraints() {
         contentView.addSubview(placeNameLabel)
@@ -73,26 +98,26 @@ class DetailPlaceForEventsCell: UICollectionViewCell, SelfConfiguringCell {
         contentView.addSubview(urlLabel)
         //  contentView.addSubview(showOnMapButton)
         NSLayoutConstraint.activate([
-            placeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            placeNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
+            placeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constantForConstraints),
+            placeNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
             placeNameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
 
-            subwayLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: 5),
-            subwayLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
+            subwayLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: constantForConstraints),
+            subwayLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
             subwayLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
 
-            addressLabel.topAnchor.constraint(equalTo: subwayLabel.bottomAnchor, constant: 5),
-            addressLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
+            addressLabel.topAnchor.constraint(equalTo: subwayLabel.bottomAnchor, constant: constantForConstraints),
+            addressLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
             addressLabel.rightAnchor.constraint(equalTo:contentView.rightAnchor),
 
-            phoneLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5),
-            phoneLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
+            phoneLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: constantForConstraints),
+            phoneLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
             phoneLabel.rightAnchor.constraint(equalTo:contentView.rightAnchor),
 
-            urlLabel.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 5),
-            urlLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
+            urlLabel.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: constantForConstraints),
+            urlLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
             urlLabel.rightAnchor.constraint(equalTo:contentView.rightAnchor),
-            urlLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            urlLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -constantForConstraints)
 
             //            showOnMapButton.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5),
             //            showOnMapButton.leftAnchor.constraint(equalTo: contentView.leftAnchor),

@@ -26,6 +26,8 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
                                                textColor: .darkGray,
                                                numberOfLines: 1,
                                                textAlignment: .left)
+    // MARK: - Properties
+    private let constantForConstraints: CGFloat = 7
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,18 +60,18 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
         contentView.addSubview(pricelabel)
         contentView.addSubview(dateslabel)
         NSLayoutConstraint.activate([
-            descriptionlabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            descriptionlabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
-            descriptionlabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            descriptionlabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constantForConstraints),
+            descriptionlabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            descriptionlabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
 
-            dateslabel.topAnchor.constraint(equalTo: descriptionlabel.bottomAnchor, constant: 5),
-            dateslabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
-            dateslabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            dateslabel.topAnchor.constraint(equalTo: descriptionlabel.bottomAnchor, constant: constantForConstraints),
+            dateslabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            dateslabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
 
-            pricelabel.topAnchor.constraint(equalTo: dateslabel.bottomAnchor, constant: 5),
-            pricelabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
-            pricelabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            pricelabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            pricelabel.topAnchor.constraint(equalTo: dateslabel.bottomAnchor, constant: constantForConstraints),
+            pricelabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            pricelabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
+            pricelabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -constantForConstraints)
         ])
 
     }
