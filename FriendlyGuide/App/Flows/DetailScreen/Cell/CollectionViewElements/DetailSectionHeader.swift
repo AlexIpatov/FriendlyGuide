@@ -16,7 +16,6 @@ class DetailSectionHeader: UICollectionReusableView {
                                                     cornerRadius: 0.0,
                                                     backgroundColor: .clear,
                                                     tintColor: .systemGray)
-
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +25,6 @@ class DetailSectionHeader: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     //MARK: - Configuration Methods
     func configureUI() {
         addSubview(showMoreButton)
