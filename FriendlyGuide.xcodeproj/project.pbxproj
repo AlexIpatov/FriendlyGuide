@@ -61,6 +61,7 @@
 		21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE78265E7DC60052C076 /* HttpMethod.swift */; };
 		21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE79265E7DC60052C076 /* EndPointType.swift */; };
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
+		4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */; };
 		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
 		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
 		4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB926625080000C4298 /* AuthValidators.swift */; };
@@ -243,6 +244,7 @@
 		21C21C5E26617B280016CC23 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		21D3EBB926610977007D01CE /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
+		4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Entensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB926625080000C4298 /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
@@ -966,6 +968,7 @@
 				C5C317F42665147400518405 /* UISegmentedControl + Extensions.swift */,
 				4A9E29AE2667E64800C3D5EA /* UIRefreshControl + Extensions.swift */,
 				21A2E6E4266906AC00254342 /* UIView + Extensions.swift */,
+				4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1846,6 +1849,7 @@
 				4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */,
 				21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */,
 				C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */,
+				4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */,
 				C5C316F02660F6AC00518405 /* TravelScreenEnum.swift in Sources */,
 				C96B949C26612068007AD0DA /* DateElement.swift in Sources */,
 				2142141226613B100007A031 /* Authorizable.swift in Sources */,

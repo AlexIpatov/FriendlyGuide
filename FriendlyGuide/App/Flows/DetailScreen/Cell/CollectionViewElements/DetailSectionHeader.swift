@@ -11,12 +11,11 @@ class DetailSectionHeader: UICollectionReusableView {
     // MARK: - Properties
     static let reuseId = "DetailSectionHeader"
     // MARK: - UI components
-    let showMoreButton = UIButton(title: "Показать еще",
+    let showMoreButton = UIButton(title: "Подробнее о событии...",
                                                     font: .smallButtonFont(),
                                                     cornerRadius: 0.0,
                                                     backgroundColor: .clear,
-                                                    tintColor: .systemBlue)
-
+                                                    tintColor: .systemGray)
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +25,6 @@ class DetailSectionHeader: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     //MARK: - Configuration Methods
     func configureUI() {
         addSubview(showMoreButton)

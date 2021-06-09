@@ -7,97 +7,158 @@
 
 import UIKit
 import Kingfisher
-
+// TODO Убрать
+enum AddressType {
+    case address, subway, phone
+    func description() -> String {
+        switch self {
+        case .address:
+            return "адрес:"
+        case .subway:
+            return "м."
+        case .phone:
+            return "тел.:"
+        }
+    }
+}
 class DetailPlaceForEventsCell: UICollectionViewCell, SelfConfiguringCell {
-
+    
     static var reuseId: String = "DetailPlaceForEventsCell"
-
+    // TODO Добавтить переход на детэйл место
     private(set) lazy var placeNameLabel = UILabel(text: "",
                                                    font: .titleFont(),
                                                    textColor: .black,
                                                    numberOfLines: 2,
                                                    textAlignment: .center)
-    private(set) lazy var subwayLabel = UILabel(text: "",
-                                                font: .smallTitleFont(),
-                                                textColor: .black,
-                                                numberOfLines: 1,
-                                                textAlignment: .left)
-    private(set) lazy var addressLabel = UILabel(text: "",
-                                                 font: .smallTitleFont(),
-                                                 textColor: .black,
-                                                 numberOfLines: 1,
-                                                 textAlignment: .left)
-    private(set) lazy var phoneLabel = UILabel(text: "",
-                                               font: .smallTitleFont(),
-                                               textColor: .black,
-                                               numberOfLines: 1,
-                                               textAlignment: .left)
-    private(set) lazy var urlLabel = UILabel(text: "",
-                                             font: .smallTitleFont(),
-                                             textColor: .black,
-                                             numberOfLines: 1,
-                                             textAlignment: .left,
-                                             adjustsFontSizeToFitWidth: true)
-
-    let showOnMapButton = UIButton(title: "Показать на карте",
-                                   image: UIImage(systemName: "map"),
-                                   font: nil,
-                                   cornerRadius: 0,
-                                   backgroundColor: .clear,
-                                   tintColor: .systemBlue)
+    private(set) lazy var subwayButton = UIButton(title: "",
+                                                  image: UIImage(systemName: "tram"),
+                                                  font: .smallButtonFont(),
+                                                  cornerRadius: 0,
+                                                  backgroundColor: .clear,
+                                                  tintColor: .systemGray)
+    private(set) lazy var addressButton = UIButton(title: "",
+                                                   image: UIImage(systemName: "mappin"),
+                                                   font: .smallButtonFont(),
+                                                   cornerRadius: 0,
+                                                   backgroundColor: .clear,
+                                                   tintColor: .systemGray)
+    private(set) lazy var phoneButton = UIButton(title: "",
+                                                 image: UIImage(systemName: "phone"),
+                                                 font: .smallButtonFont(),
+                                                 cornerRadius: 0,
+                                                 backgroundColor: .clear,
+                                                 tintColor: .systemGray)
+    private(set) lazy var showInWebButton = UIButton(title: "Показать на сайте",
+                                                     image: UIImage(systemName: "network"),
+                                                     font: .smallButtonFont(),
+                                                     cornerRadius: 0,
+                                                     backgroundColor: .clear,
+                                                     tintColor: .systemGray)
+    // MARK: - Properties
+    private let constantForConstraints: CGFloat = 7
+    private var siteURLInString: String?
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
         setupConstraints()
+        addTargets()
+        self.makeRoundedCellWithShadow()
     }
     func configure<U>(with value: U) where U : Hashable {
         guard let place: EventPlace = value as? EventPlace else { return }
         placeNameLabel.text = place.title
-        subwayLabel.text = "м.\(place.subway ??  "  -  ")"
-        addressLabel.text = place.address
-        phoneLabel.text = "тел.\(place.phone ??  "  -  ")"
-        urlLabel.text = place.siteURL
+        subwayButton.setTitle(setupPlaceInfoLabel(entity: place.subway,
+                                                  addressType: .subway),
+                              for: .normal)
+        addressButton.setTitle(setupPlaceInfoLabel(entity: place.address,
+                                                   addressType: .address),
+                               for: .normal)
+        phoneButton.setTitle(setupPlaceInfoLabel(entity: place.phone,
+                                                 addressType: .phone),
+                             for: .normal)
+        siteURLInString = place.siteURL
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    // MARK: - Setup PlaceInfoLabel
+    func setupPlaceInfoLabel(entity: String?,
+                             addressType: AddressType) -> String {
+        guard let entity = entity,
+              entity != "" else {
+            return " - "
+        }
+        return "\(addressType.description()) \(entity)"
+    }
     // MARK: - Setup constraints
     private func setupConstraints() {
         contentView.addSubview(placeNameLabel)
-        contentView.addSubview(subwayLabel)
-        contentView.addSubview(addressLabel)
-        contentView.addSubview(phoneLabel)
-        contentView.addSubview(urlLabel)
-        //  contentView.addSubview(showOnMapButton)
+        contentView.addSubview(subwayButton)
+        contentView.addSubview(addressButton)
+        contentView.addSubview(phoneButton)
+        contentView.addSubview(showInWebButton)
         NSLayoutConstraint.activate([
-            placeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            placeNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            placeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constantForConstraints),
+            placeNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
             placeNameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-
-            subwayLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: 5),
-            subwayLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            subwayLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-
-            addressLabel.topAnchor.constraint(equalTo: subwayLabel.bottomAnchor, constant: 5),
-            addressLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            addressLabel.rightAnchor.constraint(equalTo:contentView.rightAnchor),
-
-            phoneLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5),
-            phoneLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            phoneLabel.rightAnchor.constraint(equalTo:contentView.rightAnchor),
-
-            urlLabel.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 5),
-            urlLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            urlLabel.rightAnchor.constraint(equalTo:contentView.rightAnchor),
-            urlLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-
-            //            showOnMapButton.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5),
-            //            showOnMapButton.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            //            showOnMapButton.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            //            showOnMapButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            
+            subwayButton.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: constantForConstraints),
+            subwayButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            
+            addressButton.topAnchor.constraint(equalTo: subwayButton.bottomAnchor, constant: constantForConstraints),
+            addressButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            
+            phoneButton.topAnchor.constraint(equalTo: addressButton.bottomAnchor, constant: constantForConstraints),
+            phoneButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            
+            showInWebButton.topAnchor.constraint(equalTo: phoneButton.bottomAnchor, constant: constantForConstraints),
+            showInWebButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            showInWebButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -constantForConstraints)
         ])
     }
 }
-
+//MARK: - Actions
+extension DetailPlaceForEventsCell {
+    func addTargets() {
+        showInWebButton.addTarget(self,
+                                  action: #selector(showInWebButtonTapped),
+                                  for: .touchUpInside)
+        phoneButton.addTarget(self,
+                              action: #selector(phoneButtonTapped),
+                              for: .touchUpInside)
+        addressButton.addTarget(self,
+                                action: #selector(addressButtonTapped),
+                                for: .touchUpInside)
+        subwayButton.addTarget(self,
+                               action: #selector(addressButtonTapped),
+                               for: .touchUpInside)
+    }
+    // MARK: - Open in web
+    @objc private func showInWebButtonTapped() {
+        guard let siteURLInString = siteURLInString,
+              let siteURL = URL(string: siteURLInString)
+        else {
+            return
+        }
+        UIApplication.shared.open(siteURL,
+                                  options: [:],
+                                  completionHandler: nil)
+    }
+    // MARK: - Phone call (only device)
+    // TODO Проверить
+    @objc private func phoneButtonTapped() {
+        guard let phoneNumber = phoneButton.title(for: .normal),
+              let phoneNumberURL = URL(string: "tell://\(phoneNumber)")
+        else {
+            return
+        }
+        UIApplication.shared.open(phoneNumberURL,
+                                  options: [:],
+                                  completionHandler: nil)
+    }
+    // MARK: - Show map with current address
+    @objc private func addressButtonTapped() {
+        print("Добавить переход на карту")
+    }
+}

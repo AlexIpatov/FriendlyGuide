@@ -15,7 +15,7 @@ class DetailImageCell: UICollectionViewCell, SelfConfiguringCell {
     private(set) lazy var productImageView: UIImageView = {
         let imgView = UIImageView()
         imgView.backgroundColor = .white
-        imgView.contentMode = .scaleAspectFit
+        imgView.contentMode = .scaleAspectFill
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
@@ -24,7 +24,7 @@ class DetailImageCell: UICollectionViewCell, SelfConfiguringCell {
         super.init(frame: frame)
         backgroundColor = .white
         setupConstraints()
-        self.layer.cornerRadius = 4
+        self.layer.cornerRadius = 10
         self.clipsToBounds = true
     }
     func configure<U>(with value: U) where U : Hashable {
