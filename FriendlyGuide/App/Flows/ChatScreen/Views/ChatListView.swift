@@ -49,7 +49,6 @@ extension ChatListView: UITableViewDelegate {
 
 extension ChatListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("tableView(_ tableView: UITableView, numberOfRowsInSection section: Int)")
         return delegate?.numberOfRowsInSection() ?? 0
     }
     
@@ -73,8 +72,7 @@ extension ChatListView: UITableViewDataSource {
 
 extension ChatListView: ChatListViewRepresentable {
     func didFinishFetchData(at indexes: [Int]) {
-        print("didFinishFetchData(at indexes: [Int])")
-        tableView.insertRows(at: indexes.map { IndexPath(row: $0, section: 0) },
-                             with: .fade)
+        tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
+                             with: .automatic)
     }
 }

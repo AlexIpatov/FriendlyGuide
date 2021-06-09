@@ -40,20 +40,19 @@ protocol RegisterModelDelegate: AnyObject {
 
 final class RegisterViewController: UIViewController {
     
-    private let errorTimeredView = TimeredLableView(style: .error)
+    private lazy var errorTimeredView: TimeredLableView = {
+        TimeredLableView(style: .error)
+    }()
     
     private var customView: RegisterViewRepresentable
     private var model: RegisterModelRepresentable
+    private var signUpRequestFactory: SignUpRequestFactory
     
-    private var chatManager: ChatManager
     
-    private var window: UIWindow? {
-        UIApplication.shared.windows.first
-    }
-    
-    init(model: RegisterModelRepresentable, customView: (RegisterViewRepresentable & UIView),
-         chatManager: ChatManager) {
-        self.chatManager = chatManager
+    init(model: RegisterModelRepresentable,
+         customView: (RegisterViewRepresentable & UIView),
+         signUpRequestFactory: SignUpRequestFactory) {
+        self.signUpRequestFactory = signUpRequestFactory
         self.customView = customView
         self.model = model
         
@@ -137,8 +136,7 @@ extension RegisterViewController: RegisterViewDelegate {
             return
         }
         
-        
-        chatManager.signUp(fullName: model.name,
+        signUpRequestFactory.signUp(fullName: model.name,
                            login: model.login,
                            password: model.password) { [weak self] result in
             guard let self = self else {

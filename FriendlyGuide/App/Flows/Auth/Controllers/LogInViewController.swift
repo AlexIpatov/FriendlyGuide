@@ -32,7 +32,7 @@ protocol LogInViewDelegate: AnyObject {
 final class LogInViewController: UIViewController {
     private var window: UIWindow?
     private var model: LogInModelRepresentable
-    private var chatManager: ChatManager
+    private var loginRequestFactory: LogInRequestFactory
     private var customView: LoginViewRepresentable
     private let registerViewControllerBuilder: RegisterViewControllerBuilder
     private let appMainViewControllerBuilder: AppMainViewControllerBuilder
@@ -46,13 +46,13 @@ final class LogInViewController: UIViewController {
          appMainViewControllerBuilder: AppMainViewControllerBuilder,
          localAuthRequestFactory: LocalAuthRequestFactory,
          keychainRequestFactory: KeychainRequestFactory,
-         chatManager: ChatManager,
+         loginRequestFactory: LogInRequestFactory,
          window: UIWindow?) {
         self.appMainViewControllerBuilder = appMainViewControllerBuilder
         self.registerViewControllerBuilder = registerViewControllerBuilder
         self.localAuthRequestFactory = localAuthRequestFactory
         self.keychainRequestFactory = keychainRequestFactory
-        self.chatManager = chatManager
+        self.loginRequestFactory = loginRequestFactory
         self.customView = customView
         self.window = window
         self.model = model
@@ -122,12 +122,12 @@ extension LogInViewController: LogInViewDelegate {
                                   duration: 1)
             return
         }
-
+        
         login(with: model.login, and: model.password)
     }
     
     private func login(with login: String, and password: String) {
-        chatManager.login(login: model.login, password: model.password) { [weak self] result in
+        loginRequestFactory.login(login: model.login, password: model.password) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
