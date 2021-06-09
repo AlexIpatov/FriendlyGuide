@@ -50,6 +50,7 @@ class DetailPlaceForEventsCell: UICollectionViewCell, SelfConfiguringCell {
         super.init(frame: frame)
         backgroundColor = .white
         setupConstraints()
+        self.makeRoundedCellWithShadow()
     }
     func configure<U>(with value: U) where U : Hashable {
         guard let place: EventPlace = value as? EventPlace else { return }
@@ -73,23 +74,23 @@ class DetailPlaceForEventsCell: UICollectionViewCell, SelfConfiguringCell {
         //  contentView.addSubview(showOnMapButton)
         NSLayoutConstraint.activate([
             placeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            placeNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            placeNameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             placeNameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
 
             subwayLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: 5),
-            subwayLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            subwayLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             subwayLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
 
             addressLabel.topAnchor.constraint(equalTo: subwayLabel.bottomAnchor, constant: 5),
-            addressLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            addressLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             addressLabel.rightAnchor.constraint(equalTo:contentView.rightAnchor),
 
             phoneLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5),
-            phoneLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            phoneLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             phoneLabel.rightAnchor.constraint(equalTo:contentView.rightAnchor),
 
             urlLabel.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 5),
-            urlLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            urlLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             urlLabel.rightAnchor.constraint(equalTo:contentView.rightAnchor),
             urlLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
 

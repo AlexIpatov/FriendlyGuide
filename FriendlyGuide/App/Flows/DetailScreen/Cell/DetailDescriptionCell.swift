@@ -31,6 +31,7 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
         super.init(frame: frame)
         backgroundColor = .white
         setupConstraints()
+        self.makeRoundedCellWithShadow()
     }
     func configure<U>(with value: U) where U : Hashable {
         guard let entity: EventDetail = value as? EventDetail else { return }
@@ -58,15 +59,15 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
         contentView.addSubview(dateslabel)
         NSLayoutConstraint.activate([
             descriptionlabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            descriptionlabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            descriptionlabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             descriptionlabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
 
             dateslabel.topAnchor.constraint(equalTo: descriptionlabel.bottomAnchor, constant: 5),
-            dateslabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            dateslabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             dateslabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
 
             pricelabel.topAnchor.constraint(equalTo: dateslabel.bottomAnchor, constant: 5),
-            pricelabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            pricelabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             pricelabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             pricelabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])

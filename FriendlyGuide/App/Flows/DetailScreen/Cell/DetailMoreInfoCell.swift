@@ -21,6 +21,7 @@ class DetailMoreInfoCell: UICollectionViewCell, SelfConfiguringCell {
         super.init(frame: frame)
         backgroundColor = .white
         setupConstraints()
+        self.makeRoundedCellWithShadow()
     }
     func configure<U>(with value: U) where U : Hashable {
         guard let bodyText: String = value as? String else { return }
@@ -35,9 +36,9 @@ class DetailMoreInfoCell: UICollectionViewCell, SelfConfiguringCell {
         contentView.addSubview(bodyTextLabel)
         NSLayoutConstraint.activate([
             bodyTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            bodyTextLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            bodyTextLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 5),
             bodyTextLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            bodyTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5)
+            bodyTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
         ])
 
     }
