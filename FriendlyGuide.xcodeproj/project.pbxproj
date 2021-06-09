@@ -57,7 +57,6 @@
 		21B71F982660115D00460564 /* ChatMessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F972660115D00460564 /* ChatMessagesManager.swift */; };
 		21B71F9A266011E600460564 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F99266011E600460564 /* ChatManager.swift */; };
 		21C21C5F26617B280016CC23 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C5E26617B280016CC23 /* LogInView.swift */; };
-		21D3EBB126603F54007D01CE /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE73265E7DC60052C076 /* AbstractErrorParser.swift */; };
 		21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE78265E7DC60052C076 /* HttpMethod.swift */; };
 		21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE79265E7DC60052C076 /* EndPointType.swift */; };
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
@@ -112,7 +111,6 @@
 		C5C316F62660F6AC00518405 /* TravelScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C316ED2660F6AC00518405 /* TravelScreenView.swift */; };
 		C5C316F72660F6AC00518405 /* TravelScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C316EF2660F6AC00518405 /* TravelScreenViewController.swift */; };
 		C5C317F52665147400518405 /* UISegmentedControl + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C317F42665147400518405 /* UISegmentedControl + Extensions.swift */; };
-		C91CEE81265E7DC70052C076 /* ErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE74265E7DC60052C076 /* ErrorParser.swift */; };
 		C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE77265E7DC60052C076 /* AbstractRequestFactory.swift */; };
 		C91CEE86265E7DC70052C076 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7B265E7DC60052C076 /* ParameterEncoding.swift */; };
 		C91CEE88265E7DC70052C076 /* JsonParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7D265E7DC60052C076 /* JsonParameterEncoder.swift */; };
@@ -164,6 +162,8 @@
 		C9DEE2152666A36200C545CF /* GetEventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE2082666A36200C545CF /* GetEventDetail.swift */; };
 		C9DEE2182666A3B600C545CF /* NewsListResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE2172666A3B600C545CF /* NewsListResource.swift */; };
 		C9DEE21B2666A3C400C545CF /* PlacesResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE21A2666A3C400C545CF /* PlacesResource.swift */; };
+		C9F6AB34266F987600841789 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F6AB33266F987500841789 /* URLProtocolStub.swift */; };
+		C9F6AB38266FA20400841789 /* GetPlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F6AB37266FA20400841789 /* GetPlacesTests.swift */; };
 		DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -298,8 +298,6 @@
 		C5C316ED2660F6AC00518405 /* TravelScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelScreenView.swift; sourceTree = "<group>"; };
 		C5C316EF2660F6AC00518405 /* TravelScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelScreenViewController.swift; sourceTree = "<group>"; };
 		C5C317F42665147400518405 /* UISegmentedControl + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl + Extensions.swift"; sourceTree = "<group>"; };
-		C91CEE73265E7DC60052C076 /* AbstractErrorParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractErrorParser.swift; sourceTree = "<group>"; };
-		C91CEE74265E7DC60052C076 /* ErrorParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorParser.swift; sourceTree = "<group>"; };
 		C91CEE77265E7DC60052C076 /* AbstractRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRequestFactory.swift; sourceTree = "<group>"; };
 		C91CEE78265E7DC60052C076 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		C91CEE79265E7DC60052C076 /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
@@ -354,6 +352,8 @@
 		C9DEE2082666A36200C545CF /* GetEventDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetEventDetail.swift; sourceTree = "<group>"; };
 		C9DEE2172666A3B600C545CF /* NewsListResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsListResource.swift; sourceTree = "<group>"; };
 		C9DEE21A2666A3C400C545CF /* PlacesResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesResource.swift; sourceTree = "<group>"; };
+		C9F6AB33266F987500841789 /* URLProtocolStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLProtocolStub.swift; sourceTree = "<group>"; };
+		C9F6AB37266FA20400841789 /* GetPlacesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlacesTests.swift; sourceTree = "<group>"; };
 		CE002376636440E6DCE35FBA /* Pods-FriendlyGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EE7CC528BA65E998B145C20A /* Pods-FriendlyGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1152,29 +1152,11 @@
 		C91CEE70265E7DC60052C076 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				C91CEE71265E7DC60052C076 /* Parser */,
 				C91CEE76265E7DC60052C076 /* NetworkService */,
 				C91CEE7A265E7DC60052C076 /* ParameterEncoding */,
 				C91CEE7E265E7DC60052C076 /* NetworkErrors */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		C91CEE71265E7DC60052C076 /* Parser */ = {
-			isa = PBXGroup;
-			children = (
-				C91CEE72265E7DC60052C076 /* ErrorParser */,
-			);
-			path = Parser;
-			sourceTree = "<group>";
-		};
-		C91CEE72265E7DC60052C076 /* ErrorParser */ = {
-			isa = PBXGroup;
-			children = (
-				C91CEE73265E7DC60052C076 /* AbstractErrorParser.swift */,
-				C91CEE74265E7DC60052C076 /* ErrorParser.swift */,
-			);
-			path = ErrorParser;
 			sourceTree = "<group>";
 		};
 		C91CEE76265E7DC60052C076 /* NetworkService */ = {
@@ -1394,7 +1376,9 @@
 		C978FD43266910B700042715 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C9F6AB32266F78D800841789 /* Mocks */,
 				C978FD442669111400042715 /* TravelDataProviderTests.swift */,
+				C9F6AB37266FA20400841789 /* GetPlacesTests.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1497,6 +1481,14 @@
 				C9DEE21A2666A3C400C545CF /* PlacesResource.swift */,
 			);
 			path = PlacesResource;
+			sourceTree = "<group>";
+		};
+		C9F6AB32266F78D800841789 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				C9F6AB33266F987500841789 /* URLProtocolStub.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1842,7 +1834,6 @@
 				21ADF5062665874700007D34 /* AppStartManager.swift in Sources */,
 				C91CEE88265E7DC70052C076 /* JsonParameterEncoder.swift in Sources */,
 				C5C316F62660F6AC00518405 /* TravelScreenView.swift in Sources */,
-				C91CEE81265E7DC70052C076 /* ErrorParser.swift in Sources */,
 				C5C316702660E62200518405 /* SliderWithDimmingViewController.swift in Sources */,
 				C96B94812661205E007AD0DA /* CityNamesResource.swift in Sources */,
 				217AB24C2664239B00A0AF66 /* LoginValidator.swift in Sources */,
@@ -1874,7 +1865,6 @@
 				C96B949A26612068007AD0DA /* Image.swift in Sources */,
 				2125EF6E26666ABA00F73EB4 /* TimeredErrorView.swift in Sources */,
 				C5C3167A2660E7BB00518405 /* OnMapSliderTableViewCell.swift in Sources */,
-				21D3EBB126603F54007D01CE /* AbstractErrorParser.swift in Sources */,
 				C96B94B72661208D007AD0DA /* PlaceImage.swift in Sources */,
 				C96B949B26612068007AD0DA /* EventAgent.swift in Sources */,
 				21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */,
@@ -1930,6 +1920,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C978FD452669111400042715 /* TravelDataProviderTests.swift in Sources */,
+				C9F6AB34266F987600841789 /* URLProtocolStub.swift in Sources */,
+				C9F6AB38266FA20400841789 /* GetPlacesTests.swift in Sources */,
 				2150FECE265AB9090058FA89 /* FriendlyGuideTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

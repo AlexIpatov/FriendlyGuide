@@ -12,10 +12,10 @@ class RequestFactory {
     lazy var commonSession: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.httpShouldSetCookies = false
-        let manager = URLSession(configuration: configuration,
+        let session = URLSession(configuration: configuration,
                                  delegate: nil,
                                  delegateQueue: .main)
-        return manager
+        return session
     }()
     
     func makeGetCityNameFactory() -> GetCityNamesFactory {

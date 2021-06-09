@@ -80,15 +80,3 @@ extension TravelDataProvider: DataProvider {
 }
 
 }
-//let dp = TravelDataProvider()
-//dp.getData(cityTag: "spb",
-//           actualSince: "1444385206",
-//           showingSince: "1444385206") { [weak self] response in
-//    switch response {
-//    case .success(let data):
-//        let events = data.events
-//        events.forEach { print($0.title) }
-//    case .failure(let error):
-//        print(error.localizedDescription)
-//    }
-//}
