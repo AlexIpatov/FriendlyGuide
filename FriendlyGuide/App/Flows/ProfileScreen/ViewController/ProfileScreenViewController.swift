@@ -25,13 +25,13 @@ class ProfileScreenViewController: UIViewController {
     }
     
     //MARK: - ViewController Lifecycle
+    override func loadView() {
+        view = profileScreenView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-    }
-    
-    override func loadView() {
-        view = profileScreenView
     }
     
     //MARK: - Configuration Methods

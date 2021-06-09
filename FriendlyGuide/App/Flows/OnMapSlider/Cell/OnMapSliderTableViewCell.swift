@@ -44,7 +44,8 @@ class OnMapSliderTableViewCell: UITableViewCell, SelfConfiguringCell {
         contentView.addSubview(placeOrEventLabel)
         NSLayoutConstraint.activate([
             placeOrEventLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            placeOrEventLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
+            placeOrEventLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
+            placeOrEventLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
     }
 }

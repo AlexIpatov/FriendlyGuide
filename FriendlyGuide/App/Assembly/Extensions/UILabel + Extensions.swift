@@ -11,7 +11,7 @@ extension UILabel {
     convenience init(text: String,
                      font: UIFont?,
                      textColor: UIColor = .black,
-                     numberOfLines: Int = 0,
+                     numberOfLines: Int? = 1,
                      textAlignment: NSTextAlignment = .center,
                      adjustsFontSizeToFitWidth: Bool = false) {
         self.init()
@@ -19,7 +19,7 @@ extension UILabel {
         self.font = font
         self.textColor = textColor
         self.textAlignment = textAlignment
-        self.numberOfLines = numberOfLines
+        self.numberOfLines = numberOfLines ?? 1
         self.translatesAutoresizingMaskIntoConstraints = false
         self.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
     }
