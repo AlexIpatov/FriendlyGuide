@@ -64,16 +64,13 @@ final class QBChatManager {
 
 // MARK: - ChatDialogsManager
 
-extension QBChatManager: CreateGroupDialogRequestFactory {
-    func createGroupDialog(withName name: String,
-                           photo: String?,
-                           occupants: [ChatConnectable],
-                           completion: @escaping (_ dialog: Dialog?) -> Void) {
+extension QBChatManager: CreatePublicDialogRequestFactory {
+    func createDialog(withName name: String,
+                      photo: String?,
+                      completion: @escaping (_ dialog: Dialog?) -> Void) {
         
-        let chatDialog = QBChatDialog(dialogID: nil, type: .group)
-        
+        let chatDialog = QBChatDialog(dialogID: nil, type: .publicGroup)
         chatDialog.name = name
-        chatDialog.occupantIDs = occupants.map { NSNumber(value: $0.userID) }
         
         QBRequest.createDialog(chatDialog, successBlock: { response, qbdialog in
             qbdialog.join { error in

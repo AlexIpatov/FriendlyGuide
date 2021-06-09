@@ -40,6 +40,7 @@
 		219C231A2671470400D9ED90 /* GetDialogsRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C23192671470400D9ED90 /* GetDialogsRequestFactory.swift */; };
 		219C231D2671496500D9ED90 /* LogInRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C231C2671496500D9ED90 /* LogInRequestFactory.swift */; };
 		219C231F2671499400D9ED90 /* SignUpRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C231E2671499400D9ED90 /* SignUpRequestFactory.swift */; };
+		219C23212671546700D9ED90 /* ConnectToDialogRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C23202671546700D9ED90 /* ConnectToDialogRequestFactory.swift */; };
 		21A2E6E5266906AC00254342 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E4266906AC00254342 /* UIView + Extensions.swift */; };
 		21A2E6E72669095300254342 /* AuthControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E62669095300254342 /* AuthControllersFactory.swift */; };
 		21A2E6EA26690DE100254342 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E926690DE100254342 /* RegisterView.swift */; };
@@ -54,7 +55,7 @@
 		21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F85265E7D5700460564 /* QBChatManager.swift */; };
 		21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8E265E932C00460564 /* ChatViewController.swift */; };
 		21B71F9126600D8F00460564 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9026600D8F00460564 /* Dialog.swift */; };
-		21B71F9426600F5A00460564 /* CreateGroupDialogRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9326600F5A00460564 /* CreateGroupDialogRequestFactory.swift */; };
+		21B71F9426600F5A00460564 /* CreatePublicDialogRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9326600F5A00460564 /* CreatePublicDialogRequestFactory.swift */; };
 		21C21C5F26617B280016CC23 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C5E26617B280016CC23 /* LogInView.swift */; };
 		21D3EBB126603F54007D01CE /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE73265E7DC60052C076 /* AbstractErrorParser.swift */; };
 		21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE78265E7DC60052C076 /* HttpMethod.swift */; };
@@ -225,6 +226,7 @@
 		219C23192671470400D9ED90 /* GetDialogsRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDialogsRequestFactory.swift; sourceTree = "<group>"; };
 		219C231C2671496500D9ED90 /* LogInRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInRequestFactory.swift; sourceTree = "<group>"; };
 		219C231E2671499400D9ED90 /* SignUpRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestFactory.swift; sourceTree = "<group>"; };
+		219C23202671546700D9ED90 /* ConnectToDialogRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToDialogRequestFactory.swift; sourceTree = "<group>"; };
 		21A2E6E4266906AC00254342 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		21A2E6E62669095300254342 /* AuthControllersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthControllersFactory.swift; sourceTree = "<group>"; };
 		21A2E6E926690DE100254342 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -238,7 +240,7 @@
 		21B71F85265E7D5700460564 /* QBChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBChatManager.swift; sourceTree = "<group>"; };
 		21B71F8E265E932C00460564 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		21B71F9026600D8F00460564 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
-		21B71F9326600F5A00460564 /* CreateGroupDialogRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupDialogRequestFactory.swift; sourceTree = "<group>"; };
+		21B71F9326600F5A00460564 /* CreatePublicDialogRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePublicDialogRequestFactory.swift; sourceTree = "<group>"; };
 		21C21C5E26617B280016CC23 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		21D3EBB926610977007D01CE /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -681,7 +683,8 @@
 			isa = PBXGroup;
 			children = (
 				219C23192671470400D9ED90 /* GetDialogsRequestFactory.swift */,
-				21B71F9326600F5A00460564 /* CreateGroupDialogRequestFactory.swift */,
+				21B71F9326600F5A00460564 /* CreatePublicDialogRequestFactory.swift */,
+				219C23202671546700D9ED90 /* ConnectToDialogRequestFactory.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -1768,7 +1771,7 @@
 				C96B94AA26612079007AD0DA /* NewsPlace.swift in Sources */,
 				210F00C22666D859005121C5 /* LoginKeychainRequest.swift in Sources */,
 				C5C316F12660F6AC00518405 /* EventCell.swift in Sources */,
-				21B71F9426600F5A00460564 /* CreateGroupDialogRequestFactory.swift in Sources */,
+				21B71F9426600F5A00460564 /* CreatePublicDialogRequestFactory.swift in Sources */,
 				210F00BF2666D6FB005121C5 /* LocksmithKeychain.swift in Sources */,
 				4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */,
 				217AB2562664243C00A0AF66 /* LoginValidationError.swift in Sources */,
@@ -1906,6 +1909,7 @@
 				C96B94B82661208D007AD0DA /* PlaceDetail.swift in Sources */,
 				21ADF5022665142900007D34 /* RegisterModel.swift in Sources */,
 				4A7F8D1B26662C6300C69FBD /* DetailNameCell.swift in Sources */,
+				219C23212671546700D9ED90 /* ConnectToDialogRequestFactory.swift in Sources */,
 				21ADF4FE26650C3A00007D34 /* LogInModel.swift in Sources */,
 				21ADF4FC2665032B00007D34 /* LogInViewController.swift in Sources */,
 				219C231A2671470400D9ED90 /* GetDialogsRequestFactory.swift in Sources */,

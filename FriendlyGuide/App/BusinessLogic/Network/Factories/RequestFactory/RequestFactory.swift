@@ -64,7 +64,7 @@ final class RequestFactory {
         chatManager
     }
     
-    func makeCreateGroupDialogRequestFactory() -> CreateGroupDialogRequestFactory {
+    func makeCreateGroupDialogRequestFactory() -> CreatePublicDialogRequestFactory {
         chatManager
     }
     
