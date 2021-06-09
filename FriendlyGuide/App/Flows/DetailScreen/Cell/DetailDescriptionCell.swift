@@ -15,7 +15,7 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
                                                font: .smallTitleFont(),
                                                textColor: .black,
                                                numberOfLines: 0,
-                                               textAlignment: .left)
+                                               textAlignment: .center)
     private(set) lazy var dateslabel = UILabel(text: "",
                                                font: .smallTitleFont(),
                                                textColor: .black,
