@@ -22,6 +22,7 @@ final class AppMainViewControllerBuilder {
         return UIImage(systemName: "figure.walk.circle")!
         //TO DO - Need selfie from user defaults
     }()
+    
     private let requestFactory: RequestFactory
     
     init(requestFactory: RequestFactory) {
