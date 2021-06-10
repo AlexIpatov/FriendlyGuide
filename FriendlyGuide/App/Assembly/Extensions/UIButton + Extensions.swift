@@ -10,16 +10,20 @@ import UIKit
 extension UIButton {
     convenience init(title: String? = nil,
                      image: UIImage? = nil,
-                     font: UIFont?,
-                     cornerRadius: CGFloat,
-                     backgroundColor: UIColor = .clear,
-                     tintColor: UIColor = .black) {
+                     backgroundImageForNormalState: UIImage? = nil,
+                     backgroundImageForHighlightedState: UIImage? = nil,
+                     font: UIFont? = .smallButtonFont(),
+                     cornerRadius: CGFloat? = 0.0,
+                     backgroundColor: UIColor? = .clear,
+                     tintColor: UIColor? = .systemBlue) {
         self.init(type: .system)
         self.setTitle(title, for: .normal)
         self.setImage(image, for: .normal)
+        self.setBackgroundImage(backgroundImageForNormalState, for: .normal)
+        self.setBackgroundImage(backgroundImageForHighlightedState, for: .highlighted)
         self.titleLabel?.font = font
         self.backgroundColor = backgroundColor
-        self.layer.cornerRadius = cornerRadius
+        self.layer.cornerRadius = cornerRadius ?? 0.0
         self.translatesAutoresizingMaskIntoConstraints = false
         self.tintColor = tintColor
         self.layer.masksToBounds = true

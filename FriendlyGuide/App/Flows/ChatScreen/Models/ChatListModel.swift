@@ -10,7 +10,7 @@ import Foundation
 protocol ChatListModelRepresentable: AnyObject {
     var delegate: ChatListModelDelegate? { get set }
     
-    func fetchData(at index: Int) -> Dialog
+    func fetchData(at index: Int) -> Dialog?
     func numberOfRowsInSection() -> Int
 }
 
@@ -20,33 +20,39 @@ final class ChatListModel {
     private var totalNumderOfDialogs = 0
     
     private var isRequestAlreadySended: Bool = false
+    private let getDialogsRequestFactory: GetDialogsRequestFactory
     
     weak var delegate: ChatListModelDelegate?
-    private let chatDialogsManager: ChatDialogsManager
-    init(chatDialogsManager: ChatDialogsManager) {
-        self.chatDialogsManager = chatDialogsManager
+    
+    init(getDialogsRequestFactory: GetDialogsRequestFactory) {
+        self.getDialogsRequestFactory = getDialogsRequestFactory
     }
 }
 
 extension ChatListModel: ChatListModelRepresentable {
-    func fetchData(at index: Int) -> Dialog {
-        if index.distance(to: dialogs.count) > 3 &&
-            dialogs.count != totalNumderOfDialogs { getMoreDialogs() }
-        return dialogs[index]
+    func fetchData(at index: Int) -> Dialog? {
+        if index.distance(to: 5) < 3 {
+            getMoreDialogs()
+        }
+        
+        if index.distance(to: dialogs.count) > 0 {
+            return dialogs[index]
+        }
+        
+        return nil
     }
     
     func numberOfRowsInSection() -> Int {
-        print("numberOfRowsInSection")
         if dialogs.count == .zero { getMoreDialogs() }
-        return dialogs.count 
+        return totalNumderOfDialogs
     }
     
     private func getMoreDialogs() {
         if !isRequestAlreadySended {
             isRequestAlreadySended = true
             
-            chatDialogsManager.getDialogs(limit: 20,
-                                          skipFirst: dialogs.count) { [weak self] (dialogs, total) in
+            getDialogsRequestFactory.getDialogs(limit: 20,
+                                                skipFirst: dialogs.count) { [weak self] (dialogs, total) in
                 
                 guard let self = self else {
                     return

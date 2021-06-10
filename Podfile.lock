@@ -14,6 +14,12 @@ PODS:
   - QuickBlox (2.17.10)
   - Quickblox-WebRTC (2.7.6):
     - QuickBlox (>= 2.7)
+  - RxCocoa (6.1.0):
+    - RxRelay (= 6.1.0)
+    - RxSwift (= 6.1.0)
+  - RxRelay (6.1.0):
+    - RxSwift (= 6.1.0)
+  - RxSwift (6.1.0)
 
 DEPENDENCIES:
   - GoogleMaps (= 4.2.0)
@@ -22,6 +28,8 @@ DEPENDENCIES:
   - MessageKit
   - QuickBlox (~> 2.17.5)
   - Quickblox-WebRTC (~> 2.7.4)
+  - RxCocoa (= 6.1.0)
+  - RxSwift (= 6.1.0)
 
 SPEC REPOS:
   trunk:
@@ -32,6 +40,9 @@ SPEC REPOS:
     - MessageKit
     - QuickBlox
     - Quickblox-WebRTC
+    - RxCocoa
+    - RxRelay
+    - RxSwift
 
 SPEC CHECKSUMS:
   GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
@@ -41,7 +52,10 @@ SPEC CHECKSUMS:
   MessageKit: d153fbbbcb12f3f4045a1ba8874298924dacfb62
   QuickBlox: 49d85c6e1782993fb2383001301b788a8d7dcad3
   Quickblox-WebRTC: 162d2421d91cfb3d4f7e01f87e095633ca52bb1d
+  RxCocoa: 5c51f02d562cbd94629f6c26cf0c80fe4ab8d343
+  RxRelay: 483e1a19fad961b41f0b0c0bee506f46c1ae14fe
+  RxSwift: a834e5c538e89eca0cae86f403f4fbf0336786ce
 
-PODFILE CHECKSUM: 6fd31683102f240fce8a4e982848e72363050964
+PODFILE CHECKSUM: c09a05fc23250658d4eab0f37169a28bb239ce80
 
 COCOAPODS: 1.10.1

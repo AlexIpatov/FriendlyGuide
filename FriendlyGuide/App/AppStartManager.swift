@@ -10,9 +10,10 @@ import UIKit
 final class AppStartManager {
     
     private var window: UIWindow?
+    private let requestFactory = RequestFactory()
     
     private lazy var rootViewController: (LogInViewDelegate & UIViewController) = {
-        AuthControllersFactory(window: window)
+        AuthControllersFactory(window: window, requestFactory: requestFactory)
             .build(with: window?.bounds ?? .zero)
     }()
     

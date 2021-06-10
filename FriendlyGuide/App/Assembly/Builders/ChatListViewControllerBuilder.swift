@@ -8,12 +8,21 @@
 import UIKit
 
 final class ChatListViewControllerBuilder {
+    
+    private let requestFactory: RequestFactory
+    
+    init(requestFactory: RequestFactory) {
+        self.requestFactory = requestFactory
+    }
+    
     func build(with frame: CGRect) -> (ChatListViewDelegate &
                                        ChatListModelDelegate &
                                        UIViewController) {
         
-        let model = ChatListModel(chatDialogsManager: QBChatManager())
+        let model = ChatListModel(getDialogsRequestFactory: requestFactory
+                                    .makeGetDialogsRequestFactory())
         let view = ChatListView(frame: frame)
+        
         
         let controller = ChatListViewController(customView: view,
                                                 model: model)
