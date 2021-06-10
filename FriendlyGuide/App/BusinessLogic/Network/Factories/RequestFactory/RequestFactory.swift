@@ -9,14 +9,11 @@ import Foundation
 
 class RequestFactory {
     
-    lazy var commonSession: URLSession = {
-        let configuration = URLSessionConfiguration.default
-        configuration.httpShouldSetCookies = false
-        let session = URLSession(configuration: configuration,
-                                 delegate: nil,
-                                 delegateQueue: .main)
-        return session
-    }()
+    private let commonSession: URLSession
+    
+    init(commonSession: URLSession = URLSession.shared) {
+        self.commonSession = commonSession
+    }
     
     func makeGetCityNameFactory() -> GetCityNamesFactory {
         let encoder = URLPathParameterEncoder()
