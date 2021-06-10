@@ -10,7 +10,7 @@ import Foundation
 struct NewsDetail: Codable, Hashable {
     let id, publicationDate: Int
     let title, slug: String
-    let place: NewsPlace
+    let place: NewsPlace?
     let newsDescription, bodyText: String
     let images: [NewsImage]
     let siteURL: String

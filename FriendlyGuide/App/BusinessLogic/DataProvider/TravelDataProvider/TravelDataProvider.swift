@@ -49,7 +49,7 @@ extension TravelDataProvider: DataProvider {
         }
         group.enter()
         queue.async {
-            placesFactory.getPlaces(cityTag: cityTag, showingSince: showingSince) {[weak self] response in
+            placesFactory.load(cityTag: cityTag, showingSince: showingSince) {[weak self] response in
                         guard let self = self else { return }
                         switch response {
                         case.success(let response):
