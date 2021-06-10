@@ -15,7 +15,16 @@ fileprivate struct CredentialsConstant {
     static let accountKey = "bRRxx1asyn861G3JLPDP"
 }
 
-final class QBChatManager: ChatManager {
+fileprivate enum QBChatManagerError: LocalizedError {
+    case unknown
+    
+    var errorDescription: String? {
+        "Неизвестная ошибка"
+    }
+}
+
+
+final class QBChatManager {
     
     static var instance: QBChatManager = {
         return QBChatManager()
@@ -55,16 +64,13 @@ final class QBChatManager: ChatManager {
 
 // MARK: - ChatDialogsManager
 
-extension QBChatManager: ChatDialogsManager {
-    func createGroupDialog(withName name: String,
-                           photo: String?,
-                           occupants: [ChatConnectable],
-                           completion: @escaping (_ dialog: Dialog?) -> Void) {
+extension QBChatManager: CreatePublicDialogRequestFactory {
+    func createDialog(withName name: String,
+                      photo: String?,
+                      completion: @escaping (_ dialog: Dialog?) -> Void) {
         
-        let chatDialog = QBChatDialog(dialogID: nil, type: .group)
-        
+        let chatDialog = QBChatDialog(dialogID: nil, type: .publicGroup)
         chatDialog.name = name
-        chatDialog.occupantIDs = occupants.map { NSNumber(value: $0.userID) }
         
         QBRequest.createDialog(chatDialog, successBlock: { response, qbdialog in
             qbdialog.join { error in
@@ -79,7 +85,9 @@ extension QBChatManager: ChatDialogsManager {
             debugPrint("[ChatManager] createGroupDialog error:\(self?.errorMessage(for: response) ?? "")")
         })
     }
-    
+}
+
+extension QBChatManager: GetDialogsRequestFactory {
     func getDialogs(limit: Int,
                     skipFirst: Int,
                     complition: @escaping (_ dialogs: [Dialog], _ total: Int) -> Void) {
@@ -91,31 +99,13 @@ extension QBChatManager: ChatDialogsManager {
                             debugPrint("[ChatManager] getAllUserDialog error:\(self?.errorMessage(for: response) ?? "")")
                           })
     }
-}
-
-// MARK: - ChatDialogsManager
-
-extension QBChatManager: ChatUsersManager {
     
 }
 
-// MARK: - ChatDialogsManager
-
-extension QBChatManager: ChatMessagesManager {
-    
-}
 
 // MARK: - AuthenticatorManager
 
-extension QBChatManager: ChatAuthRequestFactory {
-    enum QBChatManagerError: LocalizedError {
-        case unknown
-        
-        var errorDescription: String? {
-            "Неизвестная ошибка"
-        }
-    }
-    
+extension QBChatManager: SignUpRequestFactory {
     func signUp(fullName: String, login: String, password: String,
                 complition: @escaping (Result<User, Error>) -> Void) {
         let newQBUUser = QBUUser()
@@ -137,7 +127,9 @@ extension QBChatManager: ChatAuthRequestFactory {
             complition(.failure(response.error?.error ?? QBChatManagerError.unknown))
         })
     }
-    
+}
+
+extension QBChatManager: LogInRequestFactory {
     func login(login: String, password: String,
                complition: @escaping (Result<User, Error>) -> Void) {
         QBRequest.logIn(withUserLogin: login, password: password) { [weak self] response, qbUser in

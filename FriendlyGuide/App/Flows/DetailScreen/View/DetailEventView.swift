@@ -16,6 +16,11 @@ class DetailEventView: UIView {
         addSubview(collectionView)
         return collectionView
     }()
+    // MARK: - Properties
+    private let contentInsets = NSDirectionalEdgeInsets.init(top: 7,
+                                                             leading: 7,
+                                                             bottom: 7,
+                                                             trailing: 7)
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,7 +61,7 @@ extension DetailEventView {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 20
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 5, leading: 5, bottom: 0, trailing: 5)
+        section.contentInsets = contentInsets
         section.orthogonalScrollingBehavior = .continuous
         return section
     }
@@ -69,7 +74,7 @@ extension DetailEventView {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 20
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = contentInsets
 
         return section
     }
@@ -82,23 +87,11 @@ extension DetailEventView {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 20
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        section.contentInsets = contentInsets
 
         let sectionHeader = createDetailSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
 
-        return section
-    }
-    private func createTitleLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                              heightDimension: .estimated(100))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: itemSize.widthDimension,
-                                               heightDimension:  .estimated(100))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 16, leading: 5, bottom: 20, trailing: 5)
         return section
     }
     private func createDetailSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {

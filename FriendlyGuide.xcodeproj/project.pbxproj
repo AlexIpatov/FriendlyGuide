@@ -37,6 +37,10 @@
 		21885C0B266E97A2007729A0 /* ChatListViewEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21885C0A266E97A2007729A0 /* ChatListViewEmptyCell.swift */; };
 		21885C0D266E9976007729A0 /* ChatListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21885C0C266E9976007729A0 /* ChatListViewCell.swift */; };
 		21885C0F266EA23D007729A0 /* QBChatDialog + Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21885C0E266EA23D007729A0 /* QBChatDialog + Dialog.swift */; };
+		219C231A2671470400D9ED90 /* GetDialogsRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C23192671470400D9ED90 /* GetDialogsRequestFactory.swift */; };
+		219C231D2671496500D9ED90 /* LogInRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C231C2671496500D9ED90 /* LogInRequestFactory.swift */; };
+		219C231F2671499400D9ED90 /* SignUpRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C231E2671499400D9ED90 /* SignUpRequestFactory.swift */; };
+		219C23212671546700D9ED90 /* ConnectToDialogRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C23202671546700D9ED90 /* ConnectToDialogRequestFactory.swift */; };
 		21A2E6E5266906AC00254342 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E4266906AC00254342 /* UIView + Extensions.swift */; };
 		21A2E6E72669095300254342 /* AuthControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E62669095300254342 /* AuthControllersFactory.swift */; };
 		21A2E6EA26690DE100254342 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E926690DE100254342 /* RegisterView.swift */; };
@@ -49,18 +53,15 @@
 		21ADF5062665874700007D34 /* AppStartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21ADF5052665874700007D34 /* AppStartManager.swift */; };
 		21ADFDE726612781007A1671 /* ChatListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D3EBB926610977007D01CE /* ChatListModel.swift */; };
 		21B71F86265E7D5700460564 /* QBChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F85265E7D5700460564 /* QBChatManager.swift */; };
-		21B71F8B265E83B400460564 /* ChatAuthRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8A265E83B400460564 /* ChatAuthRequestFactory.swift */; };
 		21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F8E265E932C00460564 /* ChatViewController.swift */; };
 		21B71F9126600D8F00460564 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9026600D8F00460564 /* Dialog.swift */; };
-		21B71F9426600F5A00460564 /* ChatDialogsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9326600F5A00460564 /* ChatDialogsManager.swift */; };
-		21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9526600F9800460564 /* ChatUsersManager.swift */; };
-		21B71F982660115D00460564 /* ChatMessagesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F972660115D00460564 /* ChatMessagesManager.swift */; };
-		21B71F9A266011E600460564 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F99266011E600460564 /* ChatManager.swift */; };
+		21B71F9426600F5A00460564 /* CreatePublicDialogRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B71F9326600F5A00460564 /* CreatePublicDialogRequestFactory.swift */; };
 		21C21C5F26617B280016CC23 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C21C5E26617B280016CC23 /* LogInView.swift */; };
 		21D3EBB126603F54007D01CE /* AbstractErrorParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE73265E7DC60052C076 /* AbstractErrorParser.swift */; };
 		21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE78265E7DC60052C076 /* HttpMethod.swift */; };
 		21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE79265E7DC60052C076 /* EndPointType.swift */; };
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
+		4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */; };
 		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
 		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
 		4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB926625080000C4298 /* AuthValidators.swift */; };
@@ -223,6 +224,10 @@
 		21885C0A266E97A2007729A0 /* ChatListViewEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewEmptyCell.swift; sourceTree = "<group>"; };
 		21885C0C266E9976007729A0 /* ChatListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewCell.swift; sourceTree = "<group>"; };
 		21885C0E266EA23D007729A0 /* QBChatDialog + Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QBChatDialog + Dialog.swift"; sourceTree = "<group>"; };
+		219C23192671470400D9ED90 /* GetDialogsRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDialogsRequestFactory.swift; sourceTree = "<group>"; };
+		219C231C2671496500D9ED90 /* LogInRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInRequestFactory.swift; sourceTree = "<group>"; };
+		219C231E2671499400D9ED90 /* SignUpRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestFactory.swift; sourceTree = "<group>"; };
+		219C23202671546700D9ED90 /* ConnectToDialogRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToDialogRequestFactory.swift; sourceTree = "<group>"; };
 		21A2E6E4266906AC00254342 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		21A2E6E62669095300254342 /* AuthControllersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthControllersFactory.swift; sourceTree = "<group>"; };
 		21A2E6E926690DE100254342 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -234,16 +239,13 @@
 		21ADF503266585A800007D34 /* LogInViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewControllerBuilder.swift; sourceTree = "<group>"; };
 		21ADF5052665874700007D34 /* AppStartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartManager.swift; sourceTree = "<group>"; };
 		21B71F85265E7D5700460564 /* QBChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QBChatManager.swift; sourceTree = "<group>"; };
-		21B71F8A265E83B400460564 /* ChatAuthRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatAuthRequestFactory.swift; sourceTree = "<group>"; };
 		21B71F8E265E932C00460564 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		21B71F9026600D8F00460564 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
-		21B71F9326600F5A00460564 /* ChatDialogsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDialogsManager.swift; sourceTree = "<group>"; };
-		21B71F9526600F9800460564 /* ChatUsersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsersManager.swift; sourceTree = "<group>"; };
-		21B71F972660115D00460564 /* ChatMessagesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessagesManager.swift; sourceTree = "<group>"; };
-		21B71F99266011E600460564 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		21B71F9326600F5A00460564 /* CreatePublicDialogRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePublicDialogRequestFactory.swift; sourceTree = "<group>"; };
 		21C21C5E26617B280016CC23 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		21D3EBB926610977007D01CE /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
+		4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Entensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB926625080000C4298 /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
@@ -402,8 +404,9 @@
 		210F00B42666D3DE005121C5 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				21B71F8A265E83B400460564 /* ChatAuthRequestFactory.swift */,
 				210F00B52666D459005121C5 /* LocalAuthRequestFactory.swift */,
+				219C231C2671496500D9ED90 /* LogInRequestFactory.swift */,
+				219C231E2671499400D9ED90 /* SignUpRequestFactory.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -525,9 +528,7 @@
 				210F00BA2666D61F005121C5 /* Keychain */,
 				217AB24D2664239D00A0AF66 /* Validators */,
 				4A9E66C42663AD8C00AF8274 /* UserSettings */,
-				210F00B42666D3DE005121C5 /* Auth */,
 				C96B94B9266120DD007AD0DA /* Network */,
-				21B71F89265E82EB00460564 /* Chat */,
 			);
 			path = BusinessLogic;
 			sourceTree = "<group>";
@@ -684,10 +685,9 @@
 		21B71F89265E82EB00460564 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				21B71F99266011E600460564 /* ChatManager.swift */,
-				21B71F9326600F5A00460564 /* ChatDialogsManager.swift */,
-				21B71F9526600F9800460564 /* ChatUsersManager.swift */,
-				21B71F972660115D00460564 /* ChatMessagesManager.swift */,
+				219C23192671470400D9ED90 /* GetDialogsRequestFactory.swift */,
+				21B71F9326600F5A00460564 /* CreatePublicDialogRequestFactory.swift */,
+				219C23202671546700D9ED90 /* ConnectToDialogRequestFactory.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -969,6 +969,7 @@
 				C5C317F42665147400518405 /* UISegmentedControl + Extensions.swift */,
 				4A9E29AE2667E64800C3D5EA /* UIRefreshControl + Extensions.swift */,
 				21A2E6E4266906AC00254342 /* UIView + Extensions.swift */,
+				4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1386,6 +1387,8 @@
 		C96B94B9266120DD007AD0DA /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				210F00B42666D3DE005121C5 /* Auth */,
+				21B71F89265E82EB00460564 /* Chat */,
 				C9DEE1F22666A36200C545CF /* Factories */,
 			);
 			path = Network;
@@ -1778,9 +1781,8 @@
 				C96B949926612068007AD0DA /* ImageSource.swift in Sources */,
 				C96B94AA26612079007AD0DA /* NewsPlace.swift in Sources */,
 				210F00C22666D859005121C5 /* LoginKeychainRequest.swift in Sources */,
-				21B71F982660115D00460564 /* ChatMessagesManager.swift in Sources */,
 				C5C316F12660F6AC00518405 /* EventCell.swift in Sources */,
-				21B71F9426600F5A00460564 /* ChatDialogsManager.swift in Sources */,
+				21B71F9426600F5A00460564 /* CreatePublicDialogRequestFactory.swift in Sources */,
 				210F00BF2666D6FB005121C5 /* LocksmithKeychain.swift in Sources */,
 				4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */,
 				217AB2562664243C00A0AF66 /* LoginValidationError.swift in Sources */,
@@ -1788,7 +1790,6 @@
 				4AA72844266D109E00A5C060 /* DetailSectionHeader.swift in Sources */,
 				217AB258266424D000A0AF66 /* BasicValidator.swift in Sources */,
 				210F00C52666D891005121C5 /* PasswordKeychainRequest.swift in Sources */,
-				21B71F9626600F9800460564 /* ChatUsersManager.swift in Sources */,
 				C5C317F52665147400518405 /* UISegmentedControl + Extensions.swift in Sources */,
 				4A7F8D2526662D0100C69FBD /* DetailEventViewController.swift in Sources */,
 				4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */,
@@ -1823,7 +1824,6 @@
 				4A9E66C62663ADB500AF8274 /* UserSettings.swift in Sources */,
 				C5C3165E2660E41C00518405 /* UITextField + Extensions.swift in Sources */,
 				C967AED526679C1100BAB62F /* RequestFactory.swift in Sources */,
-				21B71F9A266011E600460564 /* ChatManager.swift in Sources */,
 				C96B94A026612068007AD0DA /* DayEvent.swift in Sources */,
 				C5C316E12660F6A000518405 /* CitiesViewController.swift in Sources */,
 				4A9E29AD2667E48300C3D5EA /* CustomRefreshView.swift in Sources */,
@@ -1847,6 +1847,7 @@
 				217AB24C2664239B00A0AF66 /* LoginValidator.swift in Sources */,
 				C96B947F2661205E007AD0DA /* EventDetailResource.swift in Sources */,
 				2142141426613B440007A031 /* User.swift in Sources */,
+				219C231F2671499400D9ED90 /* SignUpRequestFactory.swift in Sources */,
 				C9DEE20C2666A36200C545CF /* GetNews.swift in Sources */,
 				C5C3166E2660E62200518405 /* SliderPresentationController.swift in Sources */,
 				C5C3167C2660E7BB00518405 /* OnMapViewController.swift in Sources */,
@@ -1857,6 +1858,7 @@
 				4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */,
 				21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */,
 				C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */,
+				4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */,
 				C5C316F02660F6AC00518405 /* TravelScreenEnum.swift in Sources */,
 				C96B949C26612068007AD0DA /* DateElement.swift in Sources */,
 				2142141226613B100007A031 /* Authorizable.swift in Sources */,
@@ -1882,7 +1884,6 @@
 				21A2E6EC266933FB00254342 /* AuthViewsParametrs.swift in Sources */,
 				C9DEE2142666A36200C545CF /* GetEventDetailFactory.swift in Sources */,
 				C96B94AD26612079007AD0DA /* NewsList.swift in Sources */,
-				21B71F8B265E83B400460564 /* ChatAuthRequestFactory.swift in Sources */,
 				21A2E6EA26690DE100254342 /* RegisterView.swift in Sources */,
 				C96B949626612068007AD0DA /* EventParticipant.swift in Sources */,
 				C5C316F72660F6AC00518405 /* TravelScreenViewController.swift in Sources */,
@@ -1909,6 +1910,7 @@
 				C9DEE20A2666A36200C545CF /* GetPlacesFactory.swift in Sources */,
 				C96B949E26612068007AD0DA /* EventType.swift in Sources */,
 				C5C316F52660F6AC00518405 /* PlaceCell.swift in Sources */,
+				219C231D2671496500D9ED90 /* LogInRequestFactory.swift in Sources */,
 				21885C0D266E9976007729A0 /* ChatListViewCell.swift in Sources */,
 				C96B949826612068007AD0DA /* EventPlace.swift in Sources */,
 				C58200BB266F9FD00040CEBA /* LocationManager.swift in Sources */,
@@ -1918,8 +1920,10 @@
 				C96B94B82661208D007AD0DA /* PlaceDetail.swift in Sources */,
 				21ADF5022665142900007D34 /* RegisterModel.swift in Sources */,
 				4A7F8D1B26662C6300C69FBD /* DetailNameCell.swift in Sources */,
+				219C23212671546700D9ED90 /* ConnectToDialogRequestFactory.swift in Sources */,
 				21ADF4FE26650C3A00007D34 /* LogInModel.swift in Sources */,
 				21ADF4FC2665032B00007D34 /* LogInViewController.swift in Sources */,
+				219C231A2671470400D9ED90 /* GetDialogsRequestFactory.swift in Sources */,
 				C9DEE2152666A36200C545CF /* GetEventDetail.swift in Sources */,
 				4A7F8D1F26662CA200C69FBD /* DetailDescriptionCell.swift in Sources */,
 			);

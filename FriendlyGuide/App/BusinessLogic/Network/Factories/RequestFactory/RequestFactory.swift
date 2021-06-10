@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RequestFactory {
+final class RequestFactory {
     
     lazy var commonSession: URLSession = {
         let configuration = URLSessionConfiguration.default
@@ -17,6 +17,10 @@ class RequestFactory {
                                  delegateQueue: .main)
         return manager
     }()
+    
+    private lazy var chatManager: QBChatManager = { QBChatManager() }()
+    private lazy var localAuthManager: BiometricIDAuth = { BiometricIDAuth() }()
+    private lazy var keychainManager: LocksmithKeychain = { LocksmithKeychain() }()
     
     func makeGetCityNameFactory() -> GetCityNamesFactory {
         let encoder = URLPathParameterEncoder()
@@ -54,4 +58,33 @@ class RequestFactory {
                            sessionManager: commonSession)
     }
     
+    
+    
+    func makeGetDialogsRequestFactory() -> GetDialogsRequestFactory {
+        chatManager
+    }
+    
+    func makeCreateGroupDialogRequestFactory() -> CreatePublicDialogRequestFactory {
+        chatManager
+    }
+    
+    
+    
+    func makeLocalAuthRequestFactory() -> LocalAuthRequestFactory {
+        localAuthManager
+    }
+    
+    func makeLogInRequestFactory() -> LogInRequestFactory {
+        chatManager
+    }
+    
+    func makeSignUpRequestFactory() -> SignUpRequestFactory {
+        chatManager
+    }
+    
+    
+    
+    func makeKeychainRequestFactory() -> KeychainRequestFactory {
+        keychainManager
+    }
 }
