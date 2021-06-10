@@ -19,6 +19,8 @@ final class RequestFactory {
     private lazy var localAuthManager: BiometricIDAuth = { BiometricIDAuth() }()
     private lazy var keychainManager: LocksmithKeychain = { LocksmithKeychain() }()
     
+    // MARK: - kudkudago methods:
+    
     func makeGetCityNameFactory() -> GetCityNamesFactory {
         let encoder = URLPathParameterEncoder()
         return GetCityNames(encoder: encoder,
@@ -55,7 +57,19 @@ final class RequestFactory {
                            sessionManager: commonSession)
     }
     
+    func makeGetPlaceDetailFactory() -> GetPlaceDetailFactory {
+        let encoder = URLPathParameterEncoder()
+        return GetPlaceDetail(encoder: encoder,
+                           sessionManager: commonSession)
+    }
     
+    func makeGetNewsDetailFactory() -> GetNewsDetailFactory {
+        let encoder = URLPathParameterEncoder()
+        return GetNewsDetail(encoder: encoder,
+                           sessionManager: commonSession)
+    }
+    
+    // MARK: - Chat:
     
     func makeGetDialogsRequestFactory() -> GetDialogsRequestFactory {
         chatManager

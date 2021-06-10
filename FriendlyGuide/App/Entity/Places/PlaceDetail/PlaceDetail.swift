@@ -24,7 +24,8 @@ struct PlaceDetail: Codable, Hashable {
     let categories: [String]
     let shortTitle: String
     let tags: [String]
-    let location, ageRestriction: String
+    let location: String
+    let ageRestriction: Int
     let disableComments, hasParkingLot: Bool
 
     enum CodingKeys: String, CodingKey {

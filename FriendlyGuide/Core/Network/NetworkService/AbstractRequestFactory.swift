@@ -22,7 +22,7 @@ extension AbstractRequestFactory {
             let request = try self.buildRequest(from: route)
             let task = sessionManager.dataTask(with: request, completionHandler: {
                 (data: Data?, response: URLResponse?, error: Error?) -> Void in
-                self.log(data: data, response: response as? HTTPURLResponse, error: error)
+              //  self.log(data: data, response: response as? HTTPURLResponse, error: error)
                        if error != nil {
                            completion(.failure(NetworkingError.invalidRequest))
                        }

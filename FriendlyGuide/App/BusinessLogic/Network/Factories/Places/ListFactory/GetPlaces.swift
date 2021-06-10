@@ -25,7 +25,7 @@ extension GetPlaces: AbstractRequestFactory {
 }
 
 extension GetPlaces: GetPlacesFactory {
-    func getPlaces(cityTag: String,
+    func load(cityTag: String,
                    showingSince: String,
                    completionHandler: @escaping (Result<EndPoint.ModelType,
                                                         NetworkingError>) -> Void) {

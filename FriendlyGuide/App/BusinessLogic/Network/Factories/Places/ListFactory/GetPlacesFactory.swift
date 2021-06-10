@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GetPlacesFactory {
-    func getPlaces(cityTag: String,
+    func load(cityTag: String,
                    showingSince: String,
                    completionHandler: @escaping (Result<PlacesList, NetworkingError>) -> Void)
 }
