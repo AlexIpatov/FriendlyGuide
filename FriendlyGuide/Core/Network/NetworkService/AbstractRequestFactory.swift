@@ -22,7 +22,7 @@ extension AbstractRequestFactory {
             let request = try self.buildRequest(from: route)
             let task = sessionManager.dataTask(with: request, completionHandler: {
                 (data: Data?, response: URLResponse?, error: Error?) -> Void in
-              //  self.log(data: data, response: response as? HTTPURLResponse, error: error)
+                self.log(data: data, response: response as? HTTPURLResponse, error: error)
                        if error != nil {
                            completion(.failure(NetworkingError.invalidRequest))
                        }
@@ -44,7 +44,7 @@ extension AbstractRequestFactory {
         }
     
     fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
-        let url = url(from: route)
+        guard let url = route.url() else { throw NetworkingError.missingURL }
         var request = URLRequest(url: url,
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
                                  timeoutInterval: 20.0)
@@ -56,15 +56,6 @@ extension AbstractRequestFactory {
             throw NetworkingError.encodingFailed
         }
         return request
-    }
-    
-    fileprivate func url(from route: EndPoint) -> URL {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = route.host.baseURL
-        components.path = route.path.path
-        components.queryItems = route.queryItems
-        return components.url!
     }
     
     fileprivate func decode(_ data: Data) throws -> EndPoint.ModelType {

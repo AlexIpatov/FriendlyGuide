@@ -16,17 +16,27 @@ protocol EndPointType {
     var queryItems: [URLQueryItem] { get }
 }
 
+extension EndPointType {
+    func url() -> URL? {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = host.baseURL
+        components.path = path.path
+        components.queryItems = queryItems
+        guard let url = components.url else { return nil }
+        return url
+    }
+}
+
 enum BaseURL {
     case kudago
-    case someChatByValera
 }
+
 extension BaseURL {
     var baseURL: String {
         switch self {
         case .kudago:
             return "kudago.com"
-        case .someChatByValera:
-            return "somechat.com"
         }
     }
 }
@@ -39,6 +49,7 @@ enum Path {
     case news
     case search
 }
+
 extension Path {
     var path: String {
         switch self {

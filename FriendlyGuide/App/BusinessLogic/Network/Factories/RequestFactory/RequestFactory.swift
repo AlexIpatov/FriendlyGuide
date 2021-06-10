@@ -9,14 +9,11 @@ import Foundation
 
 final class RequestFactory {
     
-    lazy var commonSession: URLSession = {
-        let configuration = URLSessionConfiguration.default
-        configuration.httpShouldSetCookies = false
-        let manager = URLSession(configuration: configuration,
-                                 delegate: nil,
-                                 delegateQueue: .main)
-        return manager
-    }()
+    private let commonSession: URLSession
+    
+    init(commonSession: URLSession = URLSession.shared) {
+        self.commonSession = commonSession
+    }
     
     private lazy var chatManager: QBChatManager = { QBChatManager() }()
     private lazy var localAuthManager: BiometricIDAuth = { BiometricIDAuth() }()

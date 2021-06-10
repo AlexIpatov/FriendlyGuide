@@ -15,11 +15,7 @@ class TravelDataProvider{
     private let queue = DispatchQueue(label: "Serial queue")
     private let group = DispatchGroup()
     
-    private var eventsLoadingCompleted = false
-    private var newsLoadingCompleted = false
-    private var placesLoadingCompleted = false
-    
-    init(requestFactory: RequestFactory = RequestFactory()) {
+    init(requestFactory: RequestFactory = .init()) {
         self.requestFactory = requestFactory
     }
     
@@ -45,7 +41,6 @@ extension TravelDataProvider: DataProvider {
                         switch response {
                         case.success(let response):
                             events = response.results
-                            self.eventsLoadingCompleted = true
                             self.group.leave()
                         case.failure(let error):
                             completion(.failure(error))
@@ -59,7 +54,6 @@ extension TravelDataProvider: DataProvider {
                         switch response {
                         case.success(let response):
                             places = response.places
-                            self.placesLoadingCompleted = true
                             self.group.leave()
                         case.failure(let error):
                             completion(.failure(error))
@@ -73,7 +67,6 @@ extension TravelDataProvider: DataProvider {
                         switch response {
                         case.success(let response):
                             news = response.news
-                            self.newsLoadingCompleted = true
                             self.group.leave()
                         case.failure(let error):
                             completion(.failure(error))
@@ -82,24 +75,8 @@ extension TravelDataProvider: DataProvider {
         }
         
         group.notify(queue: queue) {
-            if self.eventsLoadingCompleted && self.newsLoadingCompleted && self.placesLoadingCompleted {
                 completion(.success((events, news, places)))
-            } else {
-                completion(.failure(NetworkingError.invalidRequest))
-            }
     }
 }
 
 }
-//let dp = TravelDataProvider()
-//dp.getData(cityTag: "spb",
-//           actualSince: "1444385206",
-//           showingSince: "1444385206") { [weak self] response in
-//    switch response {
-//    case .success(let data):
-//        let events = data.events
-//        events.forEach { print($0.title) }
-//    case .failure(let error):
-//        print(error.localizedDescription)
-//    }
-//}
