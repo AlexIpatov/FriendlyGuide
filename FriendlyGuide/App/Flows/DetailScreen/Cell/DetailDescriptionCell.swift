@@ -20,7 +20,7 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
                                                font: .smallTitleFont(),
                                                textColor: .black,
                                                numberOfLines: 1,
-                                               textAlignment: .left)
+                                               textAlignment: .center)
     private(set) lazy var pricelabel = UILabel(text: "",
                                                font: .smallTitleFont(),
                                                textColor: .darkGray,

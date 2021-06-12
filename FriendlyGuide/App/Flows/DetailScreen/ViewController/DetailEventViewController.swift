@@ -17,13 +17,17 @@ class DetailEventViewController: UIViewController {
     private var currentId: Int
     var entity: EventDetail? {
         didSet {
-            title = entity?.shortTitle
-            reloadData()
+            DispatchQueue.main.async {
+                self.title = self.entity?.shortTitle
+                self.reloadData()
+            }
         }
     }
     var showMoreInfo: Bool = false {
         didSet {
-            reloadData()
+            DispatchQueue.main.async {
+                self.reloadData()
+            }
         }
     }
     // MARK: - Init
@@ -57,18 +61,18 @@ class DetailEventViewController: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<DetailSection, AnyHashable>?
     private func setupCollectionView() {
         detailEventView.collectionView.register(DetailDescriptionCell.self,
-                                                 forCellWithReuseIdentifier: DetailDescriptionCell.reuseId)
+                                                forCellWithReuseIdentifier: DetailDescriptionCell.reuseId)
         detailEventView.collectionView.register(DetailNameCell.self,
-                                                 forCellWithReuseIdentifier: DetailNameCell.reuseId)
+                                                forCellWithReuseIdentifier: DetailNameCell.reuseId)
         detailEventView.collectionView.register(DetailImageCell.self,
-                                                 forCellWithReuseIdentifier: DetailImageCell.reuseId)
+                                                forCellWithReuseIdentifier: DetailImageCell.reuseId)
         detailEventView.collectionView.register(DetailMoreInfoCell.self,
-                                                 forCellWithReuseIdentifier: DetailMoreInfoCell.reuseId)
+                                                forCellWithReuseIdentifier: DetailMoreInfoCell.reuseId)
         detailEventView.collectionView.register(DetailPlaceForEventsCell.self,
-                                                 forCellWithReuseIdentifier: DetailPlaceForEventsCell.reuseId)
+                                                forCellWithReuseIdentifier: DetailPlaceForEventsCell.reuseId)
         detailEventView.collectionView.register(DetailSectionHeader.self,
-                                         forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                         withReuseIdentifier: DetailSectionHeader.reuseId)
+                                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                                withReuseIdentifier: DetailSectionHeader.reuseId)
         detailEventView.collectionView.delegate = self
     }
     private func reloadData() {
@@ -79,9 +83,9 @@ class DetailEventViewController: UIViewController {
         snapshot.appendSections([.photos, .description, .moreInfo, .place])
         snapshot.appendItems(entity.images, toSection: .photos)
         snapshot.appendItems([entity], toSection: .description)
-       if showMoreInfo {
-        snapshot.appendItems([entity.bodyText], toSection: .moreInfo)
-       }
+        if showMoreInfo {
+            snapshot.appendItems([entity.bodyText], toSection: .moreInfo)
+        }
         if entity.place != nil {
             snapshot.appendItems([entity.place], toSection: .place)
         }
@@ -91,13 +95,15 @@ class DetailEventViewController: UIViewController {
     private func requestData() {
         let eventsFactory = requestFactory.makeGetEventDetailFactory()
         eventsFactory.getEventDetail(eventID: currentId) { [ weak self] response in
-            guard let self = self else {return}
-            switch response {
-            case .success(let event):
-                self.entity = event
-            case .failure(let error):
-                self.showAlert(with: "Error!",
-                               and: error.localizedDescription)
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch response {
+                case .success(let event):
+                    self.entity = event
+                case .failure(let error):
+                    self.showAlert(with: "Error!",
+                                   and: error.localizedDescription)
+                }
             }
         }
     }
