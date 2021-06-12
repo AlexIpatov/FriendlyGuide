@@ -15,7 +15,7 @@ enum TravelSection: Int, CaseIterable {
         case .events:
             return "События"
         case .places:
-            return "Интерсные места"
+            return "Интересные места"
         case .news:
             return "Новости"
         }

@@ -41,10 +41,11 @@ class OnMapSliderViewController: UIViewController {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
+    // Немного поменял структуры если что то лишнее потер - скажи, я верну Саша И.
     private var allEvents = [
-        Event(id: 456, title: "Выступление клоунов", dates: [], images: [], place: EventPlace(id: 11, title: "", slug: "", address: "", phone: "", subway: "", location: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.719438, lon: 37.627026), isStub: true)),
-        Event(id: 567, title: "Чемпионат мира по боксу", dates: [], images: [], place: EventPlace(id: 11, title: "", slug: "", address: "", phone: "", subway: "", location: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.714312, lon: 37.567163), isStub: false)),
-        Event(id: 678, title: "Выставка кошек", dates: [], images: [], place: EventPlace(id: 11, title: "", slug: "", address: "", phone: "", subway: "", location: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.798555, lon: 37.670538), isStub: true)),
+        Event(id: 456, title: "Выступление клоунов", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.719438, lon: 37.627026))),
+        Event(id: 567, title: "Чемпионат мира по боксу", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.714312, lon: 37.567163))),
+        Event(id: 678, title: "Выставка кошек", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.798555, lon: 37.670538))),
         Event(id: 222, title: "Если одинаковое поле без координат", dates: [], images: [], place: nil)
     ] {
         didSet {

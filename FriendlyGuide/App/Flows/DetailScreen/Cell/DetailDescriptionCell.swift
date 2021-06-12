@@ -16,12 +16,12 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
                                                textColor: .black,
                                                numberOfLines: 0,
                                                textAlignment: .center)
-    private(set) lazy var dateslabel = UILabel(text: "",
+    private(set) lazy var subtitlelabel = UILabel(text: "",
                                                font: .smallTitleFont(),
                                                textColor: .black,
-                                               numberOfLines: 1,
-                                               textAlignment: .left)
-    private(set) lazy var pricelabel = UILabel(text: "",
+                                               numberOfLines: 2,
+                                               textAlignment: .center)
+    private(set) lazy var secondSubtitlelabel = UILabel(text: "",
                                                font: .smallTitleFont(),
                                                textColor: .darkGray,
                                                numberOfLines: 1,
@@ -36,13 +36,13 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
         self.makeRoundedCellWithShadow()
     }
     func configure<U>(with value: U) where U : Hashable {
-        guard let entity: EventDetail = value as? EventDetail else { return }
+        guard let entity: DescriptionForEntity = value as? DescriptionForEntity else { return }
         descriptionlabel.text = entity.description
-        dateslabel.datesToString(dateElement: entity.dates.last)
-        if entity.isFree ?? false {
+        subtitlelabel.text = entity.firstSubtitle
+        if entity.boolSubtitle ?? false {
             setupFreeLabel()
         } else {
-            pricelabel.text = entity.price
+            secondSubtitlelabel.text = entity.secondSubtitle
         }
     }
     required init?(coder: NSCoder) {
@@ -50,29 +50,27 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
     }
     // MARK: - Setup free label
     private func setupFreeLabel() {
-        pricelabel.text = "Бесплатно"
-        pricelabel.font = .boldTitleFont()
+        secondSubtitlelabel.text = "Бесплатно"
+        secondSubtitlelabel.font = .boldTitleFont()
     }
-
     // MARK: - Setup constraints
     private func setupConstraints() {
         contentView.addSubview(descriptionlabel)
-        contentView.addSubview(pricelabel)
-        contentView.addSubview(dateslabel)
+        contentView.addSubview(secondSubtitlelabel)
+        contentView.addSubview(subtitlelabel)
         NSLayoutConstraint.activate([
             descriptionlabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constantForConstraints),
             descriptionlabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
             descriptionlabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
 
-            dateslabel.topAnchor.constraint(equalTo: descriptionlabel.bottomAnchor, constant: constantForConstraints),
-            dateslabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
-            dateslabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
+            subtitlelabel.topAnchor.constraint(equalTo: descriptionlabel.bottomAnchor, constant: constantForConstraints),
+            subtitlelabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            subtitlelabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
 
-            pricelabel.topAnchor.constraint(equalTo: dateslabel.bottomAnchor, constant: constantForConstraints),
-            pricelabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
-            pricelabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
-            pricelabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -constantForConstraints)
+            secondSubtitlelabel.topAnchor.constraint(equalTo: subtitlelabel.bottomAnchor, constant: constantForConstraints),
+            secondSubtitlelabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            secondSubtitlelabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
+            secondSubtitlelabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -constantForConstraints)
         ])
-
     }
 }

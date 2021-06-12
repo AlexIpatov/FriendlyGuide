@@ -19,6 +19,9 @@ struct NewsDetailResource: EndPointType {
     var queryItems: [URLQueryItem] {
         [
             URLQueryItem(name: "lang", value: "ru"),
+            URLQueryItem(name: "expand", value: "place"),
+            URLQueryItem(name: "text_format", value: "text"),
+            URLQueryItem(name: "fields", value: "publication_date,title,description,images,site_url,place,body_text"),
         ]
     }
     

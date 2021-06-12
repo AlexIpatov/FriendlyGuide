@@ -23,7 +23,6 @@ extension UILabel {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
     }
-    
     func datesToString(dateElement: DateElement?) {
         guard let dateElement = dateElement,
               // Исключил заглушки в api

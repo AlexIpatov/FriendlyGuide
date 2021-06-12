@@ -159,12 +159,21 @@ extension TravelScreenViewController: UICollectionViewDelegate {
         guard let section = TravelSection(rawValue: indexPath.section) else { return }
         switch section {
         case .events:
+            //TODO убрать переходы в роутер
             guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Event else { return }
-            let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id)
+            let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id, currentSectionType: .events)
             detailVC.modalPresentationStyle = .fullScreen
             navigationController?.pushViewController(detailVC, animated: true)
-        case .news, .places:
-            print("tapped")
+        case .places:
+            guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Place else { return }
+            let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id, currentSectionType: .places)
+            detailVC.modalPresentationStyle = .fullScreen
+            navigationController?.pushViewController(detailVC, animated: true)
+        case .news:
+            guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? News else { return }
+            let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id, currentSectionType: .news)
+            detailVC.modalPresentationStyle = .fullScreen
+            navigationController?.pushViewController(detailVC, animated: true)
         }
     }
 }

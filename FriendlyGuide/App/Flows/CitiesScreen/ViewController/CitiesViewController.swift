@@ -15,9 +15,11 @@ class CitiesViewController: UIViewController {
     // MARK: - Properties
     private var cities = [CityName]() {
         didSet {
+            DispatchQueue.main.async {
             // Remove "online" from cities
-            cities.removeAll {$0.slug == "online"}
-            citiesScreenView.tableView.reloadData()
+                self.cities.removeAll {$0.slug == "online"}
+                self.citiesScreenView.tableView.reloadData()
+            }
         }
     }
     var requestFactory: RequestFactory
@@ -60,13 +62,15 @@ class CitiesViewController: UIViewController {
     private func requestData() {
         let getCityNameFactory = requestFactory.makeGetCityNameFactory()
         getCityNameFactory.getCityNames { [weak self] response in
-            guard let self = self else {return}
-            switch response {
-            case .success(let cities):
-                self.cities = cities
-            case .failure(let error):
-                self.showAlert(with: "Ошибка!",
-                               and: error.localizedDescription)
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch response {
+                case .success(let cities):
+                    self.cities = cities
+                case .failure(let error):
+                    self.showAlert(with: "Ошибка!",
+                                   and: error.localizedDescription)
+                }
             }
         }
     }
