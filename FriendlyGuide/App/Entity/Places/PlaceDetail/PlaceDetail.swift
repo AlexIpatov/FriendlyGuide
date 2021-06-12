@@ -8,43 +8,26 @@
 import Foundation
 
 struct PlaceDetail: Codable, Hashable {
-    let id: Int
-    let title, slug, address, timetable: String
-    let phone: String
-    let isStub: Bool
-    let bodyText, placesListDescription: String
-    let siteURL: String
-    let foreignURL: String
-    let coords: Coordinates
-    let subway: String
-    let favoritesCount: Int
-    let images: [PlaceImage]
-    let commentsCount: Int
-    let isClosed: Bool
-    let categories: [String]
-    let shortTitle: String
-    let tags: [String]
-    let location: String
-    let ageRestriction: Int
-    let disableComments, hasParkingLot: Bool
+    let title: String
+    let address: String?
+    let bodyText: String?
+    let description: String?
+    let timetable: String?
+    let phone: String?
+    let coords: Coordinates?
+    let subway: String?
+    let images: [Image]
+    let isClosed: Bool?
+    let categories: [String]?
+    let siteUrl: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, title, slug, address, timetable, phone
-        case isStub = "is_stub"
+        case title, address, timetable, phone
         case bodyText = "body_text"
-        case placesListDescription = "description"
-        case siteURL = "site_url"
-        case foreignURL = "foreign_url"
-        case coords, subway
-        case favoritesCount = "favorites_count"
-        case images
-        case commentsCount = "comments_count"
+        case siteUrl = "site_url"
+        case description = "description"
+        case coords, subway, images
         case isClosed = "is_closed"
         case categories
-        case shortTitle = "short_title"
-        case tags, location
-        case ageRestriction = "age_restriction"
-        case disableComments = "disable_comments"
-        case hasParkingLot = "has_parking_lot"
     }
 }

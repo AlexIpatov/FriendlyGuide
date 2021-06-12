@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EventDetail: Codable, Hashable {
+struct EventDetail: Codable, Hashable{
     let dates: [DateElement]
     let title: String
     let shortTitle: String
