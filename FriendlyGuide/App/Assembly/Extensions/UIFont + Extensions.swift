@@ -27,5 +27,8 @@ extension UIFont {
     static func titleFont() -> UIFont {
         return UIFont.init(name: "Charter Roman", size: 18)!
     }
+    static func bigTitleFont() -> UIFont {
+        return UIFont.init(name: "Charter Roman", size: 25)!
+    }
 }
 

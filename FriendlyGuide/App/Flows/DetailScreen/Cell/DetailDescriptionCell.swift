@@ -11,6 +11,11 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
 
     static var reuseId: String = "DetailDescriptionCell"
 
+    private(set) lazy var titlelabel = UILabel(text: "",
+                                               font: .bigTitleFont(),
+                                               textColor: .black,
+                                               numberOfLines: 0,
+                                               textAlignment: .center)
     private(set) lazy var descriptionlabel = UILabel(text: "",
                                                font: .smallTitleFont(),
                                                textColor: .black,
@@ -37,6 +42,7 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
     }
     func configure<U>(with value: U) where U : Hashable {
         guard let entity: DescriptionForEntity = value as? DescriptionForEntity else { return }
+        titlelabel.text = entity.title
         descriptionlabel.text = entity.description
         subtitlelabel.text = entity.firstSubtitle
         if entity.boolSubtitle ?? false {
@@ -55,11 +61,16 @@ class DetailDescriptionCell: UICollectionViewCell, SelfConfiguringCell {
     }
     // MARK: - Setup constraints
     private func setupConstraints() {
+        contentView.addSubview(titlelabel)
         contentView.addSubview(descriptionlabel)
         contentView.addSubview(secondSubtitlelabel)
         contentView.addSubview(subtitlelabel)
         NSLayoutConstraint.activate([
-            descriptionlabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constantForConstraints),
+            titlelabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constantForConstraints),
+            titlelabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
+            titlelabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
+
+            descriptionlabel.topAnchor.constraint(equalTo: titlelabel.bottomAnchor, constant: constantForConstraints),
             descriptionlabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
             descriptionlabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
 
