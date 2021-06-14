@@ -8,6 +8,7 @@
 import UIKit
 // Убрать
 struct DescriptionForEntity: Hashable {
+    var title: String?
     var description: String?
     var firstSubtitle: String?
     var secondSubtitle: String?
@@ -15,7 +16,6 @@ struct DescriptionForEntity: Hashable {
 }
 struct DetailEntity: Hashable {
     var images: [Image]?
-    var title: String?
     var bodyText: String?
 }
 struct DetailData {
@@ -23,7 +23,6 @@ struct DetailData {
     var description: DescriptionForEntity
     var shortPlace: EventPlace?
 }
-// TODO Поправить title
 class DetailEventViewController: UIViewController {
     // MARK: - UI components
     private lazy var detailEventView: DetailEventView = {
@@ -35,7 +34,6 @@ class DetailEventViewController: UIViewController {
     var detailData: DetailData? {
         didSet {
             DispatchQueue.main.async {
-                self.title = self.detailData?.detailEntity.title
                 self.reloadData()
             }
         }
@@ -50,7 +48,8 @@ class DetailEventViewController: UIViewController {
     var currentSectionType: TravelSection
     // MARK: - Init
     init(requestFactory: RequestFactory,
-         currentId: Int, currentSectionType: TravelSection) {
+         currentId: Int,
+         currentSectionType: TravelSection) {
         self.requestFactory = requestFactory
         self.currentId = currentId
         self.currentSectionType = currentSectionType
@@ -75,6 +74,7 @@ class DetailEventViewController: UIViewController {
     // MARK: - Configuration Methods
     func configureViewController() {
         view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     // MARK: - CollectionView set up
     var dataSource: UICollectionViewDiffableDataSource<DetailSection, AnyHashable>?
@@ -226,7 +226,8 @@ extension DetailEventViewController {
         showMoreInfo = showMoreInfo ? false : true
     }
 }
-    //MARK: - Cell Model For Event
+// КАК ТО ПЕРЕДЕЛАТЬ?????
+//MARK: - Cell Model For Event
 extension DetailEventViewController {
     func cellModel<U>(from entity: U, type: TravelSection) -> DetailData? {
         let descriptionForEntity: DescriptionForEntity
@@ -235,37 +236,39 @@ extension DetailEventViewController {
         switch type {
         case .events:
             guard  let entity: EventDetail = entity as? EventDetail else { return nil}
-            descriptionForEntity = DescriptionForEntity(description: entity.description,
-                                                              firstSubtitle: entity.price,
-                                                              secondSubtitle: "",
-                                                              boolSubtitle: entity.isFree)
-             detailEntity =  DetailEntity(images: entity.images,
-                                              title: entity.title,
-                                              bodyText: entity.bodyText)
-              shortPlace = entity.place
+            descriptionForEntity = DescriptionForEntity(title: entity.title,
+                                                        description: entity.description,
+                                                        firstSubtitle: entity.price,
+                                                        secondSubtitle: "",
+                                                        boolSubtitle: entity.isFree)
+            detailEntity =  DetailEntity(images: entity.images,
+                                         bodyText: entity.bodyText)
+            shortPlace = entity.place
         case .places:
             guard  let entity: PlaceDetail = entity as? PlaceDetail else { return nil}
-             descriptionForEntity = DescriptionForEntity(description: entity.description,
-                                                                                         firstSubtitle: entity.timetable,
-                                                                                         boolSubtitle: entity.isClosed)
-              detailEntity =  DetailEntity(images: entity.images,
-                                              title: entity.title,
-                                              bodyText: entity.bodyText)
-              shortPlace = EventPlace(title: entity.title,
-                                          address: entity.address,
-                                          phone: entity.phone,
-                                          subway: entity.subway,
-                                          siteURL: entity.siteUrl,
-                                          isClosed: entity.isClosed,
-                                          coords: entity.coords)
+            descriptionForEntity = DescriptionForEntity(
+                                                        title: entity.title,
+                                                        description: entity.description,
+                                                        firstSubtitle: entity.timetable,
+                                                        boolSubtitle: entity.isClosed)
+            detailEntity =  DetailEntity(images: entity.images,
+                                         bodyText: entity.bodyText)
+            shortPlace = EventPlace(title: entity.title,
+                                    address: entity.address,
+                                    phone: entity.phone,
+                                    subway: entity.subway,
+                                    siteURL: entity.siteUrl,
+                                    isClosed: entity.isClosed,
+                                    coords: entity.coords)
         case .news:
             guard  let entity: NewsDetail = entity as? NewsDetail else { return nil}
-             descriptionForEntity = DescriptionForEntity(description: entity.description,
-                                                             secondSubtitle: entity.publicationDate.description)
-             detailEntity = DetailEntity(images: entity.images,
-                                             title: entity.title,
-                                             bodyText: entity.bodyText)
-             shortPlace = entity.place
+            descriptionForEntity = DescriptionForEntity(
+                                                        title: entity.title,
+                                                        description: entity.description,
+                                                        secondSubtitle: entity.publicationDate.description)
+            detailEntity = DetailEntity(images: entity.images,
+                                        bodyText: entity.bodyText)
+            shortPlace = entity.place
         }
 
         return DetailData(detailEntity: detailEntity,

@@ -53,6 +53,9 @@ class TravelScreenViewController: UIViewController {
     override func loadView() {
         view = travelScreenView
     }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
     // MARK: - Configuration Methods
     func configureViewController() {
         view.backgroundColor = .white
@@ -60,7 +63,6 @@ class TravelScreenViewController: UIViewController {
     }
     // MARK: - Config navigation bar
     private func configNavigationBar() {
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: travelScreenView.cityNameView)
     }
     private func setCityTitle() {
