@@ -74,6 +74,7 @@ class DetailEventViewController: UIViewController {
     // MARK: - Configuration Methods
     func configureViewController() {
         view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     // MARK: - CollectionView set up
     var dataSource: UICollectionViewDiffableDataSource<DetailSection, AnyHashable>?
@@ -225,6 +226,7 @@ extension DetailEventViewController {
         showMoreInfo = showMoreInfo ? false : true
     }
 }
+// КАК ТО ПЕРЕДЕЛАТЬ?????
 //MARK: - Cell Model For Event
 extension DetailEventViewController {
     func cellModel<U>(from entity: U, type: TravelSection) -> DetailData? {

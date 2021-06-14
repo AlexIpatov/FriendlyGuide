@@ -7,20 +7,8 @@
 
 import UIKit
 import Kingfisher
-// TODO Убрать
-enum AddressType {
-    case address, subway, phone
-    func description() -> String {
-        switch self {
-        case .address:
-            return "адрес:"
-        case .subway:
-            return "м."
-        case .phone:
-            return "тел.:"
-        }
-    }
-}
+
+
 class DetailPlaceForEventsCell: UICollectionViewCell, SelfConfiguringCell {
     
     static var reuseId: String = "DetailPlaceForEventsCell"
