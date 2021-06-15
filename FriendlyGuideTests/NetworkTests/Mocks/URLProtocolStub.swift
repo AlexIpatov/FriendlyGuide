@@ -24,7 +24,6 @@ class URLProtocolStub: URLProtocol {
                 self.client?.urlProtocol(self, didLoad: data)
             }
         }
-
         self.client?.urlProtocolDidFinishLoading(self)
     }
 

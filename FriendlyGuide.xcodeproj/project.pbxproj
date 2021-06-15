@@ -553,7 +553,6 @@
 			isa = PBXGroup;
 			children = (
 				210F00C02666D841005121C5 /* KeychainRequest */,
-				C96B94782661205E007AD0DA /* EndPoints */,
 				C96B94AE2661208D007AD0DA /* Places */,
 				C96B94A126612079007AD0DA /* News */,
 				C96B948326612068007AD0DA /* Events */,
@@ -1417,6 +1416,7 @@
 		C96B94B9266120DD007AD0DA /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C96B94782661205E007AD0DA /* EndPoints */,
 				210F00B42666D3DE005121C5 /* Auth */,
 				21B71F89265E82EB00460564 /* Chat */,
 				C9DEE1F22666A36200C545CF /* Factories */,

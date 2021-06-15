@@ -21,7 +21,7 @@ class GetPlacesTests: XCTestCase {
         var count = 0
         
         let request = GetPlaces(encoder: encoder, sessionManager: session)
-        request.getPlaces(cityTag: "spb", showingSince: "1444385206") { response in
+        request.load(cityTag: "spb", showingSince: "1444385206") { response in
             switch response {
             case .failure(_):
                 expectation.fulfill()
@@ -41,7 +41,7 @@ class GetPlacesTests: XCTestCase {
         var error: NetworkingError?
         
         let request = GetPlaces(encoder: encoder, sessionManager: session)
-        request.getPlaces(cityTag: "spb", showingSince: "1444385206") { response in
+        request.load(cityTag: "spb", showingSince: "1444385206") { response in
             switch response {
             case .failure(let err):
                 error = err
