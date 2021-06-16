@@ -8,5 +8,5 @@
 import Foundation
 
 protocol GetEventDetailFactory {
-    func getEventDetail(eventID: Int, completionHandler: @escaping (Result<EventDetail, NetworkingError>) -> Void)
+    func load(eventID: Int, completionHandler: @escaping (Result<EventDetail, NetworkingError>) -> Void)
 }

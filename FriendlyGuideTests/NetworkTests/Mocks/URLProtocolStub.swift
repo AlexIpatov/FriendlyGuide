@@ -20,6 +20,7 @@ class URLProtocolStub: URLProtocol {
 
     override func startLoading() {
         if let url = request.url {
+            print(url)
             if let data = URLProtocolStub.testURLs[url] {
                 self.client?.urlProtocol(self, didLoad: data)
             }

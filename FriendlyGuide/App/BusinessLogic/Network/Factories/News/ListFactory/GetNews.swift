@@ -25,7 +25,7 @@ extension GetNews: AbstractRequestFactory {
 }
 
 extension GetNews: GetNewsFactory {
-    func getNews(cityTag: String,
+    func load(cityTag: String,
                  completionHandler: @escaping (Result<EndPoint.ModelType,
                                                       NetworkingError>) -> Void) {
         let route = NewsListResource(cityTag: cityTag)

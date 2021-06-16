@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GetEventsListFactory {
-    func getEventsList(cityTag: String,
+    func load(cityTag: String,
                        actualSince: String,
                        completionHandler: @escaping (Result<EventsList, NetworkingError>) -> Void)
 }

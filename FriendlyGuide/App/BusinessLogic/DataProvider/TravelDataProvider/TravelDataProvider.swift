@@ -36,7 +36,7 @@ extension TravelDataProvider: DataProvider {
         
         group.enter()
         queue.async {
-            eventsFactory.getEventsList(cityTag: cityTag, actualSince: actualSince) {[weak self] response in
+            eventsFactory.load(cityTag: cityTag, actualSince: actualSince) {[weak self] response in
                         guard let self = self else { return }
                         switch response {
                         case.success(let response):
@@ -62,7 +62,7 @@ extension TravelDataProvider: DataProvider {
         }
         group.enter()
         queue.async {
-            newsFactory.getNews(cityTag: cityTag) {[weak self] response in
+            newsFactory.load(cityTag: cityTag) {[weak self] response in
                         guard let self = self else { return }
                         switch response {
                         case.success(let response):

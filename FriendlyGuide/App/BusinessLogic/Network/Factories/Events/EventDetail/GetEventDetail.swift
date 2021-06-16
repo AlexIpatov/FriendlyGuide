@@ -25,7 +25,7 @@ extension GetEventDetail: AbstractRequestFactory {
 }
 
 extension GetEventDetail: GetEventDetailFactory {
-    func getEventDetail(eventID: Int, completionHandler: @escaping (Result<EndPoint.ModelType,
+    func load(eventID: Int, completionHandler: @escaping (Result<EndPoint.ModelType,
                                                             NetworkingError>) -> Void) {
         let route = EventDetailResource(eventID: eventID)
         request(route, withCompletion: completionHandler)

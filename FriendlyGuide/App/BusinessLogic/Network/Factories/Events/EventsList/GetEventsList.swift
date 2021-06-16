@@ -25,7 +25,7 @@ extension GetEventsList: AbstractRequestFactory {
 }
 
 extension GetEventsList: GetEventsListFactory {
-    func getEventsList(cityTag: String,
+    func load(cityTag: String,
                        actualSince: String,
                        completionHandler: @escaping (Result<EndPoint.ModelType,
                                                             NetworkingError>) -> Void) {

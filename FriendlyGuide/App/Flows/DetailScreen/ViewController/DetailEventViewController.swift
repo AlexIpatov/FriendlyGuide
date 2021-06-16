@@ -115,7 +115,7 @@ class DetailEventViewController: UIViewController {
         switch currentSectionType {
         case .events:
             let eventsFactory = requestFactory.makeGetEventDetailFactory()
-            eventsFactory.getEventDetail(eventID: currentId) { [ weak self] response in
+            eventsFactory.load(eventID: currentId) { [ weak self] response in
                 DispatchQueue.main.async {
                     guard let self = self else {return}
                     switch response {

@@ -13,7 +13,7 @@ public struct URLPathParameterEncoder: ParameterEncoder {
         else { throw NetworkingError.missingURL }
         guard !parameters.isEmpty else { return }
         for (_ ,value) in parameters {
-            let string = "\(value)"
+            let string = String("\(value)")
             let pathComponent = string
             url.appendPathComponent(pathComponent)
         }

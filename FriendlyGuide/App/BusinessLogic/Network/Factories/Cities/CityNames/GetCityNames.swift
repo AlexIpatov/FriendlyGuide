@@ -31,14 +31,3 @@ extension GetCityNames: GetCityNamesFactory {
     }
 
 }
-
-//let rf = RequestFactory()
-//        let gn = rf.makeGetCityNameFactory()
-//        gn.getCityNames { response in
-//            switch response {
-//            case .success(let cityNames):
-//                cityNames.forEach { print($0.name)}
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
