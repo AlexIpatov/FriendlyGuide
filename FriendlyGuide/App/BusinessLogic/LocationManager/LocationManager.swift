@@ -7,16 +7,14 @@
 
 import UIKit
 import CoreLocation
-import RxSwift
-import RxCocoa
 
 final class LocationManager: NSObject {
     //MARK: - Properties
     static let instance = LocationManager()
     
     private let locationManager = CLLocationManager()
-    var location: BehaviorRelay<CLLocation?> = BehaviorRelay(value: nil)
-
+    private var currentLocation: CLLocation?
+    
     // MARK: - Init
     private override init() {
         super.init()
@@ -25,34 +23,66 @@ final class LocationManager: NSObject {
     
     //MARK: - Configuration Methods
     private func configureLocationManager() {
-        locationManager.requestWhenInUseAuthorization()
+        guard CLLocationManager.locationServicesEnabled() else {
+            return
+        }
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = 5
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.startMonitoringSignificantLocationChanges()
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
     }
     
     //MARK: - Methods
-    func startUpdatingLocation() {
+    func startUpdatingLocationInLocationManager() {
         locationManager.startUpdatingLocation()
     }
     
-    func stopUpdatingLocation() {
+    func stopUpdatingLocationInLocationManager() {
         locationManager.stopUpdatingLocation()
     }
     
-    func requestLocation() {
+    func requestLocationInLocationManager() {
         locationManager.requestLocation()
+    }
+    
+    func getCurrentLocationInLocationManager() -> CLLocation {
+        requestLocationInLocationManager()
+        guard let location = currentLocation else {
+            return CLLocation()
+        }
+        return location
+    }
+    
+    func getCurrentCoordinateInLocationManager() -> CLLocationCoordinate2D {
+        requestLocationInLocationManager()
+        guard let location = currentLocation else {
+            return CLLocationCoordinate2D()
+        }
+        return location.coordinate
     }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.location.accept(locations.last)
+        guard let location = locations.first else {
+            return
+        }
+        self.currentLocation = location
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch locationManager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        default:
+            locationManager.stopUpdatingLocation()
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+        print(error.localizedDescription)
     }
 }

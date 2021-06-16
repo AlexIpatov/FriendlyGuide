@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 enum LogInControllerError: LocalizedError {
     case noPassword, noLogin
@@ -75,6 +76,34 @@ final class LogInViewController: UIViewController {
         
         navigationController?
             .setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        checkLocationServicesStatus()
+    }
+    
+    //MARK: - Location Services status checking
+    private func checkLocationServicesStatus() {
+        guard CLLocationManager.locationServicesEnabled() else {
+            let alert = UIAlertController(
+                title: "Службы геолокации отключены.",
+                message: "Вы хотите перейти в настройки и включить службы геолокации?",
+                preferredStyle: .alert)
+            let settingsAction = UIAlertAction(title: "Настройки",
+                                               style: .default) { (alert) in
+                if let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION_SERVICES") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+            let cancelAction = UIAlertAction(title: "Отмена",
+                                             style: .cancel,
+                                             handler: nil)
+            alert.addAction(settingsAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
     }
 }
 
