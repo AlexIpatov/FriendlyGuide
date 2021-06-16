@@ -61,7 +61,7 @@ class CitiesViewController: UIViewController {
     // MARK: - Request methods
     private func requestData() {
         let getCityNameFactory = requestFactory.makeGetCityNameFactory()
-        getCityNameFactory.getCityNames { [weak self] response in
+        getCityNameFactory.load { [weak self] response in
             DispatchQueue.main.async {
                 guard let self = self else {return}
                 switch response {

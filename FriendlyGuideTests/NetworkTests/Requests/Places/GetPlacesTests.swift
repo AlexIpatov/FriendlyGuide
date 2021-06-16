@@ -13,44 +13,40 @@ class GetPlacesTests: XCTestCase {
     let endPoint = PlacesListResource(cityTag: "spb", showingSince: "1444385206")
     let model = PlacesList(count: 10, next: nil, previous: nil, places: [])
     let encoder = URLPathParameterEncoder()
-    
+    let url = URL(string: "https://kudago.com/public-api/v1.4/places?lang=ru&location=spb&showing_since=1444385206&fields=id,title,coords,address,images,subway")
+ 
     func testGetPlaces() throws {
         let data = try JSONEncoder().encode(model)
-        let session = try setupURLSessionStub(from: endPoint, with: data)
+        let session = try setupURLSessionStub(from: url, with: data)
         let expectation = self.expectation(description: "loading")
-        var count = 0
         
         let request = GetPlaces(encoder: encoder, sessionManager: session)
         request.load(cityTag: "spb", showingSince: "1444385206") { response in
-            switch response {
-            case .failure(_):
-                expectation.fulfill()
-            case .success(let places):
-                count = places.count
-                expectation.fulfill()
-            }
+            guard case let .success(result) = response
+            else { XCTFail(); expectation.fulfill(); return  }
+            XCTAssertEqual(result, self.model)
+            expectation.fulfill()
         }
         waitForExpectations(timeout: 1, handler: nil)
-        XCTAssertEqual(count, 10)
     }
     
     func testGetPlacesBadData() throws {
         let data = Data("Wrong!".utf8)
-        let session = try setupURLSessionStub(from: endPoint, with: data)
+        let session = try setupURLSessionStub(from: url, with: data)
         let expectation = self.expectation(description: "loading")
-        var error: NetworkingError?
         
         let request = GetPlaces(encoder: encoder, sessionManager: session)
         request.load(cityTag: "spb", showingSince: "1444385206") { response in
-            switch response {
-            case .failure(let err):
-                error = err
-                expectation.fulfill()
-            case .success(_):
-                expectation.fulfill()
-            }
+            guard case let .failure(result) = response
+            else { XCTFail(); expectation.fulfill(); return }
+            XCTAssertEqual(result, NetworkingError.parsingError)
+            expectation.fulfill()
         }
         waitForExpectations(timeout: 1, handler: nil)
-        XCTAssertEqual(error, NetworkingError.parsingError)
     }
+    
+    override func tearDownWithError() throws {
+        clearURLSessionStubData()
+    }
+    
 }

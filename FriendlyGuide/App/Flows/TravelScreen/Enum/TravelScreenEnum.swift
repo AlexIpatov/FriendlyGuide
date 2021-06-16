@@ -9,7 +9,7 @@ import Foundation
 
 enum TravelSection: Int, CaseIterable {
     case events, places, news
-
+    
     func description() -> String {
         switch self {
         case .events:

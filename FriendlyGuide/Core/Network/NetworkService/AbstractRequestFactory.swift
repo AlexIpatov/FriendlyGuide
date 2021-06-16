@@ -19,10 +19,10 @@ extension AbstractRequestFactory {
     func request(_ route: EndPoint,
                  withCompletion completion: @escaping (Result<EndPoint.ModelType, NetworkingError>) -> Void) {
         do {
-            let request = try self.buildRequest(from: route)
+            guard let request = try? self.buildRequest(from: route) else { throw NetworkingError.invalidRequest}
             let task = sessionManager.dataTask(with: request, completionHandler: {
                 (data: Data?, response: URLResponse?, error: Error?) -> Void in
-              //  self.log(data: data, response: response as? HTTPURLResponse, error: error)
+                self.log(data: data, response: response as? HTTPURLResponse, error: error)
                        if error != nil {
                            completion(.failure(NetworkingError.invalidRequest))
                        }
@@ -43,7 +43,7 @@ extension AbstractRequestFactory {
         }
         }
     
-    fileprivate func buildRequest(from route: EndPoint) throws -> URLRequest {
+    private func buildRequest(from route: EndPoint) throws -> URLRequest {
         guard let url = route.url() else { throw NetworkingError.missingURL }
         var request = URLRequest(url: url,
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
@@ -58,7 +58,7 @@ extension AbstractRequestFactory {
         return request
     }
     
-    fileprivate func decode(_ data: Data) throws -> EndPoint.ModelType {
+    private func decode(_ data: Data) throws -> EndPoint.ModelType {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
         let value = try decoder.decode(EndPoint.ModelType.self, from: data)
