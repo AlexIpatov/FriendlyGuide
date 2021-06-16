@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class TravelScreenViewController: UIViewController {
     // MARK: - UI components

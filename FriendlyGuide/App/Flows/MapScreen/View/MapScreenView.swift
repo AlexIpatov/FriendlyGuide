@@ -6,14 +6,56 @@
 //
 
 import UIKit
-import GoogleMaps
+import MapKit
 
 class MapScreenView: UIView {
-    private(set) lazy var mapView: GMSMapView = {
-        let mapView = GMSMapView()
+    private(set) lazy var mapView: MKMapView = {
+        let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
         return mapView
     }()
+    
+    private(set) lazy var latitudeLabel = UILabel(text: "Latitude:",
+                                             font: .smallTitleFont(),
+                                             textColor: .black,
+                                             numberOfLines: 1,
+                                             textAlignment: .left,
+                                             adjustsFontSizeToFitWidth: false)
+    
+    private(set) lazy var longitudeLabel = UILabel(text: "Longitude:",
+                                             font: .smallTitleFont(),
+                                             textColor: .black,
+                                             numberOfLines: 1,
+                                             textAlignment: .left,
+                                             adjustsFontSizeToFitWidth: false)
+    
+    private(set) lazy var latitudeValueLabel = UILabel(text: "-00.0000",
+                                             font: .smallTitleFont(),
+                                             textColor: .black,
+                                             numberOfLines: 1,
+                                             textAlignment: .left,
+                                             adjustsFontSizeToFitWidth: false)
+    
+    private(set) lazy var longitudeValueLabel = UILabel(text: "-00.0000",
+                                             font: .smallTitleFont(),
+                                             textColor: .black,
+                                             numberOfLines: 1,
+                                             textAlignment: .left,
+                                             adjustsFontSizeToFitWidth: false)
+    
+    private(set) lazy var transitionToSettingsButton = UIButton(title: "Настройка геолокации",
+                                                                font: .bigButtonFont(),
+                                                                cornerRadius: 8.0,
+                                                                backgroundColor: .systemGray5,
+                                                                tintColor: .black)
+    
+    private(set) lazy var informationLabel = UILabel(
+        text: "Службы геолокации отключены. Перейдите в настройки телефона для настройки служб геолокации и перезапустите приложение.",
+        font: .smallTitleFont(),
+        textColor: .black,
+        numberOfLines: 0,
+        textAlignment: .left,
+        adjustsFontSizeToFitWidth: false)
     
     private(set) lazy var findPlaceOrEventButton = UIButton(
         backgroundImageForNormalState: UIImage(systemName: "magnifyingglass.circle"),
@@ -76,8 +118,14 @@ class MapScreenView: UIView {
     
     func configureUI() {
         startTrackingLocationButton.tag = 0
-
+        
         self.addSubview(mapView)
+        mapView.addSubview(latitudeLabel)
+        mapView.addSubview(longitudeLabel)
+        mapView.addSubview(latitudeValueLabel)
+        mapView.addSubview(longitudeValueLabel)
+        mapView.addSubview(transitionToSettingsButton)
+        mapView.addSubview(informationLabel)
         mapView.addSubview(findPlaceOrEventButton)
         mapView.addSubview(buildingRouteButton)
         mapView.addSubview(clearRouteButton)
@@ -91,6 +139,35 @@ class MapScreenView: UIView {
             mapView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             mapView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
             mapView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
+            
+            latitudeLabel.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 15.0),
+            latitudeLabel.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 15.0),
+            latitudeLabel.heightAnchor.constraint(equalToConstant: 20.0),
+            latitudeLabel.widthAnchor.constraint(equalToConstant: 80.0),
+            
+            latitudeValueLabel.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 15.0),
+            latitudeValueLabel.leftAnchor.constraint(equalTo: latitudeLabel.rightAnchor, constant: 5.0),
+            latitudeValueLabel.heightAnchor.constraint(equalToConstant: 20.0),
+            latitudeValueLabel.widthAnchor.constraint(equalToConstant: 100.0),
+            
+            longitudeLabel.topAnchor.constraint(equalTo: latitudeLabel.bottomAnchor, constant: 0.0),
+            longitudeLabel.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 15.0),
+            longitudeLabel.heightAnchor.constraint(equalToConstant: 20.0),
+            longitudeLabel.widthAnchor.constraint(equalToConstant: 80.0),
+            
+            longitudeValueLabel.topAnchor.constraint(equalTo: latitudeValueLabel.bottomAnchor, constant: 0.0),
+            longitudeValueLabel.leftAnchor.constraint(equalTo: longitudeLabel.rightAnchor, constant: 5.0),
+            longitudeValueLabel.heightAnchor.constraint(equalToConstant: 20.0),
+            longitudeValueLabel.widthAnchor.constraint(equalToConstant: 100.0),
+            
+            transitionToSettingsButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 15.0),
+            transitionToSettingsButton.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 15.0),
+            transitionToSettingsButton.heightAnchor.constraint(equalToConstant: 40),
+            transitionToSettingsButton.widthAnchor.constraint(equalToConstant: 210),
+            
+            informationLabel.topAnchor.constraint(equalTo: transitionToSettingsButton.bottomAnchor, constant: 5.0),
+            informationLabel.leftAnchor.constraint(equalTo: mapView.leftAnchor, constant: 30.0),
+            informationLabel.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -85.0),
             
             findPlaceOrEventButton.topAnchor.constraint(equalTo: mapView.topAnchor, constant: 25.0),
             findPlaceOrEventButton.rightAnchor.constraint(equalTo: mapView.rightAnchor, constant: -25.0),
