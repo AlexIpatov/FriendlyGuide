@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import GoogleMaps
+import MapKit
 import CoreLocation
 
 class MapScreenViewController: UIViewController {
@@ -18,15 +18,11 @@ class MapScreenViewController: UIViewController {
     //MARK: - Properties
     private var backgroundTask: UIBackgroundTaskIdentifier?
     private var locationManager: LocationManager
-    private var currentCoordinate = CLLocationCoordinate2D()
     
-    private var onMapMarker = GMSMarker()
+    private var onMapMarker = MKMarkerAnnotationView()
     private var defaultOnMapMarkerImage = UIImage(systemName: "mappin")
 
-    private var mapScreenCamera = GMSCameraPosition()
-    
-    private var route: GMSPolyline?
-    private var routePath: GMSMutablePath?
+    private var mapScreenCamera = MKMapCamera()
     
     private var selectedOnSliderPlace: Place?
     private var selectedOnSliderEvent: Event?
@@ -63,11 +59,10 @@ class MapScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
-        configureLocationManager()
         configureBackgroundTask()
-        configureMapScreenCamera()
-        configureMap()
+        configureMapDependingOnLocationServicesStatus()
         configureButtons()
+        configureButtonsAndLabelsVisibilityDependingOnLocationServicesStatus()
     }
     
     //MARK: - Configuration methods
@@ -75,45 +70,51 @@ class MapScreenViewController: UIViewController {
         self.title = "Карта"
     }
     
-    private func configureLocationManager() {
-        locationManager.requestLocation()
-        locationManager
-            .location
-            .asObservable()
-            .bind { [weak self] location in
-                guard let self = self else { return }
-                guard let location = location else { return }
-                self.currentCoordinate = location.coordinate
-                self.routePath?.add(self.currentCoordinate)
-                self.route?.path = self.routePath
-                let position = GMSCameraPosition.camera(withTarget: self.currentCoordinate, zoom: 17)
-                self.addOnMapMarker(coordinate: self.currentCoordinate,
-                                    markerImage: self.selfieImage,
-                                    markerTitle: nil)
-                self.addOnMapRoute(currentCoordinate: self.currentCoordinate)
-                self.mapScreenView.mapView.animate(to: position)
-            }
-    }
-    
     func configureBackgroundTask() {
         backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-            guard let self = self else { return }
-            UIApplication.shared.endBackgroundTask(self.backgroundTask!)
+            guard let self = self,
+                  let backgroundTask = self.backgroundTask else { return }
+            UIApplication.shared.endBackgroundTask(backgroundTask)
             self.backgroundTask = .invalid
         }
     }
     
+    func configureMapDependingOnLocationServicesStatus() {
+        if CLLocationManager.locationServicesEnabled() {
+            configureLocationManager()
+            configureMapScreenCamera()
+            configureMap()
+        }
+    }
+    
+    private func configureLocationManager() {       
+        //TO DO - need to implement
+
+    }
+    
     func configureMapScreenCamera() {
-        mapScreenCamera = GMSCameraPosition.camera(withTarget: currentCoordinate, zoom: 12)
+        mapScreenCamera.centerCoordinate = locationManager.getCurrentCoordinateInLocationManager()
+        mapScreenCamera.centerCoordinateDistance = 1000
     }
     
     func configureMap() {
         mapScreenView.mapView.delegate = self
         mapScreenView.mapView.camera = mapScreenCamera
+        mapScreenView.mapView.showsUserLocation = true
+        configureCurrentCoordinateLatLonLabels()
+    }
+    
+    func configureCurrentCoordinateLatLonLabels() {
+        let currentCoordinate = locationManager.getCurrentCoordinateInLocationManager()
+        mapScreenView.latitudeValueLabel.text = String(format: "%g\u{00B0}",
+                                                       currentCoordinate.latitude)
+        mapScreenView.longitudeValueLabel.text = String(format: "%g\u{00B0}",
+                                                        currentCoordinate.longitude)
     }
     
     //MARK: - Buttons
     func configureButtons() {
+        configureTransitionToSettingsButton()
         configureFindPlaceOrEventButton()
         configureBuildingRouteButton()
         configureСlearRouteButton()
@@ -121,6 +122,53 @@ class MapScreenViewController: UIViewController {
         configureZoomOutMapButton()
         configureStartTrackingLocationButton()
         configureShowCurrentLocationButton()
+    }
+    
+    // TransitionToSettingsButton
+    func configureTransitionToSettingsButton() {
+        mapScreenView.transitionToSettingsButton.addTarget(self, action: #selector(tapTransitionToSettingsButton(_:)), for: .touchUpInside)
+    }
+    @objc func tapTransitionToSettingsButton(_ sender: UIButton) {
+        checkLocationServicesStatus()
+    }
+    
+    func checkLocationServicesStatus() {
+        if CLLocationManager.locationServicesEnabled() {
+            showInformationAlert()
+        } else {
+            showTransitionAlert()
+        }
+    }
+    
+    func showInformationAlert() {
+        let informationAlert = UIAlertController(
+            title: "Службы геолокации включены.\nПерезапустите приложение",
+            message: nil,
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK",
+                                     style: .default,
+                                         handler: nil)
+        informationAlert.addAction(okAction)
+        self.present(informationAlert, animated: true, completion: nil)
+    }
+    
+    func showTransitionAlert() {
+        let transitionAlert = UIAlertController(
+            title: "Вы хотите перейти в настройки и включить службы геолокации?",
+            message: nil,
+            preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "Настройки",
+                                           style: .default) { (alert) in
+            if let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION_SERVICES") {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Отмена",
+                                         style: .cancel,
+                                         handler: nil)
+        transitionAlert.addAction(settingsAction)
+        transitionAlert.addAction(cancelAction)
+        self.present(transitionAlert, animated: true, completion: nil)
     }
     
     // FindPlaceOrEventButton
@@ -131,6 +179,14 @@ class MapScreenViewController: UIViewController {
         showOnMapSliderViewController()
     }
     
+    func showOnMapSliderViewController() {
+        let child = OnMapSliderViewController(initialSegmentIndex: initialSegmentIndex ?? 0)
+        child.transitioningDelegate = transition
+        child.modalPresentationStyle = .custom
+        child.placeOrEventDelegate = self
+        self.present(child, animated: true, completion: nil)
+    }
+    
     // BuildingRouteButton
     func configureBuildingRouteButton() {
         mapScreenView.buildingRouteButton.addTarget(self, action: #selector(tapBuildingRouteButton(_:)), for: .touchUpInside)
@@ -138,10 +194,10 @@ class MapScreenViewController: UIViewController {
     @objc func tapBuildingRouteButton(_ sender: UIButton) {
         print("BuildingRouteButton tapped")
         showRouteToPlaceOrEvent()
-        //            route?.map = nil
-        //            route = GMSPolyline()
-        //            routePath = GMSMutablePath()
-        //            route?.map = mapScreenView.mapView
+    }
+    
+    func showRouteToPlaceOrEvent() {
+        //TO DO - need to implement
     }
     
     // СlearRouteButton
@@ -149,8 +205,8 @@ class MapScreenViewController: UIViewController {
         mapScreenView.clearRouteButton.addTarget(self, action: #selector(tapClearRouteButton(_:)), for: .touchUpInside)
     }
     @objc func tapClearRouteButton(_ sender: UIButton) {
-        print("ClearRouteButton tapped")
-        route?.map = nil
+        //TO DO - need to implement
+
     }
     
     // ZoomInMapButton
@@ -161,12 +217,22 @@ class MapScreenViewController: UIViewController {
         zoomInMap()
     }
     
+    func zoomInMap() {
+        //TO DO - need to implement
+
+    }
+    
     // ZoomOutMapButton
     func configureZoomOutMapButton() {
         mapScreenView.zoomOutMapButton.addTarget(self, action: #selector(tapZoomOutMapButton(_:)), for: .touchUpInside)
     }
     @objc func tapZoomOutMapButton(_ sender: UIButton) {
         zoomOutMap()
+    }
+    
+    func zoomOutMap() {
+        //TO DO - need to implement
+
     }
     
     // StartTrackingLocationButton
@@ -178,33 +244,19 @@ class MapScreenViewController: UIViewController {
         startTrackingLocation()
     }
     
-    // ShowCurrentLocationButton
-    func configureShowCurrentLocationButton() {
-        mapScreenView.showCurrentLocationButton.addTarget(self, action: #selector(tapShowCurrentLocationButton(_:)), for: .touchUpInside)
-    }
-    @objc func tapShowCurrentLocationButton(_ sender: UIButton) {
-        showCurrentLocation()
-    }
-    
-    //MARK: - Methods
-    func showOnMapSliderViewController() {
-        let child = OnMapSliderViewController(initialSegmentIndex: initialSegmentIndex ?? 0)
-        child.transitioningDelegate = transition
-        child.modalPresentationStyle = .custom
-        child.placeOrEventDelegate = self
-        self.present(child, animated: true, completion: nil)
-    }
-    
     func startTrackingLocation() {
         if mapScreenView.startTrackingLocationButton.tag == 0 {
             // Run tracking
             setStartTrackingLocationButtonToStatusTapped()
-            mapScreenView.mapView.animate(toZoom: 17)
-            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingLocationInLocationManager()
+            //TO DO - need to implement
+
         } else if mapScreenView.startTrackingLocationButton.tag == 1 {
             // Stop tracking
-            locationManager.stopUpdatingLocation()
+            locationManager.stopUpdatingLocationInLocationManager()
             setStartTrackingLocationButtonToStatusUntapped()
+            //TO DO - need to implement
+
         }
     }
     
@@ -220,80 +272,76 @@ class MapScreenViewController: UIViewController {
         mapScreenView.startTrackingLocationButton.tintColor = .systemBlue
     }
     
-    func showRouteToPlaceOrEvent() {
-//        route?.map = nil
-//        route = GMSPolyline()
-//        let path = GMSPath(fromEncodedPath: <#T##String#>)
-//        routePath = GMSMutablePath(path: <#T##GMSPath#>)
+    // ShowCurrentLocationButton
+    func configureShowCurrentLocationButton() {
+        mapScreenView.showCurrentLocationButton.addTarget(self, action: #selector(tapShowCurrentLocationButton(_:)), for: .touchUpInside)
+    }
+    
+    @objc func tapShowCurrentLocationButton(_ sender: UIButton) {
+        showCurrentLocation()
     }
     
     func showCurrentLocation() {
-        locationManager.stopUpdatingLocation()
+        locationManager.stopUpdatingLocationInLocationManager()
         if mapScreenView.startTrackingLocationButton.tag == 1 {
             setStartTrackingLocationButtonToStatusUntapped()
         }
-        addOnMapMarker(coordinate: currentCoordinate,
-                       markerImage: selfieImage,
-                       markerTitle: nil)
-        moveMapScreenCameraToPosition(coordinate: currentCoordinate, zoom: 17)
+        //TO DO - need to implement
+
     }
     
+    func configureButtonsAndLabelsVisibilityDependingOnLocationServicesStatus() {
+        if CLLocationManager.locationServicesEnabled() {
+            mapScreenView.transitionToSettingsButton.isHidden = true
+            mapScreenView.informationLabel.isHidden = true
+            
+            mapScreenView.latitudeLabel.isHidden = false
+            mapScreenView.longitudeLabel.isHidden = false
+            mapScreenView.latitudeValueLabel.isHidden = false
+            mapScreenView.longitudeValueLabel.isHidden = false
+            mapScreenView.startTrackingLocationButton.isHidden = false
+            mapScreenView.showCurrentLocationButton.isHidden = false
+        } else {
+            mapScreenView.transitionToSettingsButton.isHidden = false
+            mapScreenView.informationLabel.isHidden = false
+            
+            mapScreenView.latitudeLabel.isHidden = true
+            mapScreenView.longitudeLabel.isHidden = true
+            mapScreenView.latitudeValueLabel.isHidden = true
+            mapScreenView.longitudeValueLabel.isHidden = true
+            mapScreenView.startTrackingLocationButton.isHidden = true
+            mapScreenView.showCurrentLocationButton.isHidden = true
+        }
+    }
+    
+    //MARK: - Methods
     func addOnMapMarker(coordinate: CLLocationCoordinate2D,
                         markerImage: UIImage?,
                         markerTitle: String?) {
-        let frame = CGRect(x: 0, y: 0, width: 30.0, height: 30.0)
-        let onMapMarkerImageView = UIImageView(frame: frame)
-        onMapMarkerImageView.tintColor = .systemRed
-        if let image = markerImage {
-            onMapMarkerImageView.image = image
-            onMapMarkerImageView.layer.cornerRadius = onMapMarkerImageView.bounds.width / 2
-            onMapMarkerImageView.clipsToBounds = true
-        } else {
-            onMapMarkerImageView.image = defaultOnMapMarkerImage
-        }
-        
-        onMapMarker.iconView = onMapMarkerImageView
-        if let title = markerTitle {
-            onMapMarker.title = title
-        }
-        
-        onMapMarker.position = coordinate
-        onMapMarker.map = mapScreenView.mapView
+
     }
-    
+
     func deleteOnMapMarker() {
-        onMapMarker.map = nil
-        onMapMarker = GMSMarker()
+        //TO DO - need to implement
+
     }
-    
+
     func addOnMapRoute(currentCoordinate: CLLocationCoordinate2D) {
-        routePath?.add(currentCoordinate)
-        route?.strokeColor = .systemGreen
-        route?.path = routePath
+        //TO DO - need to implement
+
     }
     
-    func moveMapScreenCameraToPosition(coordinate: CLLocationCoordinate2D,
-                                       zoom: Float) {
-        mapScreenCamera = GMSCameraPosition.camera(withTarget: coordinate, zoom: zoom)
-        mapScreenView.mapView.camera = mapScreenCamera
-        mapScreenView.mapView.animate(to: mapScreenView.mapView.camera)
-    }
-    
-    func zoomInMap() {
-        let zoomInValue = mapScreenView.mapView.camera.zoom + 1
-        mapScreenView.mapView.animate(toZoom: zoomInValue)
-    }
-    
-    func zoomOutMap() {
-        let zoomOutValue = mapScreenView.mapView.camera.zoom - 1
-        mapScreenView.mapView.animate(toZoom: zoomOutValue)
+    func moveCameraToPosition(location: CLLocation?,
+                              altitude: CLLocationDistance) {
+        //TO DO - need to implement
+
     }
 }
 
-//MARK: - Extension with GMSMapViewDelegate
-extension MapScreenViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print(coordinate)
+//MARK: - Extension with MKMapViewDelegate
+extension MapScreenViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        print(userLocation)
     }
 }
 
@@ -306,8 +354,8 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
             return
         }
         selectedOnSliderPlaceCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
-        moveMapScreenCameraToPosition(coordinate: selectedOnSliderPlaceCoordinates, zoom: 17)
-        addOnMapMarker(coordinate: selectedOnSliderPlaceCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderPlace?.title)
+        //TO DO - need to implement
+
         print("selectedOnSliderPlace = \(String(describing: selectedOnSliderPlace))")
     }
     
@@ -318,8 +366,8 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
             return
         }
         selectedOnSliderEventCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
-        moveMapScreenCameraToPosition(coordinate: selectedOnSliderEventCoordinates, zoom: 17)
-        addOnMapMarker(coordinate: selectedOnSliderEventCoordinates, markerImage: UIImage(systemName: "mappin.and.ellipse"), markerTitle: selectedOnSliderEvent?.title)
+        //TO DO - need to implement
+
         print("selectedOnSliderEvent = \(String(describing: selectedOnSliderEvent))")
     }
     

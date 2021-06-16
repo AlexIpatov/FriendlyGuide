@@ -72,9 +72,9 @@ class TabBarController: UITabBarController {
                                                           selectedImage: UIImage(systemName: "map.fill"))
         let mapScreenNavigationController = UINavigationController(rootViewController: mapScreenViewController)
         configureNavigationController(navigationController: mapScreenNavigationController,
-                                              tintColor: .systemBlue,
-                                              barTintColor: .systemGray6,
-                                              prefersLargeTitles: false)
+                                      tintColor: .systemBlue,
+                                      barTintColor: .systemGray6,
+                                      prefersLargeTitles: false)
         viewControllers.append(mapScreenNavigationController)
         
         //3. ChatScreen
