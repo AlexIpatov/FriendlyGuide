@@ -158,6 +158,8 @@
 		C98682E326726853004D38DB /* GetNewsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98682E226726853004D38DB /* GetNewsDetail.swift */; };
 		C990BEBD267106BD006402B9 /* XCTestCaseExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C990BEBC267106BD006402B9 /* XCTestCaseExt.swift */; };
 		C9D03E10267A2CA40097E3DA /* GetNewsDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D03E0F267A2CA40097E3DA /* GetNewsDetailTests.swift */; };
+		C9D03E13267A321B0097E3DA /* GetCityNamesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D03E12267A321B0097E3DA /* GetCityNamesTests.swift */; };
+		C9D03E15267A359E0097E3DA /* GetCityDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D03E14267A359D0097E3DA /* GetCityDetailTests.swift */; };
 		C9D511472679F42000CD0054 /* GetEventsListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D511462679F42000CD0054 /* GetEventsListTests.swift */; };
 		C9D51149267A008900CD0054 /* GetEventDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D51148267A008900CD0054 /* GetEventDetailTests.swift */; };
 		C9D5114E267A260D00CD0054 /* GetNewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D5114D267A260D00CD0054 /* GetNewsTests.swift */; };
@@ -361,6 +363,8 @@
 		C98682E226726853004D38DB /* GetNewsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewsDetail.swift; sourceTree = "<group>"; };
 		C990BEBC267106BD006402B9 /* XCTestCaseExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExt.swift; sourceTree = "<group>"; };
 		C9D03E0F267A2CA40097E3DA /* GetNewsDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewsDetailTests.swift; sourceTree = "<group>"; };
+		C9D03E12267A321B0097E3DA /* GetCityNamesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCityNamesTests.swift; sourceTree = "<group>"; };
+		C9D03E14267A359D0097E3DA /* GetCityDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCityDetailTests.swift; sourceTree = "<group>"; };
 		C9D511462679F42000CD0054 /* GetEventsListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventsListTests.swift; sourceTree = "<group>"; };
 		C9D51148267A008900CD0054 /* GetEventDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetEventDetailTests.swift; sourceTree = "<group>"; };
 		C9D5114D267A260D00CD0054 /* GetNewsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewsTests.swift; sourceTree = "<group>"; };
@@ -1254,6 +1258,7 @@
 		C9696E8426721C09006B97A7 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
+				C9D03E11267A31FB0097E3DA /* Cities */,
 				C9D5114C267A25C600CD0054 /* News */,
 				C9D5114A267A254900CD0054 /* Places */,
 				C9D5114B267A255C00CD0054 /* Events */,
@@ -1487,6 +1492,15 @@
 				C990BEBC267106BD006402B9 /* XCTestCaseExt.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C9D03E11267A31FB0097E3DA /* Cities */ = {
+			isa = PBXGroup;
+			children = (
+				C9D03E12267A321B0097E3DA /* GetCityNamesTests.swift */,
+				C9D03E14267A359D0097E3DA /* GetCityDetailTests.swift */,
+			);
+			path = Cities;
 			sourceTree = "<group>";
 		};
 		C9D5114A267A254900CD0054 /* Places */ = {
@@ -2062,6 +2076,7 @@
 			files = (
 				C9D03E10267A2CA40097E3DA /* GetNewsDetailTests.swift in Sources */,
 				C9D51149267A008900CD0054 /* GetEventDetailTests.swift in Sources */,
+				C9D03E15267A359E0097E3DA /* GetCityDetailTests.swift in Sources */,
 				C990BEBD267106BD006402B9 /* XCTestCaseExt.swift in Sources */,
 				C9F6AB34266F987600841789 /* URLProtocolStub.swift in Sources */,
 				C9696E87267238A2006B97A7 /* EventDetailURLTests.swift in Sources */,
@@ -2070,6 +2085,7 @@
 				2150FECE265AB9090058FA89 /* FriendlyGuideTests.swift in Sources */,
 				C9D5114E267A260D00CD0054 /* GetNewsTests.swift in Sources */,
 				C93263C52678E93800C99786 /* GetPlaceDetailTests.swift in Sources */,
+				C9D03E13267A321B0097E3DA /* GetCityNamesTests.swift in Sources */,
 				C9D511472679F42000CD0054 /* GetEventsListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

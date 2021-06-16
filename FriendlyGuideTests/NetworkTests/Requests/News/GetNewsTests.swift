@@ -17,10 +17,11 @@ class GetNewsTests: XCTestCase {
                              news: [News(id: 1, publicationDate: 10,
                                          title: "news", images: [], description: nil)])
         let encoder = URLPathParameterEncoder()
-        // "https://kudago.com/public-api/v1.4/news?lang=ru&location=spb&actual_only=true&fields=id,publication_date,title,description,images&text_format=text"
+        let url = URL(string: "https://kudago.com/public-api/v1.4/news?lang=ru&location=spb&actual_only=true&fields=id,publication_date,title,description,images&text_format=text")
+        
         func testGetNews() throws {
             let data = try JSONEncoder().encode(model)
-            let session = try setupURLSessionStub(from: endPoint, with: data)
+            let session = try setupURLSessionStub(from: url, with: data)
             let expectation = self.expectation(description: "loading")
             
             let request = GetNews(encoder: encoder, sessionManager: session)
@@ -35,7 +36,7 @@ class GetNewsTests: XCTestCase {
         
         func testGetNewsBadData() throws {
             let data = Data("Wrong!".utf8)
-            let session = try setupURLSessionStub(from: endPoint, with: data)
+            let session = try setupURLSessionStub(from: url, with: data)
             let expectation = self.expectation(description: "loading")
             
             let request = GetNews(encoder: encoder, sessionManager: session)

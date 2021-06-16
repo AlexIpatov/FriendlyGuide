@@ -1,5 +1,5 @@
 //
-//  GetEventsListTests.swift
+//  GetCityNameTests.swift
 //  FriendlyGuideTests
 //
 //  Created by Alexander Pelevinov on 16.06.2021.
@@ -8,19 +8,19 @@
 import XCTest
 @testable import FriendlyGuide
 
-class GetEventsListTests: XCTestCase {
-    let url = URL(string: "https://kudago.com/public-api/v1.4/events?lang=ru&location=spb&actual_since=1444385206&fields=id,title,images,dates")
-    let endPoint = EventsListResource(cityTag: "spb", actualSince: "1444385206")
-    let model = EventsList(count: 11, next: nil, previous: nil, results: [])
-    let encoder = URLPathParameterEncoder()
+class GetCityNamesTests: XCTestCase {
     
-    func testGetEventsList() throws {
+    let endPoint = CityNamesResource()
+    let model = [CityName(slug: "spb", name: "spb")]
+    let encoder = URLPathParameterEncoder()
+    let url = URL(string: "https://kudago.com/public-api/v1.4/locations?lang=ru")
+    func testGetCityNames() throws {
         let data = try JSONEncoder().encode(model)
         let session = try setupURLSessionStub(from: url, with: data)
         let expectation = self.expectation(description: "loading")
         
-        let request = GetEventsList(encoder: encoder, sessionManager: session)
-        request.load(cityTag: "spb", actualSince: "1444385206") { response in
+        let request = GetCityNames(encoder: encoder, sessionManager: session)
+        request.load() { response in
             guard case let .success(result) = response
             else { XCTFail(); expectation.fulfill(); return  }
             XCTAssertEqual(result, self.model)
@@ -29,13 +29,13 @@ class GetEventsListTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
     
-    func testGetEventsBadData() throws {
+    func testGetCityNamesBadData() throws {
         let data = Data("Wrong!".utf8)
         let session = try setupURLSessionStub(from: url, with: data)
         let expectation = self.expectation(description: "loading")
         
-        let request = GetEventsList(encoder: encoder, sessionManager: session)
-        request.load(cityTag: "spb", actualSince: "1444385206") { response in
+        let request = GetCityNames(encoder: encoder, sessionManager: session)
+        request.load() { response in
             guard case let .failure(result) = response
             else { XCTFail(); expectation.fulfill(); return }
             XCTAssertEqual(result, NetworkingError.parsingError)

@@ -25,7 +25,7 @@ extension GetCityNames: AbstractRequestFactory {
 }
 
 extension GetCityNames: GetCityNamesFactory {
-    func getCityNames(completionHandler: @escaping (Result<EndPoint.ModelType, NetworkingError>) -> Void) {
+    func load(completionHandler: @escaping (Result<EndPoint.ModelType, NetworkingError>) -> Void) {
         let route = CityNamesResource()
         request(route, withCompletion: completionHandler)
     }

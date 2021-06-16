@@ -13,14 +13,15 @@ class GetPlacesTests: XCTestCase {
     let endPoint = PlacesListResource(cityTag: "spb", showingSince: "1444385206")
     let model = PlacesList(count: 10, next: nil, previous: nil, places: [])
     let encoder = URLPathParameterEncoder()
-    // "https://kudago.com/public-api/v1.4/places?lang=ru&location=spb&showing_since=1444385206&fields=id,title,coords,address,images,subway"
+    let url = URL(string: "https://kudago.com/public-api/v1.4/places?lang=ru&location=spb&showing_since=1444385206&fields=id,title,coords,address,images,subway")
+ 
     func testGetPlaces() throws {
         let data = try JSONEncoder().encode(model)
-        let session = try setupURLSessionStub(from: endPoint, with: data)
+        let session = try setupURLSessionStub(from: url, with: data)
         let expectation = self.expectation(description: "loading")
         
         let request = GetPlaces(encoder: encoder, sessionManager: session)
-        request.load(cityTag: endPoint.cityTag, showingSince: endPoint.showingSince) { response in
+        request.load(cityTag: "spb", showingSince: "1444385206") { response in
             guard case let .success(result) = response
             else { XCTFail(); expectation.fulfill(); return  }
             XCTAssertEqual(result, self.model)
@@ -31,11 +32,11 @@ class GetPlacesTests: XCTestCase {
     
     func testGetPlacesBadData() throws {
         let data = Data("Wrong!".utf8)
-        let session = try setupURLSessionStub(from: endPoint, with: data)
+        let session = try setupURLSessionStub(from: url, with: data)
         let expectation = self.expectation(description: "loading")
         
         let request = GetPlaces(encoder: encoder, sessionManager: session)
-        request.load(cityTag: endPoint.cityTag, showingSince: endPoint.showingSince) { response in
+        request.load(cityTag: "spb", showingSince: "1444385206") { response in
             guard case let .failure(result) = response
             else { XCTFail(); expectation.fulfill(); return }
             XCTAssertEqual(result, NetworkingError.parsingError)

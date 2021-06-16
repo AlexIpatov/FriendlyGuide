@@ -8,5 +8,5 @@
 import Foundation
 
 protocol GetCityNamesFactory {
-    func getCityNames( completionHandler: @escaping (Result<[CityName], NetworkingError>) -> Void)
+    func load( completionHandler: @escaping (Result<[CityName], NetworkingError>) -> Void)
 }

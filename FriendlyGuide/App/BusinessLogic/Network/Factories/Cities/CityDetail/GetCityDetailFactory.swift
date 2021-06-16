@@ -8,6 +8,6 @@
 import Foundation
 
 protocol GetCityDetailFactory {
-    func getCityDetail(cityTag: String,
+    func load(cityTag: String,
                        completionHandler: @escaping (Result<CityDetail, NetworkingError>) -> Void)
 }
