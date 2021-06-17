@@ -8,26 +8,30 @@
 import Foundation
 import MessageKit
 
-struct Sender: SenderType {
+fileprivate struct Sender: SenderType {
     var senderId: String
     var displayName: String
 }
 
-struct Message: MessageType {
+fileprivate struct ChatMessage: MessageType {
     var sender: SenderType
     var messageId: String
     var sentDate: Date
     var kind: MessageKind
 }
 
-class ChatViewController: MessagesViewController {  
+
+protocol ChatModelDelegate: AnyObject {
+    func didFinishFetchData(at indexes: [Int])
+}
+
+final class ChatViewController: MessagesViewController {
     private let currentUser: SenderType
     private var messages = [MessageType]()
     
-    init(currentUser: ChatConnectable) {
+    init(currentUser: ChatConnectable, dialog: Dialog) {
         self.currentUser = Sender(senderId: "\(currentUser.userID)",
                                   displayName: currentUser.fullName)
-        
         super.init(nibName: nil, bundle: nil)
     }
     

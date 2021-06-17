@@ -9,6 +9,6 @@ import Foundation
 
 protocol LogInRequestFactory {
     func login(login: String, password: String,
-               complition: @escaping (Result<User, Error>) -> Void)
+               completion: @escaping (Result<User, Error>) -> Void)
 }
 

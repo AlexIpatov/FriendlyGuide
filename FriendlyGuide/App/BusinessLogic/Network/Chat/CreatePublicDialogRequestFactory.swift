@@ -8,8 +8,9 @@
 import Foundation
 
 protocol CreatePublicDialogRequestFactory {
-    func createDialog(withName name: String,
+    func createDialog(id: String,
+                      name: String,
                       photo: String?,
-                      completion: @escaping (_ dialog: Dialog?) -> Void)
+                      completion: @escaping (_ result: Result<Dialog, Error>) -> Void)
 }
 
