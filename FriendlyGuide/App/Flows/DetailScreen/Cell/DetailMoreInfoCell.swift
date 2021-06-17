@@ -39,7 +39,7 @@ class DetailMoreInfoCell: UICollectionViewCell, SelfConfiguringCell {
         NSLayoutConstraint.activate([
             bodyTextLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: constantForConstraints),
             bodyTextLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: constantForConstraints),
-            bodyTextLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            bodyTextLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -constantForConstraints),
             bodyTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -constantForConstraints)
         ])
 
