@@ -102,6 +102,4 @@ extension DetailEventView {
                                                                         alignment: .top)
         return sectionHeader
     }
-
-
 }
