@@ -60,6 +60,8 @@
 		21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE78265E7DC60052C076 /* HttpMethod.swift */; };
 		21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE79265E7DC60052C076 /* EndPointType.swift */; };
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
+		4A039F56267B5664005061AB /* MoreContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A039F55267B5664005061AB /* MoreContentView.swift */; };
+		4A039F59267B5671005061AB /* MoreContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A039F58267B5671005061AB /* MoreContentViewController.swift */; };
 		4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */; };
 		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
 		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
@@ -259,6 +261,8 @@
 		21C21C5E26617B280016CC23 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		21D3EBB926610977007D01CE /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
+		4A039F55267B5664005061AB /* MoreContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreContentView.swift; sourceTree = "<group>"; };
+		4A039F58267B5671005061AB /* MoreContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreContentViewController.swift; sourceTree = "<group>"; };
 		4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Entensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Extensions.swift"; sourceTree = "<group>"; };
@@ -591,6 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				4A9E29AB2667E45E00C3D5EA /* CustomRefreshView */,
+				4A039F51267B5616005061AB /* MoreContentScreen */,
 				4A7F8D1326662BEA00C69FBD /* DetailScreen */,
 				21C21C50266141EA0016CC23 /* Auth */,
 				C5C316632660E62200518405 /* SliderController */,
@@ -781,6 +786,31 @@
 				0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A039F51267B5616005061AB /* MoreContentScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4A039F52267B5633005061AB /* View */,
+				4A039F53267B5637005061AB /* ViewController */,
+			);
+			path = MoreContentScreen;
+			sourceTree = "<group>";
+		};
+		4A039F52267B5633005061AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A039F55267B5664005061AB /* MoreContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A039F53267B5637005061AB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A039F58267B5671005061AB /* MoreContentViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		4A7D3AB826625068000C4298 /* Helpers */ = {
@@ -1960,6 +1990,7 @@
 				21ADF500266511EB00007D34 /* RegisterViewController.swift in Sources */,
 				2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */,
 				C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */,
+				4A039F59267B5671005061AB /* MoreContentViewController.swift in Sources */,
 				217AB25E2664321700A0AF66 /* RegisterViewControllerBuilder.swift in Sources */,
 				C98682E326726853004D38DB /* GetNewsDetail.swift in Sources */,
 				21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */,
@@ -2029,6 +2060,7 @@
 				C96B949626612068007AD0DA /* EventParticipant.swift in Sources */,
 				C5C316F72660F6AC00518405 /* TravelScreenViewController.swift in Sources */,
 				C9DEE21B2666A3C400C545CF /* PlacesListResource.swift in Sources */,
+				4A039F56267B5664005061AB /* MoreContentView.swift in Sources */,
 				4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */,
 				C5C316612660E41C00518405 /* UIImageView + Extensions.swift in Sources */,
 				C967AED226679B5B00BAB62F /* DataProvider.swift in Sources */,

@@ -17,10 +17,10 @@ class DetailEventView: UIView {
         return collectionView
     }()
     // MARK: - Properties
-    private let contentInsets = NSDirectionalEdgeInsets.init(top: 7,
-                                                             leading: 7,
-                                                             bottom: 7,
-                                                             trailing: 7)
+    private let contentInsets = NSDirectionalEdgeInsets.init(top: 10,
+                                                             leading: 10,
+                                                             bottom: 10,
+                                                             trailing: 10)
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,13 +56,13 @@ extension DetailEventView {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                               heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
                                                heightDimension: .fractionalWidth(0.7))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 20
         section.contentInsets = contentInsets
-        section.orthogonalScrollingBehavior = .continuous
+        section.orthogonalScrollingBehavior = .groupPagingCentered
         return section
     }
     private func createDescriptionLayout() -> NSCollectionLayoutSection {
@@ -102,6 +102,4 @@ extension DetailEventView {
                                                                         alignment: .top)
         return sectionHeader
     }
-
-
 }
