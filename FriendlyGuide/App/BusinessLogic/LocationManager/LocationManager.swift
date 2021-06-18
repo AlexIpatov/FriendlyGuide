@@ -7,13 +7,16 @@
 
 import UIKit
 import CoreLocation
+import RxSwift
+import RxCocoa
+
 
 final class LocationManager: NSObject {
     //MARK: - Properties
     static let instance = LocationManager()
     
     private let locationManager = CLLocationManager()
-    private var currentLocation: CLLocation?
+    var currentLocation: BehaviorRelay<CLLocation?> = BehaviorRelay(value: nil)
     
     // MARK: - Init
     private override init() {
@@ -28,7 +31,7 @@ final class LocationManager: NSObject {
         }
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.distanceFilter = 5
+        locationManager.distanceFilter = 10
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.startMonitoringSignificantLocationChanges()
@@ -47,30 +50,14 @@ final class LocationManager: NSObject {
     func requestLocationInLocationManager() {
         locationManager.requestLocation()
     }
-    
-    func getCurrentLocationInLocationManager() -> CLLocation {
-        requestLocationInLocationManager()
-        guard let location = currentLocation else {
-            return CLLocation()
-        }
-        return location
-    }
-    
-    func getCurrentCoordinateInLocationManager() -> CLLocationCoordinate2D {
-        requestLocationInLocationManager()
-        guard let location = currentLocation else {
-            return CLLocationCoordinate2D()
-        }
-        return location.coordinate
-    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else {
+        guard let location = locations.last else {
             return
         }
-        self.currentLocation = location
+        self.currentLocation.accept(location)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
