@@ -66,7 +66,6 @@
 		21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE79265E7DC60052C076 /* EndPointType.swift */; };
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
 		4A039F56267B5664005061AB /* MoreContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A039F55267B5664005061AB /* MoreContentView.swift */; };
-		4A039F59267B5671005061AB /* MoreContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A039F58267B5671005061AB /* MoreContentViewController.swift */; };
 		4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */; };
 		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
 		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
@@ -86,6 +85,7 @@
 		4AA72846266D2A7700A5C060 /* DetailPlaceForEventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA72845266D2A7700A5C060 /* DetailPlaceForEventsCell.swift */; };
 		B768E637D8ED434D98E87DC3 /* Pods_FriendlyGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */; };
 		C58200BB266F9FD00040CEBA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58200BA266F9FD00040CEBA /* LocationManager.swift */; };
+		C58200C8267D43E10040CEBA /* EntityForAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58200C7267D43E10040CEBA /* EntityForAnnotation.swift */; };
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
 		C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904687265B0F6F00231116 /* MapScreenViewController.swift */; };
 		C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904689265B107000231116 /* ProfileScreenViewController.swift */; };
@@ -295,6 +295,7 @@
 		69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB5D3A3CB0562114B140561 /* Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C58200BA266F9FD00040CEBA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C58200C7267D43E10040CEBA /* EntityForAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityForAnnotation.swift; sourceTree = "<group>"; };
 		C5904683265B0AA700231116 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C5904687265B0F6F00231116 /* MapScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewController.swift; sourceTree = "<group>"; };
 		C5904689265B107000231116 /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
@@ -578,6 +579,7 @@
 		2150FEE8265ABE5D0058FA89 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				C58200C9267D51F90040CEBA /* MapAnnotation */,
 				2188357C26762F3B00136BD8 /* Chat */,
 				210F00C02666D841005121C5 /* KeychainRequest */,
 				C96B94AE2661208D007AD0DA /* Places */,
@@ -964,6 +966,14 @@
 				C58200BA266F9FD00040CEBA /* LocationManager.swift */,
 			);
 			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		C58200C9267D51F90040CEBA /* MapAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				C58200C7267D43E10040CEBA /* EntityForAnnotation.swift */,
+			);
+			path = MapAnnotation;
 			sourceTree = "<group>";
 		};
 		C5904678265B083900231116 /* MapScreen */ = {
@@ -1712,7 +1722,6 @@
 				2150FEAF265AB9070058FA89 /* Sources */,
 				2150FEB0265AB9070058FA89 /* Frameworks */,
 				2150FEB1265AB9070058FA89 /* Resources */,
-				663F742B8619D7A3F425123F /* [CP] Copy Pods Resources */,
 				8AB1F1B90D3D9C83D993E080 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1751,7 +1760,6 @@
 				2150FED0265AB9090058FA89 /* Sources */,
 				2150FED1265AB9090058FA89 /* Frameworks */,
 				2150FED2265AB9090058FA89 /* Resources */,
-				645620ABA3ACEAC8F388A8A9 /* [CP] Copy Pods Resources */,
 				D9BC85FC1DDC8CA30FDB8786 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1833,40 +1841,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		645620ABA3ACEAC8F388A8A9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		663F742B8619D7A3F425123F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8AB1F1B90D3D9C83D993E080 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2089,6 +2063,7 @@
 				21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */,
 				C96B94B52661208D007AD0DA /* Place.swift in Sources */,
 				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
+				C58200C8267D43E10040CEBA /* EntityForAnnotation.swift in Sources */,
 				21A2E6EC266933FB00254342 /* AuthViewsParametrs.swift in Sources */,
 				C9DEE2142666A36200C545CF /* GetEventDetailFactory.swift in Sources */,
 				C96B94AD26612079007AD0DA /* NewsList.swift in Sources */,
@@ -2129,7 +2104,6 @@
 				21A2E6E5266906AC00254342 /* UIView + Extensions.swift in Sources */,
 				C96B94B82661208D007AD0DA /* PlaceDetail.swift in Sources */,
 				21ADF5022665142900007D34 /* RegisterModel.swift in Sources */,
-				4A7F8D1B26662C6300C69FBD /* DetailNameCell.swift in Sources */,
 				21ADF4FE26650C3A00007D34 /* LogInModel.swift in Sources */,
 				21ADF4FC2665032B00007D34 /* LogInViewController.swift in Sources */,
 				219C231A2671470400D9ED90 /* GetUserDialogsRequestFactory.swift in Sources */,

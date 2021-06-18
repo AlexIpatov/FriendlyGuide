@@ -22,21 +22,28 @@ class MapScreenViewController: UIViewController {
     private var initialRegion = MKCoordinateRegion()
     private let latitudinalMetersForPresenting: CLLocationDegrees = 300
     private let longitudinalMetersForPresenting: CLLocationDegrees = 300
-
+    
     private let minSpanLatitudeDelta: CLLocationDegrees = 0.002
     private let maxSpanLatitudeDelta: CLLocationDegrees = 90.0
     private var isZoomOut: Bool = false
-
+    
     private var currentRegion = MKCoordinateRegion()
     private var currentSpan = MKCoordinateSpan()
     private var currentCoordinate = CLLocationCoordinate2D()
     
     private var initialSegmentIndex: Int?
+    
     private var selectedOnSliderPlace: Place?
     private var selectedOnSliderEvent: Event?
+    
+    private var placeForAnnotation:EntityForAnnotation?
+    private var eventForAnnotation:EntityForAnnotation?
+    
     private var selectedOnSliderPlaceCoordinates = CLLocationCoordinate2D()
     private var selectedOnSliderEventCoordinates = CLLocationCoordinate2D()
+    
     private var selectedOnSliderPlaceOrEventImage: UIImage?
+    
     private var selfieImage: UIImage?
     
     private let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
@@ -94,9 +101,7 @@ class MapScreenViewController: UIViewController {
                     guard let self = self else { return }
                     guard let location = location else { return }
                     self.currentCoordinate = location.coordinate
-                    self.currentRegion = MKCoordinateRegion(center: self.currentCoordinate,
-                                                            latitudinalMeters: self.latitudinalMetersForPresenting,
-                                                            longitudinalMeters: self.longitudinalMetersForPresenting)
+                    self.currentRegion = self.makeRegionForDisplay(center: self.currentCoordinate)
                     self.showRegion(region: self.currentRegion)
                     self.configureCurrentCoordinateLatLonLabels()
                 }
@@ -104,6 +109,12 @@ class MapScreenViewController: UIViewController {
     }
     
     //MARK: - Region
+    func makeRegionForDisplay(center: CLLocationCoordinate2D) -> MKCoordinateRegion {
+        return MKCoordinateRegion(center: center,
+                                  latitudinalMeters: self.latitudinalMetersForPresenting,
+                                  longitudinalMeters: self.longitudinalMetersForPresenting)
+    }
+    
     func showRegion(region: MKCoordinateRegion) {
         self.mapScreenView.mapView.setRegion(region, animated: true)
     }
@@ -363,8 +374,27 @@ class MapScreenViewController: UIViewController {
 
 //MARK: - Extension with MKMapViewDelegate
 extension MapScreenViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard let annotation = annotation as? EntityForAnnotation else { return nil }
+        var viewMarker: MKMarkerAnnotationView
+        let idView = "marker"
+        if let view = mapScreenView.mapView.dequeueReusableAnnotationView(withIdentifier: idView) as? MKMarkerAnnotationView {
+            view.annotation = annotation
+            viewMarker = view
+        } else {
+            viewMarker = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: idView)
+            viewMarker.canShowCallout = true
+            viewMarker.calloutOffset = CGPoint(x: 0, y: 5)
+            let buttonForAnnotation: UIButton = {
+                let button = UIButton(type: .detailDisclosure)
+                button.setImage(UIImage(systemName: "arrow.triangle.turn.up.right.circle"), for: .normal)
+                button.setImage(UIImage(systemName: "arrow.triangle.turn.up.right.circle.fill"), for: .highlighted)
+                return button
+            }()
+            viewMarker.rightCalloutAccessoryView = buttonForAnnotation
+        }
+        viewMarker.markerTintColor = annotation.color
+        return viewMarker
     }
 }
 
@@ -372,26 +402,42 @@ extension MapScreenViewController: MKMapViewDelegate {
 extension MapScreenViewController: OnMapViewControllerDelegate {
     func selectPlace(selectedPlace: Place) {
         selectedOnSliderPlace = selectedPlace
-        guard let selectedLatitude = selectedOnSliderPlace?.coords?.lat,
-              let selectedLongitude = selectedOnSliderPlace?.coords?.lon else {
+        guard let selectedPlaceCoordinatesLat = selectedOnSliderPlace?.coords?.lat,
+              let selectedPlaceCoordinatesLon = selectedOnSliderPlace?.coords?.lon,
+              let selectedPlaceTitle = selectedOnSliderPlace?.title else {
             return
         }
-        selectedOnSliderPlaceCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
-        //TO DO - need to implement
-        
-        print("selectedOnSliderPlace = \(String(describing: selectedOnSliderPlace))")
+        let selectedPlaceCoordinates = CLLocationCoordinate2D(latitude: selectedPlaceCoordinatesLat,
+                                                              longitude: selectedPlaceCoordinatesLon)
+        configureAndShowAnnotation(coordinate: selectedPlaceCoordinates,
+                                   title: selectedPlaceTitle,
+                                   color: .systemGreen)
     }
     
     func selectEvent(selectedEvent: Event) {
         selectedOnSliderEvent = selectedEvent
-        guard let selectedLatitude = selectedOnSliderEvent?.place?.coords?.lat,
-              let selectedLongitude = selectedOnSliderEvent?.place?.coords?.lon else {
+        guard let selectedEventCoordinatesLat = selectedOnSliderEvent?.place?.coords?.lat,
+              let selectedEventCoordinatesLon = selectedOnSliderEvent?.place?.coords?.lon,
+              let selectedEventTitle = selectedOnSliderEvent?.title else {
             return
         }
-        selectedOnSliderEventCoordinates = CLLocationCoordinate2DMake(selectedLatitude, selectedLongitude)
-        //TO DO - need to implement
-        
-        print("selectedOnSliderEvent = \(String(describing: selectedOnSliderEvent))")
+        let selectedEventCoordinates = CLLocationCoordinate2D(latitude: selectedEventCoordinatesLat,
+                                                              longitude: selectedEventCoordinatesLon)
+        configureAndShowAnnotation(coordinate: selectedEventCoordinates,
+                                   title: selectedEventTitle,
+                                   color: .systemOrange)
+    }
+    
+    func configureAndShowAnnotation(coordinate: CLLocationCoordinate2D,
+                                    title: String,
+                                    color: UIColor) {
+        let entityForAnnotation = EntityForAnnotation(coordinate: coordinate,
+                                                    title: title,
+                                                    subtitle: nil,
+                                                    color: color)
+        currentRegion = makeRegionForDisplay(center: coordinate)
+        mapScreenView.mapView.addAnnotation(entityForAnnotation)
+        showRegion(region: currentRegion)
     }
     
     func saveSelectedSegmentIndex(index: Int) {
