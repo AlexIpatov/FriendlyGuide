@@ -9,6 +9,10 @@ import UIKit
 import MapKit
 import CoreLocation
 
+enum RouteBuildingError: Error {
+        case routeBuildingError(Error)
+}
+
 class MapScreenViewController: UIViewController {
     // MARK: - UI components
     private lazy var mapScreenView: MapScreenView = {
@@ -37,13 +41,9 @@ class MapScreenViewController: UIViewController {
     
     private var selectedOnSliderPlace: Place?
     private var selectedOnSliderEvent: Event?
+    private var selectedEntityCoordinates = CLLocationCoordinate2D()
     
     private var entitiesForAnnotationArray: [EntityForAnnotation] = []
-    private var placeForAnnotation: EntityForAnnotation?
-    private var eventForAnnotation: EntityForAnnotation?
-    
-    private var selectedOnSliderPlaceCoordinates = CLLocationCoordinate2D()
-    private var selectedOnSliderEventCoordinates = CLLocationCoordinate2D()
     
     private var selectedOnSliderPlaceOrEventImage: UIImage?
     
@@ -55,7 +55,8 @@ class MapScreenViewController: UIViewController {
         Place(id: 123, title: "Государственный музей А.С.Пушкина", address: "Хрущёвский пер., 2/12", coords: Coordinates(lat: 55.743548, lon: 37.597612), subway: "Кропоткинская", images: []),
         Place(id: 234, title: "Государственный академический Большой театр России", address: "Театральная площадь, 1", coords: Coordinates(lat: 55.760221, lon: 37.618561), subway: "Театральная", images: []),
         Place(id: 345, title: "Радуга Кино", address: "просп. Андропова, 8", coords: Coordinates(lat: 55.695720, lon: 37.665070), subway: "Технопарк", images: []),
-        Place(id: 111, title: "Если одинаковое поле без координат", address: "", coords: nil, subway: "", images: [])
+        Place(id: 111, title: "Если одинаковое поле без координат", address: "", coords: nil, subway: "", images: []),
+        Place(id: 333, title: "Near Apple campus place", address: "", coords: Coordinates(lat: 37.540388, lon: -121.950960), subway: "", images: [])
     ]
     
     private var allEvents = [
@@ -235,41 +236,10 @@ class MapScreenViewController: UIViewController {
     
     func checkLocationServicesStatus() {
         if CLLocationManager.locationServicesEnabled() {
-            showInformationAlert()
+            showIfLocationServicesEnabledAlert()
         } else {
-            showTransitionAlert()
+            showIfLocationServicesDisabledAlert()
         }
-    }
-    //MARK: - Alerts
-    func showInformationAlert() {
-        let informationAlert = UIAlertController(
-            title: "Службы геолокации включены.\nПерезапустите приложение",
-            message: nil,
-            preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK",
-                                     style: .default,
-                                     handler: nil)
-        informationAlert.addAction(okAction)
-        self.present(informationAlert, animated: true, completion: nil)
-    }
-    
-    func showTransitionAlert() {
-        let transitionAlert = UIAlertController(
-            title: "Вы хотите перейти в настройки и включить службы геолокации?",
-            message: nil,
-            preferredStyle: .alert)
-        let settingsAction = UIAlertAction(title: "Настройки",
-                                           style: .default) { (alert) in
-            if let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION_SERVICES") {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }
-        let cancelAction = UIAlertAction(title: "Отмена",
-                                         style: .cancel,
-                                         handler: nil)
-        transitionAlert.addAction(settingsAction)
-        transitionAlert.addAction(cancelAction)
-        self.present(transitionAlert, animated: true, completion: nil)
     }
     
     //MARK: - FindPlaceOrEventButton
@@ -293,12 +263,40 @@ class MapScreenViewController: UIViewController {
         mapScreenView.buildingRouteButton.addTarget(self, action: #selector(tapBuildingRouteButton(_:)), for: .touchUpInside)
     }
     @objc func tapBuildingRouteButton(_ sender: UIButton) {
-        print("BuildingRouteButton tapped")
         showRouteToPlaceOrEvent()
     }
     
     func showRouteToPlaceOrEvent() {
-        //TO DO - need to implement
+        if CLLocationManager.locationServicesEnabled() {
+            let startRoutePoint = MKPlacemark(coordinate: currentCoordinate)
+            let endRoutePoint = MKPlacemark(coordinate: selectedEntityCoordinates)
+            buildRoute(startRoutePoint: startRoutePoint,
+                       endRoutePoint: endRoutePoint,
+                       transportType: .walking)
+        } else {
+            showIfLocationServicesDisabledAlert()
+        }
+    }
+    
+    func buildRoute(startRoutePoint: MKPlacemark,
+                    endRoutePoint: MKPlacemark,
+                    transportType: MKDirectionsTransportType) {
+        mapScreenView.mapView.removeOverlays(mapScreenView.mapView.overlays)
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: startRoutePoint)
+        request.destination = MKMapItem(placemark: endRoutePoint)
+        request.transportType = transportType
+        
+        let direction = MKDirections(request: request)
+        direction.calculate { (response, error) in
+            guard let response = response else {
+                self.showIfCanNotBuildRoute()
+                return
+            }
+            for route in response.routes {
+                self.mapScreenView.mapView.addOverlay(route.polyline)
+            }
+        }
     }
     
     //MARK: - СlearRouteButton
@@ -306,8 +304,7 @@ class MapScreenViewController: UIViewController {
         mapScreenView.clearRouteButton.addTarget(self, action: #selector(tapClearRouteButton(_:)), for: .touchUpInside)
     }
     @objc func tapClearRouteButton(_ sender: UIButton) {
-        //TO DO - need to implement
-        
+        mapScreenView.mapView.removeOverlays(mapScreenView.mapView.overlays)
     }
     
     //MARK: - ZoomInMapButton
@@ -437,6 +434,31 @@ extension MapScreenViewController: MKMapViewDelegate {
         viewMarker.markerTintColor = annotation.color
         return viewMarker
     }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if CLLocationManager.locationServicesEnabled() {
+            let destinationEntity = view.annotation as! EntityForAnnotation
+            let startRoutePoint = MKPlacemark(coordinate: currentCoordinate)
+            let endRoutePoint = MKPlacemark(coordinate: destinationEntity.coordinate)
+            buildRoute(startRoutePoint: startRoutePoint,
+                       endRoutePoint: endRoutePoint,
+                       transportType: .walking)
+        } else {
+            showIfLocationServicesDisabledAlert()
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let destinationEntity = view.annotation as! EntityForAnnotation
+        selectedEntityCoordinates = destinationEntity.coordinate
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = .systemGreen
+        renderer.lineWidth = 7
+        return renderer
+    }
 }
 
 //MARK: - Extension with OnMapViewControllerDelegate
@@ -448,11 +470,11 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
               let selectedPlaceTitle = selectedOnSliderPlace?.title else {
             return
         }
-        let selectedPlaceCoordinates = CLLocationCoordinate2D(latitude: selectedPlaceCoordinatesLat,
-                                                              longitude: selectedPlaceCoordinatesLon)
+        selectedEntityCoordinates = CLLocationCoordinate2D(latitude: selectedPlaceCoordinatesLat,
+                                                           longitude: selectedPlaceCoordinatesLon)
         let selectedPlaceAddress = selectedOnSliderPlace?.address
         
-        showAnnotation(coordinate: selectedPlaceCoordinates,
+        showAnnotation(coordinate: selectedEntityCoordinates,
                        title: selectedPlaceTitle,
                        subtitle: selectedPlaceAddress ?? "",
                        color: .systemGreen)
@@ -465,11 +487,11 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
               let selectedEventTitle = selectedOnSliderEvent?.title else {
             return
         }
-        let selectedEventCoordinates = CLLocationCoordinate2D(latitude: selectedEventCoordinatesLat,
-                                                              longitude: selectedEventCoordinatesLon)
+        selectedEntityCoordinates = CLLocationCoordinate2D(latitude: selectedEventCoordinatesLat,
+                                                           longitude: selectedEventCoordinatesLon)
         let selectedEventAddress = selectedOnSliderEvent?.place?.address
         
-        showAnnotation(coordinate: selectedEventCoordinates,
+        showAnnotation(coordinate: selectedEntityCoordinates,
                        title: selectedEventTitle,
                        subtitle: selectedEventAddress ?? "",
                        color: .systemOrange)
@@ -495,7 +517,7 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
             if let placeCoordinatesLat = place.coords?.lat,
                let placeCoordinatesLon = place.coords?.lon {
                 let placeCoordinate = CLLocationCoordinate2D(latitude: placeCoordinatesLat,
-                                                              longitude: placeCoordinatesLon)
+                                                             longitude: placeCoordinatesLon)
                 let entityForAnnotationFromPlace = EntityForAnnotation(coordinate: placeCoordinate,
                                                                        title: place.title,
                                                                        subtitle: place.address,
@@ -508,13 +530,12 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
             if let eventCoordinatesLat = event.place?.coords?.lat,
                let eventCoordinatesLon = event.place?.coords?.lon {
                 let eventCoordinate = CLLocationCoordinate2D(latitude: eventCoordinatesLat,
-                                                              longitude: eventCoordinatesLon)
+                                                             longitude: eventCoordinatesLon)
                 let entityForAnnotationFromEvent = EntityForAnnotation(coordinate: eventCoordinate,
                                                                        title: event.title,
                                                                        subtitle: event.place?.address,
                                                                        color: .systemOrange)
                 entitiesForAnnotationArray.append(entityForAnnotationFromEvent)
-                
             }
             mapScreenView.mapView.addAnnotations(entitiesForAnnotationArray)
         }
@@ -522,5 +543,31 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
     
     func saveSelectedSegmentIndex(index: Int) {
         initialSegmentIndex = index
+    }
+}
+
+//MARK: - Alerts
+extension MapScreenViewController {
+    func showIfLocationServicesEnabledAlert() {
+        showAlert(needСancellation: false,
+                  with: "Службы геолокации включены.\nПерезапустите приложение",
+                  and: "")
+    }
+    
+    func showIfLocationServicesDisabledAlert() {
+        showAlert(needСancellation: true,
+                       with: "Службы геолокации отключены.",
+                       and: "Вы хотите перейти в настройки и включить службы геолокации?",
+                       completion: {
+                        if let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION_SERVICES") {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                       })
+    }
+    
+    func showIfCanNotBuildRoute() {
+        showAlert(needСancellation: false,
+                       with: "Маршрут до указанной точки не может быть построен!",
+                       and: "Возможно отсутствует подключение к интернету или необходимо воспользоваться дальним видом транспорта.")
     }
 }
