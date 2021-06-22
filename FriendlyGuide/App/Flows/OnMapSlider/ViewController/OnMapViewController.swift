@@ -35,13 +35,14 @@ class OnMapSliderViewController: UIViewController {
         Place(id: 123, title: "Государственный музей А.С.Пушкина", address: "Хрущёвский пер., 2/12", coords: Coordinates(lat: 55.743548, lon: 37.597612), subway: "Кропоткинская", images: []),
         Place(id: 234, title: "Государственный академический Большой театр России", address: "Театральная площадь, 1", coords: Coordinates(lat: 55.760221, lon: 37.618561), subway: "Театральная", images: []),
         Place(id: 345, title: "Радуга Кино", address: "просп. Андропова, 8", coords: Coordinates(lat: 55.695720, lon: 37.665070), subway: "Технопарк", images: []),
-        Place(id: 111, title: "Если одинаковое поле без координат", address: "", coords: nil, subway: "", images: [])
+        Place(id: 111, title: "Если одинаковое поле без координат", address: "", coords: nil, subway: "", images: []),
+        Place(id: 333, title: "Near Apple campus place", address: "", coords: Coordinates(lat: 37.540388, lon: -121.950960), subway: "", images: [])
     ] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
-
+    
     private var allEvents = [
         Event(id: 456, title: "Выступление клоунов", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.719438, lon: 37.627026))),
         Event(id: 567, title: "Чемпионат мира по боксу", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.714312, lon: 37.567163))),
