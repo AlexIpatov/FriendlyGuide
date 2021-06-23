@@ -23,7 +23,6 @@ class MapScreenViewController: UIViewController {
     private var backgroundTask: UIBackgroundTaskIdentifier?
     private var locationManager = LocationManager.instance
     private var dataProvider: DataProvider
-
     
     private var initialRegion = MKCoordinateRegion()
     private let initialLatitudinalMetersForPresenting: CLLocationDegrees = 5000
@@ -152,7 +151,7 @@ class MapScreenViewController: UIViewController {
                 case .success((let events, _, let places)):
                     self.allPlaces = places
                     self.allEvents = events
-                    self.showAllAnnotations(placesArray: self.allPlaces, eventsArray: self.allEvents)
+                    self.showAllAnnotations(placesArray: places, eventsArray: events)
                 case .failure(let error):
                     self.showAlert(with: "Ошибка загрузки данных о местах и событиях",
                                    and: error.localizedDescription)
