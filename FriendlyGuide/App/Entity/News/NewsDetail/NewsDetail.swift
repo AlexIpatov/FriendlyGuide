@@ -6,18 +6,27 @@
 //
 
 import Foundation
-//struct NewsPlace и NewsImage будут удалены и заменены полями NewsDetail
-struct NewsDetail: Codable, Hashable {
-    let publicationDate: Date
+
+struct NewsDetail: Codable, Hashable, DetailScreenRepresentable {
+    
     let title: String
-    let place: EventPlace?
-    let description, bodyText: String?
-    let images: [Image]
+    let description: String?
+    let bodyText: String?
+    let images: [Image]?
+    let shortPlace: EventPlace?
+    var firstSubtitle: String?
+    var secondSubtitle: String? {
+        return publicationDate.description
+    }
+    var boolSubtitle: Bool?
+    
+    let publicationDate: Date
     let siteURL: String
 
     enum CodingKeys: String, CodingKey {
         case publicationDate = "publication_date"
-        case title, place
+        case title
+        case shortPlace = "place"
         case description = "description"
         case bodyText = "body_text"
         case images

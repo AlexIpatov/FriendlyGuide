@@ -7,28 +7,32 @@
 
 import Foundation
 
-struct EventDetail: Codable, Hashable{
-    let dates: [DateElement]
+struct EventDetail: Codable, Hashable, DetailScreenRepresentable {
     let title: String
-    let shortTitle: String
-    let place: EventPlace?
-    let bodyText: String?
     let description: String?
+    let firstSubtitle: String?
+    let secondSubtitle: String?
+    let boolSubtitle: Bool?
+    let images: [Image]?
+    let shortPlace: EventPlace?
+    let bodyText: String?
+    
+    let dates: [DateElement]
+    let shortTitle: String?
     let categories: [String]?
     let ageRestriction: Int?
-    let price: String?
-    let isFree: Bool?
-    let images: [Image]
     let siteURL: String?
 
     enum CodingKeys: String, CodingKey {
-        case dates, title, place,description
+        case dates, title,description
+        case shortPlace = "place"
         case shortTitle = "short_title"
         case bodyText = "body_text"
+        case secondSubtitle
         case categories
         case ageRestriction = "age_restriction"
-        case price
-        case isFree = "is_free"
+        case firstSubtitle = "price"
+        case boolSubtitle = "is_free"
         case images
         case siteURL = "site_url"
     }
