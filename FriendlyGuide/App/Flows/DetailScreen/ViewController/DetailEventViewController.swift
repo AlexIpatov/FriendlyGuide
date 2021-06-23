@@ -59,6 +59,10 @@ class DetailEventViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - ViewController Lifecycle
+    override func loadView() {
+        view = detailEventView
+    }
+    
     override func viewDidLoad() {
         print(currentId)
         super.viewDidLoad()
@@ -68,9 +72,7 @@ class DetailEventViewController: UIViewController {
         reloadData()
         requestData()
     }
-    override func loadView() {
-        view = detailEventView
-    }
+    
     // MARK: - Configuration Methods
     func configureViewController() {
         view.backgroundColor = .white

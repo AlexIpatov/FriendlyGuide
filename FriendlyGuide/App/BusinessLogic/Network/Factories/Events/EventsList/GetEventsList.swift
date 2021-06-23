@@ -26,9 +26,9 @@ extension GetEventsList: AbstractRequestFactory {
 
 extension GetEventsList: GetEventsListFactory {
     func load(cityTag: String,
-                       actualSince: String,
-                       completionHandler: @escaping (Result<EndPoint.ModelType,
-                                                            NetworkingError>) -> Void) {
+              actualSince: String,
+              completionHandler: @escaping (Result<EndPoint.ModelType,
+                                                   NetworkingError>) -> Void) {
         let route = EventsListResource(cityTag: cityTag, actualSince: actualSince)
         request(route, withCompletion: completionHandler)
     }
