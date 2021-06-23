@@ -253,12 +253,10 @@ class MapScreenViewController: UIViewController {
     }
     
     //MARK: - ReloadDataButton
-
     func configureReloadDataButton() {
         mapScreenView.reloadDataButton.addTarget(self, action: #selector(tapReloadDataButton(_:)), for: .touchUpInside)
     }
     @objc func tapReloadDataButton(_ sender: UIButton) {
-        print("ReloadDataButton tapped")
         loadDataFromNetwork()
     }
     
@@ -428,6 +426,51 @@ class MapScreenViewController: UIViewController {
             mapScreenView.showCurrentLocationButton.isHidden = true
         }
     }
+    
+    //MARK: - Annotations
+    func showAnnotation(coordinate: CLLocationCoordinate2D,
+                        title: String,
+                        subtitle: String,
+                        color: UIColor) {
+        let entityForAnnotation = EntityForAnnotation(coordinate: coordinate,
+                                                      title: title,
+                                                      subtitle: subtitle,
+                                                      color: color)
+        currentRegion = makeRegionForDisplay(center: coordinate)
+        mapScreenView.mapView.addAnnotation(entityForAnnotation)
+        showRegion(region: currentRegion)
+    }
+    
+    func showAllAnnotations(placesArray: [Place], eventsArray: [Event]) {
+        entitiesForAnnotationArray = []
+        
+        for place in placesArray {
+            if let placeCoordinatesLat = place.coords?.lat,
+               let placeCoordinatesLon = place.coords?.lon {
+                let placeCoordinate = CLLocationCoordinate2D(latitude: placeCoordinatesLat,
+                                                             longitude: placeCoordinatesLon)
+                let entityForAnnotationFromPlace = EntityForAnnotation(coordinate: placeCoordinate,
+                                                                       title: place.title,
+                                                                       subtitle: place.address,
+                                                                       color: .systemGreen)
+                entitiesForAnnotationArray.append(entityForAnnotationFromPlace)
+            }
+        }
+        
+        for event in eventsArray {
+            if let eventCoordinatesLat = event.place?.coords?.lat,
+               let eventCoordinatesLon = event.place?.coords?.lon {
+                let eventCoordinate = CLLocationCoordinate2D(latitude: eventCoordinatesLat,
+                                                             longitude: eventCoordinatesLon)
+                let entityForAnnotationFromEvent = EntityForAnnotation(coordinate: eventCoordinate,
+                                                                       title: event.title,
+                                                                       subtitle: event.place?.address,
+                                                                       color: .systemOrange)
+                entitiesForAnnotationArray.append(entityForAnnotationFromEvent)
+            }
+            mapScreenView.mapView.addAnnotations(entitiesForAnnotationArray)
+        }
+    }
 }
 
 //MARK: - Extension with MKMapViewDelegate
@@ -515,50 +558,6 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
                        title: selectedEventTitle,
                        subtitle: selectedEventAddress ?? "",
                        color: .systemOrange)
-    }
-    
-    func showAnnotation(coordinate: CLLocationCoordinate2D,
-                        title: String,
-                        subtitle: String,
-                        color: UIColor) {
-        let entityForAnnotation = EntityForAnnotation(coordinate: coordinate,
-                                                      title: title,
-                                                      subtitle: subtitle,
-                                                      color: color)
-        currentRegion = makeRegionForDisplay(center: coordinate)
-        mapScreenView.mapView.addAnnotation(entityForAnnotation)
-        showRegion(region: currentRegion)
-    }
-    
-    func showAllAnnotations(placesArray: [Place], eventsArray: [Event]) {
-        entitiesForAnnotationArray = []
-        
-        for place in placesArray {
-            if let placeCoordinatesLat = place.coords?.lat,
-               let placeCoordinatesLon = place.coords?.lon {
-                let placeCoordinate = CLLocationCoordinate2D(latitude: placeCoordinatesLat,
-                                                             longitude: placeCoordinatesLon)
-                let entityForAnnotationFromPlace = EntityForAnnotation(coordinate: placeCoordinate,
-                                                                       title: place.title,
-                                                                       subtitle: place.address,
-                                                                       color: .systemGreen)
-                entitiesForAnnotationArray.append(entityForAnnotationFromPlace)
-            }
-        }
-        
-        for event in eventsArray {
-            if let eventCoordinatesLat = event.place?.coords?.lat,
-               let eventCoordinatesLon = event.place?.coords?.lon {
-                let eventCoordinate = CLLocationCoordinate2D(latitude: eventCoordinatesLat,
-                                                             longitude: eventCoordinatesLon)
-                let entityForAnnotationFromEvent = EntityForAnnotation(coordinate: eventCoordinate,
-                                                                       title: event.title,
-                                                                       subtitle: event.place?.address,
-                                                                       color: .systemOrange)
-                entitiesForAnnotationArray.append(entityForAnnotationFromEvent)
-            }
-            mapScreenView.mapView.addAnnotations(entitiesForAnnotationArray)
-        }
     }
     
     func saveSelectedSegmentIndex(index: Int) {
