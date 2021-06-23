@@ -27,15 +27,17 @@ class MoreContentViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - ViewController Lifecycle
+    override func loadView() {
+        view = moreContentView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
         setupCollectionView()
         requestData()
     }
-    override func loadView() {
-        view = moreContentView
-    }
+    
     // MARK: - Configuration Methods
     func configureViewController() {
         view.backgroundColor = .white

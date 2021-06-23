@@ -21,7 +21,9 @@ class MapScreenViewController: UIViewController {
     
     //MARK: - Properties
     private var backgroundTask: UIBackgroundTaskIdentifier?
-    private var locationManager: LocationManager
+    private var locationManager = LocationManager.instance
+    private var dataProvider: DataProvider
+
     
     private var initialRegion = MKCoordinateRegion()
     private let initialLatitudinalMetersForPresenting: CLLocationDegrees = 5000
@@ -51,28 +53,17 @@ class MapScreenViewController: UIViewController {
     
     private let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     
-    private var allPlaces = [
-        Place(id: 123, title: "Государственный музей А.С.Пушкина", address: "Хрущёвский пер., 2/12", coords: Coordinates(lat: 55.743548, lon: 37.597612), subway: "Кропоткинская", images: []),
-        Place(id: 234, title: "Государственный академический Большой театр России", address: "Театральная площадь, 1", coords: Coordinates(lat: 55.760221, lon: 37.618561), subway: "Театральная", images: []),
-        Place(id: 345, title: "Радуга Кино", address: "просп. Андропова, 8", coords: Coordinates(lat: 55.695720, lon: 37.665070), subway: "Технопарк", images: []),
-        Place(id: 111, title: "Если одинаковое поле без координат", address: "", coords: nil, subway: "", images: []),
-        Place(id: 333, title: "Near Apple campus place", address: "", coords: Coordinates(lat: 37.540388, lon: -121.950960), subway: "", images: [])
-    ]
-    
-    private var allEvents = [
-        Event(id: 456, title: "Выступление клоунов", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.719438, lon: 37.627026))),
-        Event(id: 567, title: "Чемпионат мира по боксу", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.714312, lon: 37.567163))),
-        Event(id: 678, title: "Выставка кошек", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.798555, lon: 37.670538))),
-        Event(id: 222, title: "Если одинаковое поле без координат", dates: [], images: [], place: nil)
-    ]
+    private var allPlaces: [Place] = []
+    private var allEvents: [Event] = []
     
     //MARK: - Slider properties
     private let transition = SliderTransition()
     
     //MARK: - Init
-    init(locationManager: LocationManager,
+    init(
+         dataProvider: DataProvider,
          selfieImage: UIImage) {
-        self.locationManager = locationManager
+        self.dataProvider = dataProvider
         self.selfieImage = selfieImage
         super.init(nibName: nil, bundle: nil)
     }
@@ -89,6 +80,7 @@ class MapScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        configureNavigationBar()
         configureBackgroundTask()
         configureLocationManager()
         configureMap()
@@ -112,8 +104,13 @@ class MapScreenViewController: UIViewController {
         }
     }
     
+    //MARK: - Configure ViewController
     func configureViewController() {
         self.title = "Карта"
+    }
+    
+    private func configureNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: mapScreenView.reloadDataButton)
     }
     
     //MARK: - Background Task
@@ -144,11 +141,24 @@ class MapScreenViewController: UIViewController {
     }
     
     //MARK: - Load Data From Network
-    func loadDataFromNetwork() {
-        //TO DO - need to implement
-        
-        showAllAnnotations(placesArray: allPlaces, eventsArray: allEvents)
-        
+    private func loadDataFromNetwork() {
+        let currentDate = String(Date().timeIntervalSince1970)
+        self.dataProvider.getData(cityTag: "",
+                                  actualSince: currentDate,
+                                  showingSince: currentDate) { [weak self] response in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                switch response {
+                case .success((let events, _, let places)):
+                    self.allPlaces = places
+                    self.allEvents = events
+                    self.showAllAnnotations(placesArray: self.allPlaces, eventsArray: self.allEvents)
+                case .failure(let error):
+                    self.showAlert(with: "Ошибка загрузки данных о местах и событиях",
+                                   and: error.localizedDescription)
+                }
+            }
+        }
     }
     
     //MARK: - Region
@@ -216,6 +226,7 @@ class MapScreenViewController: UIViewController {
     //MARK: - Buttons
     func configureButtons() {
         configureTransitionToSettingsButton()
+        configureReloadDataButton()
         configureFindPlaceOrEventButton()
         configureBuildingRouteButton()
         configureСlearRouteButton()
@@ -240,6 +251,16 @@ class MapScreenViewController: UIViewController {
         } else {
             showIfLocationServicesDisabledAlert()
         }
+    }
+    
+    //MARK: - ReloadDataButton
+
+    func configureReloadDataButton() {
+        mapScreenView.reloadDataButton.addTarget(self, action: #selector(tapReloadDataButton(_:)), for: .touchUpInside)
+    }
+    @objc func tapReloadDataButton(_ sender: UIButton) {
+        print("ReloadDataButton tapped")
+        loadDataFromNetwork()
     }
     
     //MARK: - FindPlaceOrEventButton
