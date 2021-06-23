@@ -6,7 +6,6 @@ target 'FriendlyGuide' do
   use_frameworks!
 
   # Pods for FriendlyGuide
-  pod 'GoogleMaps', '4.2.0'
   pod 'Kingfisher', '~> 6.0'
   pod 'RxSwift', '6.1.0'
   pod 'RxCocoa', '6.1.0'

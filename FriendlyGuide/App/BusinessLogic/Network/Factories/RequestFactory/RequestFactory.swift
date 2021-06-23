@@ -71,7 +71,7 @@ final class RequestFactory {
     
     // MARK: - Chat:
     
-    func makeGetDialogsRequestFactory() -> GetDialogsRequestFactory {
+    func makeGetDialogsRequestFactory() -> GetUserDialogsRequestFactory {
         chatManager
     }
     

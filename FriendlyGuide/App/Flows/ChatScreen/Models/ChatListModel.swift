@@ -20,11 +20,11 @@ final class ChatListModel {
     private var totalNumderOfDialogs = 0
     
     private var isRequestAlreadySended: Bool = false
-    private let getDialogsRequestFactory: GetDialogsRequestFactory
+    private let getDialogsRequestFactory: GetUserDialogsRequestFactory
     
     weak var delegate: ChatListModelDelegate?
     
-    init(getDialogsRequestFactory: GetDialogsRequestFactory) {
+    init(getDialogsRequestFactory: GetUserDialogsRequestFactory) {
         self.getDialogsRequestFactory = getDialogsRequestFactory
     }
 }

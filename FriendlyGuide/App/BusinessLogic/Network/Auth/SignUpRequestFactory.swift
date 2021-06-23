@@ -9,5 +9,5 @@ import Foundation
 
 protocol SignUpRequestFactory {
     func signUp(fullName: String, login: String, password: String,
-                complition: @escaping (Result<User, Error>) -> Void)
+                completion: @escaping (Result<User, Error>) -> Void)
 }

@@ -32,15 +32,20 @@
 		217AB258266424D000A0AF66 /* BasicValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB257266424D000A0AF66 /* BasicValidator.swift */; };
 		217AB25E2664321700A0AF66 /* RegisterViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB25D2664321700A0AF66 /* RegisterViewControllerBuilder.swift */; };
 		217AB2602664324900A0AF66 /* AppMainViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB25F2664324900A0AF66 /* AppMainViewControllerBuilder.swift */; };
+		2188357A267626A500136BD8 /* GetMessagesRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21883579267626A500136BD8 /* GetMessagesRequestFactory.swift */; };
+		2188357F26762F5D00136BD8 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2188357E26762F5D00136BD8 /* Message.swift */; };
+		218835812676379C00136BD8 /* QBChatMessage + Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218835802676379C00136BD8 /* QBChatMessage + Message.swift */; };
+		218835832676493D00136BD8 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218835822676493D00136BD8 /* ChatViewModel.swift */; };
+		218835852676653800136BD8 /* SendMessagesRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218835842676653800136BD8 /* SendMessagesRequestFactory.swift */; };
 		21885C07266E8F29007729A0 /* ChatListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21885C06266E8F29007729A0 /* ChatListViewController.swift */; };
 		21885C09266E95DF007729A0 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21885C08266E95DF007729A0 /* ChatListView.swift */; };
 		21885C0B266E97A2007729A0 /* ChatListViewEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21885C0A266E97A2007729A0 /* ChatListViewEmptyCell.swift */; };
 		21885C0D266E9976007729A0 /* ChatListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21885C0C266E9976007729A0 /* ChatListViewCell.swift */; };
 		21885C0F266EA23D007729A0 /* QBChatDialog + Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21885C0E266EA23D007729A0 /* QBChatDialog + Dialog.swift */; };
-		219C231A2671470400D9ED90 /* GetDialogsRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C23192671470400D9ED90 /* GetDialogsRequestFactory.swift */; };
+		219C231A2671470400D9ED90 /* GetUserDialogsRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C23192671470400D9ED90 /* GetUserDialogsRequestFactory.swift */; };
 		219C231D2671496500D9ED90 /* LogInRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C231C2671496500D9ED90 /* LogInRequestFactory.swift */; };
 		219C231F2671499400D9ED90 /* SignUpRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C231E2671499400D9ED90 /* SignUpRequestFactory.swift */; };
-		219C23212671546700D9ED90 /* ConnectToDialogRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C23202671546700D9ED90 /* ConnectToDialogRequestFactory.swift */; };
+		219C6BA226788292007DB899 /* ReadMessagesRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219C6BA126788292007DB899 /* ReadMessagesRequestFactory.swift */; };
 		21A2E6E5266906AC00254342 /* UIView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E4266906AC00254342 /* UIView + Extensions.swift */; };
 		21A2E6E72669095300254342 /* AuthControllersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E62669095300254342 /* AuthControllersFactory.swift */; };
 		21A2E6EA26690DE100254342 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E6E926690DE100254342 /* RegisterView.swift */; };
@@ -60,6 +65,7 @@
 		21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE78265E7DC60052C076 /* HttpMethod.swift */; };
 		21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE79265E7DC60052C076 /* EndPointType.swift */; };
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
+		4A039F56267B5664005061AB /* MoreContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A039F55267B5664005061AB /* MoreContentView.swift */; };
 		4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */; };
 		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
 		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
@@ -79,6 +85,7 @@
 		4AA72846266D2A7700A5C060 /* DetailPlaceForEventsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA72845266D2A7700A5C060 /* DetailPlaceForEventsCell.swift */; };
 		B768E637D8ED434D98E87DC3 /* Pods_FriendlyGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */; };
 		C58200BB266F9FD00040CEBA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58200BA266F9FD00040CEBA /* LocationManager.swift */; };
+		C58200C8267D43E10040CEBA /* EntityForAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58200C7267D43E10040CEBA /* EntityForAnnotation.swift */; };
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
 		C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904687265B0F6F00231116 /* MapScreenViewController.swift */; };
 		C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904689265B107000231116 /* ProfileScreenViewController.swift */; };
@@ -233,15 +240,20 @@
 		217AB257266424D000A0AF66 /* BasicValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicValidator.swift; sourceTree = "<group>"; };
 		217AB25D2664321700A0AF66 /* RegisterViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewControllerBuilder.swift; sourceTree = "<group>"; };
 		217AB25F2664324900A0AF66 /* AppMainViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMainViewControllerBuilder.swift; sourceTree = "<group>"; };
+		21883579267626A500136BD8 /* GetMessagesRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetMessagesRequestFactory.swift; sourceTree = "<group>"; };
+		2188357E26762F5D00136BD8 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		218835802676379C00136BD8 /* QBChatMessage + Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QBChatMessage + Message.swift"; sourceTree = "<group>"; };
+		218835822676493D00136BD8 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		218835842676653800136BD8 /* SendMessagesRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessagesRequestFactory.swift; sourceTree = "<group>"; };
 		21885C06266E8F29007729A0 /* ChatListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewController.swift; sourceTree = "<group>"; };
 		21885C08266E95DF007729A0 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		21885C0A266E97A2007729A0 /* ChatListViewEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewEmptyCell.swift; sourceTree = "<group>"; };
 		21885C0C266E9976007729A0 /* ChatListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewCell.swift; sourceTree = "<group>"; };
 		21885C0E266EA23D007729A0 /* QBChatDialog + Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QBChatDialog + Dialog.swift"; sourceTree = "<group>"; };
-		219C23192671470400D9ED90 /* GetDialogsRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDialogsRequestFactory.swift; sourceTree = "<group>"; };
+		219C23192671470400D9ED90 /* GetUserDialogsRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserDialogsRequestFactory.swift; sourceTree = "<group>"; };
 		219C231C2671496500D9ED90 /* LogInRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInRequestFactory.swift; sourceTree = "<group>"; };
 		219C231E2671499400D9ED90 /* SignUpRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestFactory.swift; sourceTree = "<group>"; };
-		219C23202671546700D9ED90 /* ConnectToDialogRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectToDialogRequestFactory.swift; sourceTree = "<group>"; };
+		219C6BA126788292007DB899 /* ReadMessagesRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadMessagesRequestFactory.swift; sourceTree = "<group>"; };
 		21A2E6E4266906AC00254342 /* UIView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Extensions.swift"; sourceTree = "<group>"; };
 		21A2E6E62669095300254342 /* AuthControllersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthControllersFactory.swift; sourceTree = "<group>"; };
 		21A2E6E926690DE100254342 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
@@ -259,6 +271,8 @@
 		21C21C5E26617B280016CC23 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		21D3EBB926610977007D01CE /* ChatListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListModel.swift; sourceTree = "<group>"; };
 		4034CCBF475C093E0C849E16 /* Pods-FriendlyGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuideTests.release.xcconfig"; path = "Target Support Files/Pods-FriendlyGuideTests/Pods-FriendlyGuideTests.release.xcconfig"; sourceTree = "<group>"; };
+		4A039F55267B5664005061AB /* MoreContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreContentView.swift; sourceTree = "<group>"; };
+		4A039F58267B5671005061AB /* MoreContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreContentViewController.swift; sourceTree = "<group>"; };
 		4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Entensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Extensions.swift"; sourceTree = "<group>"; };
@@ -281,6 +295,7 @@
 		69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FriendlyGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CB5D3A3CB0562114B140561 /* Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig"; path = "Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		C58200BA266F9FD00040CEBA /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C58200C7267D43E10040CEBA /* EntityForAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityForAnnotation.swift; sourceTree = "<group>"; };
 		C5904683265B0AA700231116 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C5904687265B0F6F00231116 /* MapScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewController.swift; sourceTree = "<group>"; };
 		C5904689265B107000231116 /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
@@ -564,13 +579,14 @@
 		2150FEE8265ABE5D0058FA89 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				C58200C9267D51F90040CEBA /* MapAnnotation */,
+				2188357C26762F3B00136BD8 /* Chat */,
 				210F00C02666D841005121C5 /* KeychainRequest */,
 				C96B94AE2661208D007AD0DA /* Places */,
 				C96B94A126612079007AD0DA /* News */,
 				C96B948326612068007AD0DA /* Events */,
 				C96B94752661204E007AD0DA /* Coordinates */,
 				C96B947026612018007AD0DA /* Cities */,
-				21B71F9226600D9A00460564 /* Dialogs */,
 				21B71F87265E7F2200460564 /* User Models */,
 			);
 			path = Entity;
@@ -591,6 +607,7 @@
 			isa = PBXGroup;
 			children = (
 				4A9E29AB2667E45E00C3D5EA /* CustomRefreshView */,
+				4A039F51267B5616005061AB /* MoreContentScreen */,
 				4A7F8D1326662BEA00C69FBD /* DetailScreen */,
 				21C21C50266141EA0016CC23 /* Auth */,
 				C5C316632660E62200518405 /* SliderController */,
@@ -689,6 +706,24 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		2188357C26762F3B00136BD8 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				2188357D26762F4B00136BD8 /* Message */,
+				21B71F9226600D9A00460564 /* Dialogs */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		2188357D26762F4B00136BD8 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				2188357E26762F5D00136BD8 /* Message.swift */,
+				218835802676379C00136BD8 /* QBChatMessage + Message.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
 		21A2E6E826690B5700254342 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -712,9 +747,11 @@
 		21B71F89265E82EB00460564 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				219C23192671470400D9ED90 /* GetDialogsRequestFactory.swift */,
+				219C23192671470400D9ED90 /* GetUserDialogsRequestFactory.swift */,
 				21B71F9326600F5A00460564 /* CreatePublicDialogRequestFactory.swift */,
-				219C23202671546700D9ED90 /* ConnectToDialogRequestFactory.swift */,
+				21883579267626A500136BD8 /* GetMessagesRequestFactory.swift */,
+				218835842676653800136BD8 /* SendMessagesRequestFactory.swift */,
+				219C6BA126788292007DB899 /* ReadMessagesRequestFactory.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -750,6 +787,7 @@
 			isa = PBXGroup;
 			children = (
 				21D3EBB926610977007D01CE /* ChatListModel.swift */,
+				218835822676493D00136BD8 /* ChatViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -781,6 +819,31 @@
 				0340E5B5743E55E0B324EE73 /* Pods_FriendlyGuideTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A039F51267B5616005061AB /* MoreContentScreen */ = {
+			isa = PBXGroup;
+			children = (
+				4A039F52267B5633005061AB /* View */,
+				4A039F53267B5637005061AB /* ViewController */,
+			);
+			path = MoreContentScreen;
+			sourceTree = "<group>";
+		};
+		4A039F52267B5633005061AB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4A039F55267B5664005061AB /* MoreContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4A039F53267B5637005061AB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A039F58267B5671005061AB /* MoreContentViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		4A7D3AB826625068000C4298 /* Helpers */ = {
@@ -903,6 +966,14 @@
 				C58200BA266F9FD00040CEBA /* LocationManager.swift */,
 			);
 			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		C58200C9267D51F90040CEBA /* MapAnnotation */ = {
+			isa = PBXGroup;
+			children = (
+				C58200C7267D43E10040CEBA /* EntityForAnnotation.swift */,
+			);
+			path = MapAnnotation;
 			sourceTree = "<group>";
 		};
 		C5904678265B083900231116 /* MapScreen */ = {
@@ -1659,7 +1730,6 @@
 				2150FEAF265AB9070058FA89 /* Sources */,
 				2150FEB0265AB9070058FA89 /* Frameworks */,
 				2150FEB1265AB9070058FA89 /* Resources */,
-				663F742B8619D7A3F425123F /* [CP] Copy Pods Resources */,
 				8AB1F1B90D3D9C83D993E080 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1698,7 +1768,6 @@
 				2150FED0265AB9090058FA89 /* Sources */,
 				2150FED1265AB9090058FA89 /* Frameworks */,
 				2150FED2265AB9090058FA89 /* Resources */,
-				645620ABA3ACEAC8F388A8A9 /* [CP] Copy Pods Resources */,
 				D9BC85FC1DDC8CA30FDB8786 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -1780,40 +1849,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		645620ABA3ACEAC8F388A8A9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide-FriendlyGuideUITests/Pods-FriendlyGuide-FriendlyGuideUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		663F742B8619D7A3F425123F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FriendlyGuide/Pods-FriendlyGuide-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		8AB1F1B90D3D9C83D993E080 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1951,6 +1986,7 @@
 				21ADF504266585A800007D34 /* LogInViewControllerBuilder.swift in Sources */,
 				21ADFDE726612781007A1671 /* ChatListModel.swift in Sources */,
 				4A7F8D1D26662C7900C69FBD /* DetailImageCell.swift in Sources */,
+				2188357A267626A500136BD8 /* GetMessagesRequestFactory.swift in Sources */,
 				210F00B62666D459005121C5 /* LocalAuthRequestFactory.swift in Sources */,
 				C5C316722660E62200518405 /* PresentAnimation.swift in Sources */,
 				C98682DD26725F43004D38DB /* GetPlaceDetail.swift in Sources */,
@@ -1968,6 +2004,7 @@
 				21ADF500266511EB00007D34 /* RegisterViewController.swift in Sources */,
 				2150FEB7265AB9070058FA89 /* AppDelegate.swift in Sources */,
 				C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */,
+				2188357F26762F5D00136BD8 /* Message.swift in Sources */,
 				217AB25E2664321700A0AF66 /* RegisterViewControllerBuilder.swift in Sources */,
 				C98682E326726853004D38DB /* GetNewsDetail.swift in Sources */,
 				21B71F8F265E932C00460564 /* ChatViewController.swift in Sources */,
@@ -1979,6 +2016,7 @@
 				4A9E29AD2667E48300C3D5EA /* CustomRefreshView.swift in Sources */,
 				C96B949F26612068007AD0DA /* DayEventsList.swift in Sources */,
 				21B71F9126600D8F00460564 /* Dialog.swift in Sources */,
+				219C6BA226788292007DB899 /* ReadMessagesRequestFactory.swift in Sources */,
 				4AA72846266D2A7700A5C060 /* DetailPlaceForEventsCell.swift in Sources */,
 				2142141026613AFA0007A031 /* ChatConnectable.swift in Sources */,
 				4A7F8D2126662CB600C69FBD /* DetailMoreInfoCell.swift in Sources */,
@@ -1986,6 +2024,7 @@
 				21885C0F266EA23D007729A0 /* QBChatDialog + Dialog.swift in Sources */,
 				217AB2602664324900A0AF66 /* AppMainViewControllerBuilder.swift in Sources */,
 				C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */,
+				218835832676493D00136BD8 /* ChatViewModel.swift in Sources */,
 				C5C3166F2660E62200518405 /* DismissAnimation.swift in Sources */,
 				21ADF5062665874700007D34 /* AppStartManager.swift in Sources */,
 				C5C316F62660F6AC00518405 /* TravelScreenView.swift in Sources */,
@@ -2003,6 +2042,7 @@
 				C96B947326612019007AD0DA /* CityName.swift in Sources */,
 				C96B94822661205E007AD0DA /* CityDetailResource.swift in Sources */,
 				C91CEE86265E7DC70052C076 /* ParameterEncoding.swift in Sources */,
+				218835852676653800136BD8 /* SendMessagesRequestFactory.swift in Sources */,
 				4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */,
 				21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */,
 				C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */,
@@ -2012,6 +2052,7 @@
 				2142141226613B100007A031 /* Authorizable.swift in Sources */,
 				C967AED126679B5B00BAB62F /* TravelScreenDataProvider.swift in Sources */,
 				21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */,
+				218835812676379C00136BD8 /* QBChatMessage + Message.swift in Sources */,
 				C96B94B62661208D007AD0DA /* PlacesList.swift in Sources */,
 				21885C0B266E97A2007729A0 /* ChatListViewEmptyCell.swift in Sources */,
 				C5C316532660E3F100518405 /* SelfConfiguringCell.swift in Sources */,
@@ -2030,6 +2071,7 @@
 				21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */,
 				C96B94B52661208D007AD0DA /* Place.swift in Sources */,
 				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
+				C58200C8267D43E10040CEBA /* EntityForAnnotation.swift in Sources */,
 				21A2E6EC266933FB00254342 /* AuthViewsParametrs.swift in Sources */,
 				C9DEE2142666A36200C545CF /* GetEventDetailFactory.swift in Sources */,
 				C96B94AD26612079007AD0DA /* NewsList.swift in Sources */,
@@ -2037,6 +2079,7 @@
 				C96B949626612068007AD0DA /* EventParticipant.swift in Sources */,
 				C5C316F72660F6AC00518405 /* TravelScreenViewController.swift in Sources */,
 				C9DEE21B2666A3C400C545CF /* PlacesListResource.swift in Sources */,
+				4A039F56267B5664005061AB /* MoreContentView.swift in Sources */,
 				4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */,
 				C5C316612660E41C00518405 /* UIImageView + Extensions.swift in Sources */,
 				C967AED226679B5B00BAB62F /* DataProvider.swift in Sources */,
@@ -2069,10 +2112,9 @@
 				21A2E6E5266906AC00254342 /* UIView + Extensions.swift in Sources */,
 				C96B94B82661208D007AD0DA /* PlaceDetail.swift in Sources */,
 				21ADF5022665142900007D34 /* RegisterModel.swift in Sources */,
-				219C23212671546700D9ED90 /* ConnectToDialogRequestFactory.swift in Sources */,
 				21ADF4FE26650C3A00007D34 /* LogInModel.swift in Sources */,
 				21ADF4FC2665032B00007D34 /* LogInViewController.swift in Sources */,
-				219C231A2671470400D9ED90 /* GetDialogsRequestFactory.swift in Sources */,
+				219C231A2671470400D9ED90 /* GetUserDialogsRequestFactory.swift in Sources */,
 				C9DEE2152666A36200C545CF /* GetEventDetail.swift in Sources */,
 				4A7F8D1F26662CA200C69FBD /* DetailDescriptionCell.swift in Sources */,
 			);

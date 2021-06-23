@@ -27,6 +27,7 @@ extension UIViewController {
         }
         present(alertController, animated: true, completion: nil)
     }
+    
     // MARK: - Configure func for set up collection view
     func configure<T: SelfConfiguringCell, U: Hashable>(collectionView: UICollectionView,
                                                         cellType: T.Type,
