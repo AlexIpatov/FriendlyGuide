@@ -17,14 +17,14 @@ struct EventDetail: Codable, Hashable, DetailScreenRepresentable {
     let shortPlace: EventPlace?
     let bodyText: String?
     
-   // let dates: [DateElement]
+    let dates: [DateElement]
     let shortTitle: String?
     let categories: [String]?
     let ageRestriction: Int?
     let siteURL: String?
 
     enum CodingKeys: String, CodingKey {
-       // case dates
+        case dates
         case title, description
         case shortPlace = "place"
         case shortTitle = "short_title"

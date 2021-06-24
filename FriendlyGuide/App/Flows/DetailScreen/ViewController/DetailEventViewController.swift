@@ -6,23 +6,7 @@
 //
 
 import UIKit
-// Убрать
-struct DescriptionForEntity: Hashable {
-    var title: String?
-    var description: String?
-    var firstSubtitle: String?
-    var secondSubtitle: String?
-    var boolSubtitle: Bool?
-}
-struct DetailEntity: Hashable {
-    var images: [Image]?
-    var bodyText: String?
-}
-struct DetailData {
-    var detailEntity: DetailEntity
-    var description: DescriptionForEntity
-    var shortPlace: EventPlace?
-}
+
 class DetailEventViewController: UIViewController {
     // MARK: - UI components
     private lazy var detailEventView: DetailEventView = {
@@ -31,7 +15,7 @@ class DetailEventViewController: UIViewController {
     // MARK: - Properties
     var requestFactory: RequestFactory
     private var currentId: Int
-    var detailData: DetailData? {
+    var detailData: DetailScreenRepresentable? {
         didSet {
             DispatchQueue.main.async {
                 self.reloadData()
@@ -98,11 +82,11 @@ class DetailEventViewController: UIViewController {
         guard let detailData = detailData else { return }
         snapshot.appendSections([.photos, .description, .moreInfo, .place])
         snapshot.appendItems([detailData.description], toSection: .description)
-        if let images = detailData.detailEntity.images {
+        if let images = detailData.images {
             snapshot.appendItems(images, toSection: .photos)
         }
         if showMoreInfo {
-            snapshot.appendItems([detailData.detailEntity.bodyText], toSection: .moreInfo)
+            snapshot.appendItems([detailData.bodyText], toSection: .moreInfo)
         }
         if detailData.shortPlace != nil {
             snapshot.appendItems([detailData.shortPlace], toSection: .place)
@@ -111,54 +95,67 @@ class DetailEventViewController: UIViewController {
     }
     // MARK: - Request data methods
     // Упростить
+    let dataProvider = DetailScreenDataProvider()
+    
     private func requestData() {
-        switch currentSectionType {
-        case .events:
-            let eventsFactory = requestFactory.makeGetEventDetailFactory()
-            eventsFactory.load(eventID: currentId) { [ weak self] response in
-                DispatchQueue.main.async {
-                    guard let self = self else {return}
-                    switch response {
-                    case .success(let event):
-                        print("Success")
-       //                 self.detailData = self.cellModel(from: event, type: .events)
-                    case .failure(let error):
-                        self.showAlert(with: "Error!",
-                                       and: error.localizedDescription)
-                    }
-                }
-            }
-        case .places:
-            let placeFactory = requestFactory.makeGetPlaceDetailFactory()
-            placeFactory.load(id: currentId) { [ weak self] response in
-                DispatchQueue.main.async {
-                    guard let self = self else {return}
-                    switch response {
-                    case .success(let place):
-                        print("Success")
-   //                     self.detailData = self.cellModel(from: place, type: .places)
-                    case .failure(let error):
-                        self.showAlert(with: "Error!",
-                                       and: error.localizedDescription)
-                    }
-                }
-            }
-        case .news:
-            let newsFactory = requestFactory.makeGetNewsDetailFactory()
-            newsFactory.load(id: currentId) { [ weak self] response in
-                DispatchQueue.main.async {
-                    guard let self = self else {return}
-                    switch response {
-                    case .success(let news):
-                        print("Success")
-//                        self.detailData = self.cellModel(from: news, type: .news)
-                    case .failure(let error):
-                        self.showAlert(with: "Error!",
-                                       and: error.localizedDescription)
-                    }
-                }
+        
+        dataProvider.getData(by: currentId,
+                             with: currentSectionType) { [weak self] response in
+            guard let self = self else { return }
+            switch response {
+            case .success(let value):
+                self.detailData = value
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
+//        switch currentSectionType {
+//        case .events:
+//            let eventsFactory = requestFactory.makeGetEventDetailFactory()
+//            eventsFactory.load(eventID: currentId) { [ weak self] response in
+//                DispatchQueue.main.async {
+//                    guard let self = self else {return}
+//                    switch response {
+//                    case .success(let event):
+//                        print("Success")
+//       //                 self.detailData = self.cellModel(from: event, type: .events)
+//                    case .failure(let error):
+//                        self.showAlert(with: "Error!",
+//                                       and: error.localizedDescription)
+//                    }
+//                }
+//            }
+//        case .places:
+//            let placeFactory = requestFactory.makeGetPlaceDetailFactory()
+//            placeFactory.load(id: currentId) { [ weak self] response in
+//                DispatchQueue.main.async {
+//                    guard let self = self else {return}
+//                    switch response {
+//                    case .success(let place):
+//                        print("Success")
+//   //                     self.detailData = self.cellModel(from: place, type: .places)
+//                    case .failure(let error):
+//                        self.showAlert(with: "Error!",
+//                                       and: error.localizedDescription)
+//                    }
+//                }
+//            }
+//        case .news:
+//            let newsFactory = requestFactory.makeGetNewsDetailFactory()
+//            newsFactory.load(id: currentId) { [ weak self] response in
+//                DispatchQueue.main.async {
+//                    guard let self = self else {return}
+//                    switch response {
+//                    case .success(let news):
+//                        print("Success")
+////                        self.detailData = self.cellModel(from: news, type: .news)
+//                    case .failure(let error):
+//                        self.showAlert(with: "Error!",
+//                                       and: error.localizedDescription)
+//                    }
+//                }
+//            }
+//        }
     }
 }
 // MARK: - Data Source

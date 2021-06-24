@@ -19,18 +19,13 @@ protocol DetailScreenRepresentable {
 }
 
 protocol DetailDataProvider {
-    func getData(by id: Int, with completion: @escaping (Result<DetailScreenRepresentable, NetworkingError>) -> Void)
+    func getData(by id: Int, with modelType: TravelSection, with completion: @escaping (Result<DetailScreenRepresentable, NetworkingError>) -> Void)
 }
 
 
 class DetailScreenDataProvider: DetailDataProvider {
     
-    let modelType: TravelSection
-    init(modelType: TravelSection) {
-        self.modelType = modelType
-    }
-    
-    func getData(by id: Int, with completion: @escaping (Result<DetailScreenRepresentable, NetworkingError>) -> Void) {
+    func getData(by id: Int, with modelType: TravelSection, with completion: @escaping (Result<DetailScreenRepresentable, NetworkingError>) -> Void) {
         let requestFactory = RequestFactory()
         
         switch modelType {
