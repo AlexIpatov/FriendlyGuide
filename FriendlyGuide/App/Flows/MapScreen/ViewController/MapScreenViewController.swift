@@ -288,7 +288,7 @@ class MapScreenViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled() {
             let startRoutePoint = MKPlacemark(coordinate: currentCoordinate)
             let endRoutePoint = MKPlacemark(coordinate: selectedEntityCoordinates)
-            buildRoute(startRoutePoint: startRoutePoint,
+            showRoute(startRoutePoint: startRoutePoint,
                        endRoutePoint: endRoutePoint,
                        transportType: .walking)
         } else {
@@ -296,7 +296,7 @@ class MapScreenViewController: UIViewController {
         }
     }
     
-    func buildRoute(startRoutePoint: MKPlacemark,
+    func showRoute(startRoutePoint: MKPlacemark,
                     endRoutePoint: MKPlacemark,
                     transportType: MKDirectionsTransportType) {
         mapScreenView.mapView.removeOverlays(mapScreenView.mapView.overlays)
@@ -313,6 +313,10 @@ class MapScreenViewController: UIViewController {
             }
             for route in response.routes {
                 self.mapScreenView.mapView.addOverlay(route.polyline)
+            }
+            if let routeBoundsRect = response.routes.first?.polyline.boundingMapRect {
+                let insets = UIEdgeInsets(top: 40.0, left: 40.0, bottom: 40.0, right: 40.0)
+                self.mapScreenView.mapView.setVisibleMapRect(routeBoundsRect, edgePadding: insets, animated: true)
             }
         }
     }
@@ -503,7 +507,7 @@ extension MapScreenViewController: MKMapViewDelegate {
             let destinationEntity = view.annotation as! EntityForAnnotation
             let startRoutePoint = MKPlacemark(coordinate: currentCoordinate)
             let endRoutePoint = MKPlacemark(coordinate: destinationEntity.coordinate)
-            buildRoute(startRoutePoint: startRoutePoint,
+            showRoute(startRoutePoint: startRoutePoint,
                        endRoutePoint: endRoutePoint,
                        transportType: .walking)
         } else {
