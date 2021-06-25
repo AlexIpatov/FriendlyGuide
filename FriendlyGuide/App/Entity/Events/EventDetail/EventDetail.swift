@@ -9,16 +9,16 @@ import Foundation
 
 struct EventDetail: Codable, Hashable {
     
-    let title: String
-    let description: String?
-    let firstSubtitle: String?
-    let secondSubtitle: String?
-    let boolSubtitle: Bool?
-    let images: [Image]?
+    private let title: String
+    private let description: String?
+    private let firstSubtitle: String?
+    private let secondSubtitle: String?
+    private let boolSubtitle: Bool?
+    private  let images: [Image]?
     let shortPlace: EventPlace?
-    let bodyText: String?
-    let dates: [DateElement]
-    let siteURL: String?
+    private let bodyText: String?
+    private let dates: [DateElement]
+    private let siteURL: String?
 
     enum CodingKeys: String, CodingKey {
         case dates

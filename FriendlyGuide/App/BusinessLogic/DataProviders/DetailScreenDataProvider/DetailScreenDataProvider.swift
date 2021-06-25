@@ -15,20 +15,23 @@ protocol DetailScreenRepresentable {
 //        var boolSubtitle: Bool? { get }
 //        var images: [Image]? { get }
 //        var bodyText: String? { get }
-//        var shortPlace: EventPlace? { get }
-    
+    var shortPlace: EventPlace? { get }
     var detailEntity : DetailEntity { get }
     var descriptionForEntity: DescriptionForEntity { get }
 }
 
 protocol DetailDataProvider {
-    func getData(by id: Int, with modelType: TravelSection, with completion: @escaping (Result<DetailScreenRepresentable, NetworkingError>) -> Void)
+    func getData(by id: Int,
+                 with modelType: TravelSection,
+                 with completion: @escaping (Result<DetailScreenRepresentable, NetworkingError>) -> Void)
 }
 
 
 class DetailScreenDataProvider: DetailDataProvider {
     
-    func getData(by id: Int, with modelType: TravelSection, with completion: @escaping (Result<DetailScreenRepresentable, NetworkingError>) -> Void) {
+    func getData(by id: Int,
+                 with modelType: TravelSection,
+                 with completion: @escaping (Result<DetailScreenRepresentable, NetworkingError>) -> Void) {
         let requestFactory = RequestFactory()
         
         switch modelType {
@@ -59,7 +62,7 @@ class DetailScreenDataProvider: DetailDataProvider {
             placeRequest.load(id: id) { response in
                 switch response {
                 case .success(let placeDetail):
-                    completion(.success(placeDetail))
+                   completion(.success(placeDetail))
                 case.failure(let error):
                     completion(.failure(error))
                 }
