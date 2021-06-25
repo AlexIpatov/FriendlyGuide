@@ -41,6 +41,10 @@ class TravelScreenViewController: UIViewController {
     }
 
     // MARK: - ViewController Lifecycle
+    override func loadView() {
+        view = travelScreenView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -51,9 +55,7 @@ class TravelScreenViewController: UIViewController {
         setCityTitle()
         configNavigationBar()
     }
-    override func loadView() {
-        view = travelScreenView
-    }
+    
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = true
     }

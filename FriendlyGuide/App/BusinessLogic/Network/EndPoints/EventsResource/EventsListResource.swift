@@ -17,10 +17,11 @@ struct EventsListResource: EndPointType {
     var parameters: Parameters = [:]
     var queryItems: [URLQueryItem] {
         [
-        URLQueryItem(name: "lang", value: "ru"),
-        URLQueryItem(name: "location", value: cityTag),
-        URLQueryItem(name: "actual_since", value: actualSince),
-        URLQueryItem(name: "fields", value: "id,title,images,dates")
-    ]
+            URLQueryItem(name: "lang", value: "ru"),
+            URLQueryItem(name: "location", value: cityTag),
+            URLQueryItem(name: "actual_since", value: actualSince),
+            URLQueryItem(name: "expand", value: "place"),
+            URLQueryItem(name: "fields", value: "id,title,images,dates,place")
+        ]
     }
 }

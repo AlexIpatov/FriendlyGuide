@@ -15,6 +15,13 @@ class MapScreenView: UIView {
         return mapView
     }()
     
+    private(set) lazy var reloadDataButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "arrow.clockwise"),
+                        for: .normal)
+        return button
+    }()
+    
     private(set) lazy var latitudeLabel = UILabel(text: "Latitude:",
                                              font: .smallTitleFont(),
                                              textColor: .black,

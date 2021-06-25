@@ -33,6 +33,10 @@ class CitiesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     // MARK: - ViewController Lifecycle
+    override func loadView() {
+        view = citiesScreenView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
@@ -40,9 +44,7 @@ class CitiesViewController: UIViewController {
         setupButtonsTargets()
         requestData()
     }
-    override func loadView() {
-        view = citiesScreenView
-    }
+    
     //MARK: -  Methods
     func configureViewController() {
         self.title = ""

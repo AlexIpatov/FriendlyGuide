@@ -34,6 +34,7 @@ final class LocationManager: NSObject {
         locationManager.distanceFilter = 10
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.showsBackgroundLocationIndicator = true
         locationManager.startMonitoringSignificantLocationChanges()
         locationManager.requestWhenInUseAuthorization()
     }
@@ -62,7 +63,10 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch locationManager.authorizationStatus {
-        case .authorizedAlways, .authorizedWhenInUse:
+        case .authorizedWhenInUse:
+            locationManager.requestAlwaysAuthorization()
+            locationManager.requestLocation()
+        case .authorizedAlways:
             locationManager.requestLocation()
         default:
             locationManager.stopUpdatingLocation()

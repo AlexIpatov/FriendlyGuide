@@ -13,19 +13,16 @@ class TabBarController: UITabBarController {
     private var dataProvider: DataProvider
     private var userSettings: UserSettings
     private var requestFactory: RequestFactory
-    private var locationManager: LocationManager
     private var selfieImage: UIImage?
 
     // MARK: - Init
     init(requestFactory: RequestFactory,
          userSettings: UserSettings,
          dataProvider: DataProvider,
-         locationManager: LocationManager,
          selfieImage: UIImage?) {
         self.dataProvider = dataProvider
         self.requestFactory = requestFactory
         self.userSettings = userSettings
-        self.locationManager = locationManager
         self.selfieImage = selfieImage
         super.init(nibName: nil, bundle: nil)
         self.viewControllers = createViewControllers()
@@ -65,7 +62,7 @@ class TabBarController: UITabBarController {
         
         //2. MapScreen
         let mapScreenViewController = MapScreenViewController(
-            locationManager: locationManager,
+            dataProvider: dataProvider,
             selfieImage: selfieImage ?? UIImage(systemName: "figure.walk.circle")!)
         mapScreenViewController.tabBarItem = UITabBarItem(title: "Карта",
                                                           image: UIImage(systemName: "map"),
