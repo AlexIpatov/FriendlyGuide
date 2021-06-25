@@ -10,7 +10,7 @@ import Foundation
 struct NewsDetail: Codable, Hashable {
     
     private let title: String
-    private let description: String?
+    private let newsDescription: String?
     private let bodyText: String?
     private let images: [Image]?
     private var firstSubtitle: String?
@@ -26,7 +26,7 @@ struct NewsDetail: Codable, Hashable {
         case publicationDate = "publication_date"
         case title
         case shortPlace = "place"
-        case description = "description"
+        case newsDescription = "description"
         case bodyText = "body_text"
         case images
         case siteURL = "site_url"
@@ -40,9 +40,9 @@ extension NewsDetail: DetailScreenRepresentable {
         DetailEntity(images: images, bodyText: bodyText)
     }
     
-    var descriptionForEntity: DescriptionForEntity {
+    var description: DescriptionForEntity {
         DescriptionForEntity(title: title,
-                             description: description,
+                             description: newsDescription,
                              firstSubtitle: firstSubtitle,
                              secondSubtitle: secondSubtitle,
                              boolSubtitle: boolSubtitle)

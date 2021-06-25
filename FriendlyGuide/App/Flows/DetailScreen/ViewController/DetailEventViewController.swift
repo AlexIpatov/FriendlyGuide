@@ -81,7 +81,7 @@ class DetailEventViewController: UIViewController {
         var snapshot = NSDiffableDataSourceSnapshot<DetailSection, AnyHashable>()
         guard let detailData = detailData else { return }
         snapshot.appendSections([.photos, .description, .moreInfo, .place])
-        snapshot.appendItems([detailData.detailEntity.images], toSection: .description)
+        snapshot.appendItems([detailData.description], toSection: .description)
         if let images = detailData.detailEntity.images {
             snapshot.appendItems(images, toSection: .photos)
         }

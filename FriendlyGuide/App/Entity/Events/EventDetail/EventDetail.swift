@@ -10,7 +10,7 @@ import Foundation
 struct EventDetail: Codable, Hashable {
     
     private let title: String
-    private let description: String?
+    private let eventDescription: String?
     private let firstSubtitle: String?
     private let secondSubtitle: String?
     private let boolSubtitle: Bool?
@@ -22,7 +22,8 @@ struct EventDetail: Codable, Hashable {
 
     enum CodingKeys: String, CodingKey {
         case dates
-        case title, description
+        case title
+        case eventDescription = "description"
         case shortPlace = "place"
         case bodyText = "body_text"
         case secondSubtitle
@@ -38,9 +39,9 @@ extension EventDetail: DetailScreenRepresentable {
         DetailEntity(images: images, bodyText: bodyText)
     }
         
-    var descriptionForEntity: DescriptionForEntity {
+    var description: DescriptionForEntity {
         DescriptionForEntity(title: title,
-                             description: description,
+                             description: eventDescription,
                              firstSubtitle: firstSubtitle,
                              secondSubtitle: secondSubtitle,
                              boolSubtitle: boolSubtitle)

@@ -10,7 +10,7 @@ import Foundation
 struct PlaceDetail: Codable, Hashable {
     
     private let title: String
-    private let description: String?
+    private let placeDescription: String?
     private let firstSubtitle: String?
     private let boolSubtitle: Bool?
     private let images: [Image]?
@@ -29,7 +29,7 @@ struct PlaceDetail: Codable, Hashable {
         case firstSubtitle = "timetable"
         case bodyText = "body_text"
         case siteUrl = "site_url"
-        case description = "description"
+        case placeDescription = "description"
         case coords, subway, images
         case boolSubtitle = "is_closed"
         case categories
@@ -51,9 +51,9 @@ extension PlaceDetail: DetailScreenRepresentable {
         DetailEntity(images: images, bodyText: bodyText)
     }
     
-    var descriptionForEntity: DescriptionForEntity {
+    var description: DescriptionForEntity {
         DescriptionForEntity(title: title,
-                             description: description,
+                             description: placeDescription,
                              firstSubtitle: firstSubtitle,
                              secondSubtitle: secondSubtitle,
                              boolSubtitle: boolSubtitle)

@@ -17,7 +17,7 @@ protocol DetailScreenRepresentable {
 //        var bodyText: String? { get }
     var shortPlace: EventPlace? { get }
     var detailEntity : DetailEntity { get }
-    var descriptionForEntity: DescriptionForEntity { get }
+    var description: DescriptionForEntity { get }
 }
 
 protocol DetailDataProvider {
