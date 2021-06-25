@@ -8,13 +8,13 @@
 import Foundation
 
 
-struct DetailEntity: Hashable {
+struct DetailEntity: Hashable, Codable {
     var images: [Image]?
     var bodyText: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case bodyText = "body_text"
+        case images
+    }
 }
 
-//struct DetailData {
-//    var detailEntity: DetailEntity
-//    var description: DescriptionForEntity
-//    var shortPlace: EventPlace?
-//}
