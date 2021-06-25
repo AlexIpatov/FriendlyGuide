@@ -12,8 +12,8 @@ final class AppMainViewControllerBuilder {
     private lazy var userSettings: UserSettings = {
         UserSettings()
     }()
-    private lazy var travelDataProvider: TravelDataProvider = {
-        TravelDataProvider()
+    private lazy var travelDataProvider: TravelScreenDataProvider = {
+        TravelScreenDataProvider()
     }()
     private lazy var selfieImage: UIImage? = {
         return UIImage(systemName: "figure.walk.circle")!

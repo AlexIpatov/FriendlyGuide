@@ -8,7 +8,7 @@
 import Foundation
 import Kingfisher
 
-class TravelDataProvider{
+class TravelScreenDataProvider{
     
     private let requestFactory: RequestFactory
     private var travelData: TravelData?
@@ -21,7 +21,7 @@ class TravelDataProvider{
     
 }
 
-extension TravelDataProvider: DataProvider {
+extension TravelScreenDataProvider: DataProvider {
     
     func getData(cityTag: String,
                  actualSince: String,

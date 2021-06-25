@@ -8,26 +8,55 @@
 import Foundation
 
 struct PlaceDetail: Codable, Hashable {
-    let title: String
-    let address: String?
-    let bodyText: String?
-    let description: String?
-    let timetable: String?
-    let phone: String?
-    let coords: Coordinates?
-    let subway: String?
-    let images: [Image]
-    let isClosed: Bool?
-    let categories: [String]?
-    let siteUrl: String?
+    
+    private let title: String
+    private let placeDescription: String?
+    private let firstSubtitle: String?
+    private let boolSubtitle: Bool?
+    private let images: [Image]?
+    private let bodyText: String?
+    private var secondSubtitle: String?
+    
+    private let address: String?
+    private let phone: String?
+    private let coords: Coordinates?
+    private let subway: String?
+    private let categories: [String]?
+    private let siteUrl: String?
 
     enum CodingKeys: String, CodingKey {
-        case title, address, timetable, phone
+        case title, address, phone
+        case firstSubtitle = "timetable"
         case bodyText = "body_text"
         case siteUrl = "site_url"
-        case description = "description"
+        case placeDescription = "description"
         case coords, subway, images
-        case isClosed = "is_closed"
+        case boolSubtitle = "is_closed"
         case categories
     }
 }
+
+extension PlaceDetail: DetailScreenRepresentable {
+    var shortPlace: EventPlace? {
+        EventPlace(title: title,
+                   address: address,
+                   phone: phone,
+                   subway: subway,
+                   siteURL: siteUrl,
+                   isClosed: boolSubtitle,
+                   coords: coords)
+    }
+    
+    var detailEntity: DetailEntity {
+        DetailEntity(images: images, bodyText: bodyText)
+    }
+    
+    var description: DescriptionForEntity {
+        DescriptionForEntity(title: title,
+                             description: placeDescription,
+                             firstSubtitle: firstSubtitle,
+                             secondSubtitle: secondSubtitle,
+                             boolSubtitle: boolSubtitle)
+    }
+}
+

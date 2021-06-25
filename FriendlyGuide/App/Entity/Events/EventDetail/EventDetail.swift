@@ -7,30 +7,44 @@
 
 import Foundation
 
-struct EventDetail: Codable, Hashable{
-    let dates: [DateElement]
-    let title: String
-    let shortTitle: String
-    let place: EventPlace?
-    let bodyText: String?
-    let description: String?
-    let categories: [String]?
-    let ageRestriction: Int?
-    let price: String?
-    let isFree: Bool?
-    let images: [Image]
-    let siteURL: String?
+struct EventDetail: Codable, Hashable {
+    
+    private let title: String
+    private let eventDescription: String?
+    private let firstSubtitle: String?
+    private let secondSubtitle: String?
+    private let boolSubtitle: Bool?
+    private  let images: [Image]?
+    let shortPlace: EventPlace?
+    private let bodyText: String?
+    private let dates: [DateElement]
+    private let siteURL: String?
 
     enum CodingKeys: String, CodingKey {
-        case dates, title, place,description
-        case shortTitle = "short_title"
+        case dates
+        case title
+        case eventDescription = "description"
+        case shortPlace = "place"
         case bodyText = "body_text"
-        case categories
-        case ageRestriction = "age_restriction"
-        case price
-        case isFree = "is_free"
+        case secondSubtitle
+        case firstSubtitle = "price"
+        case boolSubtitle = "is_free"
         case images
         case siteURL = "site_url"
+    }
+}
+
+extension EventDetail: DetailScreenRepresentable {
+    var detailEntity: DetailEntity {
+        DetailEntity(images: images, bodyText: bodyText)
+    }
+        
+    var description: DescriptionForEntity {
+        DescriptionForEntity(title: title,
+                             description: eventDescription,
+                             firstSubtitle: firstSubtitle,
+                             secondSubtitle: secondSubtitle,
+                             boolSubtitle: boolSubtitle)
     }
 }
 
