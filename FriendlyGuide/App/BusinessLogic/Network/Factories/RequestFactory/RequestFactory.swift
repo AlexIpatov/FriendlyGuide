@@ -69,17 +69,53 @@ final class RequestFactory {
                            sessionManager: commonSession)
     }
     
-    // MARK: - Chat:
     
-    func makeGetDialogsRequestFactory() -> GetUserDialogsRequestFactory {
+    
+    // MARK: - Chat
+
+    func makeMessagesSender() -> MessagesSender {
         chatManager
     }
     
-    func makeCreateGroupDialogRequestFactory() -> CreatePublicDialogRequestFactory {
+    func makeMessagesReader() -> MessagesReader {
+        chatManager
+    }
+    
+    func makeMessagesLoader() -> MessagesLoader {
         chatManager
     }
     
     
+    
+    func makeGetDialogsRequestFactory() -> DialogsLoader {
+        chatManager
+    }
+    
+    func makeCreateGroupDialogRequestFactory() -> DialogCreator {
+        chatManager
+    }
+    
+    func makeDialogDataLoader() -> DialogDataLoader {
+        chatManager
+    }
+    
+    func makeDialogActivator() -> DialogActivator {
+        chatManager
+    }
+    
+    
+    // MARK: - User
+    
+    func makeGetUserRequestFactory() -> GetUserRequestFactory {
+        chatManager
+    }
+
+    func makeGetCurrnetUserREquestFactory() -> CurrnetUserLoader {
+        chatManager
+    }
+    
+    
+    //MARK: - Auth
     
     func makeLocalAuthRequestFactory() -> LocalAuthRequestFactory {
         localAuthManager
@@ -94,6 +130,8 @@ final class RequestFactory {
     }
     
     
+    
+    //MARK: - Keychain
     
     func makeKeychainRequestFactory() -> KeychainRequestFactory {
         keychainManager

@@ -20,11 +20,11 @@ final class ChatListModel {
     private var totalNumderOfDialogs = 0
     
     private var isRequestAlreadySended: Bool = false
-    private let getDialogsRequestFactory: GetUserDialogsRequestFactory
+    private let getDialogsRequestFactory: DialogsLoader
     
     weak var delegate: ChatListModelDelegate?
     
-    init(getDialogsRequestFactory: GetUserDialogsRequestFactory) {
+    init(getDialogsRequestFactory: DialogsLoader) {
         self.getDialogsRequestFactory = getDialogsRequestFactory
     }
 }
@@ -51,20 +51,24 @@ extension ChatListModel: ChatListModelRepresentable {
         if !isRequestAlreadySended {
             isRequestAlreadySended = true
             
-            getDialogsRequestFactory.getDialogs(limit: 20,
-                                                skipFirst: dialogs.count) { [weak self] (dialogs, total) in
-                
-                guard let self = self else {
-                    return
+            getDialogsRequestFactory.getDialogs(limit: 20, skipFirst: dialogs.count) { [weak self] result in
+                switch result {
+                case .success(let response):
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    let numberOfDialogsBeforUpdate = self.dialogs.count
+                    response.dialogs.forEach { self.dialogs.append($0) }
+                    self.totalNumderOfDialogs = response.totalCountOfDialogs
+                    
+                    let indexes = Array(numberOfDialogsBeforUpdate..<self.dialogs.count)
+                    self.delegate?.didFinishFetchData(at: indexes)
+                    self.isRequestAlreadySended = false
+                    
+                case .failure(let error):
+                    debugPrint(error.localizedDescription)
                 }
-                
-                let numberOfDialogsBeforUpdate = self.dialogs.count
-                dialogs.forEach { self.dialogs.append($0) }
-                self.totalNumderOfDialogs = total
-                
-                let indexes = Array(numberOfDialogsBeforUpdate..<self.dialogs.count)
-                self.delegate?.didFinishFetchData(at: indexes)
-                self.isRequestAlreadySended = false
             }
         }
     }

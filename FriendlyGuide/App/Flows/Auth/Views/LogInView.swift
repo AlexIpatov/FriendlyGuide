@@ -66,9 +66,16 @@ final class LogInView: UIView {
         return textField
     }()
     private lazy var buttonsStackView: UIStackView = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(login), for: .touchUpInside)
+        button.setTitle("вход", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.sizeToFit()
+        
         let stackView = UIStackView(arrangedSubviews: [
                                         logInButton,
-                                        useBiometricButton ],
+                                        useBiometricButton,
+                                        button ],
                                     axis: .vertical,
                                     spacing: AuthViewsParametrs.buttonsSpacing)
         return stackView
@@ -142,7 +149,7 @@ final class LogInView: UIView {
                                                             } else { return height }
                                                           }), transform: nil)
         shadowView.addSubview(textFieldsStackView)
-        
+    
         
         let mainStackView = UIStackView(arrangedSubviews: [
                                             shadowView,
@@ -153,6 +160,7 @@ final class LogInView: UIView {
         mainStackView.distribution = .fill
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(mainStackView)
+        
         
         
         NSLayoutConstraint.activate([
@@ -171,6 +179,12 @@ final class LogInView: UIView {
             mainStackView.topAnchor.constraint(equalTo: topAnchor, constant: frame.height * 0.4),
             mainStackView.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
         ])
+    }
+    
+    @objc private func login() {
+        delegate?.textFieldDidEndEditing(loginTextField, login: "test@mail.ru")
+        delegate?.textFieldDidEndEditing(passwordTextField, password: "QWEasd123")
+        delegate?.logInButtonWasTapped()
     }
 }
 

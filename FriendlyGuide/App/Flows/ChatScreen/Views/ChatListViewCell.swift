@@ -59,13 +59,31 @@ final class ChatListViewCell: UITableViewCell {
         ])
     }
     
+    weak var dialogDataLoaader: DialogDataLoader?
+    
     func setUp(with dialog: Dialog) {
         nameLable.attributedText = NSAttributedString(string: dialog.dialogName,
                                                       attributes: [.font: UIFont.systemFont(ofSize: 23)])
         
-        lastMessageTextLable.attributedText = NSAttributedString(string: dialog.dialogLastMessageText,
-                                                                 attributes: [.font: UIFont.systemFont(ofSize: 14)])
+        dialogDataLoaader?.getLastMessageText(for: dialog, completion: { [weak self ] result in
+            switch result {
+            case .success(let dialogLastMessageText):
+                DispatchQueue.main.async { [weak self] in
+                    self?.lastMessageTextLable.attributedText = NSAttributedString(string: dialogLastMessageText,
+                                                                                   attributes: [.font: UIFont.systemFont(ofSize: 14)])
+                }
+            case .failure(let error):
+                debugPrint(error.localizedDescription)
+            }
+        })
         
-        dialog.dialogImageURL.map { imageView?.downloaded(from: $0,contentMode: .scaleAspectFit) }
+        dialogDataLoaader?.getDialogImageURL(for: dialog, completion: { [weak self] result in
+            switch result {
+            case .success(let url):
+                url.map { [weak self] in self?.imageView?.downloaded(from: $0,contentMode: .scaleAspectFit) }
+            case .failure(let error):
+                debugPrint(error.localizedDescription)
+            }
+        })
     }
 }

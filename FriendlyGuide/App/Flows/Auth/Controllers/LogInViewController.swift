@@ -148,7 +148,7 @@ extension LogInViewController: LogInViewDelegate {
     }
     
     private func login(with login: String, and password: String) {
-        loginRequestFactory.login(login: model.login, password: model.password) { [weak self] result in
+        loginRequestFactory.login(login: login, password: password) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
@@ -159,6 +159,13 @@ extension LogInViewController: LogInViewDelegate {
                                            duration: 1)
                 self.customView.showRegisterButton()
             case .success:
+                do {
+                    try self.keychainRequestFactory.save(request: LoginKeychainRequest(), value: login)
+                    try self.keychainRequestFactory.save(request: PasswordKeychainRequest(), value: password)
+                } catch {
+                    debugPrint("Не удалось сохранить в кейчаин:\(error.localizedDescription)")
+                }
+                
                 self.presentAppMainViewController()
             }
         }
@@ -203,8 +210,6 @@ extension LogInViewController: LogInViewDelegate {
                    let password: String = self.keychainRequestFactory.get(request: PasswordKeychainRequest()) {
                     self.login(with: login, and: password)
                 }
-                
-                self.presentAppMainViewController()
             }
         }
     }

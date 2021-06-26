@@ -28,7 +28,10 @@ final class ChatListView: UIView {
     }()
     
     weak var delegate: ChatListViewDelegate?
-    override init(frame: CGRect) {
+    private let dialogDataLoaader: DialogDataLoader
+    
+    init(frame: CGRect, dialogDataLoaader: DialogDataLoader) {
+        self.dialogDataLoaader = dialogDataLoaader
         super.init(frame: frame)
         self.configureUI()
     }
@@ -44,7 +47,9 @@ final class ChatListView: UIView {
 }
 
 extension ChatListView: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelectDialog(at: indexPath.row)
+    }
 }
 
 extension ChatListView: UITableViewDataSource {
@@ -58,6 +63,8 @@ extension ChatListView: UITableViewDataSource {
                   let chatListCell = cell as? ChatListViewCell else {
                 fatalError()
             }
+            
+            chatListCell.dialogDataLoaader = dialogDataLoaader
             chatListCell.setUp(with: dialog)
             return chatListCell
         } else {
@@ -72,7 +79,7 @@ extension ChatListView: UITableViewDataSource {
 
 extension ChatListView: ChatListViewRepresentable {
     func didFinishFetchData(at indexes: [Int]) {
-        tableView.reloadRows(at: indexes.map { IndexPath(row: $0, section: 0) },
+        tableView.insertRows(at: indexes.map { IndexPath(row: $0, section: 0) },
                              with: .automatic)
     }
 }

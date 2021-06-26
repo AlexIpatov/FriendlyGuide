@@ -15,20 +15,30 @@ fileprivate struct CredentialsConstant {
     static let accountKey = "bRRxx1asyn861G3JLPDP"
 }
 
-fileprivate enum QBChatManagerError: LocalizedError {
+enum QBChatManagerError: LocalizedError {
     case unknown
+    case noDialogById
     
     var errorDescription: String? {
-        "Неизвестная ошибка"
+        switch self {
+        case .unknown:
+            return "Неизвестная ошибка"
+        case .noDialogById:
+            return "Нет такого диалога"
+        }
+        
     }
 }
 
-
-final class QBChatManager {
+final class QBChatManager: NSObject {
     
     static var instance: QBChatManager = {
-        return QBChatManager()
+        let manager = QBChatManager()
+        QBChat.instance.addDelegate(manager)
+        return manager
     }()
+    
+    private var delegates = [String: ChatRoomDelegate]()
     
     static func initialise() {
         QBSettings.applicationID = CredentialsConstant.applicationID
@@ -60,146 +70,184 @@ final class QBChatManager {
                 .localizedDescription
         }
     }
+    
+    deinit {
+        QBChat.instance.removeAllDelegates()
+    }
 }
 
 // MARK: - ChatDialogsManager
 
-extension QBChatManager: CreatePublicDialogRequestFactory {
+extension QBChatManager: DialogCreator {
     func createDialog(id: String,
                       name: String,
                       photo: String?,
                       completion: @escaping (Result<Dialog, Error>) -> Void) {
         
-        QBRequest.dialogs(for: QBResponsePage(limit: 1, skip: 0),
-                          extendedRequest: ["_id": id],
-                          successBlock: { (_, dialogs, _, _) in
-                            if let dialog = dialogs.first {
-                                dialog.join { error in
-                                    if let error = error { completion(.failure(error)) }
-                                    else { completion(.success(dialog)) }
-                                }
-                            } else {
-                                let dialog = QBChatDialog(dialogID: id,
-                                                          type: .publicGroup)
-                                dialog.name = name
-                                dialog.photo = photo
-                                
-                                QBRequest.createDialog(dialog, successBlock: { response, dialog in
-                                    dialog.join { error in
-                                        if let error = error { completion(.failure(error)) }
-                                        else { completion(.success(dialog)) }
-                                    }
-                                }, errorBlock: { response in
-                                    response.error?.error.map { completion(.failure($0)) }
-                                })
-                            }
-                          }, errorBlock: { response in
-                            response.error?.error.map { completion(.failure($0)) }
-                          })
+        let responsePage = QBResponsePage(limit: 1, skip: 0)
+        let extendedReques = ["_id": id]
+        
+        QBRequest.dialogs(for: responsePage, extendedRequest: extendedReques, successBlock: { (_, dialogs, _, _) in
+            if let qbDialog = dialogs.first {
+                qbDialog.join { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        let dialog = Dialog(dialogId: qbDialog.id ?? "",
+                                            dialogName: qbDialog.name ?? "")
+                        completion(.success(dialog))
+                    }
+                }
+            } else {
+                let qbNewDialog = QBChatDialog(dialogID: id,
+                                               type: .publicGroup)
+                qbNewDialog.name = name
+                qbNewDialog.photo = photo
+                
+                QBRequest.createDialog(qbNewDialog, successBlock: { response, qbDialog in
+                    qbDialog.join { error in
+                        if let error = error {
+                            completion(.failure(error))
+                        } else {
+                            let dialog = Dialog(dialogId: qbDialog.id ?? "",
+                                                dialogName: qbDialog.name ?? "")
+                            completion(.success(dialog))
+                        }
+                    }
+                }, errorBlock: { response in
+                    response.error?.error.map { completion(.failure($0)) }
+                })
+            }
+        }, errorBlock: { response in
+            response.error?.error.map { completion(.failure($0)) }
+        })
     }
 }
-
-extension QBChatManager: GetUserDialogsRequestFactory {
+extension QBChatManager: DialogsLoader {
     func getDialogs(limit: Int,
                     skipFirst: Int,
-                    completion: @escaping (_ dialogs: [Dialog], _ total: Int) -> Void) {
-        QBRequest.dialogs(for: QBResponsePage(limit: limit, skip: skipFirst),
-                          extendedRequest: nil,
-                          successBlock: { (_, dialogs, _, page) in
-                            completion(dialogs, Int(page.totalEntries))
-                          }, errorBlock: { [weak self] response in
-                            debugPrint("[ChatManager] getAllUserDialog error:\(self?.errorMessage(for: response) ?? "")")
-                          })
+                    completion: @escaping (Result<GetUserDialogsResponse, Error>) -> Void) {
+        
+        let responsePage = QBResponsePage(limit: limit, skip: skipFirst)
+        let extendedRequest: [String: String]? = nil
+        
+        QBRequest.dialogs(for: responsePage, extendedRequest: extendedRequest, successBlock: { (_, qbDialogs, _, page) in
+            
+            let dialogs = qbDialogs
+                .map { Dialog(dialogId: $0.id ?? "", dialogName: $0.name ?? "") }
+            completion(.success((dialogs, Int(page.totalEntries))))
+            
+        }, errorBlock: { [weak self] response in
+            debugPrint("[ChatManager] getAllUserDialog error:\(self?.errorMessage(for: response) ?? "")")
+            completion(.failure(response.error?.error ?? QBChatManagerError.unknown))
+        })
     }
 }
 
-extension QBChatManager: GetMessagesRequestFactory {
+extension QBChatManager: MessagesLoader {
     func messages(for dialog: Dialog,
                   skip: Int,
                   limit: Int,
-                  extendedRequest extendedParameters: [String : String]?,
-                  successCompletion: MessagesCompletion?,
-                  errorHandler: MessagesErrorHandler?) {
+                  extendedRequest extendedParameters: [String: String]?,
+                  completion: @escaping (Result<GetMessagesResponse, Error>) -> Void) {
         
         let page = QBResponsePage(limit: limit, skip: skip)
         let extendedRequest = extendedParameters ?? [ "sort_desc": "date_sent",
                                                       "mark_as_read": "0" ]
         
-        QBRequest.messages(withDialogID: dialog.dialogId,
-                           extendedRequest: extendedRequest,
-                           for: page,
+        QBRequest.messages(withDialogID: dialog.dialogId, extendedRequest: extendedRequest, for: page,
                            successBlock: { response, messages, page in
-                            var sortedMessages = messages
-                            sortedMessages = Array(sortedMessages.reversed())
-                            
                             let totalNumberOfMessages = Int(page.totalEntries)
-                            successCompletion?(sortedMessages, totalNumberOfMessages)
-        }, errorBlock: { response in
-            // case where we may have deleted dialog from another device
-            if response.status == .notFound || response.status.rawValue == 403 {
-                
-            }
-            
-            response.error?.error
-                .map { errorHandler?($0) }
-        })
+                            let sortedMessages = messages
+                                .reversed()
+                                .map { Message(sentDate: $0.dateSent ?? Date(),
+                                               messageSender: User(userID: $0.senderID),
+                                               messageText: $0.text ?? "",
+                                               messageId: $0.id ?? "",
+                                               dialogId: $0.dialogID ?? "") }
+                            
+                            completion(.success((sortedMessages, totalNumberOfMessages)))
+                           }, errorBlock: { response in
+                            completion(.failure(response.error?.error ?? QBChatManagerError.unknown))
+                           })
     }
 }
 
-extension QBChatManager:SendMessagesRequestFactory {
-    func send(_ message: QBChatMessage,
-              in dialog: QBChatDialog,
+extension QBChatManager: MessagesSender {
+    func send(_ message: Message,
+              in dialog: Dialog,
               completion: @escaping (Error?) -> Void) {
-        dialog.send(message) { (error) in
-            if let error = error {
-                completion(error)
+        
+        let responsePage = QBResponsePage(limit: 1, skip: 0)
+        let extendedRequest: [String: String]? = ["_id": dialog.dialogId]
+        
+        QBRequest.dialogs(for: responsePage, extendedRequest: extendedRequest, successBlock: { (_, qbDialogs, _, page) in
+            if let qbDialog = qbDialogs.first {
+                let qbMessage = QBChatMessage()
+                qbMessage.text = message.messageText
+                qbMessage.senderID = message.messageSender.userID
+                qbMessage.dateSent = message.sentDate
+                qbMessage.customParameters["save_to_history"] = true
+                
+                qbDialog.send(qbMessage) { error in
+                    if let error = error {
+                        completion(error)
+                    } else {
+                        qbDialog.updatedAt = Date()
+                        completion(nil)
+                    }
+                }
+                
+//                qbDialog.join { error in
+//                    if let error = error { completion(error) }
+//                    else {
+//                        qbDialog.send(qbMessage) { (error) in
+//                            if let error = error {
+//                                completion(error)
+//                            } else {
+//                                qbDialog.updatedAt = Date()
+//                                completion(nil)
+//                            }
+//                        }
+//                    }
+//                }
             }
-            dialog.updatedAt = Date()
+        }, errorBlock: { [weak self] response in
+            debugPrint("[ChatManager] getAllUserDialog error:\(self?.errorMessage(for: response) ?? "")")
+            if let error = response.error?.error { completion(error) }
+            else { completion(QBChatManagerError.unknown) }
+        })
+    }
+    
+    func send(_ messages: [Message],
+              in dialog: Dialog,
+              completion: @escaping (Error?) -> Void) {
+        let messagesGroup = DispatchGroup()
+        messages.forEach { message in
+            messagesGroup.enter()
+            send(message, in: dialog) { _ in
+                messagesGroup.leave()
+            }
+        }
+        
+        messagesGroup.notify(queue: .main) {
             completion(nil)
         }
     }
 }
 
-extension QBChatMessage: ReadMessagesRequestFactory {
-    func read(_ messages: [QBChatMessage],
-              dialog: QBChatDialog,
-              completion: @escaping (_ error: Error) -> Void) {
+extension QBChatManager: MessagesReader {
+    func read(_ messages: [Message], dialog: Dialog, completion: @escaping (Error) -> Void) {
         
-        let currentUser = User.instance
-        let readGroup = DispatchGroup()
+        let messagesId = messages
+            .map { $0.messageId }
         
-        messages.forEach { message in
-            if message.dialogID != dialog.id { return }
-            
-            if message.deliveredIDs?.contains(NSNumber(value: currentUser.userID)) == false {
-                QBChat.instance.mark(asDelivered: message) { error in
-                    if let error = error {
-                        completion(error)
-                        return
-                    }
-                    
-                    debugPrint("mark as Delivered")
-                }
-            }
-            
-            readGroup.enter()
-            QBChat.instance.read(message) { error in
-                if let error = error {
-                    completion(error)
-                    return
-                }
-                
-                if dialog.unreadMessagesCount > 0 {
-                    dialog.unreadMessagesCount = dialog.unreadMessagesCount - 1
-                }
-                
-                if UIApplication.shared.applicationIconBadgeNumber > 0 {
-                    let badgeNumber = UIApplication.shared.applicationIconBadgeNumber
-                    UIApplication.shared.applicationIconBadgeNumber = badgeNumber - 1
-                }
-                
-                readGroup.leave()
-            }
+        QBRequest.markMessages(asRead: Set(messagesId), dialogID: dialog.dialogId) { response in
+            response.error?.error
+                .map { completion($0) }
+        } errorBlock: { response in
+            response.error?.error
+                .map { completion($0) }
         }
     }
 }
@@ -214,11 +262,13 @@ extension QBChatManager: SignUpRequestFactory {
         newQBUUser.fullName = fullName
         newQBUUser.password = password
         
-        QBRequest.signUp(newQBUUser, successBlock: { response, user in
-            User.instance.fullName = fullName
-            User.instance.password = password
-            User.instance.login = login
-            completion(.success(User.instance))
+        QBRequest.signUp(newQBUUser, successBlock: { response, qbUser in
+            
+            let user = User(userID: qbUser.id,
+                            userName: qbUser.fullName,
+                            userLogin: qbUser.login,
+                            userPassword: qbUser.password)
+            completion(.success(user))
             
         }, errorBlock: { response in
             if response.status == QBResponseStatusCode.validationFailed {
@@ -235,12 +285,15 @@ extension QBChatManager: LogInRequestFactory {
                completion: @escaping (Result<User, Error>) -> Void) {
         QBRequest.logIn(withUserLogin: login, password: password) { [weak self] response, qbUser in
             
-            User.instance.login = login
-            User.instance.password = password
-            
             qbUser.password = password
             self?.connectToChat(user: qbUser)
-            completion(.success(User.instance))
+            
+            let user = User(userID: qbUser.id,
+                            userName: qbUser.fullName,
+                            userLogin: qbUser.login,
+                            userPassword: qbUser.password)
+            
+            completion(.success(user))
             
         } errorBlock: { response in
             print("Some problems with autentificate user")
@@ -262,6 +315,119 @@ extension QBChatManager: LogInRequestFactory {
                 } else {
                     print("Sucsess connected to the chat server")
                 }
+            }
+        }
+    }
+}
+
+extension QBChatManager: GetUserRequestFactory {
+    func loadUser(_ id: UInt,
+                  completion: @escaping (User?) -> Void) {
+        QBRequest.user(withID: id, successBlock: { (response, qbUser) in
+            
+            let user = User(userID: qbUser.id,
+                            userName: qbUser.fullName,
+                            userLogin: qbUser.login,
+                            userPassword: qbUser.password)
+    
+            completion(user)
+            
+        }) { [weak self] response in
+            debugPrint("[ChatManager] loadUser error: \(self?.errorMessage(for: response) ?? "")")
+            completion(nil)
+        }
+    }
+}
+
+extension QBChatManager: CurrnetUserLoader {
+    var currentUser: User? {
+        QBSession.current.currentUser
+            .map { User(userID: $0.id,
+                        userName: $0.fullName,
+                        userLogin: $0.login,
+                        userPassword: $0.password) }
+    }
+}
+
+extension QBChatManager: DialogDataLoader {
+    func getLastMessageText(for dialog: Dialog,
+                            completion: @escaping (Result<String, Error>) -> Void) {
+        
+        let responsePage = QBResponsePage(limit: 1, skip: 0)
+        let extendedReques = ["_id": dialog.dialogId]
+        
+        QBRequest.dialogs(for: responsePage, extendedRequest: extendedReques) { _, dialogs, _, _ in
+            if let dialog = dialogs.first {
+                completion(.success(dialog.lastMessageText ?? ""))
+            } else { completion(.failure(QBChatManagerError.noDialogById)) }
+        } errorBlock: { response in
+            response.error?.error
+                .map{ completion(.failure($0)) }
+        }
+    }
+    
+    func getDialogImageURL(for dialog: Dialog,
+                           completion: @escaping (Result<URL?, Error>) -> Void) {
+        
+        let responsePage = QBResponsePage(limit: 1, skip: 0)
+        let extendedReques = ["_id": dialog.dialogId]
+        
+        QBRequest.dialogs(for: responsePage, extendedRequest: extendedReques) { _, dialogs, _, _ in
+            if let dialog = dialogs.first {
+                dialog.photo
+                    .map { URL(string: $0) }
+                    .map { completion(.success($0)) }
+            } else { completion(.failure(QBChatManagerError.noDialogById)) }
+        } errorBlock: { response in
+            response.error?.error
+                .map{ completion(.failure($0)) }
+        }
+    }
+}
+
+extension QBChatManager: DialogActivator {
+    func join(to dialog: Dialog, completion: @escaping (Error?) -> Void) {
+        
+        let responsePage = QBResponsePage(limit: 1, skip: 0)
+        let extendedReques = ["_id": dialog.dialogId]
+        
+        QBRequest.dialogs(for: responsePage, extendedRequest: extendedReques) { _, dialogs, _, _ in
+            if let dialog = dialogs.first {
+                dialog.join { $0.map { completion($0) } }
+            } else { completion(QBChatManagerError.noDialogById) }
+        } errorBlock: { response in
+            if let error = response.error?.error {
+                completion(error)
+            } else { completion(QBChatManagerError.unknown) }
+        }
+    }
+}
+
+extension QBChatManager {
+    func add(delegate: ChatRoomDelegate, for dialog: Dialog) {
+        delegates[dialog.dialogId] = delegate
+    }
+}
+
+extension QBChatManager: QBChatDelegate {
+    func chatRoomDidReceive(_ message: QBChatMessage, fromDialogID dialogID: String) {
+        if let delegate = delegates[dialogID] {
+            
+            QBRequest.user(withID: message.senderID) { _, sender in
+                let messageSender = User(userID: sender.id,
+                                         userName: sender.fullName,
+                                         userLogin: sender.login,
+                                         userPassword: sender.password)
+                
+                let message = Message(sentDate: message.dateSent ?? Date(),
+                                      messageSender: messageSender,
+                                      messageText: message.text ?? "",
+                                      messageId: message.id ?? "",
+                                      dialogId: dialogID)
+                
+                delegate.receive(message)
+            } errorBlock: { response in
+                debugPrint(response.error?.error ?? QBChatManagerError.unknown)
             }
         }
     }

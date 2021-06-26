@@ -8,6 +8,8 @@
 import UIKit
 
 protocol ChatListViewDelegate: AnyObject {
+    func didSelectDialog(at index: Int)
+    
     func fetchData(at index: Int) -> Dialog?
     func numberOfRowsInSection() -> Int
 }
@@ -17,10 +19,18 @@ protocol ChatListModelDelegate: AnyObject {
 }
 
 final class ChatListViewController: UIViewController {
+        
+    private let getCurrnetUserREquestFactory: CurrnetUserLoader
+    private let chatViewControllerBuilder: ChatViewControllerBuilder
     private var customView: ChatListViewRepresentable
     private var model: ChatListModelRepresentable
+    
     init(customView: ChatListViewRepresentable & UIView,
-         model: ChatListModelRepresentable) {
+         model: ChatListModelRepresentable,
+         chatViewControllerBuilder: ChatViewControllerBuilder,
+         getCurrnetUserREquestFactory: CurrnetUserLoader) {
+        self.getCurrnetUserREquestFactory = getCurrnetUserREquestFactory
+        self.chatViewControllerBuilder = chatViewControllerBuilder
         self.customView = customView
         self.model = model
         
@@ -34,6 +44,16 @@ final class ChatListViewController: UIViewController {
 }
 
 extension ChatListViewController: ChatListViewDelegate {
+    func didSelectDialog(at index: Int) {
+        if let dialog = model.fetchData(at: index),
+           let user = getCurrnetUserREquestFactory.currentUser {
+            let chatVC = chatViewControllerBuilder.build(for: dialog, with: user)
+            navigationController?.pushViewController(chatVC, animated: true)
+        } else {
+            debugPrint("Что-то пошло не так")
+        }
+    }
+    
     func fetchData(at index: Int) -> Dialog? {
         model.fetchData(at: index)
     }
