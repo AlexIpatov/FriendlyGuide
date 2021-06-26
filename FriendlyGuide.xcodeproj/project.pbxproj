@@ -69,6 +69,7 @@
 		4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */; };
 		4A7B99B0268710270074DADA /* DetailViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B99AF268710270074DADA /* DetailViewControllerBuilder.swift */; };
 		4A7B99B2268718550074DADA /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B99B1268718550074DADA /* Identifiable.swift */; };
+		4A7B99B426871C6B0074DADA /* Date + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B99B326871C6B0074DADA /* Date + Extensions.swift */; };
 		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
 		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
 		4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB926625080000C4298 /* AuthValidators.swift */; };
@@ -280,6 +281,7 @@
 		4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
 		4A7B99AF268710270074DADA /* DetailViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerBuilder.swift; sourceTree = "<group>"; };
 		4A7B99B1268718550074DADA /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		4A7B99B326871C6B0074DADA /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Entensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB926625080000C4298 /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
@@ -1087,6 +1089,7 @@
 				4A9E29AE2667E64800C3D5EA /* UIRefreshControl + Extensions.swift */,
 				21A2E6E4266906AC00254342 /* UIView + Extensions.swift */,
 				4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */,
+				4A7B99B326871C6B0074DADA /* Date + Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2051,6 +2054,7 @@
 				21ADF5062665874700007D34 /* AppStartManager.swift in Sources */,
 				C5C316F62660F6AC00518405 /* TravelScreenView.swift in Sources */,
 				C5C316702660E62200518405 /* SliderWithDimmingViewController.swift in Sources */,
+				4A7B99B426871C6B0074DADA /* Date + Extensions.swift in Sources */,
 				4A7B99B0268710270074DADA /* DetailViewControllerBuilder.swift in Sources */,
 				C96B94812661205E007AD0DA /* CityNamesResource.swift in Sources */,
 				217AB24C2664239B00A0AF66 /* LoginValidator.swift in Sources */,

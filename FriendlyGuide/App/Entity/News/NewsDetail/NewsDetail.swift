@@ -19,8 +19,8 @@ struct NewsDetail: Codable, Hashable {
     private let siteURL: String
     let shortPlace: EventPlace?
     private var secondSubtitle: String? {
-            return publicationDate.description
-        }
+        return publicationDate.goToSimpleDate()
+    }
     
     enum CodingKeys: String, CodingKey {
         case publicationDate = "publication_date"

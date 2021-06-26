@@ -161,6 +161,7 @@ extension TravelScreenViewController {
 // MARK: - UICollectionViewDelegate
 extension TravelScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // Убрать в роутер
         guard let section = TravelSection(rawValue: indexPath.section),
               let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Identifiable else { return }
         let detailVC = DetailEventViewController(requestFactory: requestFactory,
