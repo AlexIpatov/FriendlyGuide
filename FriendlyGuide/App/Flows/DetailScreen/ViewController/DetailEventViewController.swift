@@ -100,7 +100,6 @@ class DetailEventViewController: UIViewController {
     let dataProvider = DetailScreenDataProvider()
     
     private func requestData() {
-        
         dataProvider.getData(by: currentId,
                              with: currentSectionType) { [weak self] response in
             guard let self = self else { return }
@@ -111,7 +110,6 @@ class DetailEventViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-
     }
 }
 // MARK: - Data Source

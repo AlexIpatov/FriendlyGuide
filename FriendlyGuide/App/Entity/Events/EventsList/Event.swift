@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Event: Codable, Hashable {
+struct Event: Codable, Hashable, Identifiable {
     let id: Int
     let title: String
     let dates: [DateElement]

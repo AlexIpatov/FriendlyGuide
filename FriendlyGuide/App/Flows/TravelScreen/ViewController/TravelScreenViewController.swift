@@ -96,22 +96,22 @@ class TravelScreenViewController: UIViewController {
     }
     // MARK: - Request data methods
     private func requestData() {
-       let currentDate = String(Date().timeIntervalSince1970)
-            self.dataProvider.getData(cityTag: self.currentCity?.slug ?? "",
+        let currentDate = String(Date().timeIntervalSince1970)
+        self.dataProvider.getData(cityTag: self.currentCity?.slug ?? "",
                                   actualSince: currentDate,
                                   showingSince: currentDate) { [weak self] response in
-                DispatchQueue.main.async {
-            guard let self = self else { return }
-            switch response {
-            case .success((let events, let news, let places)):
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                switch response {
+                case .success((let events, let news, let places)):
                     self.events = events
                     self.news = news
                     self.places = places
                     self.reloadData()
-            case .failure(let error):
-                self.showAlert(with: "Ошибка!", and: error.localizedDescription)
+                case .failure(let error):
+                    self.showAlert(with: "Ошибка!", and: error.localizedDescription)
+                }
             }
-        }
         }
     }
 }
@@ -161,25 +161,14 @@ extension TravelScreenViewController {
 // MARK: - UICollectionViewDelegate
 extension TravelScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let section = TravelSection(rawValue: indexPath.section) else { return }
-        switch section {
-        case .events:
-            //TODO убрать переходы в роутер
-            guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Event else { return }
-            let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id, currentSectionType: .events)
-            detailVC.modalPresentationStyle = .fullScreen
-            navigationController?.pushViewController(detailVC, animated: true)
-        case .places:
-            guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Place else { return }
-            let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id, currentSectionType: .places)
-            detailVC.modalPresentationStyle = .fullScreen
-            navigationController?.pushViewController(detailVC, animated: true)
-        case .news:
-            guard let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? News else { return }
-            let detailVC = DetailEventViewController(requestFactory: requestFactory, currentId: currentCell.id, currentSectionType: .news)
-            detailVC.modalPresentationStyle = .fullScreen
-            navigationController?.pushViewController(detailVC, animated: true)
-        }
+        // Убрать в роутер
+        guard let section = TravelSection(rawValue: indexPath.section),
+              let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Identifiable else { return }
+        let detailVC = DetailEventViewController(requestFactory: requestFactory,
+                                                 currentId: currentCell.id,
+                                                 currentSectionType: section)
+        detailVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 extension TravelScreenViewController: CitiesViewControllerDelegate {
