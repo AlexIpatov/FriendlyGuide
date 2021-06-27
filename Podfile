@@ -17,7 +17,7 @@ target 'FriendlyGuide' do
   
   # Keychain
   pod 'Locksmith', '~> 4.0.0'
-  
+
   target 'FriendlyGuideTests' do
     inherit! :search_paths
     # Pods for testing
