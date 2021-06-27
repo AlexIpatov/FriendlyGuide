@@ -1,0 +1,13 @@
+//
+//  DialogActivator.swift
+//  FriendlyGuide
+//
+//  Created by Валерий Макрогузов on 25.06.2021.
+//
+
+import Foundation
+
+protocol DialogActivator {
+    func join(to dialog: Dialog,
+              completion: @escaping (Error?) -> Void)
+}
