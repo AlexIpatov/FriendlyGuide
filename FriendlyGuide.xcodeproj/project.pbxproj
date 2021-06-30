@@ -72,9 +72,8 @@
 		21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7C265E7DC60052C076 /* URLPathParameterEncoder.swift */; };
 		4A039F56267B5664005061AB /* MoreContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A039F55267B5664005061AB /* MoreContentView.swift */; };
 		4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */; };
-		4A7B99B0268710270074DADA /* DetailViewControllerBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B99AF268710270074DADA /* DetailViewControllerBuilder.swift */; };
+		4A733B82268C526700B34204 /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A733B81268C526700B34204 /* Date + Extension.swift */; };
 		4A7B99B2268718550074DADA /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B99B1268718550074DADA /* Identifiable.swift */; };
-		4A7B99B426871C6B0074DADA /* Date + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7B99B326871C6B0074DADA /* Date + Extensions.swift */; };
 		4A7D3AB5266240BB000C4298 /* StackView + Entensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */; };
 		4A7D3AB726624C5D000C4298 /* UIScrollView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */; };
 		4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7D3AB926625080000C4298 /* AuthValidators.swift */; };
@@ -193,7 +192,6 @@
 		C9DEE2152666A36200C545CF /* GetEventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE2082666A36200C545CF /* GetEventDetail.swift */; };
 		C9DEE2182666A3B600C545CF /* NewsListResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE2172666A3B600C545CF /* NewsListResource.swift */; };
 		C9DEE21B2666A3C400C545CF /* PlacesListResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DEE21A2666A3C400C545CF /* PlacesListResource.swift */; };
-		C9E9B82626809645008B70DD /* DetailScreenDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9B82526809645008B70DD /* DetailScreenDataProvider.swift */; };
 		C9F6AB34266F987600841789 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F6AB33266F987500841789 /* URLProtocolStub.swift */; };
 		C9F6AB38266FA20400841789 /* GetPlacesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F6AB37266FA20400841789 /* GetPlacesTests.swift */; };
 		DA302840DF4D0B0C33487407 /* Pods_FriendlyGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D6F12A6A8DE6CD29BB1B57 /* Pods_FriendlyGuide.framework */; };
@@ -289,9 +287,8 @@
 		4A039F55267B5664005061AB /* MoreContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreContentView.swift; sourceTree = "<group>"; };
 		4A039F58267B5671005061AB /* MoreContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreContentViewController.swift; sourceTree = "<group>"; };
 		4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell + Extensions.swift"; sourceTree = "<group>"; };
-		4A7B99AF268710270074DADA /* DetailViewControllerBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerBuilder.swift; sourceTree = "<group>"; };
+		4A733B81268C526700B34204 /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		4A7B99B1268718550074DADA /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
-		4A7B99B326871C6B0074DADA /* Date + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB4266240BB000C4298 /* StackView + Entensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StackView + Entensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB626624C5D000C4298 /* UIScrollView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Extensions.swift"; sourceTree = "<group>"; };
 		4A7D3AB926625080000C4298 /* AuthValidators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthValidators.swift; sourceTree = "<group>"; };
@@ -1087,6 +1084,7 @@
 				21A2E6E4266906AC00254342 /* UIView + Extensions.swift */,
 				4A3170102670CABC0066234B /* UICollectionViewCell + Extensions.swift */,
 				21086F75267E204B00109B69 /* UIColor + Extensions.swift */,
+				4A733B81268C526700B34204 /* Date + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2003,6 +2001,7 @@
 				C986CF71268386BC000C5017 /* DescriptionForEntity.swift in Sources */,
 				C9DEE2092666A36200C545CF /* GetPlaces.swift in Sources */,
 				21A2E6E72669095300254342 /* AuthControllersFactory.swift in Sources */,
+				4A733B82268C526700B34204 /* Date + Extension.swift in Sources */,
 				C9DEE20E2666A36200C545CF /* GetCityNames.swift in Sources */,
 				C5C316602660E41C00518405 /* UILabel + Extensions.swift in Sources */,
 				217AB2542664243100A0AF66 /* PasswordValidationError.swift in Sources */,
@@ -2046,7 +2045,6 @@
 				4AA72846266D2A7700A5C060 /* DetailPlaceForEventsCell.swift in Sources */,
 				4A7F8D2126662CB600C69FBD /* DetailMoreInfoCell.swift in Sources */,
 				21D3EBB326603F5B007D01CE /* EndPointType.swift in Sources */,
-				C96B94AB26612079007AD0DA /* NewsImage.swift in Sources */,
 				217AB2602664324900A0AF66 /* AppMainViewControllerBuilder.swift in Sources */,
 				C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */,
 				218835832676493D00136BD8 /* ChatViewModel.swift in Sources */,
@@ -2054,8 +2052,6 @@
 				21ADF5062665874700007D34 /* AppStartManager.swift in Sources */,
 				C5C316F62660F6AC00518405 /* TravelScreenView.swift in Sources */,
 				C5C316702660E62200518405 /* SliderWithDimmingViewController.swift in Sources */,
-				4A7B99B426871C6B0074DADA /* Date + Extensions.swift in Sources */,
-				4A7B99B0268710270074DADA /* DetailViewControllerBuilder.swift in Sources */,
 				C96B94812661205E007AD0DA /* CityNamesResource.swift in Sources */,
 				217AB24C2664239B00A0AF66 /* LoginValidator.swift in Sources */,
 				C96B947F2661205E007AD0DA /* EventDetailResource.swift in Sources */,
@@ -2076,7 +2072,7 @@
 				4A3170112670CABC0066234B /* UICollectionViewCell + Extensions.swift in Sources */,
 				C5C316F02660F6AC00518405 /* TravelScreenEnum.swift in Sources */,
 				C96B949C26612068007AD0DA /* DateElement.swift in Sources */,
-				C967AED126679B5B00BAB62F /* TravelDataProvider.swift in Sources */,
+				C967AED126679B5B00BAB62F /* TravelScreenDataProvider.swift in Sources */,
 				21D3EBB426603F61007D01CE /* URLPathParameterEncoder.swift in Sources */,
 				C96B94B62661208D007AD0DA /* PlacesList.swift in Sources */,
 				21885C0B266E97A2007729A0 /* ChatListViewEmptyCell.swift in Sources */,
