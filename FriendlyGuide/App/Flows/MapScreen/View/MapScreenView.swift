@@ -64,12 +64,16 @@ class MapScreenView: UIView {
         textAlignment: .left,
         adjustsFontSizeToFitWidth: false)
     
-    private(set) lazy var findPlaceOrEventButton = UIButton(
-        backgroundImageForNormalState: UIImage(systemName: "magnifyingglass.circle"),
-        backgroundImageForHighlightedState: UIImage(systemName: "magnifyingglass.circle.fill"),
-        cornerRadius: 20.0,
-        backgroundColor: .white,
-        tintColor: .systemBlue)
+    private(set) lazy var findPlaceOrEventButton: UIButton = {
+        let button = UIButton(backgroundImageForNormalState: UIImage(systemName: "magnifyingglass.circle"),
+                              backgroundImageForHighlightedState: UIImage(systemName: "magnifyingglass.circle.fill"),
+                              cornerRadius: 20.0,
+                              backgroundColor: .white,
+                              tintColor: .systemGray4)
+        
+        button.isEnabled = false
+        return button
+    }()
     
     private(set) lazy var buildingRouteButton = UIButton(
         backgroundImageForNormalState: UIImage(systemName: "arrow.triangle.turn.up.right.circle"),

@@ -15,10 +15,6 @@ final class AppMainViewControllerBuilder {
     private lazy var travelDataProvider: TravelScreenDataProvider = {
         TravelScreenDataProvider()
     }()
-    private lazy var selfieImage: UIImage? = {
-        return UIImage(systemName: "figure.walk.circle")!
-        //TO DO - Need selfie from user defaults
-    }()
     
     private let requestFactory: RequestFactory
     
@@ -29,7 +25,6 @@ final class AppMainViewControllerBuilder {
     func build() -> UIViewController {
         TabBarController(requestFactory: requestFactory,
                          userSettings: userSettings,
-                         dataProvider: travelDataProvider,
-                         selfieImage: selfieImage)
+                         dataProvider: travelDataProvider)
     }
 }

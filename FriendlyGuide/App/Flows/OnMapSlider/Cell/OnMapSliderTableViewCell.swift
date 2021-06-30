@@ -29,13 +29,8 @@ class OnMapSliderTableViewCell: UITableViewCell, SelfConfiguringCell {
     
     //MARK: - Configuration Methods
     func configure<U>(with value: U) where U : Hashable {
-        if type(of: value) == Place.self {
-            guard let place: Place = value as? Place else { return }
-            placeOrEventLabel.text = place.title
-        } else if type(of: value) == Event.self {
-            guard let event: Event = value as? Event else { return }
-            placeOrEventLabel.text = event.title
-        }
+        guard let placeOrEvent: EntityForAnnotation = value as? EntityForAnnotation else { return }
+        placeOrEventLabel.text = placeOrEvent.title
     }
     
     private func configureUI() {

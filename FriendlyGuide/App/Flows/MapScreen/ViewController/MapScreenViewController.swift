@@ -20,7 +20,6 @@ class MapScreenViewController: UIViewController {
     }()
     
     //MARK: - Properties
-    private var backgroundTask: UIBackgroundTaskIdentifier?
     private var locationManager = LocationManager.instance
     private var dataProvider: DataProvider
     
@@ -40,30 +39,19 @@ class MapScreenViewController: UIViewController {
     
     private var initialSegmentIndex: Int?
     
-    private var selectedOnSliderPlace: Place?
-    private var selectedOnSliderEvent: Event?
+    private var selectedOnSliderPlaceOrEvent: EntityForAnnotation?
     private var selectedEntityCoordinates = CLLocationCoordinate2D()
     
-    private var entitiesForAnnotationArray: [EntityForAnnotation] = []
-    
-    private var selectedOnSliderPlaceOrEventImage: UIImage?
-    
-    private var selfieImage: UIImage?
-    
-    private let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-    
-    private var allPlaces: [Place] = []
-    private var allEvents: [Event] = []
-    
+    private var allEntitiesForAnnotationArray: [EntityForAnnotation] = []
+    private var placeEntitiesForAnnotationArray: [EntityForAnnotation] = []
+    private var eventEntitiesForAnnotationArray: [EntityForAnnotation] = []
+            
     //MARK: - Slider properties
     private let transition = SliderTransition()
     
     //MARK: - Init
-    init(
-         dataProvider: DataProvider,
-         selfieImage: UIImage) {
+    init(dataProvider: DataProvider) {
         self.dataProvider = dataProvider
-        self.selfieImage = selfieImage
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -80,7 +68,6 @@ class MapScreenViewController: UIViewController {
         super.viewDidLoad()
         configureViewController()
         configureNavigationBar()
-        configureBackgroundTask()
         configureLocationManager()
         configureMap()
         configureButtons()
@@ -112,16 +99,6 @@ class MapScreenViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: mapScreenView.reloadDataButton)
     }
     
-    //MARK: - Background Task
-    func configureBackgroundTask() {
-        backgroundTask = UIApplication.shared.beginBackgroundTask { [weak self] in
-            guard let self = self,
-                  let backgroundTask = self.backgroundTask else { return }
-            UIApplication.shared.endBackgroundTask(backgroundTask)
-            self.backgroundTask = .invalid
-        }
-    }
-    
     //MARK: - Location Manager
     func configureLocationManager() {
         if CLLocationManager.locationServicesEnabled() {
@@ -149,9 +126,9 @@ class MapScreenViewController: UIViewController {
                 guard let self = self else { return }
                 switch response {
                 case .success((let events, _, let places)):
-                    self.allPlaces = places
-                    self.allEvents = events
-                    self.showAllAnnotations(placesArray: places, eventsArray: events)
+                    self.createAllEntitiesForAnnotationArray(placesArray: places, eventsArray: events)
+                    self.showAllAnnotations()
+                    self.configureFindPlaceOrEventButtonWhenDataLoaded()
                 case .failure(let error):
                     self.showAlert(with: "Ошибка загрузки данных о местах и событиях",
                                    and: error.localizedDescription)
@@ -269,11 +246,18 @@ class MapScreenViewController: UIViewController {
     }
     
     func showOnMapSliderViewController() {
-        let child = OnMapSliderViewController(initialSegmentIndex: initialSegmentIndex ?? 0)
+        let child = OnMapSliderViewController(allPlaces: placeEntitiesForAnnotationArray,
+                                              allEvents: eventEntitiesForAnnotationArray,
+                                              initialSegmentIndex: initialSegmentIndex ?? 0)
         child.transitioningDelegate = transition
         child.modalPresentationStyle = .custom
         child.placeOrEventDelegate = self
         self.present(child, animated: true, completion: nil)
+    }
+    
+    func configureFindPlaceOrEventButtonWhenDataLoaded() {
+        mapScreenView.findPlaceOrEventButton.tintColor = .systemBlue
+        mapScreenView.findPlaceOrEventButton.isEnabled = true
     }
     
     //MARK: - BuildingRouteButton
@@ -326,7 +310,11 @@ class MapScreenViewController: UIViewController {
         mapScreenView.clearRouteButton.addTarget(self, action: #selector(tapClearRouteButton(_:)), for: .touchUpInside)
     }
     @objc func tapClearRouteButton(_ sender: UIButton) {
-        mapScreenView.mapView.removeOverlays(mapScreenView.mapView.overlays)
+        if CLLocationManager.locationServicesEnabled() {
+            mapScreenView.mapView.removeOverlays(mapScreenView.mapView.overlays)
+        } else {
+            showIfLocationServicesDisabledAlert()
+        }
     }
     
     //MARK: - ZoomInMapButton
@@ -365,14 +353,18 @@ class MapScreenViewController: UIViewController {
     }
     
     func startTrackingLocation() {
-        if mapScreenView.startTrackingLocationButton.tag == 0 {
-            // Run tracking
-            setStartTrackingLocationButtonToStatusTapped()
-            locationManager.startUpdatingLocationInLocationManager()
-        } else if mapScreenView.startTrackingLocationButton.tag == 1 {
-            // Stop tracking
-            setStartTrackingLocationButtonToStatusUntapped()
-            locationManager.stopUpdatingLocationInLocationManager()
+        if CLLocationManager.locationServicesEnabled() {
+            if mapScreenView.startTrackingLocationButton.tag == 0 {
+                // Run tracking
+                setStartTrackingLocationButtonToStatusTapped()
+                locationManager.startUpdatingLocationInLocationManager()
+            } else if mapScreenView.startTrackingLocationButton.tag == 1 {
+                // Stop tracking
+                setStartTrackingLocationButtonToStatusUntapped()
+                locationManager.stopUpdatingLocationInLocationManager()
+            }
+        } else {
+            showIfLocationServicesDisabledAlert()
         }
     }
     
@@ -398,12 +390,16 @@ class MapScreenViewController: UIViewController {
     }
     
     func showCurrentLocation() {
-        locationManager.stopUpdatingLocationInLocationManager()
-        if mapScreenView.startTrackingLocationButton.tag == 1 {
-            setStartTrackingLocationButtonToStatusUntapped()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.stopUpdatingLocationInLocationManager()
+            if mapScreenView.startTrackingLocationButton.tag == 1 {
+                setStartTrackingLocationButtonToStatusUntapped()
+            }
+            locationManager.requestLocationInLocationManager()
+            configureCurrentCoordinateLatLonLabels()
+        } else {
+            showIfLocationServicesDisabledAlert()
         }
-        locationManager.requestLocationInLocationManager()
-        configureCurrentCoordinateLatLonLabels()
     }
     
     //MARK: - Buttons And Labels Visibility
@@ -426,8 +422,10 @@ class MapScreenViewController: UIViewController {
             mapScreenView.longitudeLabel.isHidden = true
             mapScreenView.latitudeValueLabel.isHidden = true
             mapScreenView.longitudeValueLabel.isHidden = true
-            mapScreenView.startTrackingLocationButton.isHidden = true
-            mapScreenView.showCurrentLocationButton.isHidden = true
+            mapScreenView.buildingRouteButton.tintColor = .systemGray4
+            mapScreenView.clearRouteButton.tintColor = .systemGray4
+            mapScreenView.startTrackingLocationButton.tintColor = .systemGray4
+            mapScreenView.showCurrentLocationButton.tintColor = .systemGray4
         }
     }
     
@@ -445,9 +443,20 @@ class MapScreenViewController: UIViewController {
         showRegion(region: currentRegion)
     }
     
-    func showAllAnnotations(placesArray: [Place], eventsArray: [Event]) {
-        entitiesForAnnotationArray = []
-        
+    func showAllAnnotations() {
+        mapScreenView.mapView.addAnnotations(allEntitiesForAnnotationArray)
+    }
+    
+    func createAllEntitiesForAnnotationArray(placesArray: [Place], eventsArray: [Event]) {
+        allEntitiesForAnnotationArray = []
+        createArrayFromPlaceEntitiesForAnnotation(placesArray: placesArray)
+        createArrayFromEventEntitiesForAnnotation(eventsArray: eventsArray)
+        allEntitiesForAnnotationArray.append(contentsOf: placeEntitiesForAnnotationArray)
+        allEntitiesForAnnotationArray.append(contentsOf: eventEntitiesForAnnotationArray)
+    }
+    
+    func createArrayFromPlaceEntitiesForAnnotation(placesArray: [Place]) {
+        placeEntitiesForAnnotationArray = []
         for place in placesArray {
             if let placeCoordinatesLat = place.coords?.lat,
                let placeCoordinatesLon = place.coords?.lon {
@@ -457,10 +466,13 @@ class MapScreenViewController: UIViewController {
                                                                        title: place.title,
                                                                        subtitle: place.address,
                                                                        color: .systemGreen)
-                entitiesForAnnotationArray.append(entityForAnnotationFromPlace)
+                placeEntitiesForAnnotationArray.append(entityForAnnotationFromPlace)
             }
         }
-        
+    }
+    
+    func createArrayFromEventEntitiesForAnnotation(eventsArray: [Event]) {
+        eventEntitiesForAnnotationArray = []
         for event in eventsArray {
             if let eventCoordinatesLat = event.place?.coords?.lat,
                let eventCoordinatesLon = event.place?.coords?.lon {
@@ -470,9 +482,8 @@ class MapScreenViewController: UIViewController {
                                                                        title: event.title,
                                                                        subtitle: event.place?.address,
                                                                        color: .systemOrange)
-                entitiesForAnnotationArray.append(entityForAnnotationFromEvent)
+                eventEntitiesForAnnotationArray.append(entityForAnnotationFromEvent)
             }
-            mapScreenView.mapView.addAnnotations(entitiesForAnnotationArray)
         }
     }
 }
@@ -530,40 +541,24 @@ extension MapScreenViewController: MKMapViewDelegate {
 
 //MARK: - Extension with OnMapViewControllerDelegate
 extension MapScreenViewController: OnMapViewControllerDelegate {
-    func selectPlace(selectedPlace: Place) {
-        selectedOnSliderPlace = selectedPlace
-        guard let selectedPlaceCoordinatesLat = selectedOnSliderPlace?.coords?.lat,
-              let selectedPlaceCoordinatesLon = selectedOnSliderPlace?.coords?.lon,
-              let selectedPlaceTitle = selectedOnSliderPlace?.title else {
+    func selectPlaceOrEvent(selectedPlaceOrEvent: EntityForAnnotation) {
+        selectedOnSliderPlaceOrEvent = selectedPlaceOrEvent
+        guard let selectedPlaceOrEventCoordinatesLat = selectedOnSliderPlaceOrEvent?.coordinate.latitude,
+              let selectedPlaceOrEventCoordinatesLon = selectedOnSliderPlaceOrEvent?.coordinate.longitude,
+              let selectedPlaceOrEventTitle = selectedOnSliderPlaceOrEvent?.title else {
             return
         }
-        selectedEntityCoordinates = CLLocationCoordinate2D(latitude: selectedPlaceCoordinatesLat,
-                                                           longitude: selectedPlaceCoordinatesLon)
-        let selectedPlaceAddress = selectedOnSliderPlace?.address
+        selectedEntityCoordinates = CLLocationCoordinate2D(latitude: selectedPlaceOrEventCoordinatesLat,
+                                                           longitude: selectedPlaceOrEventCoordinatesLon)
+        let selectedPlaceOrEventAddress = selectedOnSliderPlaceOrEvent?.subtitle
+        let selectedPlaceOrEventAnnotationColor = selectedOnSliderPlaceOrEvent?.color
         
         showAnnotation(coordinate: selectedEntityCoordinates,
-                       title: selectedPlaceTitle,
-                       subtitle: selectedPlaceAddress ?? "",
-                       color: .systemGreen)
+                       title: selectedPlaceOrEventTitle,
+                       subtitle: selectedPlaceOrEventAddress ?? "",
+                       color: selectedPlaceOrEventAnnotationColor ?? .black)
     }
-    
-    func selectEvent(selectedEvent: Event) {
-        selectedOnSliderEvent = selectedEvent
-        guard let selectedEventCoordinatesLat = selectedOnSliderEvent?.place?.coords?.lat,
-              let selectedEventCoordinatesLon = selectedOnSliderEvent?.place?.coords?.lon,
-              let selectedEventTitle = selectedOnSliderEvent?.title else {
-            return
-        }
-        selectedEntityCoordinates = CLLocationCoordinate2D(latitude: selectedEventCoordinatesLat,
-                                                           longitude: selectedEventCoordinatesLon)
-        let selectedEventAddress = selectedOnSliderEvent?.place?.address
-        
-        showAnnotation(coordinate: selectedEntityCoordinates,
-                       title: selectedEventTitle,
-                       subtitle: selectedEventAddress ?? "",
-                       color: .systemOrange)
-    }
-    
+
     func saveSelectedSegmentIndex(index: Int) {
         initialSegmentIndex = index
     }
