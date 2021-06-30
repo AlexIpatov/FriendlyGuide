@@ -6,11 +6,11 @@
 //
 
 import UIKit
+import CoreLocation
 
 //MARK: - Protocol
 protocol OnMapViewControllerDelegate: AnyObject {
-    func selectPlace(selectedPlace: Place)
-    func selectEvent(selectedEvent: Event)
+    func selectPlaceOrEvent(selectedPlaceOrEvent: EntityForAnnotation)
     func saveSelectedSegmentIndex(index: Int)
 }
 
@@ -20,41 +20,19 @@ class OnMapSliderViewController: UIViewController {
         return OnMapSliderView()
     }()
     
-    //MARK: - Init
-    init(initialSegmentIndex: Int) {
-        super.init(nibName: nil, bundle: nil)
-        self.initialSegmentIndex = initialSegmentIndex
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // MARK: - Properties
-    private var allPlaces = [
-        Place(id: 123, title: "Государственный музей А.С.Пушкина", address: "Хрущёвский пер., 2/12", coords: Coordinates(lat: 55.743548, lon: 37.597612), subway: "Кропоткинская", images: []),
-        Place(id: 234, title: "Государственный академический Большой театр России", address: "Театральная площадь, 1", coords: Coordinates(lat: 55.760221, lon: 37.618561), subway: "Театральная", images: []),
-        Place(id: 345, title: "Радуга Кино", address: "просп. Андропова, 8", coords: Coordinates(lat: 55.695720, lon: 37.665070), subway: "Технопарк", images: []),
-        Place(id: 111, title: "Если одинаковое поле без координат", address: "", coords: nil, subway: "", images: []),
-        Place(id: 333, title: "Near Apple campus place", address: "", coords: Coordinates(lat: 37.540388, lon: -121.950960), subway: "", images: [])
-    ] {
+    //MARK: - Properties
+    private var allPlaces: [EntityForAnnotation] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
-    
-    private var allEvents = [
-        Event(id: 456, title: "Выступление клоунов", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.719438, lon: 37.627026))),
-        Event(id: 567, title: "Чемпионат мира по боксу", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.714312, lon: 37.567163))),
-        Event(id: 678, title: "Выставка кошек", dates: [], images: [], place: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 55.798555, lon: 37.670538))),
-        Event(id: 222, title: "Если одинаковое поле без координат", dates: [], images: [], place: nil)
-    ] {
+    private var allEvents: [EntityForAnnotation] {
         didSet {
             onMapSliderView.placesAndEventsTableView.reloadData()
         }
     }
-    private var filteredPlaces: [Place] = []
-    private var filteredEvents: [Event] = []
+    private var filteredPlaces: [EntityForAnnotation] = []
+    private var filteredEvents: [EntityForAnnotation] = []
     
     private var selectedSegmentIndex: Int {
         self.onMapSliderView.sourceSelectionSegmentedControl.selectedSegmentIndex
@@ -65,6 +43,20 @@ class OnMapSliderViewController: UIViewController {
     //MARK: - Properties for search
     private var searchText: String {
         onMapSliderView.searchTextField.text ?? ""
+    }
+    
+    //MARK: - Init
+    init(allPlaces: [EntityForAnnotation],
+         allEvents: [EntityForAnnotation],
+         initialSegmentIndex: Int) {
+        self.allPlaces = allPlaces
+        self.allEvents = allEvents
+        self.initialSegmentIndex = initialSegmentIndex
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     //MARK: - ViewController LifeCycle
@@ -115,7 +107,8 @@ class OnMapSliderViewController: UIViewController {
     private func prepareFilteredPlaces() {
         filteredPlaces = []
         for place in allPlaces {
-            if place.title.lowercased().contains(searchText.lowercased()) {
+            guard let title = place.title else { return }
+            if title.lowercased().contains(searchText.lowercased()) {
                 filteredPlaces.append(place)
             }
         }
@@ -124,7 +117,8 @@ class OnMapSliderViewController: UIViewController {
     private func prepareFilteredEvents() {
         filteredEvents = []
         for event in allEvents {
-            if event.title.lowercased().contains(searchText.lowercased()) {
+            guard let title = event.title else { return }
+            if title.lowercased().contains(searchText.lowercased()) {
                 filteredEvents.append(event)
             }
         }
@@ -163,6 +157,7 @@ class OnMapSliderViewController: UIViewController {
         onMapSliderView.placesAndEventsTableView.reloadData()
     }
 }
+
 // MARK: - UITableViewDataSource
 extension OnMapSliderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -214,24 +209,23 @@ extension OnMapSliderViewController: UITableViewDataSource {
 extension OnMapSliderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedSegmentIndex == 0 {
-            var selectedPlace = Place(id: 0, title: "", address: "", coords: nil, subway: "", images: [])
+            var selectedPlace = EntityForAnnotation(coordinate: CLLocationCoordinate2D(), title: "", subtitle: "", color: .black)
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
                 selectedPlace = allPlaces[indexPath.row]
             } else {
                 selectedPlace = filteredPlaces[indexPath.row]
             }
-            placeOrEventDelegate?.selectPlace(selectedPlace: selectedPlace)
-            placeOrEventDelegate?.saveSelectedSegmentIndex(index: selectedSegmentIndex)
+            placeOrEventDelegate?.selectPlaceOrEvent(selectedPlaceOrEvent: selectedPlace)
         } else {
-            var selectedEvent = Event(id: 0, title: "", dates: [], images: [], place: nil)
+            var selectedEvent = EntityForAnnotation(coordinate: CLLocationCoordinate2D(), title: "", subtitle: "", color: .black)
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
                 selectedEvent = allEvents[indexPath.row]
             } else {
                 selectedEvent = filteredEvents[indexPath.row]
             }
-            placeOrEventDelegate?.selectEvent(selectedEvent: selectedEvent)
-            placeOrEventDelegate?.saveSelectedSegmentIndex(index: selectedSegmentIndex)
+            placeOrEventDelegate?.selectPlaceOrEvent(selectedPlaceOrEvent: selectedEvent)
         }
+        placeOrEventDelegate?.saveSelectedSegmentIndex(index: selectedSegmentIndex)
         dismiss(animated: true, completion: nil)
     }
 }
