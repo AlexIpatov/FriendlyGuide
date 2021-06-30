@@ -23,6 +23,7 @@
 		2150FEC3265AB9090058FA89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2150FEC1265AB9090058FA89 /* LaunchScreen.storyboard */; };
 		2150FECE265AB9090058FA89 /* FriendlyGuideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FECD265AB9090058FA89 /* FriendlyGuideTests.swift */; };
 		2150FED9265AB9090058FA89 /* FriendlyGuideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */; };
+		2177A6A9268C53EF00D78961 /* DetailScreenDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9B82526809645008B70DD /* DetailScreenDataProvider.swift */; };
 		217AB24C2664239B00A0AF66 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB24B2664239B00A0AF66 /* LoginValidator.swift */; };
 		217AB24F266423BC00A0AF66 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB24E266423BC00A0AF66 /* PasswordValidator.swift */; };
 		217AB2542664243100A0AF66 /* PasswordValidationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB2532664243100A0AF66 /* PasswordValidationError.swift */; };
@@ -2123,6 +2124,7 @@
 				C96B94A926612079007AD0DA /* NewsDetail.swift in Sources */,
 				C96B949426612068007AD0DA /* EventsList.swift in Sources */,
 				2150FEB9265AB9070058FA89 /* SceneDelegate.swift in Sources */,
+				2177A6A9268C53EF00D78961 /* DetailScreenDataProvider.swift in Sources */,
 				C9DEE20A2666A36200C545CF /* GetPlacesFactory.swift in Sources */,
 				C96B949E26612068007AD0DA /* EventType.swift in Sources */,
 				21086F76267E204B00109B69 /* UIColor + Extensions.swift in Sources */,
