@@ -19,6 +19,11 @@ final class AppStartManager {
     
     init(window: UIWindow?) {
         self.window = window
+        windowSettings()
+    }
+
+    func windowSettings() {
+        window?.overrideUserInterfaceStyle = .light
     }
     
     func start() {
@@ -27,4 +32,5 @@ final class AppStartManager {
         window?.rootViewController = navVC
         window?.makeKeyAndVisible()
     }
+
 }
