@@ -32,6 +32,19 @@ struct NewsDetail: Codable, Hashable {
         case siteURL = "site_url"
     }
     
+    init(title: String, newsDescription: String?, bodyText: String?, images: [Image]?,
+         firstSubtitle: String?, boolSubtitle: Bool?, publicationDate: Date, siteURL: String,
+         shortPlace: EventPlace?) {
+        self.title = title
+        self.newsDescription = newsDescription
+        self.bodyText = bodyText
+        self.images = images
+        self.firstSubtitle = firstSubtitle
+        self.boolSubtitle = boolSubtitle
+        self.publicationDate = publicationDate
+        self.siteURL = siteURL
+        self.shortPlace = shortPlace
+    }
 }
 
 extension NewsDetail: DetailScreenRepresentable {

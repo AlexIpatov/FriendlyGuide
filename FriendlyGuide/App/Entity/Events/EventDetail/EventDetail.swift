@@ -32,6 +32,21 @@ struct EventDetail: Codable, Hashable {
         case images
         case siteURL = "site_url"
     }
+    
+    init(title: String, eventDescription: String?, firstSubtitle: String?, secondSubtitle: String?,
+         boolSubtitle: Bool?, images: [Image]?, shortPlace: EventPlace?, bodyText: String?,
+         dates: [DateElement], siteURL: String?) {
+        self.title = title
+        self.eventDescription = eventDescription
+        self.firstSubtitle = firstSubtitle
+        self.secondSubtitle = secondSubtitle
+        self.boolSubtitle = boolSubtitle
+        self.images = images
+        self.shortPlace = shortPlace
+        self.bodyText = bodyText
+        self.dates = dates
+        self.siteURL = siteURL
+    }
 }
 
 extension EventDetail: DetailScreenRepresentable {

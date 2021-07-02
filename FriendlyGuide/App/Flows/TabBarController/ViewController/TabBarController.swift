@@ -63,6 +63,7 @@ class TabBarController: UITabBarController {
         mapScreenViewController.tabBarItem = UITabBarItem(title: "Карта",
                                                           image: UIImage(systemName: "map"),
                                                           selectedImage: UIImage(systemName: "map.fill"))
+        mapScreenViewController.tabBarItem.accessibilityIdentifier = "mapScreenTabBarItem"
         let mapScreenNavigationController = UINavigationController(rootViewController: mapScreenViewController)
         configureNavigationController(navigationController: mapScreenNavigationController,
                                       tintColor: .systemBlue,

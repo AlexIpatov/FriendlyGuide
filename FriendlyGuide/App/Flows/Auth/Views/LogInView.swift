@@ -71,7 +71,8 @@ final class LogInView: UIView {
         button.setTitle("вход", for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.sizeToFit()
-        
+        button.accessibilityIdentifier = "fastLogInButton"
+
         let stackView = UIStackView(arrangedSubviews: [
                                         logInButton,
                                         useBiometricButton,
@@ -87,6 +88,7 @@ final class LogInView: UIView {
         self.backgroundColor = .white
         addGestureRecognizers()
         configureUI()
+        configureViewForUITests()
     }
     
     required init?(coder: NSCoder) {
@@ -127,6 +129,10 @@ final class LogInView: UIView {
         addGestureRecognizer(tap)
     }
     
+    private func configureViewForUITests() {
+        accessibilityIdentifier = "logInScreenView"
+    }
+
     private func configureUI() {
         let textFieldsStackView = UIStackView(arrangedSubviews: [loginTextField,
                                                                  passwordTextField ],
