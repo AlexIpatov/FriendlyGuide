@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "6F3E6750-295D-43EC-95A2-5E0B089CCE1B",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:FriendlyGuide.xcodeproj",
+          "identifier" : "2150FEB2265AB9070058FA89",
+          "name" : "FriendlyGuide"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:FriendlyGuide.xcodeproj",
+      "identifier" : "2150FEB2265AB9070058FA89",
+      "name" : "FriendlyGuide"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:FriendlyGuide.xcodeproj",
+        "identifier" : "2150FEC8265AB9090058FA89",
+        "name" : "FriendlyGuideTests"
+      }
+    }
+  ],
+  "version" : 1
+}

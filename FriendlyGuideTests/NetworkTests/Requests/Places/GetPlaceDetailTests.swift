@@ -11,11 +11,10 @@ import XCTest
 class GetPlaceDetailTests: XCTestCase {
     let encoder = URLPathParameterEncoder()
     let endPoint = PlaceDetailResource(id: 1)
-    let model = PlaceDetail(title: "mock", address: nil, bodyText: nil,
-                            description: nil, timetable: nil,
-                            phone: nil, coords: nil, subway: nil,
-                            images: [],
-                            isClosed: nil, categories: nil , siteUrl: nil)
+    let model = PlaceDetail(title: "mock", placeDescription: "", firstSubtitle: "", boolSubtitle: false,
+                            images: [], bodyText: "", secondSubtitle: nil, address: "", phone: "",
+                            coords: Coordinates(lat: 0.0, lon: 0.0), subway: "", categories: [],
+                            siteUrl: "")
     let url = URL(string:"https://kudago.com/public-api/v1.4/places/1?lang=ru&fields=title,body_text,coords,phone,address,timetable,subway,coords,description,images,categories,is_closed,site_url&expand=place&text_format=text")
  
     func testGetPlaceDetail() throws {

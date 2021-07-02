@@ -8,7 +8,6 @@
 import Foundation
 
 struct PlaceDetail: Codable, Hashable {
-    
     private let title: String
     private let placeDescription: String?
     private let firstSubtitle: String?
@@ -33,6 +32,24 @@ struct PlaceDetail: Codable, Hashable {
         case coords, subway, images
         case boolSubtitle = "is_closed"
         case categories
+    }
+    
+    init(title: String, placeDescription: String?, firstSubtitle: String?, boolSubtitle: Bool?,
+         images: [Image]?, bodyText: String?, secondSubtitle: String?, address: String?, phone: String?,
+         coords: Coordinates?, subway: String?, categories: [String]?, siteUrl: String?) {
+        self.title = title
+        self.placeDescription = placeDescription
+        self.firstSubtitle = firstSubtitle
+        self.boolSubtitle = boolSubtitle
+        self.images = images
+        self.bodyText = bodyText
+        self.secondSubtitle = secondSubtitle
+        self.address = address
+        self.phone = phone
+        self.coords = coords
+        self.subway = subway
+        self.categories = categories
+        self.siteUrl = siteUrl
     }
 }
 

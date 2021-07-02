@@ -10,12 +10,7 @@ import XCTest
 class FriendlyGuideUITests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
 
     override func tearDownWithError() throws {
@@ -23,20 +18,42 @@ class FriendlyGuideUITests: XCTestCase {
     }
 
     func testExample() throws {
-        // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
+        
+        let logInButton = app.buttons["fastLogInButton"].firstMatch
+        XCTAssertTrue(logInButton.isHittable, "\(app.debugDescription)")
+        logInButton.tap()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        let travelScreenView = app.otherElements["travelScreenView"].firstMatch
+        XCTAssertTrue(travelScreenView.waitForExistence(timeout: 10))
+        
+        let mapScreenTabBarItem = app.tabBars.buttons["mapScreenTabBarItem"].firstMatch
+        XCTAssertTrue(mapScreenTabBarItem.isHittable, "\(app.debugDescription)")
+        XCTAssertTrue(mapScreenTabBarItem.waitForExistence(timeout: 10))
+        mapScreenTabBarItem.tap()
+            
+        let mapScreenView = app.otherElements["mapScreenView"].firstMatch
+        XCTAssertTrue(mapScreenView.waitForExistence(timeout: 10))
+        
+        let zoomInMapButton = app.buttons["zoomInMapButton"].firstMatch
+        XCTAssertTrue(zoomInMapButton.isHittable, "\(app.debugDescription)")
+        XCTAssertTrue(zoomInMapButton.waitForExistence(timeout: 10))
+        zoomInMapButton.tap()
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        let zoomOutMapButton = app.buttons["zoomOutMapButton"].firstMatch
+        XCTAssertTrue(zoomOutMapButton.isHittable, "\(app.debugDescription)")
+        XCTAssertTrue(zoomOutMapButton.waitForExistence(timeout: 10))
+        zoomOutMapButton.tap()
+        
+        let startTrackingLocationButton = app.buttons["startTrackingLocationButton"].firstMatch
+        XCTAssertTrue(startTrackingLocationButton.isHittable, "\(app.debugDescription)")
+        XCTAssertTrue(startTrackingLocationButton.waitForExistence(timeout: 30))
+        startTrackingLocationButton.tap()
+      
+        let showCurrentLocationButton = app.buttons["showCurrentLocationButton"].firstMatch
+        XCTAssertTrue(showCurrentLocationButton.isHittable, "\(app.debugDescription)")
+        XCTAssertTrue(showCurrentLocationButton.waitForExistence(timeout: 10))
+        showCurrentLocationButton.tap()
     }
 }

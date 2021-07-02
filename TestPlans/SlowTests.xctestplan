@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "73285840-68CE-40C8-A57B-AAB46D4AD72B",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:FriendlyGuide.xcodeproj",
+        "identifier" : "2150FED3265AB9090058FA89",
+        "name" : "FriendlyGuideUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

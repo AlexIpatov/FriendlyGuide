@@ -120,11 +120,23 @@ class MapScreenView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configureViewForUITests()
         configureUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureViewForUITests() {
+        accessibilityIdentifier = "mapScreenView"
+        findPlaceOrEventButton.accessibilityIdentifier = "findPlaceOrEventButton"
+        buildingRouteButton.accessibilityIdentifier = "buildingRouteButton"
+        clearRouteButton.accessibilityIdentifier = "clearRouteButton"
+        zoomInMapButton.accessibilityIdentifier = "zoomInMapButton"
+        zoomOutMapButton.accessibilityIdentifier = "zoomOutMapButton"
+        startTrackingLocationButton.accessibilityIdentifier = "startTrackingLocationButton"
+        showCurrentLocationButton.accessibilityIdentifier = "showCurrentLocationButton"
     }
     
     func configureUI() {
