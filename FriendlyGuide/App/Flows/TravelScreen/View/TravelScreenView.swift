@@ -26,6 +26,8 @@ class TravelScreenView: UIView {
         addSubview(collectionView)
         return collectionView
     }()
+    // MARK: - Properties
+    private let contentInsets = NSDirectionalEdgeInsets.init(top: 10, leading: 5, bottom: 5, trailing: 5)
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -36,9 +38,11 @@ class TravelScreenView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK: - UITestsIdentifiers
     func configureViewForUITests() {
         accessibilityIdentifier = "travelScreenView"
+        cityNameView.accessibilityIdentifier = "cityNameView"
+        collectionView.accessibilityIdentifier = "travelCollectionView"
     }
 }
 // MARK: - Set up compositional layout
@@ -74,7 +78,7 @@ extension TravelScreenView {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 20
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 10, leading: 5, bottom: 0, trailing: 5)
+        section.contentInsets = contentInsets
         section.orthogonalScrollingBehavior = .continuous
         let sectionHeader = createSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
@@ -90,7 +94,7 @@ extension TravelScreenView {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 20
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 10, leading: 5, bottom: 0, trailing: 5)
+        section.contentInsets = contentInsets
         section.orthogonalScrollingBehavior = .continuous
         let sectionHeader = createSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
@@ -106,7 +110,7 @@ extension TravelScreenView {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 20
-        section.contentInsets = NSDirectionalEdgeInsets.init(top: 10, leading: 5, bottom: 0, trailing: 5)
+        section.contentInsets = contentInsets
         let sectionHeader = createSectionHeader()
         section.boundarySupplementaryItems = [sectionHeader]
         return section

@@ -191,7 +191,6 @@ extension TravelScreenViewController {
     }
     @objc func cityNameViewTapped() {
         let cityVC = CitiesViewController(requestFactory: requestFactory)
-        cityVC.modalPresentationStyle = .fullScreen
         cityVC.selectionDelegate = self
         present(cityVC, animated: true, completion: nil)
     }

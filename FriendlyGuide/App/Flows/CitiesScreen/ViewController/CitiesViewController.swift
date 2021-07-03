@@ -3,7 +3,7 @@
 //  FriendlyGuide
 //
 //  Created by Александр Ипатов on 25.05.2021.
-//CityName(slug: "online", name: "Онлайн")
+//
 
 import UIKit
 
@@ -13,15 +13,7 @@ class CitiesViewController: UIViewController {
         return CitiesView()
     }()
     // MARK: - Properties
-    private var cities = [CityName]() {
-        didSet {
-            DispatchQueue.main.async {
-            // Remove "online" from cities
-                self.cities.removeAll {$0.slug == "online"}
-                self.citiesScreenView.tableView.reloadData()
-            }
-        }
-    }
+    private var cities = [CityName]()
     var requestFactory: RequestFactory
     weak var selectionDelegate: CitiesViewControllerDelegate?
     // MARK: - Init
@@ -41,7 +33,6 @@ class CitiesViewController: UIViewController {
         super.viewDidLoad()
         configureViewController()
         setupTableView()
-        setupButtonsTargets()
         requestData()
     }
     
@@ -69,6 +60,9 @@ class CitiesViewController: UIViewController {
                 switch response {
                 case .success(let cities):
                     self.cities = cities
+                    self.cities.removeAll {$0.slug == "online"}
+                    self.citiesScreenView.tableView.reloadData()
+                    print(cities)
                 case .failure(let error):
                     self.showAlert(with: "Ошибка!",
                                    and: error.localizedDescription)
@@ -97,13 +91,5 @@ extension CitiesViewController: UITableViewDelegate {
         let selectedCity = cities[indexPath.row]
         selectionDelegate?.selectCity(city: selectedCity)
         dismiss(animated: true, completion: nil)
-    }
-}
-//MARK: - Actions
-extension CitiesViewController {
-    private func setupButtonsTargets() {
-        citiesScreenView.canсelButton.addTarget(self,
-                                                 action: #selector(canсelButtonTapped),
-                                                 for: .touchUpInside)
     }
 }
