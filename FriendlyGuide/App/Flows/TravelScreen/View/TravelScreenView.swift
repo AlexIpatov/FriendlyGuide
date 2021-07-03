@@ -27,7 +27,7 @@ class TravelScreenView: UIView {
         return collectionView
     }()
     // MARK: - Properties
-    private let contentInsets = NSDirectionalEdgeInsets.init(top: 10, leading: 5, bottom: 7, trailing: 5)
+    private let contentInsets = NSDirectionalEdgeInsets.init(top: 10, leading: 5, bottom: 5, trailing: 5)
 
     // MARK: - Init
     override init(frame: CGRect) {
@@ -38,9 +38,11 @@ class TravelScreenView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    // MARK: - UITestsIdentifiers
     func configureViewForUITests() {
         accessibilityIdentifier = "travelScreenView"
+        cityNameView.accessibilityIdentifier = "cityNameView"
+        collectionView.accessibilityIdentifier = "travelCollectionView"
     }
 }
 // MARK: - Set up compositional layout

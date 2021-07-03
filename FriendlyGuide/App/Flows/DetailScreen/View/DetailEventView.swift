@@ -24,9 +24,15 @@ class DetailEventView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configureViewForUITests()
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    // MARK: - UITestsIdentifiers
+    func configureViewForUITests() {
+        accessibilityIdentifier = "detailView"
+        collectionView.accessibilityIdentifier = "detailCollectionView"
     }
 }
 // MARK: - Setup layout
