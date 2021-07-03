@@ -25,6 +25,10 @@ class DetailSectionHeader: UICollectionReusableView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    // MARK: - UITestsIdentifiers
+    func configureViewForUITests() {
+        showMoreButton.accessibilityIdentifier = "detailSectionHeaderButton"
+    }
     //MARK: - Configuration Methods
     func configureUI() {
         addSubview(showMoreButton)
