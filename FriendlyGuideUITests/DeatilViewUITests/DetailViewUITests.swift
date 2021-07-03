@@ -9,13 +9,6 @@ import XCTest
 
 class DetailViewUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        continueAfterFailure = false
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
     func testGoToDetail() throws {
         let app = XCUIApplication()
         app.launch()
@@ -23,13 +16,12 @@ class DetailViewUITests: XCTestCase {
         XCTAssertTrue(logInButton.isHittable, "\(app.debugDescription)")
         logInButton.tap()
         let travelScreenView = app.otherElements["travelScreenView"].firstMatch
-        XCTAssertTrue(travelScreenView.waitForExistence(timeout: 10))
-
+        XCTAssertTrue(travelScreenView.waitForExistence(timeout: 20))
         let travelScreenCollectionView = app.collectionViews["travelCollectionView"].firstMatch
 
-        travelScreenCollectionView.cells.element(boundBy: 0)
+        travelScreenCollectionView.cells.element(boundBy: 0).tap()
         let detailView = app.otherElements["detailView"].firstMatch
-
+        XCTAssertTrue(detailView.waitForExistence(timeout: 10))
     }
 
 }
