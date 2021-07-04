@@ -8,20 +8,20 @@
 import Foundation
 
 struct PlaceDetail: Codable, Hashable {
-    private let title: String
-    private let placeDescription: String?
-    private let firstSubtitle: String?
-    private let boolSubtitle: Bool?
-    private let images: [Image]?
-    private let bodyText: String?
-    private var secondSubtitle: String?
+    let title: String
+    let placeDescription: String?
+    let firstSubtitle: String?
+    let boolSubtitle: Bool?
+    let images: [Image]?
+    let bodyText: String?
+    var secondSubtitle: String?
     
-    private let address: String?
-    private let phone: String?
-    private let coords: Coordinates?
-    private let subway: String?
-    private let categories: [String]?
-    private let siteUrl: String?
+    let address: String?
+    let phone: String?
+    let coords: Coordinates?
+    let subway: String?
+    let categories: [String]?
+    let siteUrl: String?
 
     enum CodingKeys: String, CodingKey {
         case title, address, phone
@@ -34,23 +34,6 @@ struct PlaceDetail: Codable, Hashable {
         case categories
     }
     
-    init(title: String, placeDescription: String?, firstSubtitle: String?, boolSubtitle: Bool?,
-         images: [Image]?, bodyText: String?, secondSubtitle: String?, address: String?, phone: String?,
-         coords: Coordinates?, subway: String?, categories: [String]?, siteUrl: String?) {
-        self.title = title
-        self.placeDescription = placeDescription
-        self.firstSubtitle = firstSubtitle
-        self.boolSubtitle = boolSubtitle
-        self.images = images
-        self.bodyText = bodyText
-        self.secondSubtitle = secondSubtitle
-        self.address = address
-        self.phone = phone
-        self.coords = coords
-        self.subway = subway
-        self.categories = categories
-        self.siteUrl = siteUrl
-    }
 }
 
 extension PlaceDetail: DetailScreenRepresentable {

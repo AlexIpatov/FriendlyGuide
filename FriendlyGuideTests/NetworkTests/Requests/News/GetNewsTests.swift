@@ -13,9 +13,7 @@ class GetNewsTests: XCTestCase {
     class GetNewsTests: XCTestCase {
         
         let endPoint = NewsListResource(cityTag: "spb")
-        let model = NewsList(count: 10, next: nil, previous: nil,
-                             news: [News(id: 1, publicationDate: 10,
-                                         title: "news", images: [], description: nil)])
+        let model: NewsList = .fixture()
         let encoder = URLPathParameterEncoder()
         let url = URL(string: "https://kudago.com/public-api/v1.4/news?lang=ru&location=spb&actual_only=true&fields=id,publication_date,title,description,images&text_format=text")
         

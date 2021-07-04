@@ -9,16 +9,16 @@ import Foundation
 
 struct NewsDetail: Codable, Hashable {
     
-    private let title: String
-    private let newsDescription: String?
-    private let bodyText: String?
-    private let images: [Image]?
-    private var firstSubtitle: String?
-    private var boolSubtitle: Bool?
-    private let publicationDate: Date
-    private let siteURL: String
+    let title: String
+    let newsDescription: String?
+    let bodyText: String?
+    let images: [Image]?
+    var firstSubtitle: String?
+    var boolSubtitle: Bool?
+    let publicationDate: Date
+    let siteURL: String
     let shortPlace: EventPlace?
-    private var secondSubtitle: String? {
+    var secondSubtitle: String? {
         return publicationDate.goToSimpleDate()
     }
     
@@ -32,19 +32,6 @@ struct NewsDetail: Codable, Hashable {
         case siteURL = "site_url"
     }
     
-    init(title: String, newsDescription: String?, bodyText: String?, images: [Image]?,
-         firstSubtitle: String?, boolSubtitle: Bool?, publicationDate: Date, siteURL: String,
-         shortPlace: EventPlace?) {
-        self.title = title
-        self.newsDescription = newsDescription
-        self.bodyText = bodyText
-        self.images = images
-        self.firstSubtitle = firstSubtitle
-        self.boolSubtitle = boolSubtitle
-        self.publicationDate = publicationDate
-        self.siteURL = siteURL
-        self.shortPlace = shortPlace
-    }
 }
 
 extension NewsDetail: DetailScreenRepresentable {

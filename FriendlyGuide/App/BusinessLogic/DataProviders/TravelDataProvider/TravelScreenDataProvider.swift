@@ -11,14 +11,12 @@ import Kingfisher
 class TravelScreenDataProvider{
     
     private let requestFactory: RequestFactory
-    private var travelData: TravelData?
     private let queue = DispatchQueue(label: "Serial queue")
     private let group = DispatchGroup()
     
     init(requestFactory: RequestFactory = .init()) {
         self.requestFactory = requestFactory
     }
-    
 }
 
 extension TravelScreenDataProvider: DataProvider {
@@ -37,46 +35,50 @@ extension TravelScreenDataProvider: DataProvider {
         group.enter()
         queue.async {
             eventsFactory.load(cityTag: cityTag, actualSince: actualSince) {[weak self] response in
-                        guard let self = self else { return }
-                        switch response {
-                        case.success(let response):
-                            events = response.results
-                            self.group.leave()
-                        case.failure(let error):
-                            completion(.failure(error))
-                        }
-                    }
+                guard let self = self else { return }
+                switch response {
+                case.success(let response):
+                    events = response.results
+                case.failure(let error):
+                    completion(.failure(error))
+                }
+                self.group.leave()
+            }
         }
         group.enter()
         queue.async {
             placesFactory.load(cityTag: cityTag, showingSince: showingSince) {[weak self] response in
-                        guard let self = self else { return }
-                        switch response {
-                        case.success(let response):
-                            places = response.places
-                            self.group.leave()
-                        case.failure(let error):
-                            completion(.failure(error))
-                        }
-                    }
+                guard let self = self else { return }
+                switch response {
+                case.success(let response):
+                    places = response.places
+                case.failure(let error):
+                    completion(.failure(error))
+                }
+                self.group.leave()
+            }
         }
         group.enter()
         queue.async {
             newsFactory.load(cityTag: cityTag) {[weak self] response in
-                        guard let self = self else { return }
-                        switch response {
-                        case.success(let response):
-                            news = response.news
-                            self.group.leave()
-                        case.failure(let error):
-                            completion(.failure(error))
-                        }
-                    }
+                guard let self = self else { return }
+                switch response {
+                case.success(let response):
+                    news = response.news
+                case.failure(let error):
+                    completion(.failure(error))
+                }
+                self.group.leave()
+            }
         }
         
         group.notify(queue: queue) {
+            if !events.isEmpty && !news.isEmpty && !places.isEmpty {
                 completion(.success((events, news, places)))
+            } else {
+                completion(.failure(NetworkingError.requestFailed))
+            }
+        }
     }
-}
-
+    
 }
