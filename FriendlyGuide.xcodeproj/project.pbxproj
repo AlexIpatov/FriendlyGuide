@@ -573,7 +573,7 @@
 				4AA2C29E26907B50006830FD /* CitiesVIewUITests */,
 				4AA2C29D26907B38006830FD /* DeatilViewUITests */,
 				4AA2C29A269064B1006830FD /* TravelViewUITests */,
-				2150FED8265AB9090058FA89 /* MapScreenUITests.swift */,
+				C5B9D33A2691B03F00CB72F1 /* MapScreenUITests */,
 				2150FEDA265AB9090058FA89 /* Info.plist */,
 			);
 			path = FriendlyGuideUITests;
@@ -1102,6 +1102,14 @@
 				C5B9D339268F05AC00CB72F1 /* SlowTests.xctestplan */,
 			);
 			path = TestPlans;
+			sourceTree = "<group>";
+		};
+		C5B9D33A2691B03F00CB72F1 /* MapScreenUITests */ = {
+			isa = PBXGroup;
+			children = (
+				2150FED8265AB9090058FA89 /* MapScreenUITests.swift */,
+			);
+			path = MapScreenUITests;
 			sourceTree = "<group>";
 		};
 		C5C316512660E3CA00518405 /* Protocols */ = {
