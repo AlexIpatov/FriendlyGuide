@@ -1,5 +1,5 @@
 //
-//  FriendlyGuideUITests.swift
+//  MapScreenUITests.swift
 //  FriendlyGuideUITests
 //
 //  Created by Валерий Макрогузов on 23.05.2021.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-class FriendlyGuideUITests: XCTestCase {
+class MapScreenUITests: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false

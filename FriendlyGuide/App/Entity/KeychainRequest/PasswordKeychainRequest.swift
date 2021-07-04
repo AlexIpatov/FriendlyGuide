@@ -9,7 +9,7 @@ import Foundation
 
 struct PasswordKeychainRequest: KeychainRequest {
     var accountName: String {
-        "obryga.corp.FriendlyGuide.user_data_password"
+        "com.FriendlyGuide.user_data_password"
     }
     
     var key: String {
