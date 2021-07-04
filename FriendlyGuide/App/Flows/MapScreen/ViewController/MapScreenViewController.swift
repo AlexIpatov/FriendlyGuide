@@ -21,7 +21,7 @@ class MapScreenViewController: UIViewController {
     
     //MARK: - Properties
     private var locationManager = LocationManager.instance
-    private var dataProvider: DataProvider
+    private var dataProvider: MapDataProvider
     
     private var initialRegion = MKCoordinateRegion()
     private let initialLatitudinalMetersForPresenting: CLLocationDegrees = 5000
@@ -50,7 +50,7 @@ class MapScreenViewController: UIViewController {
     private let transition = SliderTransition()
     
     //MARK: - Init
-    init(dataProvider: DataProvider) {
+    init(dataProvider: MapDataProvider) {
         self.dataProvider = dataProvider
         super.init(nibName: nil, bundle: nil)
     }
@@ -125,7 +125,7 @@ class MapScreenViewController: UIViewController {
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 switch response {
-                case .success((let events, _, let places)):
+                case .success((let events, let places)):
                     self.createAllEntitiesForAnnotationArray(placesArray: places, eventsArray: events)
                     self.showAllAnnotations()
                     self.configureFindPlaceOrEventButtonWhenDataLoaded()

@@ -138,12 +138,14 @@
 		C91A263A2691BC6B0033613E /* TravelDataProvierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A26392691BC6B0033613E /* TravelDataProvierTests.swift */; };
 		C91A263C2691C0EC0033613E /* News+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A263B2691C0EC0033613E /* News+Fixture.swift */; };
 		C91A263E2691C35D0033613E /* NewsList+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A263D2691C35D0033613E /* NewsList+Fixture.swift */; };
+		C91A26402691D40A0033613E /* TravelDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A263F2691D40A0033613E /* TravelDataProvider.swift */; };
+		C91A26432691D5B20033613E /* MapScreenDataProvier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A26422691D5B10033613E /* MapScreenDataProvier.swift */; };
 		C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE77265E7DC60052C076 /* AbstractRequestFactory.swift */; };
 		C91CEE86265E7DC70052C076 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7B265E7DC60052C076 /* ParameterEncoding.swift */; };
 		C91CEE89265E7DC70052C076 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7F265E7DC60052C076 /* NetworkErrors.swift */; };
 		C93263C52678E93800C99786 /* GetPlaceDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93263C42678E93800C99786 /* GetPlaceDetailTests.swift */; };
 		C967AED126679B5B00BAB62F /* TravelScreenDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967AECE26679B5B00BAB62F /* TravelScreenDataProvider.swift */; };
-		C967AED226679B5B00BAB62F /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967AED026679B5B00BAB62F /* DataProvider.swift */; };
+		C967AED226679B5B00BAB62F /* MapDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967AED026679B5B00BAB62F /* MapDataProvider.swift */; };
 		C967AED526679C1100BAB62F /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C967AED426679C1100BAB62F /* RequestFactory.swift */; };
 		C9696E87267238A2006B97A7 /* EventDetailURLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9696E86267238A2006B97A7 /* EventDetailURLTests.swift */; };
 		C9696E8A267245D6006B97A7 /* ParameterEncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9696E89267245D6006B97A7 /* ParameterEncoderTests.swift */; };
@@ -369,6 +371,8 @@
 		C91A26392691BC6B0033613E /* TravelDataProvierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDataProvierTests.swift; sourceTree = "<group>"; };
 		C91A263B2691C0EC0033613E /* News+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "News+Fixture.swift"; sourceTree = "<group>"; };
 		C91A263D2691C35D0033613E /* NewsList+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsList+Fixture.swift"; sourceTree = "<group>"; };
+		C91A263F2691D40A0033613E /* TravelDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDataProvider.swift; sourceTree = "<group>"; };
+		C91A26422691D5B10033613E /* MapScreenDataProvier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenDataProvier.swift; sourceTree = "<group>"; };
 		C91CEE77265E7DC60052C076 /* AbstractRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRequestFactory.swift; sourceTree = "<group>"; };
 		C91CEE78265E7DC60052C076 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		C91CEE79265E7DC60052C076 /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
@@ -377,7 +381,7 @@
 		C91CEE7F265E7DC60052C076 /* NetworkErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		C93263C42678E93800C99786 /* GetPlaceDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPlaceDetailTests.swift; sourceTree = "<group>"; };
 		C967AECE26679B5B00BAB62F /* TravelScreenDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelScreenDataProvider.swift; sourceTree = "<group>"; };
-		C967AED026679B5B00BAB62F /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		C967AED026679B5B00BAB62F /* MapDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDataProvider.swift; sourceTree = "<group>"; };
 		C967AED426679C1100BAB62F /* RequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
 		C9696E86267238A2006B97A7 /* EventDetailURLTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailURLTests.swift; sourceTree = "<group>"; };
 		C9696E89267245D6006B97A7 /* ParameterEncoderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoderTests.swift; sourceTree = "<group>"; };
@@ -1359,6 +1363,14 @@
 			path = DataProvidersTests;
 			sourceTree = "<group>";
 		};
+		C91A26412691D5840033613E /* MapScreenDataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				C91A26422691D5B10033613E /* MapScreenDataProvier.swift */,
+			);
+			path = MapScreenDataProvider;
+			sourceTree = "<group>";
+		};
 		C91CEE70265E7DC60052C076 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -1399,25 +1411,27 @@
 		C967AECC26679B5B00BAB62F /* DataProviders */ = {
 			isa = PBXGroup;
 			children = (
+				C91A26412691D5840033613E /* MapScreenDataProvider */,
 				C9E9B8242680961C008B70DD /* DetailScreenDataProvider */,
-				C967AECD26679B5B00BAB62F /* TravelDataProvider */,
+				C967AECD26679B5B00BAB62F /* TravelScreenDataProvider */,
 				C967AECF26679B5B00BAB62F /* Protocols */,
 			);
 			path = DataProviders;
 			sourceTree = "<group>";
 		};
-		C967AECD26679B5B00BAB62F /* TravelDataProvider */ = {
+		C967AECD26679B5B00BAB62F /* TravelScreenDataProvider */ = {
 			isa = PBXGroup;
 			children = (
 				C967AECE26679B5B00BAB62F /* TravelScreenDataProvider.swift */,
 			);
-			path = TravelDataProvider;
+			path = TravelScreenDataProvider;
 			sourceTree = "<group>";
 		};
 		C967AECF26679B5B00BAB62F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				C967AED026679B5B00BAB62F /* DataProvider.swift */,
+				C967AED026679B5B00BAB62F /* MapDataProvider.swift */,
+				C91A263F2691D40A0033613E /* TravelDataProvider.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -2116,6 +2130,7 @@
 				C5C3165F2660E41C00518405 /* UIViewController + Extensions.swift in Sources */,
 				C96B94AC26612079007AD0DA /* News.swift in Sources */,
 				4A7F8D2326662CCF00C69FBD /* DetailEventView.swift in Sources */,
+				C91A26432691D5B20033613E /* MapScreenDataProvier.swift in Sources */,
 				C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */,
 				C5C316F42660F6AC00518405 /* SectionHeader.swift in Sources */,
 				21ADF500266511EB00007D34 /* RegisterViewController.swift in Sources */,
@@ -2128,6 +2143,7 @@
 				21D0E4DD267E448A008B4451 /* Message.swift in Sources */,
 				21B515D326862A920087A84D /* DialogActivator.swift in Sources */,
 				C5C3165E2660E41C00518405 /* UITextField + Extensions.swift in Sources */,
+				C91A26402691D40A0033613E /* TravelDataProvider.swift in Sources */,
 				C967AED526679C1100BAB62F /* RequestFactory.swift in Sources */,
 				C96B94A026612068007AD0DA /* DayEvent.swift in Sources */,
 				C986CF6F2683868A000C5017 /* DetailEntity.swift in Sources */,
@@ -2197,7 +2213,7 @@
 				4A039F56267B5664005061AB /* MoreContentView.swift in Sources */,
 				4A7D3ABA26625080000C4298 /* AuthValidators.swift in Sources */,
 				C5C316612660E41C00518405 /* UIImageView + Extensions.swift in Sources */,
-				C967AED226679B5B00BAB62F /* DataProvider.swift in Sources */,
+				C967AED226679B5B00BAB62F /* MapDataProvider.swift in Sources */,
 				C96B94772661204E007AD0DA /* Coordinates.swift in Sources */,
 				C5C316712660E62200518405 /* SliderTransition.swift in Sources */,
 				C5C316F32660F6AC00518405 /* SelectCityCell.swift in Sources */,

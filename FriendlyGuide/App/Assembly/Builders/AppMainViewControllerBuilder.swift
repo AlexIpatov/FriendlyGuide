@@ -16,6 +16,10 @@ final class AppMainViewControllerBuilder {
         TravelScreenDataProvider()
     }()
     
+    private lazy var mapDataProvider: MapScreenDataProvider = {
+        MapScreenDataProvider()
+    }()
+    
     private let requestFactory: RequestFactory
     
     init(requestFactory: RequestFactory) {
@@ -25,6 +29,7 @@ final class AppMainViewControllerBuilder {
     func build() -> UIViewController {
         TabBarController(requestFactory: requestFactory,
                          userSettings: userSettings,
-                         dataProvider: travelDataProvider)
+                         travelDataProvider: travelDataProvider,
+                         mapDataProvider: mapDataProvider)
     }
 }

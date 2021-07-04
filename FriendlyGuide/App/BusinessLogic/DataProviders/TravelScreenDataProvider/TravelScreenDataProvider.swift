@@ -19,7 +19,7 @@ class TravelScreenDataProvider{
     }
 }
 
-extension TravelScreenDataProvider: DataProvider {
+extension TravelScreenDataProvider: TravelDataProvider {
     
     func getData(cityTag: String,
                  actualSince: String,
