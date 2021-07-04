@@ -25,7 +25,7 @@ extension MapScreenDataProvider: MapDataProvider {
                  showingSince: String,
                  withCompletion completion: @escaping (Result<MapScreenData, NetworkingError>) -> Void) {
         let placesFactory = requestFactory.makeGetPlacesFactory()
-        let eventsFactory = requestFactory.makeGetEventsListFactory()
+        let eventsFactory = requestFactory.makeGetExpEventsListFactory()
         var events = [Event]()
         var places = [Place]()
         

@@ -1,13 +1,13 @@
 //
-//  GetEventsListFactory.swift
+//  GetExpandedEventsListFactory.swift
 //  FriendlyGuide
 //
-//  Created by Alexander Pelevinov on 27.05.2021.
+//  Created by Alexander Pelevinov on 04.07.2021.
 //
 
 import Foundation
 
-protocol GetEventsListFactory {
+protocol GetExpandedEventsListFactory {
     func load(cityTag: String,
               actualSince: String,
               completionHandler: @escaping (Result<EventsList, NetworkingError>) -> Void)

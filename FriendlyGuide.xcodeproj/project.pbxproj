@@ -140,6 +140,9 @@
 		C91A263E2691C35D0033613E /* NewsList+Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A263D2691C35D0033613E /* NewsList+Fixture.swift */; };
 		C91A26402691D40A0033613E /* TravelDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A263F2691D40A0033613E /* TravelDataProvider.swift */; };
 		C91A26432691D5B20033613E /* MapScreenDataProvier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A26422691D5B10033613E /* MapScreenDataProvier.swift */; };
+		C91A26472691D9840033613E /* GetExpandedEventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A26462691D9830033613E /* GetExpandedEventsList.swift */; };
+		C91A26492691D9AC0033613E /* GetExpandedEventsListFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A26482691D9AC0033613E /* GetExpandedEventsListFactory.swift */; };
+		C91A264B2691DB2D0033613E /* ExpEventsListResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91A264A2691DB2D0033613E /* ExpEventsListResource.swift */; };
 		C91CEE83265E7DC70052C076 /* AbstractRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE77265E7DC60052C076 /* AbstractRequestFactory.swift */; };
 		C91CEE86265E7DC70052C076 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7B265E7DC60052C076 /* ParameterEncoding.swift */; };
 		C91CEE89265E7DC70052C076 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91CEE7F265E7DC60052C076 /* NetworkErrors.swift */; };
@@ -373,6 +376,9 @@
 		C91A263D2691C35D0033613E /* NewsList+Fixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NewsList+Fixture.swift"; sourceTree = "<group>"; };
 		C91A263F2691D40A0033613E /* TravelDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelDataProvider.swift; sourceTree = "<group>"; };
 		C91A26422691D5B10033613E /* MapScreenDataProvier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenDataProvier.swift; sourceTree = "<group>"; };
+		C91A26462691D9830033613E /* GetExpandedEventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExpandedEventsList.swift; sourceTree = "<group>"; };
+		C91A26482691D9AC0033613E /* GetExpandedEventsListFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetExpandedEventsListFactory.swift; sourceTree = "<group>"; };
+		C91A264A2691DB2D0033613E /* ExpEventsListResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpEventsListResource.swift; sourceTree = "<group>"; };
 		C91CEE77265E7DC60052C076 /* AbstractRequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractRequestFactory.swift; sourceTree = "<group>"; };
 		C91CEE78265E7DC60052C076 /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
 		C91CEE79265E7DC60052C076 /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
@@ -1371,6 +1377,15 @@
 			path = MapScreenDataProvider;
 			sourceTree = "<group>";
 		};
+		C91A26442691D9450033613E /* ExpandedList */ = {
+			isa = PBXGroup;
+			children = (
+				C91A26462691D9830033613E /* GetExpandedEventsList.swift */,
+				C91A26482691D9AC0033613E /* GetExpandedEventsListFactory.swift */,
+			);
+			path = ExpandedList;
+			sourceTree = "<group>";
+		};
 		C91CEE70265E7DC60052C076 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -1504,6 +1519,7 @@
 			children = (
 				C96B947A2661205E007AD0DA /* EventDetailResource.swift */,
 				C96B947B2661205E007AD0DA /* EventsListResource.swift */,
+				C91A264A2691DB2D0033613E /* ExpEventsListResource.swift */,
 			);
 			path = EventsResource;
 			sourceTree = "<group>";
@@ -1787,6 +1803,7 @@
 		C9DEE2022666A36200C545CF /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				C91A26442691D9450033613E /* ExpandedList */,
 				C9DEE2032666A36200C545CF /* EventsList */,
 				C9DEE2062666A36200C545CF /* EventDetail */,
 			);
@@ -2174,6 +2191,7 @@
 				C96B947326612019007AD0DA /* CityName.swift in Sources */,
 				C96B94822661205E007AD0DA /* CityDetailResource.swift in Sources */,
 				C91CEE86265E7DC70052C076 /* ParameterEncoding.swift in Sources */,
+				C91A264B2691DB2D0033613E /* ExpEventsListResource.swift in Sources */,
 				218835852676653800136BD8 /* MessagesSender.swift in Sources */,
 				4A7D3ACA2662898A000C4298 /* CitiesViewControllerDelegate.swift in Sources */,
 				21D3EBB226603F59007D01CE /* HttpMethod.swift in Sources */,
@@ -2193,6 +2211,7 @@
 				C5C3165C2660E41C00518405 /* UIFont + Extensions.swift in Sources */,
 				C5C316622660E41C00518405 /* String + Extensions.swift in Sources */,
 				C96B949A26612068007AD0DA /* Image.swift in Sources */,
+				C91A26472691D9840033613E /* GetExpandedEventsList.swift in Sources */,
 				2125EF6E26666ABA00F73EB4 /* TimeredErrorView.swift in Sources */,
 				C5C3167A2660E7BB00518405 /* OnMapSliderTableViewCell.swift in Sources */,
 				C96B94B72661208D007AD0DA /* PlaceImage.swift in Sources */,
@@ -2252,6 +2271,7 @@
 				21ADF4FC2665032B00007D34 /* LogInViewController.swift in Sources */,
 				219C231A2671470400D9ED90 /* DialogsLoader.swift in Sources */,
 				C9DEE2152666A36200C545CF /* GetEventDetail.swift in Sources */,
+				C91A26492691D9AC0033613E /* GetExpandedEventsListFactory.swift in Sources */,
 				219F6883267D18C400DEBAA6 /* ChatViewControllerBuilder.swift in Sources */,
 				4A7F8D1F26662CA200C69FBD /* DetailDescriptionCell.swift in Sources */,
 			);
