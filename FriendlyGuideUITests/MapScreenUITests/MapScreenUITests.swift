@@ -55,5 +55,27 @@ class MapScreenUITests: XCTestCase {
         XCTAssertTrue(showCurrentLocationButton.isHittable, "\(app.debugDescription)")
         XCTAssertTrue(showCurrentLocationButton.waitForExistence(timeout: 10))
         showCurrentLocationButton.tap()
+        
+        let findPlaceOrEventButton = app.buttons["findPlaceOrEventButton"].firstMatch
+        XCTAssertTrue(findPlaceOrEventButton.isHittable, "\(app.debugDescription)")
+        XCTAssertTrue(findPlaceOrEventButton.waitForExistence(timeout: 10))
+        findPlaceOrEventButton.tap()
+        
+        let onMapSliderScreenView = app.otherElements["onMapSliderScreenView"].firstMatch
+        XCTAssertTrue(onMapSliderScreenView.waitForExistence(timeout: 10))
+        
+        let placesAndEventsTableView = app.tables["placesAndEventsTableView"].firstMatch
+        placesAndEventsTableView.cells.firstMatch.tap()
+        
+        let buildingRouteButton = app.buttons["buildingRouteButton"].firstMatch
+        XCTAssertTrue(buildingRouteButton.isHittable, "\(app.debugDescription)")
+        XCTAssertTrue(buildingRouteButton.waitForExistence(timeout: 10))
+        buildingRouteButton.tap()
+
+        let clearRouteButton = app.buttons["clearRouteButton"].firstMatch
+        XCTAssertTrue(clearRouteButton.isHittable, "\(app.debugDescription)")
+        XCTAssertTrue(clearRouteButton.waitForExistence(timeout: 10))
+        clearRouteButton.tap()
+
     }
 }

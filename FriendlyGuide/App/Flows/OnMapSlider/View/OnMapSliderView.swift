@@ -51,6 +51,7 @@ class OnMapSliderView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
+        configureViewForUITests()
         configureUI()
     }
     
@@ -59,6 +60,12 @@ class OnMapSliderView: UIView {
     }
     
     //MARK: - Configuration Methods
+    func configureViewForUITests() {
+        accessibilityIdentifier = "onMapSliderScreenView"
+        viewForTable.accessibilityIdentifier = "onMapSliderScreenViewForTableView"
+        placesAndEventsTableView.accessibilityIdentifier = "placesAndEventsTableView"
+    }
+    
     func configureUI() {
         backgroundColor = .white
 
