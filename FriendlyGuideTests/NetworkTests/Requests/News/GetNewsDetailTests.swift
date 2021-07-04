@@ -11,9 +11,7 @@ import XCTest
 class GetNewsDetailTests: XCTestCase {
     let encoder = URLPathParameterEncoder()
     let endPoint = NewsDetailResource(id: 1)
-    let model = NewsDetail(title: "title", newsDescription: "", bodyText: "", images: [],
-                           firstSubtitle: "", boolSubtitle: false, publicationDate: Date(),
-                           siteURL: "url", shortPlace: EventPlace(title: "title", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 0.0, lon: 0.0)))
+    let model: NewsDetail = .fixture()
     let url = URL(string: "https://kudago.com/public-api/v1.4/news/1?lang=ru&expand=place&text_format=text&fields=publication_date,title,description,images,site_url,place,body_text")
 
 //    func testGetNewsDetail() throws {

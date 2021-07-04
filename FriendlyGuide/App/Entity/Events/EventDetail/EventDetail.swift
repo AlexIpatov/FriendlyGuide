@@ -9,21 +9,21 @@ import Foundation
 
 struct EventDetail: Codable, Hashable {
     
-    private let title: String
-    private let eventDescription: String?
-    private let firstSubtitle: String?
-    private let secondSubtitle: String?
-    private let boolSubtitle: Bool?
-    private  let images: [Image]?
+    let title: String
+    let eventDescription: String?
+    let firstSubtitle: String?
+    let secondSubtitle: String?
+    let boolSubtitle: Bool?
+    let images: [Image]?
     let shortPlace: EventPlace?
-    private let bodyText: String?
-    private let dates: [DateElement]
-    private let siteURL: String?
+    let bodyText: String?
+    let dates: [DateElement]
+    let siteURL: String?
 
     enum CodingKeys: String, CodingKey {
         case dates
         case title
-        case eventDescription = "description"
+        case eventDescription = "des"
         case shortPlace = "place"
         case bodyText = "body_text"
         case secondSubtitle
@@ -33,20 +33,6 @@ struct EventDetail: Codable, Hashable {
         case siteURL = "site_url"
     }
     
-    init(title: String, eventDescription: String?, firstSubtitle: String?, secondSubtitle: String?,
-         boolSubtitle: Bool?, images: [Image]?, shortPlace: EventPlace?, bodyText: String?,
-         dates: [DateElement], siteURL: String?) {
-        self.title = title
-        self.eventDescription = eventDescription
-        self.firstSubtitle = firstSubtitle
-        self.secondSubtitle = secondSubtitle
-        self.boolSubtitle = boolSubtitle
-        self.images = images
-        self.shortPlace = shortPlace
-        self.bodyText = bodyText
-        self.dates = dates
-        self.siteURL = siteURL
-    }
 }
 
 extension EventDetail: DetailScreenRepresentable {
