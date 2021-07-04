@@ -9,6 +9,10 @@ import XCTest
 
 class CitiesViewUITests: XCTestCase {
 
+    override func setUpWithError() throws {
+        continueAfterFailure = false
+    }
+
     func testSelectCity() throws {
         let app = XCUIApplication()
         app.launch()
