@@ -99,9 +99,7 @@
 		C58200C8267D43E10040CEBA /* EntityForAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58200C7267D43E10040CEBA /* EntityForAnnotation.swift */; };
 		C5904684265B0AA700231116 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904683265B0AA700231116 /* TabBarController.swift */; };
 		C5904688265B0F6F00231116 /* MapScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904687265B0F6F00231116 /* MapScreenViewController.swift */; };
-		C590468A265B107000231116 /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904689265B107000231116 /* ProfileScreenViewController.swift */; };
 		C5904692265B1A0B00231116 /* MapScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904691265B1A0B00231116 /* MapScreenView.swift */; };
-		C5904698265B271400231116 /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5904697265B271400231116 /* ProfileScreenView.swift */; };
 		C5C316532660E3F100518405 /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C316522660E3F100518405 /* SelfConfiguringCell.swift */; };
 		C5C3165C2660E41C00518405 /* UIFont + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C316552660E41B00518405 /* UIFont + Extensions.swift */; };
 		C5C3165D2660E41C00518405 /* UIButton + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C316562660E41C00518405 /* UIButton + Extensions.swift */; };
@@ -333,9 +331,7 @@
 		C58200C7267D43E10040CEBA /* EntityForAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntityForAnnotation.swift; sourceTree = "<group>"; };
 		C5904683265B0AA700231116 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C5904687265B0F6F00231116 /* MapScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewController.swift; sourceTree = "<group>"; };
-		C5904689265B107000231116 /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
 		C5904691265B1A0B00231116 /* MapScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenView.swift; sourceTree = "<group>"; };
-		C5904697265B271400231116 /* ProfileScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
 		C5B9D338268F057200CB72F1 /* FastTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = FastTests.xctestplan; sourceTree = "<group>"; };
 		C5B9D339268F05AC00CB72F1 /* SlowTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = SlowTests.xctestplan; sourceTree = "<group>"; };
 		C5C316522660E3F100518405 /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
@@ -675,7 +671,6 @@
 				C5904678265B083900231116 /* MapScreen */,
 				C5C316732660E7BB00518405 /* OnMapSlider */,
 				C590467B265B088600231116 /* ChatScreen */,
-				C590467E265B08AF00231116 /* ProfileScreen */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -1080,31 +1075,6 @@
 				21D3EBC326610A62007D01CE /* Models */,
 			);
 			path = ChatScreen;
-			sourceTree = "<group>";
-		};
-		C590467E265B08AF00231116 /* ProfileScreen */ = {
-			isa = PBXGroup;
-			children = (
-				C5904680265B08E200231116 /* View */,
-				C590467F265B08D500231116 /* ViewController */,
-			);
-			path = ProfileScreen;
-			sourceTree = "<group>";
-		};
-		C590467F265B08D500231116 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				C5904689265B107000231116 /* ProfileScreenViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		C5904680265B08E200231116 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C5904697265B271400231116 /* ProfileScreenView.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		C5904681265B0A3800231116 /* TabBarController */ = {
@@ -2220,7 +2190,6 @@
 				C98682DB26725F2F004D38DB /* GetPlaceDetailfactory.swift in Sources */,
 				21421408266128610007A031 /* ChatListViewControllerBuilder.swift in Sources */,
 				C96B94B52661208D007AD0DA /* Place.swift in Sources */,
-				C5904698265B271400231116 /* ProfileScreenView.swift in Sources */,
 				C58200C8267D43E10040CEBA /* EntityForAnnotation.swift in Sources */,
 				21A2E6EC266933FB00254342 /* AuthViewsParametrs.swift in Sources */,
 				C9DEE2142666A36200C545CF /* GetEventDetailFactory.swift in Sources */,

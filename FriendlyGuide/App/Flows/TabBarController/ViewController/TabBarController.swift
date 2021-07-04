@@ -87,18 +87,6 @@ class TabBarController: UITabBarController {
                                       prefersLargeTitles: false)
         viewControllers.append(chatNavigationController)
         
-        //4. ProfileScreen
-        let profileScreenViewController = ProfileScreenViewController()
-        profileScreenViewController.tabBarItem = UITabBarItem(title: "Профиль",
-                                                              image: UIImage(systemName: "person.circle"),
-                                                              selectedImage: UIImage(systemName: "person.circle.fill"))
-        let profileNavigationController = UINavigationController(rootViewController: profileScreenViewController)
-        configureNavigationController(navigationController: profileNavigationController,
-                                      tintColor: .systemBlue,
-                                      barTintColor: .systemGray6,
-                                      prefersLargeTitles: false)
-        viewControllers.append(profileNavigationController)
-        
         return viewControllers
     }
     
