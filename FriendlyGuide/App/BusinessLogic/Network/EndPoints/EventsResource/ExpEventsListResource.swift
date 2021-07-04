@@ -1,13 +1,13 @@
 //
-//  EventsListResource.swift
+//  ExpEventsListResource.swift
 //  FriendlyGuide
 //
-//  Created by Alexander Pelevinov on 27.05.2021.
+//  Created by Alexander Pelevinov on 04.07.2021.
 //
 
 import Foundation
 
-struct EventsListResource: EndPointType {
+struct ExpEventsListResource: EndPointType {
     typealias ModelType = EventsList
     var host: BaseURL = .kudago
     var path: Path = .events
@@ -20,7 +20,8 @@ struct EventsListResource: EndPointType {
             URLQueryItem(name: "lang", value: "ru"),
             URLQueryItem(name: "location", value: cityTag),
             URLQueryItem(name: "actual_since", value: actualSince),
-            URLQueryItem(name: "fields", value: "id,title,images,dates")
+            URLQueryItem(name: "expand", value: "place"),
+            URLQueryItem(name: "fields", value: "id,title,images,dates,place")
         ]
     }
 }

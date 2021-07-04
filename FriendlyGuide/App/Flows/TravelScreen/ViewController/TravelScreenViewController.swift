@@ -15,7 +15,7 @@ class TravelScreenViewController: UIViewController {
     }()
     // MARK: - Properties
     var requestFactory: RequestFactory
-    var dataProvider: DataProvider
+    var dataProvider: TravelDataProvider
     var userSettings: UserSettings
     lazy var currentCity: CityName? = userSettings.loadCurrentCity() {
         didSet {
@@ -30,7 +30,7 @@ class TravelScreenViewController: UIViewController {
     // MARK: - Init
     init(requestFactory: RequestFactory,
          userSettings: UserSettings,
-         dataProvider: DataProvider) {
+         dataProvider: TravelDataProvider) {
         self.dataProvider = dataProvider
         self.requestFactory = requestFactory
         self.userSettings = userSettings

@@ -1,13 +1,13 @@
 //
-//  TravelRepository.swift
+//  TravelDataProvider.swift
 //  FriendlyGuide
 //
-//  Created by Alexander Pelevinov on 31.05.2021.
+//  Created by Alexander Pelevinov on 04.07.2021.
 //
 
 import Foundation
 
-protocol DataProvider {
+protocol TravelDataProvider {
     typealias TravelData = (events: [Event], news: [News], places: [Place])
     func getData(cityTag: String,
                  actualSince: String,

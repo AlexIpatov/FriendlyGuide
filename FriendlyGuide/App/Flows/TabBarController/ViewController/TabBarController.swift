@@ -10,15 +10,18 @@ import CoreLocation
 
 class TabBarController: UITabBarController {
     // MARK: - Properties
-    private var dataProvider: DataProvider
+    private var travelDataProvider: TravelDataProvider
+    private var mapScreenDataProvider: MapDataProvider
     private var userSettings: UserSettings
     private var requestFactory: RequestFactory
-
+    
     // MARK: - Init
     init(requestFactory: RequestFactory,
          userSettings: UserSettings,
-         dataProvider: DataProvider) {
-        self.dataProvider = dataProvider
+         travelDataProvider: TravelDataProvider,
+         mapDataProvider: MapDataProvider) {
+        self.travelDataProvider = travelDataProvider
+        self.mapScreenDataProvider = mapDataProvider
         self.requestFactory = requestFactory
         self.userSettings = userSettings
         super.init(nibName: nil, bundle: nil)
@@ -46,7 +49,7 @@ class TabBarController: UITabBarController {
         
         //1. TravelScreen
         let travelScreenViewController = TravelScreenViewController(requestFactory: requestFactory,
-                                                                    userSettings: userSettings, dataProvider: dataProvider)
+                                                                    userSettings: userSettings, dataProvider: travelDataProvider)
         travelScreenViewController.tabBarItem = UITabBarItem(title: "Путешествие",
                                                              image: UIImage(systemName: "figure.walk.diamond"),
                                                              selectedImage: UIImage(systemName: "figure.walk.diamond.fill"))
@@ -59,7 +62,7 @@ class TabBarController: UITabBarController {
         
         //2. MapScreen
         let mapScreenViewController = MapScreenViewController(
-            dataProvider: dataProvider)
+            dataProvider: mapScreenDataProvider)
         mapScreenViewController.tabBarItem = UITabBarItem(title: "Карта",
                                                           image: UIImage(systemName: "map"),
                                                           selectedImage: UIImage(systemName: "map.fill"))

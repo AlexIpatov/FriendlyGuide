@@ -39,6 +39,12 @@ final class RequestFactory {
                            sessionManager: commonSession)
     }
     
+    func makeGetExpEventsListFactory() -> GetExpandedEventsListFactory {
+        let encoder = URLPathParameterEncoder()
+        return GetExpandedEventsList(encoder: encoder,
+                           sessionManager: commonSession)
+    }
+    
     func makeGetEventDetailFactory() -> GetEventDetailFactory {
         let encoder = URLPathParameterEncoder()
         return GetEventDetail(encoder: encoder,
