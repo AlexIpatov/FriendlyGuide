@@ -22,7 +22,7 @@
 		2150FEC0265AB9090058FA89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2150FEBF265AB9090058FA89 /* Assets.xcassets */; };
 		2150FEC3265AB9090058FA89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2150FEC1265AB9090058FA89 /* LaunchScreen.storyboard */; };
 		2150FECE265AB9090058FA89 /* FriendlyGuideTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FECD265AB9090058FA89 /* FriendlyGuideTests.swift */; };
-		2150FED9265AB9090058FA89 /* FriendlyGuideUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */; };
+		2150FED9265AB9090058FA89 /* MapScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2150FED8265AB9090058FA89 /* MapScreenUITests.swift */; };
 		2177A6A9268C53EF00D78961 /* DetailScreenDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E9B82526809645008B70DD /* DetailScreenDataProvider.swift */; };
 		217AB24C2664239B00A0AF66 /* LoginValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB24B2664239B00A0AF66 /* LoginValidator.swift */; };
 		217AB24F266423BC00A0AF66 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217AB24E266423BC00A0AF66 /* PasswordValidator.swift */; };
@@ -241,7 +241,7 @@
 		2150FECD265AB9090058FA89 /* FriendlyGuideTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyGuideTests.swift; sourceTree = "<group>"; };
 		2150FECF265AB9090058FA89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2150FED4265AB9090058FA89 /* FriendlyGuideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FriendlyGuideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendlyGuideUITests.swift; sourceTree = "<group>"; };
+		2150FED8265AB9090058FA89 /* MapScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenUITests.swift; sourceTree = "<group>"; };
 		2150FEDA265AB9090058FA89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		217AB24B2664239B00A0AF66 /* LoginValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidator.swift; sourceTree = "<group>"; };
 		217AB24E266423BC00A0AF66 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
@@ -573,7 +573,7 @@
 				4AA2C29E26907B50006830FD /* CitiesVIewUITests */,
 				4AA2C29D26907B38006830FD /* DeatilViewUITests */,
 				4AA2C29A269064B1006830FD /* TravelViewUITests */,
-				2150FED8265AB9090058FA89 /* FriendlyGuideUITests.swift */,
+				2150FED8265AB9090058FA89 /* MapScreenUITests.swift */,
 				2150FEDA265AB9090058FA89 /* Info.plist */,
 			);
 			path = FriendlyGuideUITests;
@@ -2219,7 +2219,7 @@
 			files = (
 				4AA2C2A026907B8D006830FD /* CitiesViewUITests.swift in Sources */,
 				4AA2C2A226907BA8006830FD /* DetailViewUITests.swift in Sources */,
-				2150FED9265AB9090058FA89 /* FriendlyGuideUITests.swift in Sources */,
+				2150FED9265AB9090058FA89 /* MapScreenUITests.swift in Sources */,
 				4AA2C29C26906561006830FD /* TravelScreenUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2422,7 +2422,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = obryga.corp.FriendlyGuideTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FriendlyGuideTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2445,7 +2445,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = obryga.corp.FriendlyGuideTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FriendlyGuideTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2466,7 +2466,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = obryga.corp.FriendlyGuideUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FriendlyGuideUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2487,7 +2487,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = obryga.corp.FriendlyGuideUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.FriendlyGuideUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
