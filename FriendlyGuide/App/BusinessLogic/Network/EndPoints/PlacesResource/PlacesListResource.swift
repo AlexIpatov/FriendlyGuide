@@ -20,7 +20,7 @@ struct PlacesListResource: EndPointType {
             URLQueryItem(name: "lang", value: "ru"),
             URLQueryItem(name: "location", value: cityTag),
             URLQueryItem(name: "showing_since", value: showingSince),
-            URLQueryItem(name: "fields", value: "id,title,coords,address,images,subway")
+            URLQueryItem(name: "fields", value: "id,title,coords,address,images,subway,location")
         ]
     }
 }

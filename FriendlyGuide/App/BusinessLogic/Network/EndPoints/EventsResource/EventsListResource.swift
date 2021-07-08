@@ -20,7 +20,7 @@ struct EventsListResource: EndPointType {
             URLQueryItem(name: "lang", value: "ru"),
             URLQueryItem(name: "location", value: cityTag),
             URLQueryItem(name: "actual_since", value: actualSince),
-            URLQueryItem(name: "fields", value: "id,title,images,dates")
+            URLQueryItem(name: "fields", value: "id,title,images,dates,place")
         ]
     }
 }

@@ -62,6 +62,7 @@ class TabBarController: UITabBarController {
         
         //2. MapScreen
         let mapScreenViewController = MapScreenViewController(
+            requestFactory: requestFactory,
             dataProvider: mapScreenDataProvider)
         mapScreenViewController.tabBarItem = UITabBarItem(title: "Карта",
                                                           image: UIImage(systemName: "map"),
@@ -73,7 +74,9 @@ class TabBarController: UITabBarController {
                                       barTintColor: .systemGray6,
                                       prefersLargeTitles: false)
         viewControllers.append(mapScreenNavigationController)
-        
+
+/* Chat will be implemented later
+         
         //3. ChatScreen
         let chatBuilder = ChatControllersFactory(requestFactory: requestFactory)
         let chatScreenViewController = chatBuilder.build(with: self.view.bounds)
@@ -86,6 +89,7 @@ class TabBarController: UITabBarController {
                                       barTintColor: .systemGray6,
                                       prefersLargeTitles: false)
         viewControllers.append(chatNavigationController)
+*/
         
         return viewControllers
     }

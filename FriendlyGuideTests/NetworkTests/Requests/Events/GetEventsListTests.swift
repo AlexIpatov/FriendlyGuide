@@ -9,7 +9,7 @@ import XCTest
 @testable import FriendlyGuide
 
 class GetEventsListTests: XCTestCase {
-    let url = URL(string: "https://kudago.com/public-api/v1.4/events?lang=ru&location=spb&actual_since=1444385206&expand=place&fields=id,title,images,dates,place")
+    let url = URL(string: "https://kudago.com/public-api/v1.4/events?lang=ru&location=spb&actual_since=1444385206&fields=id,title,images,dates,place")
     let endPoint = EventsListResource(cityTag: "spb", actualSince: "1444385206")
     let model = EventsList(count: 11, next: nil, previous: nil, results: [])
     let encoder = URLPathParameterEncoder()

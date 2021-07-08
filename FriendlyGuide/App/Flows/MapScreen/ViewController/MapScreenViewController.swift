@@ -22,6 +22,7 @@ class MapScreenViewController: UIViewController {
     //MARK: - Properties
     private var locationManager = LocationManager.instance
     private var dataProvider: MapDataProvider
+    private var requestFactory: RequestFactory
     
     private var initialRegion = MKCoordinateRegion()
     private let initialLatitudinalMetersForPresenting: CLLocationDegrees = 5000
@@ -45,12 +46,15 @@ class MapScreenViewController: UIViewController {
     private var allEntitiesForAnnotationArray: [EntityForAnnotation] = []
     private var placeEntitiesForAnnotationArray: [EntityForAnnotation] = []
     private var eventEntitiesForAnnotationArray: [EntityForAnnotation] = []
+    private var cities: [CityName] = []
             
     //MARK: - Slider properties
     private let transition = SliderTransition()
     
     //MARK: - Init
-    init(dataProvider: MapDataProvider) {
+    init(requestFactory: RequestFactory,
+         dataProvider: MapDataProvider) {
+        self.requestFactory = requestFactory
         self.dataProvider = dataProvider
         super.init(nibName: nil, bundle: nil)
     }
@@ -72,6 +76,7 @@ class MapScreenViewController: UIViewController {
         configureMap()
         configureButtons()
         loadDataFromNetwork()
+        loadCitiesNamesFromNetwork()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,6 +136,23 @@ class MapScreenViewController: UIViewController {
                     self.configureFindPlaceOrEventButtonWhenDataLoaded()
                 case .failure(let error):
                     self.showAlert(with: "Ошибка загрузки данных о местах и событиях",
+                                   and: error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    private func loadCitiesNamesFromNetwork() {
+        let getCityNameFactory = requestFactory.makeGetCityNameFactory()
+        getCityNameFactory.load { [weak self] response in
+            DispatchQueue.main.async {
+                guard let self = self else {return}
+                switch response {
+                case .success(let cities):
+                    self.cities = cities
+                    self.cities.removeAll {$0.slug == "online"}
+                case .failure(let error):
+                    self.showAlert(with: "Ошибка получения названий городов",
                                    and: error.localizedDescription)
                 }
             }
@@ -246,9 +268,10 @@ class MapScreenViewController: UIViewController {
     }
     
     func showOnMapSliderViewController() {
-        let child = OnMapSliderViewController(allPlaces: placeEntitiesForAnnotationArray,
-                                              allEvents: eventEntitiesForAnnotationArray,
-                                              initialSegmentIndex: initialSegmentIndex ?? 0)
+        let child = OnMapSliderViewController(
+            allPlaces: placeEntitiesForAnnotationArray,
+            allEvents: eventEntitiesForAnnotationArray,
+            initialSegmentIndex: initialSegmentIndex ?? 0)
         child.transitioningDelegate = transition
         child.modalPresentationStyle = .custom
         child.placeOrEventDelegate = self
@@ -433,11 +456,13 @@ class MapScreenViewController: UIViewController {
     func showAnnotation(coordinate: CLLocationCoordinate2D,
                         title: String,
                         subtitle: String,
-                        color: UIColor) {
+                        color: UIColor,
+                        cityName: String) {
         let entityForAnnotation = EntityForAnnotation(coordinate: coordinate,
                                                       title: title,
                                                       subtitle: subtitle,
-                                                      color: color)
+                                                      color: color,
+                                                      cityName: cityName)
         currentRegion = makeRegionForDisplay(center: coordinate)
         mapScreenView.mapView.addAnnotation(entityForAnnotation)
         showRegion(region: currentRegion)
@@ -462,10 +487,14 @@ class MapScreenViewController: UIViewController {
                let placeCoordinatesLon = place.coords?.lon {
                 let placeCoordinate = CLLocationCoordinate2D(latitude: placeCoordinatesLat,
                                                              longitude: placeCoordinatesLon)
+                let city = cities.filter{$0.slug == place.location}.first
+                let cityNameAndSlug = "(\(place.location ?? "")) \(city?.name ?? "")"
+
                 let entityForAnnotationFromPlace = EntityForAnnotation(coordinate: placeCoordinate,
                                                                        title: place.title,
                                                                        subtitle: place.address,
-                                                                       color: .systemGreen)
+                                                                       color: .systemGreen,
+                                                                       cityName: cityNameAndSlug)
                 placeEntitiesForAnnotationArray.append(entityForAnnotationFromPlace)
             }
         }
@@ -478,10 +507,14 @@ class MapScreenViewController: UIViewController {
                let eventCoordinatesLon = event.place?.coords?.lon {
                 let eventCoordinate = CLLocationCoordinate2D(latitude: eventCoordinatesLat,
                                                              longitude: eventCoordinatesLon)
+                let city = cities.filter {$0.slug == event.place?.location}.first
+                let cityNameAndSlug = "(\(event.place?.location ?? "")) \(city?.name ?? "")"
+                
                 let entityForAnnotationFromEvent = EntityForAnnotation(coordinate: eventCoordinate,
                                                                        title: event.title,
                                                                        subtitle: event.place?.address,
-                                                                       color: .systemOrange)
+                                                                       color: .systemOrange,
+                                                                       cityName: cityNameAndSlug)
                 eventEntitiesForAnnotationArray.append(entityForAnnotationFromEvent)
             }
         }
@@ -552,11 +585,13 @@ extension MapScreenViewController: OnMapViewControllerDelegate {
                                                            longitude: selectedPlaceOrEventCoordinatesLon)
         let selectedPlaceOrEventAddress = selectedOnSliderPlaceOrEvent?.subtitle
         let selectedPlaceOrEventAnnotationColor = selectedOnSliderPlaceOrEvent?.color
+        let selectedPlaceOrEventAnnotationCityName = selectedOnSliderPlaceOrEvent?.cityName
         
         showAnnotation(coordinate: selectedEntityCoordinates,
                        title: selectedPlaceOrEventTitle,
                        subtitle: selectedPlaceOrEventAddress ?? "",
-                       color: selectedPlaceOrEventAnnotationColor ?? .black)
+                       color: selectedPlaceOrEventAnnotationColor ?? .black,
+                       cityName: selectedPlaceOrEventAnnotationCityName ?? "")
     }
 
     func saveSelectedSegmentIndex(index: Int) {
