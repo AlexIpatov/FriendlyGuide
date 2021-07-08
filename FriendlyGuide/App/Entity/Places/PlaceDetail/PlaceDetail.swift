@@ -22,6 +22,7 @@ struct PlaceDetail: Codable, Hashable {
     let subway: String?
     let categories: [String]?
     let siteUrl: String?
+    let location: String?
 
     enum CodingKeys: String, CodingKey {
         case title, address, phone
@@ -32,6 +33,7 @@ struct PlaceDetail: Codable, Hashable {
         case coords, subway, images
         case boolSubtitle = "is_closed"
         case categories
+        case location
     }
     
 }
@@ -44,7 +46,8 @@ extension PlaceDetail: DetailScreenRepresentable {
                    subway: subway,
                    siteURL: siteUrl,
                    isClosed: boolSubtitle,
-                   coords: coords)
+                   coords: coords,
+                   location: location)
     }
     
     var detailEntity: DetailEntity {

@@ -14,7 +14,7 @@ class GetPlaceDetailTests: XCTestCase {
     let model = PlaceDetail(title: "mock", placeDescription: "", firstSubtitle: "", boolSubtitle: false,
                             images: [], bodyText: "", secondSubtitle: nil, address: "", phone: "",
                             coords: Coordinates(lat: 0.0, lon: 0.0), subway: "", categories: [],
-                            siteUrl: "")
+                            siteUrl: "", location: "")
     let url = URL(string:"https://kudago.com/public-api/v1.4/places/1?lang=ru&fields=title,body_text,coords,phone,address,timetable,subway,coords,description,images,categories,is_closed,site_url&expand=place&text_format=text")
  
     func testGetPlaceDetail() throws {

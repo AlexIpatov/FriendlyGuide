@@ -16,7 +16,8 @@ extension EventPlace {
         subway: String = "",
         siteURL: String = "",
         isClosed: Bool = true,
-        coords: Coordinates = .fixture()
+        coords: Coordinates = .fixture(),
+        location: String = ""
     ) -> EventPlace {
         .init(title: title,
               address: address,
@@ -24,6 +25,7 @@ extension EventPlace {
               subway: subway,
               siteURL: siteURL,
               isClosed: isClosed,
-              coords: coords)
+              coords: coords,
+              location: location)
     }
 }

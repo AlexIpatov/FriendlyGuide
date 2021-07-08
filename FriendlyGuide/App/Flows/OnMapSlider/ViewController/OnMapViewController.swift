@@ -203,13 +203,17 @@ extension OnMapSliderViewController: UITableViewDataSource {
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 }
 
 // MARK: - UITableViewDelegate
 extension OnMapSliderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if selectedSegmentIndex == 0 {
-            var selectedPlace = EntityForAnnotation(coordinate: CLLocationCoordinate2D(), title: "", subtitle: "", color: .black)
+            var selectedPlace = EntityForAnnotation(coordinate: CLLocationCoordinate2D(), title: "", subtitle: "", color: .black, cityName: "")
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
                 selectedPlace = allPlaces[indexPath.row]
             } else {
@@ -217,7 +221,7 @@ extension OnMapSliderViewController: UITableViewDelegate {
             }
             placeOrEventDelegate?.selectPlaceOrEvent(selectedPlaceOrEvent: selectedPlace)
         } else {
-            var selectedEvent = EntityForAnnotation(coordinate: CLLocationCoordinate2D(), title: "", subtitle: "", color: .black)
+            var selectedEvent = EntityForAnnotation(coordinate: CLLocationCoordinate2D(), title: "", subtitle: "", color: .black, cityName: "")
             if onMapSliderView.searchTextField.text?.isTrimmedEmpty ?? true {
                 selectedEvent = allEvents[indexPath.row]
             } else {

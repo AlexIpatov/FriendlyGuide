@@ -14,9 +14,10 @@ struct Place: Codable, Hashable, Identifiable {
     let coords: Coordinates?
     let subway: String?
     let images: [Image]?
+    let location: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, title, images, address, subway, coords
+        case id, title, images, address, subway, coords, location
     }
 }
 

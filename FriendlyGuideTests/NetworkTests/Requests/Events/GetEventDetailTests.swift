@@ -11,7 +11,7 @@ import XCTest
 class GetEventDetailTests: XCTestCase {
 
     let id = 1
-    let model = EventDetail(title: "w", eventDescription: "", firstSubtitle: "", secondSubtitle: "", boolSubtitle: false, images: [], shortPlace: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 0.0, lon: 0.0)), bodyText: "", dates: [], siteURL: "")
+    let model = EventDetail(title: "w", eventDescription: "", firstSubtitle: "", secondSubtitle: "", boolSubtitle: false, images: [], shortPlace: EventPlace(title: "", address: "", phone: "", subway: "", siteURL: "", isClosed: false, coords: Coordinates(lat: 0.0, lon: 0.0), location: ""), bodyText: "", dates: [], siteURL: "")
     var url: URL? { URL(string: "https://kudago.com/public-api/v1.4/events/\(id)?lang=ru&fields=title,place,body_text,price,age_restriction,categories,dates,images,site_url,is_free,description,short_title&expand=place&text_format=text") }
     let encoder = URLPathParameterEncoder()
 

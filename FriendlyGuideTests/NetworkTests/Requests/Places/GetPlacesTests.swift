@@ -13,7 +13,7 @@ class GetPlacesTests: XCTestCase {
     let endPoint = PlacesListResource(cityTag: "spb", showingSince: "1444385206")
     let model = PlacesList(count: 10, next: nil, previous: nil, places: [])
     let encoder = URLPathParameterEncoder()
-    let url = URL(string: "https://kudago.com/public-api/v1.4/places?lang=ru&location=spb&showing_since=1444385206&fields=id,title,coords,address,images,subway")
+    let url = URL(string: "https://kudago.com/public-api/v1.4/places?lang=ru&location=spb&showing_since=1444385206&fields=id,title,coords,address,images,subway,location")
  
     func testGetPlaces() throws {
         let data = try JSONEncoder().encode(model)
