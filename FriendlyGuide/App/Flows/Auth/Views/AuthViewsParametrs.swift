@@ -69,4 +69,28 @@ struct AuthViewsParametrs {
         
         return insetsView
     }
+    
+    static func placeholderInsetsButton(action: Selector, imageName: String) -> UIView {
+        let button = UIButton()
+        
+        let buttonImage = UIImage(systemName: imageName,
+                                  withConfiguration: UIImage
+                                    .SymbolConfiguration(font: .systemFont(ofSize: 10)))
+        
+        button.setImage(buttonImage, for: .normal)
+        button.addTarget(nil, action: action, for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        let insetsView = UIView()
+        insetsView.addSubview(button)
+        
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: insetsView.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: insetsView.centerYAnchor),
+            
+            insetsView.widthAnchor.constraint(equalToConstant: 30)
+        ])
+        
+        return insetsView
+    }
 }

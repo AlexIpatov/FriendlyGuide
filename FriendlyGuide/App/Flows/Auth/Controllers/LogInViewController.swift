@@ -157,7 +157,6 @@ extension LogInViewController: LogInViewDelegate {
                                            y: AuthViewsParametrs.errorViewOffset(inView: self.view),
                                            with: error,
                                            duration: 1)
-                self.customView.showRegisterButton()
             case .success:
                 do {
                     try self.keychainRequestFactory.save(request: LoginKeychainRequest(), value: login)
@@ -209,6 +208,11 @@ extension LogInViewController: LogInViewDelegate {
                 if let login: String = self.keychainRequestFactory.get(request: LoginKeychainRequest()),
                    let password: String = self.keychainRequestFactory.get(request: PasswordKeychainRequest()) {
                     self.login(with: login, and: password)
+                } else {
+                    self.errorTimeredView.show(in: self.view,
+                                               y: AuthViewsParametrs.errorViewOffset(inView: self.view),
+                                               with: "Нет сохранненых данных",
+                                               duration: 1)
                 }
             }
         }

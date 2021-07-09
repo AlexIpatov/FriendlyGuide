@@ -9,8 +9,6 @@ import UIKit
 
 protocol LoginViewRepresentable {
     var delegate: LogInViewDelegate? { get set }
-    
-    func showRegisterButton()
 }
 
 final class LogInView: UIView {
@@ -52,6 +50,7 @@ final class LogInView: UIView {
         textField.placeholder = "login"
         textField.leftView = AuthViewsParametrs
             .placeholderInsetsImageView(with: "person")
+        textField.keyboardType = .emailAddress
         
         setUpCommonParametrs(for: textField)
         return textField
@@ -61,22 +60,20 @@ final class LogInView: UIView {
         textField.placeholder = "password"
         textField.leftView = AuthViewsParametrs
             .placeholderInsetsImageView(with: "key")
+        textField.rightView = AuthViewsParametrs
+            .placeholderInsetsButton(action: #selector(showPasswordButtonWasTapped(_:)),
+                                     imageName: "abc")
+        textField.isSecureTextEntry = true
+        textField.rightViewMode = .always
         
         setUpCommonParametrs(for: textField)
         return textField
     }()
     private lazy var buttonsStackView: UIStackView = {
-        let button = UIButton()
-        button.addTarget(self, action: #selector(login), for: .touchUpInside)
-        button.setTitle("вход", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.sizeToFit()
-        button.accessibilityIdentifier = "fastLogInButton"
-
         let stackView = UIStackView(arrangedSubviews: [
                                         logInButton,
-                                        useBiometricButton,
-                                        button ],
+                                        gotoRegisterButton,
+                                        useBiometricButton ],
                                     axis: .vertical,
                                     spacing: AuthViewsParametrs.buttonsSpacing)
         return stackView
@@ -96,20 +93,28 @@ final class LogInView: UIView {
     }
     
     @objc private func logInButtonWasTapped(_ sender: UIButton) {
+        self.endEditing(true)
         delegate?.logInButtonWasTapped()
     }
     
     @objc private func gotoRegisterButtonWasTapped(_ sender: UIButton) {
+        self.endEditing(true)
         delegate?.gotoRegisterButtonWasTapped()
     }
     
     @objc private func useBiometricButtonWasTaped(_ sender: UIButton) {
+        self.endEditing(true)
         delegate?.useBiometricButtonWasTaped()
+    }
+    
+    @objc private func showPasswordButtonWasTapped(_ sender: UIButton) {
+        self.passwordTextField.isSecureTextEntry.toggle()
     }
         
     private func setUpCommonParametrs(for textField: UITextField) {
         textField.delegate = self
         textField.leftViewMode = .always
+        textField.autocapitalizationType = .none
     }
     
     private func setUpCommonParametrs(for button: UIButton) {
@@ -186,12 +191,6 @@ final class LogInView: UIView {
             mainStackView.widthAnchor.constraint(equalToConstant: frame.width * 0.7),
         ])
     }
-    
-    @objc private func login() {
-        delegate?.textFieldDidEndEditing(loginTextField, login: "test@mail.ru")
-        delegate?.textFieldDidEndEditing(passwordTextField, password: "QWEasd123")
-        delegate?.logInButtonWasTapped()
-    }
 }
 
 extension LogInView: UITextFieldDelegate {
@@ -216,15 +215,6 @@ extension LogInView: UITextFieldDelegate {
     }
 }
 
-
 extension LogInView: LoginViewRepresentable {
-    func showRegisterButton() {
-        UIView.transition(with: gotoRegisterButton,
-                          duration: 0.5,
-                          options: .transitionCrossDissolve) { [weak self] in
-            guard let self = self else { return }
-            self.buttonsStackView.insertArrangedSubview(self.gotoRegisterButton,
-                                                        at: 1)
-        }
-    }
+
 }

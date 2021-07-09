@@ -57,9 +57,15 @@ final class TimeredLableView: UIView {
               y position: CGFloat,
               with error: Error,
               duration: TimeInterval) {
+        show(in: view, y: position, with: error.localizedDescription, duration: duration)
+    }
+    
+    func show(in view: UIView,
+              y position: CGFloat,
+              with error: String,
+              duration: TimeInterval) {
         
-        
-        setText(error.localizedDescription)
+        setText(error)
         view.addSubview(self)
 
         removeConstraints(constraints)
@@ -77,7 +83,7 @@ final class TimeredLableView: UIView {
         
         dismiss(after: duration)
     }
-
+    
     private func setText(_ error: String) {
         infoLable.attributedText = NSAttributedString(string: error,
                                                       attributes: [

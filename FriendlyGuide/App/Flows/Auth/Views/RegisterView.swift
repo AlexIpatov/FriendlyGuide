@@ -122,6 +122,7 @@ final class RegisterView: UIView {
     }
     
     @objc private func registerButtonWasTapped(_ sender: UIButton) {
+        self.endEditing(true)
         delegate?.registerButtonWasTapped()
     }
     
