@@ -12,13 +12,7 @@ class SectionHeader: UICollectionReusableView {
     static let reuseId = "SectionHeader"
     // MARK: - UI components
     let title = UILabel()
-    
-    private(set) lazy var showMoreButton = UIButton(image: UIImage(systemName: "chevron.forward"),
-                                                    font: nil,
-                                                    cornerRadius: 0.0,
-                                                    backgroundColor: .clear,
-                                                    tintColor: .systemBlue)
-    
+
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,16 +34,12 @@ class SectionHeader: UICollectionReusableView {
     func configureUI() {
         title.translatesAutoresizingMaskIntoConstraints = false
         addSubview(title)
-        addSubview(showMoreButton)
         
         NSLayoutConstraint.activate([
             title.topAnchor.constraint(equalTo: topAnchor),
             title.leadingAnchor.constraint(equalTo: leadingAnchor),
             title.trailingAnchor.constraint(equalTo: trailingAnchor),
             title.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            showMoreButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            showMoreButton.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
     }

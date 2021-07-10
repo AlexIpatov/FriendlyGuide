@@ -67,8 +67,7 @@ class NewsCell: UICollectionViewCell, SelfConfiguringCell {
 
             subTitlelabel.topAnchor.constraint(equalTo: titlelabel.bottomAnchor, constant: 4),
             subTitlelabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: 7),
-            subTitlelabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -5),
-           // subTitlelabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            subTitlelabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -5)
         ])
     }
 }
