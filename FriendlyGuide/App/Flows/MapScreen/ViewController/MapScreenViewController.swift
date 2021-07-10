@@ -253,7 +253,8 @@ class MapScreenViewController: UIViewController {
     
     //MARK: - ReloadDataButton
     func configureReloadDataButton() {
-        mapScreenView.reloadDataButton.addTarget(self, action: #selector(tapReloadDataButton(_:)), for: .touchUpInside)
+        mapScreenView.reloadDataButton.addTarget(self, action: #selector(tapReloadDataButton(_:)),
+                                                 for: .touchUpInside)
     }
     @objc func tapReloadDataButton(_ sender: UIButton) {
         loadDataFromNetwork()
@@ -261,7 +262,8 @@ class MapScreenViewController: UIViewController {
     
     //MARK: - FindPlaceOrEventButton
     func configureFindPlaceOrEventButton() {
-        mapScreenView.findPlaceOrEventButton.addTarget(self, action: #selector(tapFindPlaceOrEventButton(_:)), for: .touchUpInside)
+        mapScreenView.findPlaceOrEventButton.addTarget(self, action: #selector(tapFindPlaceOrEventButton(_:)),
+                                                       for: .touchUpInside)
     }
     @objc func tapFindPlaceOrEventButton(_ sender: UIButton) {
         showOnMapSliderViewController()

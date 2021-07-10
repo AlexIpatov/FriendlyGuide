@@ -161,14 +161,9 @@ extension TravelScreenViewController {
 // MARK: - UICollectionViewDelegate
 extension TravelScreenViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Убрать в роутер
         guard let section = TravelSection(rawValue: indexPath.section),
               let currentCell = self.dataSource?.itemIdentifier(for: indexPath) as? Identifiable else { return }
-        let detailVC = DetailEventViewController(requestFactory: requestFactory,
-                                                 currentId: currentCell.id,
-                                                 currentSectionType: section)
-        detailVC.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(detailVC, animated: true)
+        presentDetailVC(currentCellId: currentCell.id, currentSection: section)
     }
 }
 extension TravelScreenViewController: CitiesViewControllerDelegate {
@@ -193,5 +188,12 @@ extension TravelScreenViewController {
         let cityVC = CitiesViewController(requestFactory: requestFactory)
         cityVC.selectionDelegate = self
         present(cityVC, animated: true, completion: nil)
+    }
+    func presentDetailVC(currentCellId: Int, currentSection: TravelSection) {
+        let detailVC = DetailEventViewController(currentId: currentCellId,
+                                                 dataProvider: DetailScreenDataProvider(),
+                                                 currentSectionType: currentSection)
+        detailVC.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

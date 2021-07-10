@@ -13,7 +13,6 @@ class DetailEventViewController: UIViewController {
         return DetailEventView()
     }()
     // MARK: - Properties
-    var requestFactory: RequestFactory
     private var currentId: Int
     var detailData: DetailScreenRepresentable? {
         didSet {
@@ -30,11 +29,11 @@ class DetailEventViewController: UIViewController {
         }
     }
     var currentSectionType: TravelSection
+    let dataProvider: DetailDataProvider = DetailScreenDataProvider()
     // MARK: - Init
-    init(requestFactory: RequestFactory,
-         currentId: Int,
+    init(currentId: Int,
+         dataProvider: DetailDataProvider,
          currentSectionType: TravelSection) {
-        self.requestFactory = requestFactory
         self.currentId = currentId
         self.currentSectionType = currentSectionType
         super.init(nibName: nil, bundle: nil)
@@ -78,7 +77,7 @@ class DetailEventViewController: UIViewController {
                                                 withReuseIdentifier: DetailSectionHeader.reuseId)
         detailEventView.collectionView.delegate = self
     }
-    // TODO убрать каст, сделать чище
+
     private func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<DetailSection, AnyHashable>()
         guard let detailData = detailData else { return }
@@ -96,9 +95,6 @@ class DetailEventViewController: UIViewController {
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
     // MARK: - Request data methods
-    // Упростить
-    let dataProvider = DetailScreenDataProvider()
-    
     private func requestData() {
         dataProvider.getData(by: currentId,
                              with: currentSectionType) { [weak self] response in
@@ -180,53 +176,3 @@ extension DetailEventViewController {
         showMoreInfo = showMoreInfo ? false : true
     }
 }
-// КАК ТО ПЕРЕДЕЛАТЬ?????
-//MARK: - Cell Model For Event
-//extension DetailEventViewController {
-//    func cellModel<U>(from entity: U, type: TravelSection) -> DetailData? {
-//        let descriptionForEntity: DescriptionForEntity
-//        let detailEntity: DetailEntity
-//        let shortPlace: EventPlace?
-//        switch type {
-//        case .events:
-//            guard  let entity: EventDetail = entity as? EventDetail else { return nil}
-//            descriptionForEntity = DescriptionForEntity(title: entity.title,
-//                                                        description: entity.description,
-//                                                        firstSubtitle: entity.price,
-//                                                        secondSubtitle: "",
-//                                                        boolSubtitle: entity.isFree)
-//            detailEntity =  DetailEntity(images: entity.images,
-//                                         bodyText: entity.bodyText)
-//            shortPlace = entity.place
-//        case .places:
-//            guard  let entity: PlaceDetail = entity as? PlaceDetail else { return nil}
-//            descriptionForEntity = DescriptionForEntity(
-//                                                        title: entity.title,
-//                                                        description: entity.description,
-//                                                        firstSubtitle: entity.timetable,
-//                                                        boolSubtitle: entity.isClosed)
-//            detailEntity =  DetailEntity(images: entity.images,
-//                                         bodyText: entity.bodyText)
-//            shortPlace = EventPlace(title: entity.title,
-//                                    address: entity.address,
-//                                    phone: entity.phone,
-//                                    subway: entity.subway,
-//                                    siteURL: entity.siteUrl,
-//                                    isClosed: entity.isClosed,
-//                                    coords: entity.coords)
-//        case .news:
-//            guard  let entity: NewsDetail = entity as? NewsDetail else { return nil}
-//            descriptionForEntity = DescriptionForEntity(
-//                                                        title: entity.title,
-//                                                        description: entity.description,
-//                                                        secondSubtitle: entity.publicationDate.description)
-//            detailEntity = DetailEntity(images: entity.images,
-//                                        bodyText: entity.bodyText)
-//            shortPlace = entity.place
-//        }
-//
-//        return DetailData(detailEntity: detailEntity,
-//                          description: descriptionForEntity,
-//                          shortPlace: shortPlace)
-//    }
-//}

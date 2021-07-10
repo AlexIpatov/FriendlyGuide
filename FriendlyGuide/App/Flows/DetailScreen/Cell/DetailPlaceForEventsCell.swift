@@ -115,12 +115,6 @@ extension DetailPlaceForEventsCell {
         phoneButton.addTarget(self,
                               action: #selector(phoneButtonTapped),
                               for: .touchUpInside)
-        addressButton.addTarget(self,
-                                action: #selector(addressButtonTapped),
-                                for: .touchUpInside)
-        subwayButton.addTarget(self,
-                               action: #selector(addressButtonTapped),
-                               for: .touchUpInside)
     }
     // MARK: - Open in web
     @objc private func showInWebButtonTapped() {
@@ -134,7 +128,6 @@ extension DetailPlaceForEventsCell {
                                   completionHandler: nil)
     }
     // MARK: - Phone call (only device)
-    // TODO Проверить
     @objc private func phoneButtonTapped() {
         guard let phoneNumber = phoneButton.title(for: .normal),
               let phoneNumberURL = URL(string: "tell://\(phoneNumber)")
@@ -144,9 +137,5 @@ extension DetailPlaceForEventsCell {
         UIApplication.shared.open(phoneNumberURL,
                                   options: [:],
                                   completionHandler: nil)
-    }
-    // MARK: - Show map with current address
-    @objc private func addressButtonTapped() {
-        print("Добавить переход на карту")
     }
 }

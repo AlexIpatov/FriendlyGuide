@@ -8,13 +8,6 @@
 import Foundation
 
 protocol DetailScreenRepresentable {
-//        var title: String { get }
-//        var description: String? { get }
-//        var firstSubtitle: String? { get }
-//        var secondSubtitle: String? { get }
-//        var boolSubtitle: Bool? { get }
-//        var images: [Image]? { get }
-//        var bodyText: String? { get }
     var shortPlace: EventPlace? { get }
     var detailEntity : DetailEntity { get }
     var description: DescriptionForEntity { get }
